@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Undertow Server - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/undertow-server/index.xml</link>
+    <description>Recent content on Undertow Server - The fastest Java API Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Fri, 07 Oct 2016 22:02:13 -0400</lastBuildDate>
+    <atom:link href="https://networknt.github.io/undertow-server/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Middleware Handlers</title>
+      <link>https://networknt.github.io/undertow-server/middleware/</link>
+      <pubDate>Fri, 07 Oct 2016 22:02:13 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/middleware/</guid>
+      <description>&lt;p&gt;this is middleware md&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Material for Hugo</title>
+      <link>https://networknt.github.io/undertow-server/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
