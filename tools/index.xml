@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Undertow Server - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/undertow-server/index.xml</link>
-    <description>Recent content on Undertow Server - The fastest Java API Framework</description>
+    <title>Tools-rsses on Undertow Server - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/undertow-server/tools/index.xml</link>
+    <description>Recent content in Tools-rsses on Undertow Server - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sat, 08 Oct 2016 19:25:24 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/undertow-server/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://networknt.github.io/undertow-server/tools/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to use hugo for project documentation on github</title>
@@ -199,64 +199,6 @@ git add .
 git commit -m &amp;quot;add docs for documentation&amp;quot;
 git push origin master
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Middleware Handlers</title>
-      <link>https://networknt.github.io/undertow-server/middleware/</link>
-      <pubDate>Fri, 07 Oct 2016 22:02:13 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/undertow-server/middleware/</guid>
-      <description>&lt;p&gt;this is middleware md&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Introduction</title>
-      <link>https://networknt.github.io/undertow-server/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
-      
-      <guid>https://networknt.github.io/undertow-server/</guid>
-      <description>
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://undertow.io/&#34;&gt;Undertow&lt;/a&gt; is  one of the fastest Java HTTP servers available and
-JBoss WildFly is based on it.&lt;/p&gt;
-
-&lt;p&gt;Performance comparison with others can be found
-at &lt;a href=&#34;https://www.techempower.com/benchmarks/#section=data-r12&amp;amp;hw=peak&amp;amp;test=plaintext&#34;&gt;www.techempower.com&lt;/a&gt; and
-a simple Hello World server got 1.2 million requests per second on my I5 4 CPU desktop.
-&lt;a href=&#34;https://www.networknt.com/blog/All/CeHJjNRjRiS1dH1qqme2LQ&#34;&gt;Here&lt;/a&gt; is a blog that compares
-it with Go 1.6&lt;/p&gt;
-
-&lt;p&gt;In addition, I have performance comparison with the most popular REST API framework Spring
-Boot in &lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;undertow-server-example&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Although it is fast, reliable and widely used but the programming style is a little
-strange for traditional JEE developers as it uses handler chain for request processing.
-Of course, you can use servlet contain on top of it but you are losing the performance
-edge by a big margin.&lt;/p&gt;
-
-&lt;p&gt;In order to make use this server more efficiently, I have built a framework called
-&lt;a href=&#34;https://github.com/networknt/light&#34;&gt;Light&lt;/a&gt; that is based on it with event sourcing
-and graph database. The framework is used to host both my sites
-&lt;a href=&#34;www.networknt.com&#34;&gt;www.networknt.com&lt;/a&gt;
-and &lt;a href=&#34;www.edibleforestgarden.ca&#34;&gt;www.edibleforestgarden.ca&lt;/a&gt; on a single ip address.&lt;/p&gt;
-
-&lt;p&gt;The light framework is complex and has both backend and frontend with blog, news,
-forum and e-commerce built-in. Some developers/users asked me if I could provide a
-simple framework that just supports REST API build for backend only.&lt;/p&gt;
-
-&lt;p&gt;And this is how undertow framework was born. The framework contains three part that work
-together to have a total solution for containerized microservices.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/undertow-server&#34;&gt;undertow-server&lt;/a&gt; to build API&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/undertow-portal&#34;&gt;undertow-oauth2&lt;/a&gt; to control API access&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/undertow-oauth2&#34;&gt;undertow-portal&lt;/a&gt; to manage client and API&lt;/p&gt;
 </description>
     </item>
     

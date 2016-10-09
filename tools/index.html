@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Undertow Server - The fastest Java API Framework</title>
+    <title>Tools - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -69,17 +69,12 @@
     <script src="https://networknt.github.io/undertow-server/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/undertow-server/index.xml" rel="alternate" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/undertow-server/index.xml" rel="feed" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
+    <link href="https://networknt.github.io/undertow-server/tools/index.xml" rel="alternate" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
+    <link href="https://networknt.github.io/undertow-server/tools/index.xml" rel="feed" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
     
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
-
-
-
-	
-	
 
 
 <div class="backdrop">
@@ -100,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Undertow Server - The fastest Java API Framework
+        Tools
       </div>
     </div>
 
@@ -142,9 +137,6 @@
       
       <div class="name">
         <strong>Undertow Server - The fastest Java API Framework <span class="version">0.1.7</span></strong>
-        
-          <br>
-          networknt/undertow-server
         
       </div>
     </div>
@@ -291,11 +283,14 @@
 
 
 
-<a  title="Tools" href="https://networknt.github.io/undertow-server/tools/">
+<a class="current" title="Tools" href="https://networknt.github.io/undertow-server/tools/">
 	
 	Tools
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -392,49 +387,19 @@
 
 	<article class="article">
 		<div class="wrapper">
+			<h1>Pages in Tool</h1>
+
 			
-				<h1>Introduction </h1>
+			<a href="https://networknt.github.io/undertow-server/tools/hugo-docs/" title="How to use hugo for project documentation on github">
+				<h2>How to use hugo for project documentation on github</h2>
+			</a>
 
-				
+			<br>
+			Introduction This tutorial is written for Linux and Mac; however, it should be hard to follow it by Windows users.
+For most open source developers, they would ues github.com to manage their projects and then have a README.md for documentation. For some bigger project they might have wiki for additional documents and linked them to README.md.
+Here I will introduce another way to manage documents in gh-pages with Hugo static site generator.
 
-<h2 id="introduction">Introduction</h2>
-
-<p><a href="http://undertow.io/">Undertow</a> is  one of the fastest Java HTTP servers available and
-JBoss WildFly is based on it.</p>
-
-<p>Performance comparison with others can be found
-at <a href="https://www.techempower.com/benchmarks/#section=data-r12&amp;hw=peak&amp;test=plaintext">www.techempower.com</a> and
-a simple Hello World server got 1.2 million requests per second on my I5 4 CPU desktop.
-<a href="https://www.networknt.com/blog/All/CeHJjNRjRiS1dH1qqme2LQ">Here</a> is a blog that compares
-it with Go 1.6</p>
-
-<p>In addition, I have performance comparison with the most popular REST API framework Spring
-Boot in <a href="https://github.com/networknt/undertow-server-example/tree/master/performance">undertow-server-example</a></p>
-
-<p>Although it is fast, reliable and widely used but the programming style is a little
-strange for traditional JEE developers as it uses handler chain for request processing.
-Of course, you can use servlet contain on top of it but you are losing the performance
-edge by a big margin.</p>
-
-<p>In order to make use this server more efficiently, I have built a framework called
-<a href="https://github.com/networknt/light">Light</a> that is based on it with event sourcing
-and graph database. The framework is used to host both my sites
-<a href="www.networknt.com">www.networknt.com</a>
-and <a href="www.edibleforestgarden.ca">www.edibleforestgarden.ca</a> on a single ip address.</p>
-
-<p>The light framework is complex and has both backend and frontend with blog, news,
-forum and e-commerce built-in. Some developers/users asked me if I could provide a
-simple framework that just supports REST API build for backend only.</p>
-
-<p>And this is how undertow framework was born. The framework contains three part that work
-together to have a total solution for containerized microservices.</p>
-
-<p><a href="https://github.com/networknt/undertow-server">undertow-server</a> to build API</p>
-
-<p><a href="https://github.com/networknt/undertow-portal">undertow-oauth2</a> to control API access</p>
-
-<p><a href="https://github.com/networknt/undertow-oauth2">undertow-portal</a> to manage client and API</p>
-
+			<hr>
 			
 
 			<aside class="copyright" role="note">
@@ -446,40 +411,6 @@ together to have a total solution for containerized microservices.</p>
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
-
-			<footer class="footer">
-				
-
-
-
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  </div>
-
-  
-  
-  <div class="next">
-      <a href="https://networknt.github.io/undertow-server/middleware/" title="Middleware Handlers">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Middleware Handlers
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  </div>
-</nav>
-
-
-
-			</footer>
 		</div>
 	</article>
 
@@ -495,8 +426,8 @@ together to have a total solution for containerized microservices.</p>
 
     <script>
     
-      var base_url = 'https:\/\/networknt.github.io\/undertow-server\/';
-      var repo_id  = 'networknt\/undertow-server';
+      var base_url = '';
+      var repo_id  = '';
     
     </script>
 

@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Undertow Server - The fastest Java API Framework</title>
+    <title>How to use hugo for project documentation on github - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/hugo-docs/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/hugo-docs/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -69,9 +69,6 @@
     <script src="https://networknt.github.io/undertow-server/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/undertow-server/index.xml" rel="alternate" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/undertow-server/index.xml" rel="feed" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
@@ -100,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Undertow Server - The fastest Java API Framework
+        How to use hugo for project documentation on github
       </div>
     </div>
 
@@ -392,50 +389,192 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>Introduction </h1>
+			<h1>How to use hugo for project documentation on github </h1>
 
-				
+			
 
 <h2 id="introduction">Introduction</h2>
 
-<p><a href="http://undertow.io/">Undertow</a> is  one of the fastest Java HTTP servers available and
-JBoss WildFly is based on it.</p>
+<p><strong>This tutorial is written for Linux and Mac; however, it should be hard to follow it by Windows users.</strong></p>
 
-<p>Performance comparison with others can be found
-at <a href="https://www.techempower.com/benchmarks/#section=data-r12&amp;hw=peak&amp;test=plaintext">www.techempower.com</a> and
-a simple Hello World server got 1.2 million requests per second on my I5 4 CPU desktop.
-<a href="https://www.networknt.com/blog/All/CeHJjNRjRiS1dH1qqme2LQ">Here</a> is a blog that compares
-it with Go 1.6</p>
+<p>For most open source developers, they would ues github.com to manage their projects and then have a README.md
+for documentation. For some bigger project they might have wiki for additional documents and linked them to
+README.md.</p>
 
-<p>In addition, I have performance comparison with the most popular REST API framework Spring
-Boot in <a href="https://github.com/networknt/undertow-server-example/tree/master/performance">undertow-server-example</a></p>
+<p>Here I will introduce another way to manage documents in gh-pages with <a href="https://gohugo.io/">Hugo</a> static site
+generator.</p>
 
-<p>Although it is fast, reliable and widely used but the programming style is a little
-strange for traditional JEE developers as it uses handler chain for request processing.
-Of course, you can use servlet contain on top of it but you are losing the performance
-edge by a big margin.</p>
+<h2 id="installation">Installation</h2>
 
-<p>In order to make use this server more efficiently, I have built a framework called
-<a href="https://github.com/networknt/light">Light</a> that is based on it with event sourcing
-and graph database. The framework is used to host both my sites
-<a href="www.networknt.com">www.networknt.com</a>
-and <a href="www.edibleforestgarden.ca">www.edibleforestgarden.ca</a> on a single ip address.</p>
+<h3 id="hugo">Hugo</h3>
 
-<p>The light framework is complex and has both backend and frontend with blog, news,
-forum and e-commerce built-in. Some developers/users asked me if I could provide a
-simple framework that just supports REST API build for backend only.</p>
+<p>For Linux, download the binary from the <a href="https://github.com/spf13/hugo/releases">latest release</a></p>
 
-<p>And this is how undertow framework was born. The framework contains three part that work
-together to have a total solution for containerized microservices.</p>
+<p>I am using hugo_0.27-64bit.deb on ubuntu and install it with the following command.</p>
 
-<p><a href="https://github.com/networknt/undertow-server">undertow-server</a> to build API</p>
+<pre><code>
+sudo dpkg -i hugo_0.17-64bit.deb
+</code></pre>
 
-<p><a href="https://github.com/networknt/undertow-portal">undertow-oauth2</a> to control API access</p>
+<p>To verify that Hugo is installed successful.</p>
 
-<p><a href="https://github.com/networknt/undertow-oauth2">undertow-portal</a> to manage client and API</p>
+<pre><code>hugo version
+</code></pre>
 
-			
+<p>For Mac, the easiest way to use Homebrew.</p>
+
+<pre><code>brew update &amp;&amp; brew install hugo
+</code></pre>
+
+<h3 id="pygments">Pygments</h3>
+
+<p>The Hugo executable has one optional external dependency for source code highlighting (Pygments). To install it</p>
+
+<pre><code>pip install Pygments
+</code></pre>
+
+<h3 id="enable-hugo-bash-auto-completion">Enable Hugo Bash Auto-Completion</h3>
+
+<pre><code>sudo hugo gen autocomplete
+. /etc/bash_completion
+</code></pre>
+
+<p>Now if you type hugo followed by a few TABs, you will see the commands that Hugo recommended.</p>
+
+<h2 id="create-gh-pages-branch">Create gh-pages branch</h2>
+
+<p>GitHub Pages will serve up a website for any repository that has a branch called gh-pages with a valid index.html
+file at that branch’s root.</p>
+
+<ol>
+<li>Create an orphaned gh-pages branch</li>
+</ol>
+
+<p>To set up a Project Pages site, you need to create a new &ldquo;orphan&rdquo; branch (a branch that has no common history with
+ an existing branch) in your repository. The safest way to do this is to start with a fresh clone:</p>
+
+<pre><code>git clone github.com/user/repository.git
+cd repository
+git checkout --orphan gh-pages
+</code></pre>
+
+<ol>
+<li>Remove all files to create an empty working directory</li>
+</ol>
+
+<pre><code>git rm -rf .
+
+</code></pre>
+
+<ol>
+<li>Add test index.html and push</li>
+</ol>
+
+<pre><code>echo &quot;My Page&quot; &gt; index.html
+git add index.html
+git commit -a -m &quot;initial checkin&quot;
+git push origin gh-pages
+</code></pre>
+
+<ol>
+<li>Test your site</li>
+</ol>
+
+<p>After push to gh-pages, your site will be available at the following url.</p>
+
+<p>https://<username>.github.io/<projectname></p>
+
+<h2 id="scaffold-docs-site">Scaffold docs site</h2>
+
+<p>First switch to master branch</p>
+
+<pre><code>git checkout master
+</code></pre>
+
+<p>Create a new docs site</p>
+
+<pre><code>hugo new site docs
+</code></pre>
+
+<p>Now you have a docs directory in your project root folder and some empty sub directories under docs. By default, git
+will not commit empty directories to the repository. To work around it, we can include .gitkeep file in each of these
+directories.</p>
+
+<pre><code>for DIR in `ls -p | grep /`; do touch ${DIR}.gitkeep; done
+</code></pre>
+
+<p>To verify that these files are created.</p>
+
+<pre><code>find . -name .gitkeep
+</code></pre>
+
+<h2 id="config">Config</h2>
+
+<p>Copy the content of <a href="https://raw.githubusercontent.com/networknt/undertow-server/master/docs/config.toml">my config</a>
+into config.toml under docs and update it accordingly</p>
+
+<h2 id="theme">Theme</h2>
+
+<p>I am using hugo-material-docs theme and here is the steps to install it.</p>
+
+<pre><code>cd docs/themes
+git clone git@github.com:digitalcraftsman/hugo-material-docs.git
+</code></pre>
+
+<h2 id="content">Content</h2>
+
+<p>Now let&rsquo;s create the first page and test it.</p>
+
+<ol>
+<li>From docs folder, run</li>
+</ol>
+
+<pre><code>hugo new index.md
+</code></pre>
+
+<ol>
+<li><p>Find the file docs/content/index.md and update it with some testing content</p></li>
+
+<li><p>Start the server and test it.</p></li>
+</ol>
+
+<p>From docs folder</p>
+
+<pre><code>hugo server
+</code></pre>
+
+<ol>
+<li>Now you about.md can be accessed at
+<a href="http://localhost:1313/">http://localhost:1313/</a><projectname></li>
+</ol>
+
+<h2 id="deploy">Deploy</h2>
+
+<p>From docs folder run the following command to publish your site to gh-pages</p>
+
+<pre><code># Fetch the deployment script into the root of your source tree, make it executable.
+wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh &amp;&amp; chmod +x deploy.sh
+
+# For setting it up to build to a folder other than &quot;dist&quot;, see the options in deploy.sh.
+# Build the site to /dist.
+hugo -d dist
+
+# Run the deploy.sh script installed above.
+./deploy.sh
+</code></pre>
+
+<p>Now you document site can be accessed from https://<username>.github.io/<projectname></p>
+
+<h2 id="check-in">Check in</h2>
+
+<p>You site is up and running now, let&rsquo;s check it in before adding more documents</p>
+
+<pre><code>cd ..
+git add .
+git commit -m &quot;add docs for documentation&quot;
+git push origin master
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -450,15 +589,13 @@ together to have a total solution for containerized microservices.</p>
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
   </div>
 
-  
-  
   <div class="next">
+  
       <a href="https://networknt.github.io/undertow-server/middleware/" title="Middleware Handlers">
         <span class="direction">
           Next
@@ -474,8 +611,11 @@ together to have a total solution for containerized microservices.</p>
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 
