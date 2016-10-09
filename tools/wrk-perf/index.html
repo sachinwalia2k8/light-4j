@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Middleware Handlers - Undertow Server - The fastest Java API Framework</title>
+    <title>wrk performance test - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/wrk-perf/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/wrk-perf/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Middleware Handlers
+        wrk performance test
       </div>
     </div>
 
@@ -234,14 +234,11 @@
 
 
 
-<a class="current" title="Middleware" href="https://networknt.github.io/undertow-server/middleware/">
+<a  title="Middleware" href="https://networknt.github.io/undertow-server/middleware/">
 	
 	Middleware
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -392,9 +389,71 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Middleware Handlers </h1>
+			<h1>wrk performance test </h1>
 
-			<p>this is middleware md</p>
+			
+
+<h2 id="introduction">Introduction</h2>
+
+<p>For most API frameworks in Java, the server can only handle up to ten thousands request per second and Apache JMeter
+or Apache Bench will do the job. However, when we are talking about millions requests per second undertow-server
+handles, they won&rsquo;t work as these tools will use up all the cpu resources. For high performance testing,
+<a href="https://github.com/wg/wrk">wrk</a> is the best as it can send tens of millions requests per seconds on a
+commodity hardware.</p>
+
+<p>Another limitation on high performance throughput test is network limitation. Unless you client and server a connected
+with 10G network, chances are the network will be the bottle net and you cannot reach the full handling potential of
+you http server. To work around it, most of my tests are running on the same computer in order to gauge the raw server
+throughput and latency.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p><a href="https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux">Install on Linux</a></p>
+
+<p><a href="https://github.com/wg/wrk/wiki/Installing-wrk-on-OSX">Install on Mac</a></p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="basic">Basic</h3>
+
+<pre><code>wrk -t12 -c400 -d30s http://localhost:8080/
+
+</code></pre>
+
+<p>12 threads</p>
+
+<p>400 concurrent connections</p>
+
+<p>30 seconds duration</p>
+
+<h3 id="pipeline">Pipeline</h3>
+
+<p>If you want to bump up number of requests, use pipeline</p>
+
+<pre><code>wrk -t4 -c128 -d30s http://localhost:8080 -s pipeline.lua --latency -- / 16
+</code></pre>
+
+<p>Here is the pipeline.lua script</p>
+
+<pre><code>init = function(args)
+   request_uri = args[1]
+   depth = tonumber(args[2]) or 1
+
+   local r = {}
+   for i=1,depth do
+     r[i] = wrk.format(nil, request_uri)
+   end
+   req = table.concat(r)
+end
+
+request = function()
+   return req
+end
+</code></pre>
+
+<h2 id="example">Example</h2>
+
+<p>For some output examples, you can find at <a href="https://github.com/networknt/undertow-server-example/tree/master/performance">undertow-server-example/performance</a></p>
 
 
 			<aside class="copyright" role="note">
@@ -413,7 +472,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/hugo-docs/" title="Hugo for project documentation on github">
+      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
         <span class="direction">
           Previous
         </span>
@@ -423,7 +482,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Hugo for project documentation on github
+              Swagger Editor for OpenAPI Specification
             </div>
           </div>
         </div>
@@ -433,14 +492,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/" title="Introduction">
+      <a href="https://networknt.github.io/undertow-server/tools/hugo-docs/" title="Hugo for project documentation on github">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Introduction
+              Hugo for project documentation on github
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

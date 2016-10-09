@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Architecture-rsses on Undertow Server - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/undertow-server/architecture/index.xml</link>
+    <description>Recent content in Architecture-rsses on Undertow Server - The fastest Java API Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Sun, 09 Oct 2016 08:15:27 -0400</lastBuildDate>
+    <atom:link href="https://networknt.github.io/undertow-server/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>spring is bloated</title>
+      <link>https://networknt.github.io/undertow-server/architecture/spring-is-bloated/</link>
+      <pubDate>Sun, 09 Oct 2016 08:15:27 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/architecture/spring-is-bloated/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jee is out</title>
+      <link>https://networknt.github.io/undertow-server/architecture/jee-is-out/</link>
+      <pubDate>Sun, 09 Oct 2016 08:14:57 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/architecture/jee-is-out/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>microservices</title>
+      <link>https://networknt.github.io/undertow-server/architecture/microservices/</link>
+      <pubDate>Sun, 09 Oct 2016 08:13:52 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/architecture/microservices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>index</title>
+      <link>https://networknt.github.io/undertow-server/architecture/</link>
+      <pubDate>Sun, 09 Oct 2016 08:13:17 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/architecture/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

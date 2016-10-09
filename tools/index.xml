@@ -7,11 +7,188 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 08 Oct 2016 19:25:24 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 08 Oct 2016 22:14:59 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/undertow-server/tools/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>How to use hugo for project documentation on github</title>
+      <title>Swagger codegen to generate server stub skeleton</title>
+      <link>https://networknt.github.io/undertow-server/tools/swagger-codegen/</link>
+      <pubDate>Sat, 08 Oct 2016 22:14:59 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/tools/swagger-codegen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swagger cli to convert/bundle specification files</title>
+      <link>https://networknt.github.io/undertow-server/tools/swagger-cli/</link>
+      <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/tools/swagger-cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swagger Editor for OpenAPI Specification</title>
+      <link>https://networknt.github.io/undertow-server/tools/swagger-editor/</link>
+      <pubDate>Sat, 08 Oct 2016 22:14:33 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/tools/swagger-editor/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swagger.io/&#34;&gt;Swagger&lt;/a&gt; is a simple yet powerful representation of your RESTful API. With the largest
+ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern
+programming language and deployment environment. With a Swagger-enabled API, you get interactive documentation,
+client SDK generation and discoverability.&lt;/p&gt;
+
+&lt;p&gt;Swagger was created to help fulfill the promise of APIs and is 100% open source software.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swagger.io/specification/&#34;&gt;The Swagger specification&lt;/a&gt; defines a set of files required to describe an API.
+These files can then be used by the Swagger-UI project to display the API and Swagger-codegen to generate clients
+or servers in various languages. Additional utilities can also take advantage of the resulting files, such as
+testing tools.&lt;/p&gt;
+
+&lt;h2 id=&#34;swagger-editor&#34;&gt;Swagger Editor&lt;/h2&gt;
+
+&lt;h3 id=&#34;specification-management&#34;&gt;Specification Management&lt;/h3&gt;
+
+&lt;p&gt;If you only have one API to be built, you can save your specification anywhere and you don&amp;rsquo;t need any external
+references; however, you might work for an organization which is building hundreds or thousands APIs and there
+are so many shared references between APIs like common headers, error status etc. In this case, it is recommended
+to create a separate repo for specification only. Normally, it will be called swagger.&lt;/p&gt;
+
+&lt;p&gt;Within this folder, each api will have its own sub folder and common shared references will be in the root folder.&lt;/p&gt;
+
+&lt;p&gt;Swagger spec. can be edited in yaml or json format but most people will be using yaml format and we are stick to it.&lt;/p&gt;
+
+&lt;h3 id=&#34;using-the-online-editor&#34;&gt;Using the online editor&lt;/h3&gt;
+
+&lt;p&gt;To access the Swagger online editor, click the following link.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://editor.swagger.io/#/&#34;&gt;Online Swagger Editor&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;To create a new specification - File &amp;ndash;&amp;gt; New&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To import an existing specification from the File &amp;ndash;&amp;gt; Import File &amp;hellip;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To save/export the specification in YAML format - File &amp;ndash;&amp;gt; Download YAML.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Online editor work if you are working on only one API without any externalized references. If you want to work with
+multiple APIs, you have to run the editor locally.&lt;/p&gt;
+
+&lt;h3 id=&#34;running-editor-locally&#34;&gt;Running editor locally&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;  git clone https://github.com/swagger-api/swagger-editor.git
+  cd swagger-editor
+  npm install
+  npm start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now your default browser will be started and point to 127.0.0.1:8080/# with a sample specification loaded.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-a-new-specification&#34;&gt;Create a new specification&lt;/h3&gt;
+
+&lt;p&gt;The swagger-editor serves the static files via an HTTP server. To work on API specifications, the simplest way
+is to clone the swagger repository directly in the Swagger editor folder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd swagger-editor
+git clone https://github.com/networknt/swagger.git
+cd swagger
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When saving/exporting your specification, please use swagger.yaml filename in your API sub folder under swagger.
+Common object specifications are located in the root folder of the /swagger repository. Ex. header.yaml,
+error.yaml, etc. To refer these common specification files in API specification&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ref: &#39;swagger/error.yaml#/error&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;useful-links&#34;&gt;Useful links&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://swagger.io/specification/&#34;&gt;OpenAPI Specification&lt;/a&gt;
+&lt;a href=&#34;https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0&#34;&gt;Official Examples&lt;/a&gt;
+&lt;a href=&#34;https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/&#34;&gt;Tutorial&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wrk performance test</title>
+      <link>https://networknt.github.io/undertow-server/tools/wrk-perf/</link>
+      <pubDate>Sat, 08 Oct 2016 21:47:07 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/tools/wrk-perf/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;For most API frameworks in Java, the server can only handle up to ten thousands request per second and Apache JMeter
+or Apache Bench will do the job. However, when we are talking about millions requests per second undertow-server
+handles, they won&amp;rsquo;t work as these tools will use up all the cpu resources. For high performance testing,
+&lt;a href=&#34;https://github.com/wg/wrk&#34;&gt;wrk&lt;/a&gt; is the best as it can send tens of millions requests per seconds on a
+commodity hardware.&lt;/p&gt;
+
+&lt;p&gt;Another limitation on high performance throughput test is network limitation. Unless you client and server a connected
+with 10G network, chances are the network will be the bottle net and you cannot reach the full handling potential of
+you http server. To work around it, most of my tests are running on the same computer in order to gauge the raw server
+throughput and latency.&lt;/p&gt;
+
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux&#34;&gt;Install on Linux&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/wg/wrk/wiki/Installing-wrk-on-OSX&#34;&gt;Install on Mac&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+
+&lt;h3 id=&#34;basic&#34;&gt;Basic&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;wrk -t12 -c400 -d30s http://localhost:8080/
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;12 threads&lt;/p&gt;
+
+&lt;p&gt;400 concurrent connections&lt;/p&gt;
+
+&lt;p&gt;30 seconds duration&lt;/p&gt;
+
+&lt;h3 id=&#34;pipeline&#34;&gt;Pipeline&lt;/h3&gt;
+
+&lt;p&gt;If you want to bump up number of requests, use pipeline&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wrk -t4 -c128 -d30s http://localhost:8080 -s pipeline.lua --latency -- / 16
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the pipeline.lua script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;init = function(args)
+   request_uri = args[1]
+   depth = tonumber(args[2]) or 1
+
+   local r = {}
+   for i=1,depth do
+     r[i] = wrk.format(nil, request_uri)
+   end
+   req = table.concat(r)
+end
+
+request = function()
+   return req
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;For some output examples, you can find at &lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;undertow-server-example/performance&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo for project documentation on github</title>
       <link>https://networknt.github.io/undertow-server/tools/hugo-docs/</link>
       <pubDate>Sat, 08 Oct 2016 19:25:24 -0400</pubDate>
       
@@ -175,12 +352,17 @@ git clone git@github.com:digitalcraftsman/hugo-material-docs.git
 
 &lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
 
-&lt;p&gt;From docs folder run the following command to publish your site to gh-pages&lt;/p&gt;
+&lt;p&gt;Get the deploy.sh&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# Fetch the deployment script into the root of your source tree, make it executable.
 wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh &amp;amp;&amp;amp; chmod +x deploy.sh
 
-# For setting it up to build to a folder other than &amp;quot;dist&amp;quot;, see the options in deploy.sh.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;From docs folder run the following command to publish your site to gh-pages. This can be repeated every time you
+want to publish your site.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# For setting it up to build to a folder other than &amp;quot;dist&amp;quot;, see the options in deploy.sh.
 # Build the site to /dist.
 hugo -d dist
 

@@ -3,7 +3,52 @@
   
   <url>
     <loc>https://networknt.github.io/undertow-server/</loc>
-    <lastmod>2016-10-08T19:25:24-04:00</lastmod>
+    <lastmod>2016-10-09T08:15:27-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/architecture/spring-is-bloated/</loc>
+    <lastmod>2016-10-09T08:15:27-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/architecture/jee-is-out/</loc>
+    <lastmod>2016-10-09T08:14:57-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/architecture/microservices/</loc>
+    <lastmod>2016-10-09T08:13:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/architecture/</loc>
+    <lastmod>2016-10-09T08:13:17-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tutorials/microservices/</loc>
+    <lastmod>2016-10-09T08:01:56-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tools/swagger-codegen/</loc>
+    <lastmod>2016-10-08T22:14:59-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tools/swagger-cli/</loc>
+    <lastmod>2016-10-08T22:14:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tools/swagger-editor/</loc>
+    <lastmod>2016-10-08T22:14:33-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tools/wrk-perf/</loc>
+    <lastmod>2016-10-08T21:47:07-04:00</lastmod>
   </url>
   
   <url>
