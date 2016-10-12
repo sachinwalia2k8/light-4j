@@ -16,11 +16,107 @@
       <pubDate>Sat, 08 Oct 2016 22:14:59 -0400</pubDate>
       
       <guid>https://networknt.github.io/undertow-server/tools/swagger-codegen/</guid>
-      <description></description>
+      <description>
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Many API projects were done without specifications and API specifications were
+produced after APIs were on production. When using Undertow Framework, design driven
+is encouraged so swagger specification must be produced before the development is
+started. Please see [Development Flow]() for details.&lt;/p&gt;
+
+&lt;p&gt;When Product Onwer starts the API, the first thing is find the swagger specification
+produced by data architect and generate a server skeleton with swagger codegen.&lt;/p&gt;
+
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+
+&lt;h4 id=&#34;install-locally&#34;&gt;Install locally&lt;/h4&gt;
+
+&lt;p&gt;To install the tool locally, go to your working directory and run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/swagger-codegen.git
+cd swagger-codegen
+mvn clean install -DskipTests
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you have swagger-codegen built on your local and it is ready to be used. This
+version of swagger-codegen is a fork of official &lt;a href=&#34;https://github.com/swagger-api/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt;
+as the official version doesn&amp;rsquo;t support Java 8.&lt;/p&gt;
+
+&lt;h4 id=&#34;docker&#34;&gt;Docker&lt;/h4&gt;
+
+&lt;p&gt;If you have docker installed, you can run the docker container of the swagger-codegen
+so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;Assume that you have just built your swagger-codegen and you are in the swagger-codegen
+folder now you can generate petstore API in your home directory with the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l undertow -o ~/petstore
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Above command uses a swagger specification from the Internet. If you have swagger file in your local,
+you can use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-i ~/project/swagger/api_a/swagger.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: For organizations with multiple APIs, some of the common yaml files will be created that can be
+shared between APIs in specifications. In that case, you cannot use yaml file to generate the code as
+the tool doesn&amp;rsquo;t know how to locate the external reference files. Please find &lt;a href=&#34;https://networknt.github.io/undertow-server/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt;
+to convert several yaml files into one Json file to feed the generator.&lt;/p&gt;
+
+&lt;h2 id=&#34;customization&#34;&gt;Customization&lt;/h2&gt;
+
+&lt;p&gt;The tool support customized apiPackage and modelPackage defined as System properties. You will also
+specify the location of the swagger.json and the output folder of the generated code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# set as system properties
+swagger.codegen.undertow.apipackage = package for the handlers
+swagger.codegen.undertow.modelpackage = package for the models
+
+# set in the path
+path_to_specification_file = local path or url of swagger.json
+output_folder = output folder for generated artifacts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;General Command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.undertow.apipackage=&amp;lt;api_package_name&amp;gt; -Dswagger.codegen.undertow.modelpackage=&amp;lt;model_package_name&amp;gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &amp;lt;path_to_specification_file&amp;gt; -l undertow -o &amp;lt;output_folder&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.undertow.apipackage=com.networknt.handler -Dswagger.codegen.undertow.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l undertow -o ~/projectc/generated
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;test&#34;&gt;Test&lt;/h2&gt;
+
+&lt;p&gt;The swagger-codegen tool generates an application running against the Undertow Server.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Navigate to the &lt;output_folder&gt; for the generated code&lt;/li&gt;
+&lt;li&gt;Build the code using the generated Maven POM file&lt;/li&gt;
+&lt;li&gt;Start the application
+
+&lt;ul&gt;
+&lt;li&gt;By default, the application is available at port 8080&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd &amp;lt;output_folder&amp;gt;
+mvn clean install exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
-      <title>Swagger cli to convert/bundle specification files</title>
+      <title>Swagger cli to bundle and validate specification files</title>
       <link>https://networknt.github.io/undertow-server/tools/swagger-cli/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
       
@@ -181,9 +277,46 @@ request = function()
 end
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h3 id=&#34;debug&#34;&gt;Debug&lt;/h3&gt;
+
+&lt;p&gt;If your wrk with pipeline.lua is not working or returning non 2XX or 3XX code, chances are you are using the wrong request
+path after &amp;ndash;. The default in the previous command is / and it should be changed to something like /v1/data for APIs.&lt;/p&gt;
+
+&lt;p&gt;In order to debug the pipeline.lua, use the following copy pipeline_debug.lua&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;init = function(args)
+   request_uri = args[1]
+   depth = tonumber(args[2]) or 1
+
+   local r = {}
+   for i=1,depth do
+     r[i] = wrk.format(nil, request_uri)
+   end
+   req = table.concat(r)
+end
+
+request = function()
+   return req
+end
+
+response = function (status, headers, body)
+  io.write(&amp;quot;------------------------------\n&amp;quot;)
+  io.write(&amp;quot;Response with status: &amp;quot;.. status ..&amp;quot;\n&amp;quot;)
+  io.write(&amp;quot;------------------------------\n&amp;quot;)
+
+  io.write(&amp;quot;[response] Body:\n&amp;quot;)
+  io.write(body .. &amp;quot;\n&amp;quot;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 
 &lt;p&gt;For some output examples, you can find at &lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;undertow-server-example/performance&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;additional-info&#34;&gt;Additional Info&lt;/h2&gt;
+
+&lt;p&gt;There are two other &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-benchmark-http-latency-with-wrk-on-ubuntu-14-04&#34;&gt;tutorial 1&lt;/a&gt;
+and &lt;a href=&#34;http://czerasz.com/2015/07/19/wrk-http-benchmarking-tool-example/&#34;&gt;tutorial 2&lt;/a&gt; for wrk written by Michal Czeraszkiewicz&lt;/p&gt;
 </description>
     </item>
     

@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Undertow Server - The fastest Java API Framework</title>
+    <title>security - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/security/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/security/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        security
       </div>
     </div>
 
@@ -389,9 +389,49 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>security </h1>
 
 			
+
+<p>The current framework supports OAuth2 with JWT token but can be extended to
+other authentication and authorization approaches.</p>
+
+<h1 id="jwtverifyhandler">JwtVerifyHandler</h1>
+
+<p>This is the handler that is injected during server start up if security.json
+enableVerifyJwt is true. It does further scope verification if enableVerifyScope
+is true against swagger specification.</p>
+
+<h1 id="distributed-jwt-verification">Distributed JWT verification</h1>
+
+<p>Unlike simple web token, the resource server has to contact Authorization server
+to validate the bearer token. JWT can be verified by resource server as long as
+the token signing certificate is available at resource server. Due to security
+concerns, there should be two pair of private key and public key certificate
+available at any time in case the primary key is compromised.</p>
+
+<h1 id="undertow-server-oauth2-server">undertow-server-oauth2 server</h1>
+
+<p>By default, the framework contains two pairs of public key certificates issued
+by our own oauth2 server which can be installed from docker. For more info,
+please refer to <a href="https://github.com/networknt/undertow-server-oauth2">https://github.com/networknt/undertow-server-oauth2</a></p>
+
+<h1 id="kid">Kid</h1>
+
+<p>Since there are two certificates available, the kid in the header of the JWT
+token will decide which certificate will be used to verify the JWT signature.</p>
+
+<h1 id="jwtmockhandler">JwtMockHandler</h1>
+
+<p>This is a testing OAuth2 endpoints provider and it can be injected into the handler
+chain for unit testing so that it won&rsquo;t depend on an instance of
+undertow-oauth2.</p>
+
+<h1 id="long-lived-token">Long lived token</h1>
+
+<p>To make integration test easier, a long lived token is provided by the oauth2
+server and it can be found at <a href="https://github.com/networknt/undertow-oauth2">https://github.com/networknt/undertow-oauth2</a></p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,7 +449,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-codegen/" title="Swagger codegen to generate server stub skeleton">
+      <a href="https://networknt.github.io/undertow-server/middleware/status/" title="status">
         <span class="direction">
           Previous
         </span>
@@ -419,7 +459,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger codegen to generate server stub skeleton
+              status
             </div>
           </div>
         </div>
@@ -429,14 +469,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/undertow-server/middleware/mask/" title="mask">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              mask
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

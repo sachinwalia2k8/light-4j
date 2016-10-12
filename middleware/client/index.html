@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>jee is out - Undertow Server - The fastest Java API Framework</title>
+    <title>Client - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/architecture/jee-is-out/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/client/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/architecture/jee-is-out/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/client/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        jee is out
+        Client
       </div>
     </div>
 
@@ -389,9 +389,42 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>jee is out </h1>
+			<h1>Client </h1>
 
 			
+
+<p>Client is used to call APIs from the following sources:</p>
+
+<ol>
+<li>Web server</li>
+<li>Standalone Application</li>
+<li>API</li>
+</ol>
+
+<p>It provides method to get authorization jwt token and automatically gets client
+credentials token for scopes in API to API calls.</p>
+
+<h1 id="sync-client">Sync Client</h1>
+
+<p>This is a wrapper of Apache HttpClient with built-in connection pools and TLS
+support. It can be used to call another API in the request context.</p>
+
+<h1 id="async-client">Async Client</h1>
+
+<p>This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
+TLS support. It should be used it multiple APIs will be called in the request
+context.</p>
+
+<h1 id="client-credentials-token-renew">Client Credentials token renew</h1>
+
+<p>The renew of token happens behind the scene and it supports circuit breaker
+is OAuth2 server is down or busy. It renew the token pro-actively before the
+current one is expired and let all requests go with the current token. It only
+block other request if the current request is trying to renew an expired token.
+When token renew in this case fails, all request will be rejected with timeout
+and subsequent requests the same until a grace period is passed so that the
+renew process is start again.</p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,34 +442,18 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/architecture/spring-is-bloated/" title="spring is bloated">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              spring is bloated
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/architecture/microservices/" title="microservices">
+      <a href="https://networknt.github.io/undertow-server/management/flow/" title="Development Flow">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              microservices
+              Development Flow
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

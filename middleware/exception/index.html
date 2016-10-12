@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Undertow Server - The fastest Java API Framework</title>
+    <title>exception - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/exception/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/exception/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        exception
       </div>
     </div>
 
@@ -389,9 +389,34 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>exception </h1>
 
 			
+
+<p>If any handler throws an exception within the handler chain, that exception
+will bubble up to the undertow server and eventually a 500 response will be
+sent to the consumer. In order to change the behaviour, an exception handler
+is provided to handle ApiException and other uncaught exceptions.</p>
+
+<h1 id="runtime-exception">Runtime Exception</h1>
+
+<p>Any runtime exception will be captured and return a standard 500 error with
+error code ERR10010.</p>
+
+<h1 id="uncaught-exception">Uncaught Exception</h1>
+
+<p>Any checked exception that is not handled by handlers in the handler chain
+is captured and return a 400 error with error code ERR10011</p>
+
+<h1 id="apiexception">ApiException</h1>
+
+<p>ApiException has a status object and it will return to consume the data defined
+in the status object.</p>
+
+<h1 id="logging">Logging</h1>
+
+<p>Exception handler will log the exception with stacktrace.</p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,7 +434,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-codegen/" title="Swagger codegen to generate server stub skeleton">
+      <a href="https://networknt.github.io/undertow-server/middleware/info/" title="info">
         <span class="direction">
           Previous
         </span>
@@ -419,7 +444,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger codegen to generate server stub skeleton
+              info
             </div>
           </div>
         </div>
@@ -429,14 +454,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/undertow-server/middleware/config/" title="Config">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              Config
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

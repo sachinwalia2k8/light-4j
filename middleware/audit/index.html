@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Undertow Server - The fastest Java API Framework</title>
+    <title>Audit - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/audit/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/audit/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        Audit
       </div>
     </div>
 
@@ -389,9 +389,31 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>Audit </h1>
 
 			
+
+<p>There are two builtin audit handlers that write logs into audit.log that setup in the
+logback appender.</p>
+
+<h1 id="simpleaudithandler">SimpleAuditHandler</h1>
+
+<p>Only logs several fields from request header and the fields are configurable.
+Optional, it can log response status and response time.</p>
+
+<h1 id="fullaudithandler">FullAuditHandler</h1>
+
+<p>Dump every thing from request and response. This is mainly a development tool
+and may be used on production for some of the APIs without performance concerns.</p>
+
+<h1 id="customized-hanlder">Customized Hanlder</h1>
+
+<p>For some users that need special audit logic or other channel to redirect the audit
+to, they can create their own audit handler and replace the default audit handler in
+/src/main/resources/META-INF/services/com.networknt.handler.MiddlewareHandler</p>
+
+<p>Before updating this file, please read this [document]()</p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,7 +431,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-codegen/" title="Swagger codegen to generate server stub skeleton">
+      <a href="https://networknt.github.io/undertow-server/middleware/body/" title="Body">
         <span class="direction">
           Previous
         </span>
@@ -419,7 +441,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger codegen to generate server stub skeleton
+              Body
             </div>
           </div>
         </div>
@@ -429,14 +451,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/undertow-server/tutorials/end-to-end-test/" title="End to End Test">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              End to End Test
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

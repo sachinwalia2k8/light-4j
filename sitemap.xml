@@ -3,7 +3,92 @@
   
   <url>
     <loc>https://networknt.github.io/undertow-server/</loc>
-    <lastmod>2016-10-09T08:15:27-04:00</lastmod>
+    <lastmod>2016-10-12T19:59:08-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/client/</loc>
+    <lastmod>2016-10-12T19:59:08-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/management/flow/</loc>
+    <lastmod>2016-10-12T19:30:08-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/validator/</loc>
+    <lastmod>2016-10-12T19:13:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/utility/</loc>
+    <lastmod>2016-10-12T19:12:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/swagger/</loc>
+    <lastmod>2016-10-12T19:10:34-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/status/</loc>
+    <lastmod>2016-10-12T19:09:18-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/security/</loc>
+    <lastmod>2016-10-12T19:07:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/mask/</loc>
+    <lastmod>2016-10-12T19:06:24-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/info/</loc>
+    <lastmod>2016-10-12T19:04:51-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/exception/</loc>
+    <lastmod>2016-10-12T19:03:24-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/config/</loc>
+    <lastmod>2016-10-12T19:00:54-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/body/</loc>
+    <lastmod>2016-10-12T18:57:17-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/middleware/audit/</loc>
+    <lastmod>2016-10-12T18:48:58-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tutorials/end-to-end-test/</loc>
+    <lastmod>2016-10-12T17:21:40-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tutorials/integration-test/</loc>
+    <lastmod>2016-10-12T17:06:30-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tutorials/unit-test/</loc>
+    <lastmod>2016-10-12T17:05:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/undertow-server/tutorials/debug/</loc>
+    <lastmod>2016-10-12T17:03:28-04:00</lastmod>
   </url>
   
   <url>
@@ -12,7 +97,7 @@
   </url>
   
   <url>
-    <loc>https://networknt.github.io/undertow-server/architecture/jee-is-out/</loc>
+    <loc>https://networknt.github.io/undertow-server/architecture/jee-is-dead/</loc>
     <lastmod>2016-10-09T08:14:57-04:00</lastmod>
   </url>
   

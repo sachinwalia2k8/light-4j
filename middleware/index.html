@@ -394,7 +394,52 @@
 		<div class="wrapper">
 			<h1>Middleware Handlers </h1>
 
-			<p>this is middleware md</p>
+			
+
+<h1 id="introduction">Introduction</h1>
+
+<p>undertow-server is a Java API framework based on undertow http core that supports
+swagger code generation and runtime request validation.</p>
+
+<p>It contains the following components:</p>
+
+<ul>
+<li><p>server - a framework on top of undertow http core that support plugins to
+performance different middleware handling.</p></li>
+
+<li><p>security - oauth2 jwt token verification and mock token generation. Also,
+there is an testing OAuth2 server released <a href="https://github.com/networknt/undertow-server-oauth2">here</a></p></li>
+
+<li><p><a href="https://github.com/networknt/undertow-server/wiki/Config">config</a> - A module
+that supports externalized configuration for standalone application and docker
+container.</p></li>
+
+<li><p>utility - utility classes that are shared between modules.</p></li>
+
+<li><p>client - wrapper of apache HttpClient and HttpAsyncClient. support automatically
+cache and renew client credentials jwt token</p></li>
+
+<li><p>validator - validate request based on the swagger.json for uri parameters,
+query parameters and body which is based on <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a></p></li>
+
+<li><p>audit - dump most important info about request and response into audit.log in
+JSON format. Also, there is a full audit handler to dump everything regarding to
+request and response.</p></li>
+
+<li><p><a href="https://github.com/networknt/undertow-server/wiki/Info">info</a> - a handler that
+injects an endpoint /server/info that can out all plugged in component on the
+server and configuration of each component.</p></li>
+
+<li><p>mask - used to mask sensitive info before logging to audit.log or server.log</p></li>
+
+<li><p>status - used to model error http response and assist production monitoring
+with unique error code.</p></li>
+
+<li><p>swagger-codegen - a <a href="https://github.com/networknt/swagger-codegen">generator</a>
+that generates the routing handlers and running API application with swagger spec.</p></li>
+</ul>
+
+<h1 id="getting-started">Getting started</h1>
 
 
 			<aside class="copyright" role="note">

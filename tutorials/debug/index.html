@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Undertow Server - The fastest Java API Framework</title>
+    <title>Debug - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/tutorials/debug/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/tutorials/debug/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        Debug
       </div>
     </div>
 
@@ -389,9 +389,33 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>Debug </h1>
 
-			
+			<p>As there is no container in Undertow Server and everything is built on top of POJO, it
+is very easy to debug your API application within your IDE.</p>
+
+<p>I am using Intellij Idea but Eclipse should be very similar as the generated project is
+standard Maven project. To debug your code, you need to start the server.</p>
+
+<p>Here is the steps to create a standalone application in Idea.</p>
+
+<ul>
+<li>Click Run and select Edit Configurations&hellip;</li>
+<li>Click + on the top left corner to add a new Configuration.</li>
+<li>In the dropdown select application</li>
+<li>Name your application to Server</li>
+<li>In Main Class input, type com.networknt.server.Server</li>
+<li>Click apply to close the popup window.</li>
+<li>Click Run again and select debug</li>
+<li>Pick the application configuration you just created.</li>
+</ul>
+
+<p>Now the server is up and running in the debug mode. You can debug into the framework
+code or set a break point in framework code. To pick up the framework class to debug,
+click External Libraries on the Project tree and click the class name. Idea will
+automatically decompile the class. You can import the soruce code of that particular
+version of framework source code from <a href="https://github.com/networknt/undertow-server/releases">Release</a></p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,7 +433,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-codegen/" title="Swagger codegen to generate server stub skeleton">
+      <a href="https://networknt.github.io/undertow-server/tutorials/unit-test/" title="Unit Test">
         <span class="direction">
           Previous
         </span>
@@ -419,7 +443,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger codegen to generate server stub skeleton
+              Unit Test
             </div>
           </div>
         </div>
@@ -429,14 +453,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/undertow-server/architecture/spring-is-bloated/" title="spring is bloated">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              spring is bloated
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

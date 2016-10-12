@@ -393,6 +393,102 @@
 
 			
 
+<h2 id="introduction">Introduction</h2>
+
+<p>Many API projects were done without specifications and API specifications were
+produced after APIs were on production. When using Undertow Framework, design driven
+is encouraged so swagger specification must be produced before the development is
+started. Please see [Development Flow]() for details.</p>
+
+<p>When Product Onwer starts the API, the first thing is find the swagger specification
+produced by data architect and generate a server skeleton with swagger codegen.</p>
+
+<h2 id="installation">Installation</h2>
+
+<h4 id="install-locally">Install locally</h4>
+
+<p>To install the tool locally, go to your working directory and run</p>
+
+<pre><code>git clone git@github.com:networknt/swagger-codegen.git
+cd swagger-codegen
+mvn clean install -DskipTests
+</code></pre>
+
+<p>Now you have swagger-codegen built on your local and it is ready to be used. This
+version of swagger-codegen is a fork of official <a href="https://github.com/swagger-api/swagger-codegen">swagger-codegen</a>
+as the official version doesn&rsquo;t support Java 8.</p>
+
+<h4 id="docker">Docker</h4>
+
+<p>If you have docker installed, you can run the docker container of the swagger-codegen
+so that you don&rsquo;t need to install JDK8 and Maven on your local.</p>
+
+<pre><code>
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<p>Assume that you have just built your swagger-codegen and you are in the swagger-codegen
+folder now you can generate petstore API in your home directory with the following command.</p>
+
+<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l undertow -o ~/petstore
+
+</code></pre>
+
+<p>Above command uses a swagger specification from the Internet. If you have swagger file in your local,
+you can use:</p>
+
+<pre><code>-i ~/project/swagger/api_a/swagger.json
+</code></pre>
+
+<p>Note: For organizations with multiple APIs, some of the common yaml files will be created that can be
+shared between APIs in specifications. In that case, you cannot use yaml file to generate the code as
+the tool doesn&rsquo;t know how to locate the external reference files. Please find <a href="https://networknt.github.io/undertow-server/tools/swager-cli">swagger-cli</a>
+to convert several yaml files into one Json file to feed the generator.</p>
+
+<h2 id="customization">Customization</h2>
+
+<p>The tool support customized apiPackage and modelPackage defined as System properties. You will also
+specify the location of the swagger.json and the output folder of the generated code.</p>
+
+<pre><code class="language-shell"># set as system properties
+swagger.codegen.undertow.apipackage = package for the handlers
+swagger.codegen.undertow.modelpackage = package for the models
+
+# set in the path
+path_to_specification_file = local path or url of swagger.json
+output_folder = output folder for generated artifacts
+</code></pre>
+
+<p>General Command</p>
+
+<pre><code class="language-shell">java -Dswagger.codegen.undertow.apipackage=&lt;api_package_name&gt; -Dswagger.codegen.undertow.modelpackage=&lt;model_package_name&gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &lt;path_to_specification_file&gt; -l undertow -o &lt;output_folder&gt;
+</code></pre>
+
+<p>Example</p>
+
+<pre><code class="language-shell">java -Dswagger.codegen.undertow.apipackage=com.networknt.handler -Dswagger.codegen.undertow.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l undertow -o ~/projectc/generated
+</code></pre>
+
+<h2 id="test">Test</h2>
+
+<p>The swagger-codegen tool generates an application running against the Undertow Server.</p>
+
+<ul>
+<li>Navigate to the <output_folder> for the generated code</li>
+<li>Build the code using the generated Maven POM file</li>
+<li>Start the application
+
+<ul>
+<li>By default, the application is available at port 8080</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-shell">cd &lt;output_folder&gt;
+mvn clean install exec:exec
+</code></pre>
+
+
 			<aside class="copyright" role="note">
 				
 				&copy; 2016 Released under the MIT license &ndash;
@@ -429,14 +525,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-cli/" title="Swagger cli to convert/bundle specification files">
+      <a href="https://networknt.github.io/undertow-server/tools/swagger-cli/" title="Swagger cli to bundle and validate specification files">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger cli to convert/bundle specification files
+              Swagger cli to bundle and validate specification files
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

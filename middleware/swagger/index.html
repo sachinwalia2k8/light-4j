@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Undertow Server - The fastest Java API Framework</title>
+    <title>swagger - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/swagger/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/swagger/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        swagger
       </div>
     </div>
 
@@ -389,9 +389,45 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>swagger </h1>
 
 			
+
+<h1 id="introduction">Introduction</h1>
+
+<p>The framework is designed based on swagger specification so it is our best interest
+to utilize the swagger.json to its full potential. Currently there are two
+components are using the swagger spec during runtime.</p>
+
+<ol>
+<li>Security - verify scope in the JWT token against scope defined in swagger spec
+if scope verificatio is true.</li>
+<li>Validator - validate request and response based on the definition in swagger
+spec for the uri and method.</li>
+</ol>
+
+<p>As you have noticed, both components need to have swagger operation available
+based on the current request uri and method combination.</p>
+
+<h1 id="cache">Cache</h1>
+
+<p>A specification file swagger.json should be in the config folder of your API
+implementation and it will be loaded to memory with SwaggerHelper during server
+start up. It will be cached in memory until the server is restarted.</p>
+
+<h1 id="normalized-path">Normalized Path</h1>
+
+<p>In order to match the incoming request path to the paths defined in the swagger
+specification, all paths are normalized before matching action. SwaggerHelper
+provides an API to match the request path to the paths in swagger specification.</p>
+
+<h1 id="swaggerhandler">SwaggerHandler</h1>
+
+<p>This is an HttpHandler to parse the swagger spec based on the request uri and
+method and attach an SwaggerOperation object to the exchange. The security and
+validator modules are using it to do their job without parsing the swagger second
+time.</p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,7 +445,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-codegen/" title="Swagger codegen to generate server stub skeleton">
+      <a href="https://networknt.github.io/undertow-server/middleware/utility/" title="utility">
         <span class="direction">
           Previous
         </span>
@@ -419,7 +455,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger codegen to generate server stub skeleton
+              utility
             </div>
           </div>
         </div>
@@ -429,14 +465,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/undertow-server/middleware/status/" title="status">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              status
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

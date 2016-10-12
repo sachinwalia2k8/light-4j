@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Undertow Server - The fastest Java API Framework</title>
+    <title>validator - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/validator/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/validator/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        validator
       </div>
     </div>
 
@@ -389,9 +389,72 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>validator </h1>
 
 			
+
+<p>The framework encourages design driven implementation so swagger specification
+should be done before the implementation starts. With the swagger-codegen
+undertow generator, the server stub can be generated and start running within
+minutes. However, we cannot rely on generator for validation as specification
+will be changed along  the life cycle of the API. This is why we have provided
+a validator that works on top of the specification at runtime. In this way,
+the generator should only be used once and the validator will take the latest
+spec. and validate according the spec. at runtime.</p>
+
+<h1 id="fail-fast">Fail fast</h1>
+
+<p>As you may noticed that our Status object only supports one code and message.
+This is the indication the framework validation is designed as fail fast.
+Whenever there is an error, the server will stop processing the request and
+return the error to the consumer immediately. There are two reasons on this
+design:</p>
+
+<ol>
+<li>Security - you don&rsquo;t want to return so many errors if someone is trying
+to hack your server.</li>
+<li>Performance - you don&rsquo;t want to spend resource to handle invalid request
+to the next step.</li>
+</ol>
+
+<h1 id="validatorhandler">ValidatorHandler</h1>
+
+<p>This is the entry point of the validator and it is injected during server
+start up if validator.json enableValidator is true. By default, only
+RequestValidator will be called. However, ResponseValidator can be enabled
+by setting enableResponseValidator to true in validator.json.</p>
+
+<h1 id="requestvalidator">RequestValidator</h1>
+
+<p>It will validate the following:
+* uri
+* method
+* header
+* query parameters
+* path parameters
+* body if available</p>
+
+<p>When necessary, schema validator will be called to do json schema validation.</p>
+
+<h1 id="responsevalidator">ResponseValidator</h1>
+
+<p>It will validate the following:
+* header
+* response code
+* body if available</p>
+
+<p>when necessary, json schema validator will be called.</p>
+
+<h1 id="schemavalidator">SchemaValidator</h1>
+
+<p>If schema is defined in swagger.json, then the <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a> will be called to validate the input against a json schema defined in draft v4.</p>
+
+<h1 id="test">Test</h1>
+
+<p>In order to test validator, the test suite starts an undertow server and serves
+petstore api for testing. It is a demo on how to unit test your API during
+development.</p>
+
 
 			<aside class="copyright" role="note">
 				
@@ -409,7 +472,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-codegen/" title="Swagger codegen to generate server stub skeleton">
+      <a href="https://networknt.github.io/undertow-server/management/flow/" title="Development Flow">
         <span class="direction">
           Previous
         </span>
@@ -419,7 +482,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger codegen to generate server stub skeleton
+              Development Flow
             </div>
           </div>
         </div>
@@ -429,14 +492,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/undertow-server/middleware/utility/" title="utility">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              utility
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
