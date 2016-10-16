@@ -404,42 +404,55 @@ swagger code generation and runtime request validation.</p>
 <p>It contains the following components:</p>
 
 <ul>
-<li><p>server - a framework on top of undertow http core that support plugins to
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/server/">server</a> - a framework on top of undertow http core that support plugins to
 performance different middleware handling.</p></li>
 
-<li><p>security - oauth2 jwt token verification and mock token generation. Also,
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/security/">security</a> - oauth2 jwt token verification and mock token generation. Also,
 there is an testing OAuth2 server released <a href="https://github.com/networknt/undertow-server-oauth2">here</a></p></li>
 
-<li><p><a href="https://github.com/networknt/undertow-server/wiki/Config">config</a> - A module
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/config/">config</a> - A module
 that supports externalized configuration for standalone application and docker
 container.</p></li>
 
-<li><p>utility - utility classes that are shared between modules.</p></li>
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/utility/">utility</a> - utility classes that are shared between modules.</p></li>
 
-<li><p>client - wrapper of apache HttpClient and HttpAsyncClient. support automatically
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/client/">client</a> - wrapper of apache HttpClient and HttpAsyncClient. support automatically
 cache and renew client credentials jwt token</p></li>
 
-<li><p>validator - validate request based on the swagger.json for uri parameters,
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/validator/">validator</a> - validate request based on the swagger.json for uri parameters,
 query parameters and body which is based on <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a></p></li>
 
-<li><p>audit - dump most important info about request and response into audit.log in
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/audit/">audit</a> - dump most important info about request and response into audit.log in
 JSON format. Also, there is a full audit handler to dump everything regarding to
 request and response.</p></li>
 
-<li><p><a href="https://github.com/networknt/undertow-server/wiki/Info">info</a> - a handler that
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/info/">info</a> - a handler that
 injects an endpoint /server/info that can out all plugged in component on the
 server and configuration of each component.</p></li>
 
-<li><p>mask - used to mask sensitive info before logging to audit.log or server.log</p></li>
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/mask/">mask</a> - used to mask sensitive info before logging to audit.log or server.log</p></li>
 
-<li><p>status - used to model error http response and assist production monitoring
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/status/">status</a> - used to model error http response and assist production monitoring
 with unique error code.</p></li>
 
-<li><p>swagger-codegen - a <a href="https://github.com/networknt/swagger-codegen">generator</a>
-that generates the routing handlers and running API application with swagger spec.</p></li>
-</ul>
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/body/">body</a> A body parser middleware that is
+responsible for parsing the content of the request based on Content-Type in the request header.</p></li>
 
-<h1 id="getting-started">Getting started</h1>
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/exception/">exception</a> A generic exception
+handler that handles runtime exception, ApiException and other checked exception if they are not handled
+properly in the handler chain.</p></li>
+
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/metrics/">metrics</a> A module that collect
+API runtime info based on clientId and API name. The metrics info is sent to InfluxDB and accessible
+from Grafana Dashboard.</p></li>
+
+<li><p><a href="https://networknt.github.io/undertow-server/middleware/swagger/">swagger</a> This is a middleware
+that load swagger at runtime and parse it based on the request uri and method and attached the
+swagger data related to the current endpoint into the exchange for subsequent handlers to use.</p></li>
+
+<li><p><a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a> - a code generator
+that generates the routing handlers and running API application based on swagger specification.</p></li>
+</ul>
 
 
 			<aside class="copyright" role="note">

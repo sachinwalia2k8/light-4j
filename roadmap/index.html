@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Undertow Server - The fastest Java API Framework</title>
+    <title>Road Map - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/roadmap/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/roadmap/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -69,9 +69,6 @@
     <script src="https://networknt.github.io/undertow-server/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/undertow-server/index.xml" rel="alternate" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/undertow-server/index.xml" rel="feed" type="application/rss+xml" title="Undertow Server - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
@@ -100,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Undertow Server - The fastest Java API Framework
+        Road Map
       </div>
     </div>
 
@@ -327,11 +324,14 @@
 
 
 
-<a  title="Roadmap" href="https://networknt.github.io/undertow-server/roadmap/">
+<a class="current" title="Roadmap" href="https://networknt.github.io/undertow-server/roadmap/">
 	
 	Roadmap
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -392,50 +392,17 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>Introduction </h1>
+			<h1>Road Map </h1>
 
-				
+			<p>The REST API framework is used by one of the big banks in Canada and is in a process to be production
+ready.</p>
 
-<h2 id="introduction">Introduction</h2>
+<p>The short term goal is to make sure the API framework is production ready.</p>
 
-<p><a href="http://undertow.io/">Undertow</a> is  one of the fastest Java HTTP servers available and
-JBoss WildFly is based on it.</p>
+<p>The mid term goal is to support GraphQL in the framework and make undertow-oauth2 server production ready.</p>
 
-<p>Performance comparison with others can be found
-at <a href="https://www.techempower.com/benchmarks/#section=data-r12&amp;hw=peak&amp;test=plaintext">www.techempower.com</a> and
-a simple Hello World server got 1.2 million requests per second on my I5 4 CPU desktop.
-<a href="https://www.networknt.com/blog/All/CeHJjNRjRiS1dH1qqme2LQ">Here</a> is a blog that compares
-it with Go 1.6</p>
+<p>The long term goal is to build an API portal so that all APIs can be managed by the portal/marketplace.</p>
 
-<p>In addition, I have performance comparison with the most popular REST API framework Spring
-Boot in <a href="https://github.com/networknt/undertow-server-example/tree/master/performance">undertow-server-example</a></p>
-
-<p>Although it is fast, reliable and widely used but the programming style is a little
-strange for traditional JEE developers as it uses handler chain for request processing.
-Of course, you can use servlet contain on top of it but you are losing the performance
-edge by a big margin.</p>
-
-<p>In order to make use this server more efficiently, I have built a framework called
-<a href="https://github.com/networknt/light">Light</a> that is based on it with event sourcing
-and graph database. The framework is used to host both my sites
-<a href="www.networknt.com">www.networknt.com</a>
-and <a href="www.edibleforestgarden.ca">www.edibleforestgarden.ca</a> on a single ip address.</p>
-
-<p>The light framework is complex and has both backend and frontend with blog, news,
-forum and e-commerce built-in. Some developers/users asked me if I could provide a
-simple framework that just supports REST API build for backend only.</p>
-
-<p>And this is how undertow framework was born. The framework contains three part that work
-together to have a total solution for containerized microservices.</p>
-
-<p><a href="https://github.com/networknt/undertow-server">undertow-server</a> to build API</p>
-
-<p><a href="https://github.com/networknt/undertow-portal">undertow-oauth2</a> to control API access</p>
-
-<p><a href="https://github.com/networknt/undertow-oauth2">undertow-portal</a> to manage clients and APIs</p>
-
-			
 
 			<aside class="copyright" role="note">
 				
@@ -450,23 +417,37 @@ together to have a total solution for containerized microservices.</p>
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://networknt.github.io/undertow-server/middleware/server/" title="Server">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Server
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://networknt.github.io/undertow-server/middleware/" title="Middleware Handlers">
+  
+      <a href="https://networknt.github.io/undertow-server/middleware/client/" title="Client">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Middleware Handlers
+              Client
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -474,8 +455,11 @@ together to have a total solution for containerized microservices.</p>
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 
