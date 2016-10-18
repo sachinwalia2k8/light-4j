@@ -7,8 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 15 Oct 2016 20:42:32 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 18 Oct 2016 07:00:45 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/undertow-server/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://networknt.github.io/undertow-server/getting-started/</link>
+      <pubDate>Tue, 18 Oct 2016 07:00:45 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/undertow-server/getting-started/</guid>
+      <description>
+
+&lt;h2 id=&#34;code-generation&#34;&gt;Code Generation&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to start your API project is from OpenAPI specification and here is a video to
+show you how to generate a project from swagger spec.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://youtu.be/xSJhF1LcE0Q&#34;&gt;undertow-server-getting-started&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Metrics</title>
@@ -1997,25 +2014,6 @@ with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ValidatorConfig config = (ValidatorConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, ValidatorConfig.class);
 
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Body</title>
-      <link>https://networknt.github.io/undertow-server/middleware/body/</link>
-      <pubDate>Wed, 12 Oct 2016 18:57:17 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/undertow-server/middleware/body/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;Body is an HttpHandler to parse the body according to the content type int the
-request header and attach the parsed result into the exchange so that subsequent
-handlers will use it directly.&lt;/p&gt;
-
-&lt;p&gt;The current implementation is to convert the input stream to String object so
-that it can be used in validator handler in the handler chain.&lt;/p&gt;
 </description>
     </item>
     
