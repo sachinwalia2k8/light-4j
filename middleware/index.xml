@@ -32,6 +32,63 @@ to output the metrics on dashboard from two different perspectives:&lt;/p&gt;
 
 &lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
 
+&lt;p&gt;Here is an example of configuration.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;Metrics handler configuration&amp;quot;,
+  &amp;quot;enabled&amp;quot;: true,
+  &amp;quot;influxdbHost&amp;quot;: &amp;quot;localhost&amp;quot;,
+  &amp;quot;influxdbPort&amp;quot;: 8086,
+  &amp;quot;influxdbName&amp;quot;: &amp;quot;metrics&amp;quot;,
+  &amp;quot;influxdbUser&amp;quot;: &amp;quot;admin&amp;quot;,
+  &amp;quot;influxdbPass&amp;quot;: &amp;quot;admin&amp;quot;,
+  &amp;quot;reportInMinutes&amp;quot;: 5
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;influxdb-and-grafana&#34;&gt;InfluxDB and Grafana&lt;/h2&gt;
+
+&lt;p&gt;Here is the docker-compose.yml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;influxdb:
+  image: influxdb:latest
+  container_name: influxdb
+  ports:
+    - &amp;quot;8083:8083&amp;quot;
+    - &amp;quot;8086:8086&amp;quot;
+
+grafana:
+  image: grafana/grafana:latest
+  container_name: grafana
+  ports:
+    - &amp;quot;3000:3000&amp;quot;
+  links:
+    - influxdb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;metrics-collected&#34;&gt;Metrics Collected&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/measurements.png&#34; alt=&#34;measurements&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, there two perspectives in collecting metrics info. The measurements started with clientId are client
+centric info and the measurements started with API name are API centric info.&lt;/p&gt;
+
+&lt;p&gt;Currently, we are collecting 5 metrics each.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/client_metrics.png&#34; alt=&#34;client metrics&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is request count for client f7d42348-c647-4efb-a52d-4c5787421e72&lt;/p&gt;
+
+&lt;p&gt;The first column is timestamp and value column is the value for this time series. Other columns are tags and they
+are endpoint, hostname/container id, ipAddress and version.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/api_metrics.png&#34; alt=&#34;api metrics&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is request count for API swagger_petstore.&lt;/p&gt;
+
+&lt;p&gt;The first column is timestamp and value column is the value for this time series. Other columns are tags and they
+are endpoint, hostname/container id, ipAddress and version.&lt;/p&gt;
+
 &lt;h2 id=&#34;customization&#34;&gt;Customization&lt;/h2&gt;
 
 &lt;p&gt;The default implementation is based on InfluxDB and Grafana which are the most popular combination

@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Metrics - Undertow Server - The fastest Java API Framework</title>
+    <title>jee is out - Undertow Server - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Undertow Server Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/undertow-server/middleware/metrics/">
+    <link rel="canonical" href="https://networknt.github.io/undertow-server/architecture/jee-is-out/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/undertow-server/middleware/metrics/">
+    <meta property="og:url" content="https://networknt.github.io/undertow-server/architecture/jee-is-out/">
     <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/undertow-server/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Metrics
+        jee is out
       </div>
     </div>
 
@@ -389,88 +389,9 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Metrics </h1>
+			<h1>jee is out </h1>
 
 			
-
-<h2 id="introduction">Introduction</h2>
-
-<p>Metrics handler collects the API runtime information and report to Influxdb periodically
-(5 minutes to 15 minutes based on the volume of the API). A Grafana instance is hooked to Influxdb
-to output the metrics on dashboard from two different perspectives:</p>
-
-<ul>
-<li><p>Client oriented - client centric info to show how many APIs to call and each API runtime info.</p></li>
-
-<li><p>API oriented - API centric info to show how many clients is calling this API.</p></li>
-</ul>
-
-<h2 id="configuration">Configuration</h2>
-
-<p>Here is an example of configuration.</p>
-
-<pre><code>{
-  &quot;description&quot;: &quot;Metrics handler configuration&quot;,
-  &quot;enabled&quot;: true,
-  &quot;influxdbHost&quot;: &quot;localhost&quot;,
-  &quot;influxdbPort&quot;: 8086,
-  &quot;influxdbName&quot;: &quot;metrics&quot;,
-  &quot;influxdbUser&quot;: &quot;admin&quot;,
-  &quot;influxdbPass&quot;: &quot;admin&quot;,
-  &quot;reportInMinutes&quot;: 5
-}
-</code></pre>
-
-<h2 id="influxdb-and-grafana">InfluxDB and Grafana</h2>
-
-<p>Here is the docker-compose.yml</p>
-
-<pre><code>influxdb:
-  image: influxdb:latest
-  container_name: influxdb
-  ports:
-    - &quot;8083:8083&quot;
-    - &quot;8086:8086&quot;
-
-grafana:
-  image: grafana/grafana:latest
-  container_name: grafana
-  ports:
-    - &quot;3000:3000&quot;
-  links:
-    - influxdb
-</code></pre>
-
-<h2 id="metrics-collected">Metrics Collected</h2>
-
-<p><img src="https://networknt.github.io/undertow-server/images/measurements.png" alt="measurements" /></p>
-
-<p>As you can see, there two perspectives in collecting metrics info. The measurements started with clientId are client
-centric info and the measurements started with API name are API centric info.</p>
-
-<p>Currently, we are collecting 5 metrics each.</p>
-
-<p><img src="https://networknt.github.io/undertow-server/images/client_metrics.png" alt="client metrics" /></p>
-
-<p>This is request count for client f7d42348-c647-4efb-a52d-4c5787421e72</p>
-
-<p>The first column is timestamp and value column is the value for this time series. Other columns are tags and they
-are endpoint, hostname/container id, ipAddress and version.</p>
-
-<p><img src="https://networknt.github.io/undertow-server/images/api_metrics.png" alt="api metrics" /></p>
-
-<p>This is request count for API swagger_petstore.</p>
-
-<p>The first column is timestamp and value column is the value for this time series. Other columns are tags and they
-are endpoint, hostname/container id, ipAddress and version.</p>
-
-<h2 id="customization">Customization</h2>
-
-<p>The default implementation is based on InfluxDB and Grafana which are the most popular combination
-for docker containers. However, the database and dashboard can be replaced easily with another
-reporter implementation. To replace it, change the MetricsHandler to use another reporter instead of
-InfluxDB.</p>
-
 
 			<aside class="copyright" role="note">
 				
@@ -488,18 +409,34 @@ InfluxDB.</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
+      <a href="https://networknt.github.io/undertow-server/architecture/spring-is-bloated/" title="spring is bloated">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              spring is bloated
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/undertow-server/middleware/server/" title="Server">
+      <a href="https://networknt.github.io/undertow-server/architecture/microservices/" title="microservices">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Server
+              microservices
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
