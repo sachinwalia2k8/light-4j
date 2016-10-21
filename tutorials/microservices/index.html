@@ -9,11 +9,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>microservices - Undertow Server - The fastest Java API Framework</title>
+    <title>microservices - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
-    <meta name="description" content="Undertow Server Docs">
+    <meta name="description" content="Light Java Docs">
     
     <link rel="canonical" href="https://networknt.github.io/light-java/tutorials/microservices/">
     
@@ -21,9 +21,9 @@
     
 
     <meta property="og:url" content="https://networknt.github.io/light-java/tutorials/microservices/">
-    <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
+    <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
-    <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
+    <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Undertow Server - The fastest Java API Framework <span class="version">0.1.7</span></strong>
+        <strong>Light Java - The fastest Java API Framework <span class="version">0.1.7</span></strong>
         
           <br>
           networknt/light-java
@@ -504,13 +504,13 @@ mvn clean install
 swagger, light-java-example and swagger-codegen are in the same working
 directory.</p>
 
-<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
+<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l light-java -o ../light-java-example/api_a
 
 </code></pre>
 
 <p>Here is the generator output.</p>
 
-<pre><code>steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
+<pre><code>steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l light-java -o ../light-java-example/api_a
 Picked up JAVA_TOOL_OPTIONS: -Dconfig.dir=/home/steve/config
 [main] INFO io.swagger.parser.Swagger20Parser - reading from ../swagger/api_a/swagger.yaml
 swaggerio.swagger.models.Swagger@cb84fa41
@@ -554,9 +554,9 @@ mvn exec:exec
 <p>Follow the above steps to generate other APIs. Make sure you are in swagger_codegen
 directory.</p>
 
-<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l undertow -o ../light-java-example/api_b
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l undertow -o ../light-java-example/api_c
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l undertow -o ../light-java-example/api_d
+<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l light-java -o ../light-java-example/api_b
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l light-java -o ../light-java-example/api_c
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l light-java -o ../light-java-example/api_d
 
 </code></pre>
 
@@ -1069,8 +1069,8 @@ build it locally this time.</p>
 
 <p>Go to your working directory and clone the project and start it.</p>
 
-<pre><code>git clone git@github.com:networknt/undertow-oauth2.git
-cd undertow-oauth2
+<pre><code>git clone git@github.com:networknt/light-oauth2.git
+cd light-oauth2
 mvn clean package exec:exec
 </code></pre>
 

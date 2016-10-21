@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tutorials-rsses on Undertow Server - The fastest Java API Framework</title>
+    <title>Tutorials-rsses on Light Java - The fastest Java API Framework</title>
     <link>https://networknt.github.io/light-java/tutorials/index.xml</link>
-    <description>Recent content in Tutorials-rsses on Undertow Server - The fastest Java API Framework</description>
+    <description>Recent content in Tutorials-rsses on Light Java - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
@@ -189,13 +189,13 @@ mvn clean install
 swagger, light-java-example and swagger-codegen are in the same working
 directory.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l light-java -o ../light-java-example/api_a
 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Here is the generator output.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
+&lt;pre&gt;&lt;code&gt;steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l light-java -o ../light-java-example/api_a
 Picked up JAVA_TOOL_OPTIONS: -Dconfig.dir=/home/steve/config
 [main] INFO io.swagger.parser.Swagger20Parser - reading from ../swagger/api_a/swagger.yaml
 swaggerio.swagger.models.Swagger@cb84fa41
@@ -239,9 +239,9 @@ mvn exec:exec
 &lt;p&gt;Follow the above steps to generate other APIs. Make sure you are in swagger_codegen
 directory.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l undertow -o ../light-java-example/api_b
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l undertow -o ../light-java-example/api_c
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l undertow -o ../light-java-example/api_d
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l light-java -o ../light-java-example/api_b
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l light-java -o ../light-java-example/api_c
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l light-java -o ../light-java-example/api_d
 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -754,8 +754,8 @@ build it locally this time.&lt;/p&gt;
 
 &lt;p&gt;Go to your working directory and clone the project and start it.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/undertow-oauth2.git
-cd undertow-oauth2
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/light-oauth2.git
+cd light-oauth2
 mvn clean package exec:exec
 &lt;/code&gt;&lt;/pre&gt;
 

@@ -9,11 +9,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger codegen to generate server stub skeleton - Undertow Server - The fastest Java API Framework</title>
+    <title>Swagger codegen to generate server stub skeleton - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
-    <meta name="description" content="Undertow Server Docs">
+    <meta name="description" content="Light Java Docs">
     
     <link rel="canonical" href="https://networknt.github.io/light-java/tools/swagger-codegen/">
     
@@ -21,9 +21,9 @@
     
 
     <meta property="og:url" content="https://networknt.github.io/light-java/tools/swagger-codegen/">
-    <meta property="og:title" content="Undertow Server - The fastest Java API Framework">
+    <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
-    <meta name="apple-mobile-web-app-title" content="Undertow Server - The fastest Java API Framework">
+    <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Undertow Server - The fastest Java API Framework <span class="version">0.1.7</span></strong>
+        <strong>Light Java - The fastest Java API Framework <span class="version">0.1.7</span></strong>
         
           <br>
           networknt/light-java
@@ -431,7 +431,7 @@ so that you don&rsquo;t need to install JDK8 and Maven on your local.</p>
 <p>Assume that you have just built your swagger-codegen and you are in the swagger-codegen
 folder now you can generate petstore API in your home directory with the following command.</p>
 
-<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l undertow -o ~/petstore
+<pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l light-java -o ~/petstore
 
 </code></pre>
 
@@ -452,8 +452,8 @@ to convert several yaml files into one Json file to feed the generator.</p>
 specify the location of the swagger.json and the output folder of the generated code.</p>
 
 <pre><code class="language-shell"># set as system properties
-swagger.codegen.undertow.apipackage = package for the handlers
-swagger.codegen.undertow.modelpackage = package for the models
+swagger.codegen.light.apipackage = package for the handlers
+swagger.codegen.light.modelpackage = package for the models
 
 # set in the path
 path_to_specification_file = local path or url of swagger.json
@@ -462,12 +462,12 @@ output_folder = output folder for generated artifacts
 
 <p>General Command</p>
 
-<pre><code class="language-shell">java -Dswagger.codegen.undertow.apipackage=&lt;api_package_name&gt; -Dswagger.codegen.undertow.modelpackage=&lt;model_package_name&gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &lt;path_to_specification_file&gt; -l undertow -o &lt;output_folder&gt;
+<pre><code class="language-shell">java -Dswagger.codegen.light.apipackage=&lt;api_package_name&gt; -Dswagger.codegen.light.modelpackage=&lt;model_package_name&gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &lt;path_to_specification_file&gt; -l light-java -o &lt;output_folder&gt;
 </code></pre>
 
 <p>Example</p>
 
-<pre><code class="language-shell">java -Dswagger.codegen.undertow.apipackage=com.networknt.handler -Dswagger.codegen.undertow.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l undertow -o ~/projectc/generated
+<pre><code class="language-shell">java -Dswagger.codegen.light.apipackage=com.networknt.handler -Dswagger.codegen.light.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l light-java -o ~/projectc/generated
 </code></pre>
 
 <h2 id="test">Test</h2>

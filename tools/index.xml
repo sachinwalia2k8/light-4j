@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tools-rsses on Undertow Server - The fastest Java API Framework</title>
+    <title>Tools-rsses on Light Java - The fastest Java API Framework</title>
     <link>https://networknt.github.io/light-java/tools/index.xml</link>
-    <description>Recent content in Tools-rsses on Undertow Server - The fastest Java API Framework</description>
+    <description>Recent content in Tools-rsses on Light Java - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
@@ -56,7 +56,7 @@ so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&
 &lt;p&gt;Assume that you have just built your swagger-codegen and you are in the swagger-codegen
 folder now you can generate petstore API in your home directory with the following command.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l undertow -o ~/petstore
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l light-java -o ~/petstore
 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -77,8 +77,8 @@ to convert several yaml files into one Json file to feed the generator.&lt;/p&gt
 specify the location of the swagger.json and the output folder of the generated code.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# set as system properties
-swagger.codegen.undertow.apipackage = package for the handlers
-swagger.codegen.undertow.modelpackage = package for the models
+swagger.codegen.light.apipackage = package for the handlers
+swagger.codegen.light.modelpackage = package for the models
 
 # set in the path
 path_to_specification_file = local path or url of swagger.json
@@ -87,12 +87,12 @@ output_folder = output folder for generated artifacts
 
 &lt;p&gt;General Command&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.undertow.apipackage=&amp;lt;api_package_name&amp;gt; -Dswagger.codegen.undertow.modelpackage=&amp;lt;model_package_name&amp;gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &amp;lt;path_to_specification_file&amp;gt; -l undertow -o &amp;lt;output_folder&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.light.apipackage=&amp;lt;api_package_name&amp;gt; -Dswagger.codegen.light.modelpackage=&amp;lt;model_package_name&amp;gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &amp;lt;path_to_specification_file&amp;gt; -l light-java -o &amp;lt;output_folder&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Example&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.undertow.apipackage=com.networknt.handler -Dswagger.codegen.undertow.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l undertow -o ~/projectc/generated
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.light.apipackage=com.networknt.handler -Dswagger.codegen.light.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l light-java -o ~/projectc/generated
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;test&#34;&gt;Test&lt;/h2&gt;
