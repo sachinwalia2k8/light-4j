@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials-rsses on Undertow Server - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/light-java/tutorials/index.xml</link>
+    <description>Recent content in Tutorials-rsses on Undertow Server - The fastest Java API Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Wed, 12 Oct 2016 17:21:40 -0400</lastBuildDate>
+    <atom:link href="https://networknt.github.io/light-java/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>End to End Test</title>
+      <link>https://networknt.github.io/light-java/tutorials/end-to-end-test/</link>
+      <pubDate>Wed, 12 Oct 2016 17:21:40 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tutorials/end-to-end-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Integration Test</title>
+      <link>https://networknt.github.io/light-java/tutorials/integration-test/</link>
+      <pubDate>Wed, 12 Oct 2016 17:06:30 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tutorials/integration-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unit Test</title>
+      <link>https://networknt.github.io/light-java/tutorials/unit-test/</link>
+      <pubDate>Wed, 12 Oct 2016 17:05:47 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tutorials/unit-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Debug</title>
+      <link>https://networknt.github.io/light-java/tutorials/debug/</link>
+      <pubDate>Wed, 12 Oct 2016 17:03:28 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tutorials/debug/</guid>
+      <description>&lt;p&gt;As there is no container in Undertow Server and everything is built on top of POJO, it
+is very easy to debug your API application within your IDE.&lt;/p&gt;
+
+&lt;p&gt;I am using Intellij Idea but Eclipse should be very similar as the generated project is
+standard Maven project. To debug your code, you need to start the server.&lt;/p&gt;
+
+&lt;p&gt;Here is the steps to create a standalone application in Idea.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Click Run and select Edit Configurations&amp;hellip;&lt;/li&gt;
+&lt;li&gt;Click + on the top left corner to add a new Configuration.&lt;/li&gt;
+&lt;li&gt;In the dropdown select application&lt;/li&gt;
+&lt;li&gt;Name your application to Server&lt;/li&gt;
+&lt;li&gt;In Main Class input, type com.networknt.server.Server&lt;/li&gt;
+&lt;li&gt;Click apply to close the popup window.&lt;/li&gt;
+&lt;li&gt;Click Run again and select debug&lt;/li&gt;
+&lt;li&gt;Pick the application configuration you just created.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now the server is up and running in the debug mode. You can debug into the framework
+code or set a break point in framework code. To pick up the framework class to debug,
+click External Libraries on the Project tree and click the class name. Idea will
+automatically decompile the class. You can import the soruce code of that particular
+version of framework source code from &lt;a href=&#34;https://github.com/networknt/light-java/releases&#34;&gt;Release&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>microservices</title>
+      <link>https://networknt.github.io/light-java/tutorials/microservices/</link>
+      <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tutorials/microservices/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;These days light weight container like Docker is getting traction, more and more API services are developed for
+docker container and deployed to the cloud. In this environment, traditional heavy weight containers like
+JEE and Spring are losing ground as it doesn&amp;rsquo;t make sense to have a heavy weight container wrapped with a light
+weight docker container. Docker and container orchestration tools like Kubenetes or Docker Swarm are replacing
+all the functionalities JEE provides without hogging resources.&lt;/p&gt;
+
+&lt;p&gt;Another clear trend is standalone Gateway is phasing out in the cloud
+environment with docker containers as most of the traditional gateway
+features are replaced by container orchestration tool and docker container
+management tool. In addition, some of the cross cutting concerns gateway
+provided are addressed in API framework.&lt;/p&gt;
+
+&lt;h2 id=&#34;specifications&#34;&gt;Specifications&lt;/h2&gt;
+
+&lt;p&gt;Undertow Server Framework encourage Design Driven API building and &lt;a href=&#34;https://github.com/OAI/OpenAPI-Specification&#34;&gt;OpenAPI
+Specification&lt;/a&gt; is the central
+piece to drive the runtime for security and validation. Also, the
+specification can be used to scaffold a running server project the first time
+so that developers can focus their efforts on the domain business logic
+implementation without worrying about how each components wired together.&lt;/p&gt;
+
+&lt;p&gt;To create swagger specification, the best tool is
+&lt;a href=&#34;http://swagger.io/swagger-editor/&#34;&gt;swagger-editor&lt;/a&gt; and I have an
+&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;article&lt;/a&gt;
+in tools section to describe how to use it.&lt;/p&gt;
+
+&lt;p&gt;By following the &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;instructions&lt;/a&gt;
+on how to use the editor, let&amp;rsquo;s create four APIs in swagger repo.&lt;/p&gt;
+
+&lt;p&gt;API A will call API B and API C to fulfill its request and API B will call API D
+to fulfill its request.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;API A -&amp;gt; API B -&amp;gt; API D
+         -&amp;gt; API C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the API A swagger.yaml and others can be found &lt;a href=&#34;https://github.com/networknt/swagger&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;swagger: &#39;2.0&#39;
+
+info:
+  version: &amp;quot;1.0.0&amp;quot;
+  title: API A for microservices demo
+  description: API A is called by consumer directly and it will call API B and API C to get data
+  contact:
+    email: stevehu@gmail.com
+  license:
+    name: &amp;quot;Apache 2.0&amp;quot;
+    url: &amp;quot;http://www.apache.org/licenses/LICENSE-2.0.html&amp;quot;
+host: a.networknt.com
+schemes:
+  - http
+basePath: /v1
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /data:
+    get:
+      description: Return an array of strings collected from down stream APIs
+      operationId: listData
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfStrings
+            type: array
+            items:
+              type: string
+      security:
+        - a_auth:
+          - api_a.w
+          - api_a.r
+
+securityDefinitions:
+  a_auth:
+    type: oauth2
+    authorizationUrl: http://localhost:8080/oauth2/code
+    flow: implicit
+    scopes:
+      api_a.w: write access
+      api_a.r: read access
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;swagger-codegen&#34;&gt;Swagger-Codegen&lt;/h2&gt;
+
+&lt;p&gt;Now we have four API swagger.yaml files available. Let&amp;rsquo;s use swagger-codegen
+to start four projects in light-java-example. In normal API build, you
+should create a repo for each API.&lt;/p&gt;
+
+&lt;h4 id=&#34;clone-and-build-undertow-server-generator&#34;&gt;Clone and build Undertow Server Generator&lt;/h4&gt;
+
+&lt;p&gt;As &lt;a href=&#34;https://github.com/swagger-api/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt; doesn&amp;rsquo;t
+support Java 8, I have forked it &lt;a href=&#34;https://github.com/networknt/swagger-codegen&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/swagger-codegen.git
+cd swagger-codegen
+mvn clean install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;generate-first-project&#34;&gt;Generate first project&lt;/h4&gt;
+
+&lt;p&gt;Now you have your swagger-codegen built, let&amp;rsquo;s generate a project. Assume that
+swagger, light-java-example and swagger-codegen are in the same working
+directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the generator output.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
+Picked up JAVA_TOOL_OPTIONS: -Dconfig.dir=/home/steve/config
+[main] INFO io.swagger.parser.Swagger20Parser - reading from ../swagger/api_a/swagger.yaml
+swaggerio.swagger.models.Swagger@cb84fa41
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/pom.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/README.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/.gitignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/swagger.json
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/java/io/swagger/handler/PathHandlerProvider.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/test/java/io/swagger/handler/PathHandlerProviderTest.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/META-INF/services/com.networknt.server.HandlerProvider
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/META-INF/services/com.networknt.handler.MiddlewareHandler
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/server.json
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/security.json
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/oauth/primary.crt
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/oauth/secondary.crt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/LICENSE
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;build-and-run-the-mock-api&#34;&gt;Build and run the mock API&lt;/h4&gt;
+
+&lt;p&gt;And now you have a new project created in light-java-example. Let&amp;rsquo;s build
+it and run the test cases. If everything is OK, start the server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ..
+cd light-java-example/api_a
+mvn clean install
+mvn exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s test the API A by issuing the following command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl localhost:8080/v1/data
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By default the operationId &amp;lsquo;listData&amp;rsquo; will be returned.&lt;/p&gt;
+
+&lt;h4 id=&#34;generate-other-apis&#34;&gt;Generate other APIs&lt;/h4&gt;
+
+&lt;p&gt;Follow the above steps to generate other APIs. Make sure you are in swagger_codegen
+directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l undertow -o ../light-java-example/api_b
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l undertow -o ../light-java-example/api_c
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l undertow -o ../light-java-example/api_d
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you have four APIs generated from four OpenAPI specifications. Let&amp;rsquo;s check
+them in.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ../light-java-example
+git add .
+git commit -m &amp;quot;checkin 4 apis&amp;quot;
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;handlers&#34;&gt;Handlers&lt;/h2&gt;
+
+&lt;p&gt;Now these APIs are working if you start them and they will output the operationId
+defined in the API specification. Let&amp;rsquo;s take a look at the API handler itself
+and update it based on our business logic.&lt;/p&gt;
+
+&lt;h4 id=&#34;api-d&#34;&gt;API D&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at the generated PathHandlerProvider.java in
+api_d/src/main/java/io/swagger/handler/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.networknt.config.Config;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+
+public class PathHandlerProvider implements HandlerProvider {
+
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            exchange.getResponseSender().send(&amp;quot;listData&amp;quot;);
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the only class handling the request based on domain business logic.
+Because we only have one endpoint /v1/data@get there is only one route added
+to the handler chain. And there is a anonymous class mapped to this endpoint.&lt;/p&gt;
+
+&lt;p&gt;The generated handler returns &amp;ldquo;listData&amp;rdquo; which is the operationId defined in
+the specification. Let&amp;rsquo;s update it to an array of string that indicate
+messages from API D.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.networknt.config.Config;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PathHandlerProvider implements HandlerProvider {
+
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            List&amp;lt;String&amp;gt; messages = new ArrayList&amp;lt;String&amp;gt;();
+                            messages.add(&amp;quot;API D: Message 1&amp;quot;);
+                            messages.add(&amp;quot;API D: Message 2&amp;quot;);
+                            exchange.getResponseSender().send(Config.getInstance().getMapper().writeValueAsString(messages));
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s build it and start the server. Make sure there is only one server
+started at any time as all servers are listening to the same port.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd api_d
+mvn clean package exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Test it with curl.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl localhost:8080/v1/data
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And the result is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[&amp;quot;API D: Message 1&amp;quot;,&amp;quot;API D: Message 2&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;api-c&#34;&gt;API C&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;rsquo;s shutdown API D and update API C PathHandlerProvider to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.networknt.config.Config;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PathHandlerProvider implements HandlerProvider {
+
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            List&amp;lt;String&amp;gt; messages = new ArrayList&amp;lt;String&amp;gt;();
+                            messages.add(&amp;quot;API C: Message 1&amp;quot;);
+                            messages.add(&amp;quot;API C: Message 2&amp;quot;);
+                            exchange.getResponseSender().send(Config.getInstance().getMapper().writeValueAsString(messages));
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The same endpoint will return&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[&amp;quot;API C: Message 1&amp;quot;,&amp;quot;API C: Message 2&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;api-b&#34;&gt;API B&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;rsquo;s shutdown API C and complete API B. API B will call API D to fulfill its
+request so it has Apache Http Client dependency. The generated pom.xml has
+httpclient as test scope. Now you need to move it to runtime dependency and
+remove &amp;lsquo;&lt;scope&gt;test&amp;lt;/scope&amp;rsquo;. After update it should look like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;io.swagger&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;swagger-annotations&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${version.swagger}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.apache.httpcomponents&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;httpclient&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${version.httpclient}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+
+        &amp;lt;!-- Test Dependencies --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${version.junit}&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+
+    &amp;lt;/dependencies&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Update the generated code to this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.networknt.client.Client;
+import com.networknt.config.Config;
+import com.networknt.exception.ClientException;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PathHandlerProvider implements HandlerProvider {
+    static final Logger logger = LoggerFactory.getLogger(PathHandlerProvider.class);
+
+    String apidUrl = &amp;quot;http://localhost:8083/v1/data&amp;quot;;
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();
+                            try {
+                                CloseableHttpClient client = Client.getInstance().getSyncClient();
+                                HttpGet httpGet = new HttpGet(apidUrl);
+                                CloseableHttpResponse response = client.execute(httpGet);
+                                int responseCode = response.getStatusLine().getStatusCode();
+                                if(responseCode != 200){
+                                    throw new Exception(&amp;quot;Failed to call API D: &amp;quot; + responseCode);
+                                }
+                                List&amp;lt;String&amp;gt; apidList = (List&amp;lt;String&amp;gt;) Config.getInstance().getMapper().readValue(response.getEntity().getContent(),
+                                        new TypeReference&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;(){});
+                                list.addAll(apidList);
+                            } catch (ClientException e) {
+                                    throw new Exception(&amp;quot;Client Exception: &amp;quot;, e);
+                            } catch (IOException e) {
+                                    throw new Exception(&amp;quot;IOException:&amp;quot;, e);
+                            }
+                            // now add API B specific messages
+                            list.add(&amp;quot;API B: Message 1&amp;quot;);
+                            list.add(&amp;quot;API B: Message 2&amp;quot;);
+                            exchange.getResponseSender().send(Config.getInstance().getMapper().writeValueAsString(list));
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As API B only calls one API, here sync client is used. As API B will interact
+with API D and it requires configuration changes to make it work. Let&amp;rsquo;s wait
+until the next step to test it.&lt;/p&gt;
+
+&lt;h4 id=&#34;api-a&#34;&gt;API A&lt;/h4&gt;
+
+&lt;p&gt;API A will call API B and API C to fulfill its request. We need to include
+Apache AsyncClient in its dependencies. Update the generated pom.xml to
+something like this in the end of the dependencies.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;io.swagger&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;swagger-annotations&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${version.swagger}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.apache.httpcomponents&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;httpasyncclient&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${version.httpasyncclient}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+
+        &amp;lt;!-- Test Dependencies --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${version.junit}&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+
+    &amp;lt;/dependencies&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s update the generated code to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.networknt.client.Client;
+import com.networknt.config.Config;
+import com.networknt.exception.ClientException;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
+public class PathHandlerProvider implements HandlerProvider {
+
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();
+                            final HttpGet[] requests = new HttpGet[] {
+                                    new HttpGet(&amp;quot;http://localhost:8081/v1/data&amp;quot;),
+                                    new HttpGet(&amp;quot;http://localhost:8082/v1/data&amp;quot;),
+                            };
+                            try {
+                                CloseableHttpAsyncClient client = Client.getInstance().getAsyncClient();
+                                final CountDownLatch latch = new CountDownLatch(requests.length);
+                                for (final HttpGet request: requests) {
+                                    client.execute(request, new FutureCallback&amp;lt;HttpResponse&amp;gt;() {
+                                        @Override
+                                        public void completed(final HttpResponse response) {
+                                            latch.countDown();
+                                            try {
+                                                List&amp;lt;String&amp;gt; apiList = (List&amp;lt;String&amp;gt;) Config.getInstance().getMapper().readValue(response.getEntity().getContent(),
+                                                        new TypeReference&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;(){});
+                                                list.addAll(apiList);
+                                            } catch (IOException e) {
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void failed(final Exception ex) {
+                                            latch.countDown();
+                                        }
+
+                                        @Override
+                                        public void cancelled() {
+                                            latch.countDown();
+                                        }
+                                    });
+                                }
+                                latch.await();
+                            } catch (ClientException e) {
+                                throw new Exception(&amp;quot;ClientException:&amp;quot;, e);
+                            }
+                            // now add API A specific messages
+                            list.add(&amp;quot;API A: Message 1&amp;quot;);
+                            list.add(&amp;quot;API A: Message 2&amp;quot;);
+                            exchange.getResponseSender().send(Config.getInstance().getMapper().writeValueAsString(list));
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this moment, we have all four APIs completed but they are not going to be
+started at the same time as generated server.json uses the same port 8080. The
+next step is to change the configuration and test it out.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;Undertow Server has a module called Config and it is responsible to read config
+files from environmental property specified directory, classpath, API
+resources/config folder and module resources/config folder in that sequence as
+default File System based configuration. It can be extended to other config like
+config server, distributed cache and http server etc.&lt;/p&gt;
+
+&lt;p&gt;To make things simpler, let&amp;rsquo;s update the server.json in API B, C, D to bind to
+different port in order to start them on the same localhost.&lt;/p&gt;
+
+&lt;p&gt;API B&lt;/p&gt;
+
+&lt;p&gt;Find the server.json at api_b/src/main/resources/config and update the content
+to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;server config&amp;quot;,
+  &amp;quot;ip&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,
+  &amp;quot;port&amp;quot;: 8081
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;API C&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;server config&amp;quot;,
+  &amp;quot;ip&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,
+  &amp;quot;port&amp;quot;: 8082
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;API D&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;server config&amp;quot;,
+  &amp;quot;ip&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,
+  &amp;quot;port&amp;quot;: 8083
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s start all four servers on four terminals and test them out.&lt;/p&gt;
+
+&lt;p&gt;API D&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd api_d
+mvn clean install
+mvn exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;API C&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ../api_c
+mvn clean install exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;API B&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ../api_b
+mvn clean install exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;API A&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ../api_a
+mvn clean install exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s call API A and see what we can get.&lt;/p&gt;
+
+&lt;p&gt;Start another terminal and run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; curl localhost:8080/v1/data
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And you should see the result like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[&amp;quot;API C: Message 1&amp;quot;,&amp;quot;API C: Message 2&amp;quot;,&amp;quot;API D: Message 1&amp;quot;,&amp;quot;API D: Message 2&amp;quot;,&amp;quot;API B: Message 1&amp;quot;,&amp;quot;API B: Message 2&amp;quot;,&amp;quot;API A: Message 1&amp;quot;,&amp;quot;API A: Message 2&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;performance-without-security&#34;&gt;Performance without security&lt;/h2&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s see if these servers are performing with
+&lt;a href=&#34;https://github.com/wg/wrk&#34;&gt;wrk&lt;/a&gt;. To learn how to use it, please see my
+article in tools &lt;a href=&#34;https://networknt.github.io/light-java/tools/wrk-perf/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Assume you have wrk installed, run the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wrk -t4 -c800 -d30s http://localhost:8080/v1/data
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here is what I got on my i5 desktop&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Running 30s test @ http://localhost:8080/v1/data
+  4 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    94.26ms    5.02ms 278.85ms   82.69%
+    Req/Sec     2.65k   235.06     4.02k    82.58%
+  316197 requests in 30.10s, 72.48MB read
+Requests/sec:  10504.94
+Transfer/sec:      2.41MB
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s push the server to its limit&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; wrk -t4 -c128 -d30s http://localhost:8080 -s pipeline.lua --latency -- /v1/data 16
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here is the result without any tuning.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Running 30s test @ http://localhost:8080
+  4 threads and 128 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    20.19ms   49.37ms 227.18ms    0.00%
+    Req/Sec     3.22k     1.73k    5.17k    50.76%
+  Latency Distribution
+     50%    0.00us
+     75%    0.00us
+     90%    0.00us
+     99%    0.00us
+  378848 requests in 30.03s, 87.32MB read
+Requests/sec:  12615.16
+Transfer/sec:      2.91MB
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;enable-oauth2-security&#34;&gt;Enable OAuth2 Security&lt;/h2&gt;
+
+&lt;p&gt;So far, we&amp;rsquo;ve started four servers and tested them successfully; however,
+these servers are not protected by OAuth2 JWT tokens as it is turned off
+by default in the generated code.&lt;/p&gt;
+
+&lt;p&gt;Before we turn on the security, we need to have &lt;a href=&#34;https://github.com/networknt/undertow-oauth2&#34;&gt;undertow-oauth2&lt;/a&gt;
+server up and running so that these servers can get JWT token in real
+time.&lt;/p&gt;
+
+&lt;p&gt;The easiest way to run undertow-oauth2 server is through docker but let&amp;rsquo;s
+build it locally this time.&lt;/p&gt;
+
+&lt;p&gt;Go to your working directory and clone the project and start it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/undertow-oauth2.git
+cd undertow-oauth2
+mvn clean package exec:exec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s enable the jwt token verification and scope verification for all
+APIs except API A. For API A we want to enableVerifyJwt to true but
+enableVerifyScope to false so that we can use a long lived token to test from
+curl without getting new tokens each time.&lt;/p&gt;
+
+&lt;p&gt;Open security.json and update enableVerifyJwt and enableVerifyScope to true. The
+following is what looks like for API B, C and D.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;security configuration&amp;quot;,
+  &amp;quot;enableVerifyJwt&amp;quot;: true,
+  &amp;quot;enableVerifyScope&amp;quot;: true,
+  &amp;quot;enableMockJwt&amp;quot;: false,
+  &amp;quot;jwt&amp;quot;: {
+    &amp;quot;certificate&amp;quot;: {
+      &amp;quot;100&amp;quot;: &amp;quot;oauth/primary.crt&amp;quot;,
+      &amp;quot;101&amp;quot;: &amp;quot;oauth/secondary.crt&amp;quot;
+    },
+    &amp;quot;clockSkewInSeconds&amp;quot;: 60
+  },
+  &amp;quot;logJwtToken&amp;quot;: true,
+  &amp;quot;logClientUserScope&amp;quot;: false
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is what looks like for API A&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;security configuration&amp;quot;,
+  &amp;quot;enableVerifyJwt&amp;quot;: true,
+  &amp;quot;enableVerifyScope&amp;quot;: false,
+  &amp;quot;enableMockJwt&amp;quot;: false,
+  &amp;quot;jwt&amp;quot;: {
+    &amp;quot;certificate&amp;quot;: {
+      &amp;quot;100&amp;quot;: &amp;quot;oauth/primary.crt&amp;quot;,
+      &amp;quot;101&amp;quot;: &amp;quot;oauth/secondary.crt&amp;quot;
+    },
+    &amp;quot;clockSkewInSeconds&amp;quot;: 60
+  },
+  &amp;quot;logJwtToken&amp;quot;: true,
+  &amp;quot;logClientUserScope&amp;quot;: false
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now make sure that client.json in both API A and API B are configured correctly
+to get the right token from undertow-oauth2 server with the correct scopes.&lt;/p&gt;
+
+&lt;p&gt;The client_id and client_secret are set up in clients.json in undertow-oauth2
+already &lt;a href=&#34;https://github.com/networknt/undertow-oauth2/blob/master/src/main/resources/config/clients.json&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;API A client&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;quot;fe5dadd9-34ad-430f-a8f7-c75e81cc5d7b&amp;quot;: {
+    &amp;quot;client_secret&amp;quot;:&amp;quot;GXkHy-1aSPyo4pst8WBWbg&amp;quot;,
+    &amp;quot;scope&amp;quot;: &amp;quot;api_b.r api_b.w api_c.r api_c.w&amp;quot;,
+    &amp;quot;redirect_uri&amp;quot;: &amp;quot;http://localhost:8080/oauth&amp;quot;
+  },
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;API B client&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;quot;10a0a743-4674-4a9d-8867-db63ad4c8b4e&amp;quot;: {
+    &amp;quot;client_secret&amp;quot;:&amp;quot;tcahI1dvT1OsxXxg-IB_-w&amp;quot;,
+    &amp;quot;scope&amp;quot;: &amp;quot;api_d.r api_d.w&amp;quot;,
+    &amp;quot;redirect_uri&amp;quot;: &amp;quot;http://localhost:8080/oauth&amp;quot;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s update client.json on both API A and API B to reflect the above info.
+After updates, this is what looks like in API A client.json&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;client configuration, all timing is milli-second&amp;quot;,
+  &amp;quot;sync&amp;quot;: {
+    &amp;quot;maxConnectionTotal&amp;quot;: 100,
+    &amp;quot;maxConnectionPerRoute&amp;quot;: 10,
+    &amp;quot;routes&amp;quot;: {
+      &amp;quot;api.google.com&amp;quot;: 20,
+      &amp;quot;api.facebook.com&amp;quot;: 10
+    },
+    &amp;quot;timeout&amp;quot;: 10000,
+    &amp;quot;keepAlive&amp;quot;: 15000
+  },
+  &amp;quot;async&amp;quot;: {
+    &amp;quot;maxConnectionTotal&amp;quot;: 100,
+    &amp;quot;maxConnectionPerRoute&amp;quot;: 10,
+    &amp;quot;routes&amp;quot;: {
+      &amp;quot;api.google.com&amp;quot;: 20,
+      &amp;quot;api.facebook.com&amp;quot;: 10
+    },
+    &amp;quot;reactor&amp;quot;: {
+      &amp;quot;ioThreadCount&amp;quot;: 1,
+      &amp;quot;connectTimeout&amp;quot;: 10000,
+      &amp;quot;soTimeout&amp;quot;: 10000
+    },
+    &amp;quot;timeout&amp;quot;: 10000,
+    &amp;quot;keepAlive&amp;quot;: 15000
+  },
+  &amp;quot;tls&amp;quot;: {
+    &amp;quot;verifyHostname&amp;quot;: false,
+    &amp;quot;loadTrustStore&amp;quot;: false,
+    &amp;quot;trustStore&amp;quot;: &amp;quot;trust.keystore&amp;quot;,
+    &amp;quot;trustPass&amp;quot;: &amp;quot;password&amp;quot;,
+    &amp;quot;loadKeyStore&amp;quot;: false,
+    &amp;quot;keyStore&amp;quot;: &amp;quot;key.jks&amp;quot;,
+    &amp;quot;keyPass&amp;quot;: &amp;quot;password&amp;quot;
+  },
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;tokenRenewBeforeExpired&amp;quot;: 600000,
+    &amp;quot;expiredRefreshRetryDelay&amp;quot;: 5000,
+    &amp;quot;earlyRefreshRetryDelay&amp;quot;: 30000,
+    &amp;quot;server_url&amp;quot;: &amp;quot;http://localhost:8888&amp;quot;,
+    &amp;quot;timeout&amp;quot;: 5000,
+    &amp;quot;ignoreSSLErrors&amp;quot;: false,
+    &amp;quot;authorization_code&amp;quot;: {
+      &amp;quot;uri&amp;quot;: &amp;quot;/oauth2/token&amp;quot;,
+      &amp;quot;client_id&amp;quot;: &amp;quot;fe5dadd9-34ad-430f-a8f7-c75e81cc5d7b&amp;quot;,
+      &amp;quot;client_secret&amp;quot;: &amp;quot;GXkHy-1aSPyo4pst8WBWbg&amp;quot;,
+      &amp;quot;redirect_uri&amp;quot;: &amp;quot;https://localhost:8080/authorization_code&amp;quot;,
+      &amp;quot;scope&amp;quot;: [
+        &amp;quot;api_b.r&amp;quot;,
+        &amp;quot;api_b_w&amp;quot;,
+        &amp;quot;api_c.r&amp;quot;,
+        &amp;quot;api_c_w&amp;quot;
+      ]
+    },
+    &amp;quot;client_credentials&amp;quot;: {
+      &amp;quot;uri&amp;quot;: &amp;quot;/oauth2/token&amp;quot;,
+      &amp;quot;client_id&amp;quot;: &amp;quot;fe5dadd9-34ad-430f-a8f7-c75e81cc5d7b&amp;quot;,
+      &amp;quot;client_secret&amp;quot;: &amp;quot;GXkHy-1aSPyo4pst8WBWbg&amp;quot;,
+      &amp;quot;scope&amp;quot;: [
+        &amp;quot;api_b.r&amp;quot;,
+        &amp;quot;api_b_w&amp;quot;,
+        &amp;quot;api_c.r&amp;quot;,
+        &amp;quot;api_c_w&amp;quot;
+      ]
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is what looks like in API B client.json&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;client configuration, all timing is milli-second&amp;quot;,
+  &amp;quot;sync&amp;quot;: {
+    &amp;quot;maxConnectionTotal&amp;quot;: 100,
+    &amp;quot;maxConnectionPerRoute&amp;quot;: 10,
+    &amp;quot;routes&amp;quot;: {
+      &amp;quot;api.google.com&amp;quot;: 20,
+      &amp;quot;api.facebook.com&amp;quot;: 10
+    },
+    &amp;quot;timeout&amp;quot;: 10000,
+    &amp;quot;keepAlive&amp;quot;: 15000
+  },
+  &amp;quot;async&amp;quot;: {
+    &amp;quot;maxConnectionTotal&amp;quot;: 100,
+    &amp;quot;maxConnectionPerRoute&amp;quot;: 10,
+    &amp;quot;routes&amp;quot;: {
+      &amp;quot;api.google.com&amp;quot;: 20,
+      &amp;quot;api.facebook.com&amp;quot;: 10
+    },
+    &amp;quot;reactor&amp;quot;: {
+      &amp;quot;ioThreadCount&amp;quot;: 1,
+      &amp;quot;connectTimeout&amp;quot;: 10000,
+      &amp;quot;soTimeout&amp;quot;: 10000
+    },
+    &amp;quot;timeout&amp;quot;: 10000,
+    &amp;quot;keepAlive&amp;quot;: 15000
+  },
+  &amp;quot;tls&amp;quot;: {
+    &amp;quot;verifyHostname&amp;quot;: false,
+    &amp;quot;loadTrustStore&amp;quot;: false,
+    &amp;quot;trustStore&amp;quot;: &amp;quot;trust.keystore&amp;quot;,
+    &amp;quot;trustPass&amp;quot;: &amp;quot;password&amp;quot;,
+    &amp;quot;loadKeyStore&amp;quot;: false,
+    &amp;quot;keyStore&amp;quot;: &amp;quot;key.jks&amp;quot;,
+    &amp;quot;keyPass&amp;quot;: &amp;quot;password&amp;quot;
+  },
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;tokenRenewBeforeExpired&amp;quot;: 600000,
+    &amp;quot;expiredRefreshRetryDelay&amp;quot;: 5000,
+    &amp;quot;earlyRefreshRetryDelay&amp;quot;: 30000,
+    &amp;quot;server_url&amp;quot;: &amp;quot;http://localhost:8888&amp;quot;,
+    &amp;quot;timeout&amp;quot;: 5000,
+    &amp;quot;ignoreSSLErrors&amp;quot;: false,
+    &amp;quot;authorization_code&amp;quot;: {
+      &amp;quot;uri&amp;quot;: &amp;quot;/oauth2/token&amp;quot;,
+      &amp;quot;client_id&amp;quot;: &amp;quot;10a0a743-4674-4a9d-8867-db63ad4c8b4e&amp;quot;,
+      &amp;quot;client_secret&amp;quot;: &amp;quot;tcahI1dvT1OsxXxg-IB_-w&amp;quot;,
+      &amp;quot;redirect_uri&amp;quot;: &amp;quot;https://localhost:8080/authorization_code&amp;quot;,
+      &amp;quot;scope&amp;quot;: [
+        &amp;quot;api_d.r&amp;quot;,
+        &amp;quot;api_d_w&amp;quot;
+      ]
+    },
+    &amp;quot;client_credentials&amp;quot;: {
+      &amp;quot;uri&amp;quot;: &amp;quot;/oauth2/token&amp;quot;,
+      &amp;quot;client_id&amp;quot;: &amp;quot;10a0a743-4674-4a9d-8867-db63ad4c8b4e&amp;quot;,
+      &amp;quot;client_secret&amp;quot;: &amp;quot;tcahI1dvT1OsxXxg-IB_-w&amp;quot;,
+      &amp;quot;scope&amp;quot;: [
+        &amp;quot;api_d.r&amp;quot;,
+        &amp;quot;api_d_w&amp;quot;
+      ]
+    }
+  }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With client.json updated in both API A and API B, we need to update the code
+to assign scope token during runtime.&lt;/p&gt;
+
+&lt;p&gt;Open API A PathHandlerProvider and three lines.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.networknt.client.Client;
+import com.networknt.config.Config;
+import com.networknt.exception.ClientException;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
+public class PathHandlerProvider implements HandlerProvider {
+
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();
+                            // get passed in Authorization header
+                            String authHeader = exchange.getRequestHeaders().getFirst(&amp;quot;Authorization&amp;quot;);
+                            final HttpGet[] requests = new HttpGet[] {
+                                    new HttpGet(&amp;quot;http://localhost:8081/v1/data&amp;quot;),
+                                    new HttpGet(&amp;quot;http://localhost:8082/v1/data&amp;quot;),
+                            };
+                            try {
+                                CloseableHttpAsyncClient client = Client.getInstance().getAsyncClient();
+                                final CountDownLatch latch = new CountDownLatch(requests.length);
+                                for (final HttpGet request: requests) {
+                                    Client.getInstance().addAuthorizationWithScopeToken(request, authHeader);
+                                    client.execute(request, new FutureCallback&amp;lt;HttpResponse&amp;gt;() {
+                                        @Override
+                                        public void completed(final HttpResponse response) {
+                                            latch.countDown();
+                                            try {
+                                                List&amp;lt;String&amp;gt; apiList = (List&amp;lt;String&amp;gt;) Config.getInstance().getMapper().readValue(response.getEntity().getContent(),
+                                                        new TypeReference&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;(){});
+                                                list.addAll(apiList);
+                                            } catch (IOException e) {
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void failed(final Exception ex) {
+                                            latch.countDown();
+                                        }
+
+                                        @Override
+                                        public void cancelled() {
+                                            latch.countDown();
+                                        }
+                                    });
+                                }
+                                latch.await();
+                            } catch (ClientException e) {
+                                throw new Exception(&amp;quot;ClientException:&amp;quot;, e);
+                            }
+                            // now add API A specific messages
+                            list.add(&amp;quot;API A: Message 1&amp;quot;);
+                            list.add(&amp;quot;API A: Message 2&amp;quot;);
+                            exchange.getResponseSender().send(Config.getInstance().getMapper().writeValueAsString(list));
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open API B PathHandlerProvider and add three lines&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package io.swagger.handler;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.networknt.client.Client;
+import com.networknt.config.Config;
+import com.networknt.exception.ClientException;
+import com.networknt.server.HandlerProvider;
+import io.undertow.Handlers;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Methods;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PathHandlerProvider implements HandlerProvider {
+    static final Logger logger = LoggerFactory.getLogger(PathHandlerProvider.class);
+
+    String apidUrl = &amp;quot;http://localhost:8083/v1/data&amp;quot;;
+    public HttpHandler getHandler() {
+        HttpHandler handler = Handlers.routing()
+
+
+            .add(Methods.GET, &amp;quot;/v1/data&amp;quot;, new HttpHandler() {
+                        public void handleRequest(HttpServerExchange exchange) throws Exception {
+                            // get passed in Authorization header
+                            String authHeader = exchange.getRequestHeaders().getFirst(&amp;quot;Authorization&amp;quot;);
+
+                            List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;String&amp;gt;();
+                            try {
+                                CloseableHttpClient client = Client.getInstance().getSyncClient();
+                                HttpGet httpGet = new HttpGet(apidUrl);
+                                Client.getInstance().addAuthorizationWithScopeToken(httpGet, authHeader);
+                                CloseableHttpResponse response = client.execute(httpGet);
+                                int responseCode = response.getStatusLine().getStatusCode();
+                                if(responseCode != 200){
+                                    throw new Exception(&amp;quot;Failed to call API D: &amp;quot; + responseCode);
+                                }
+                                List&amp;lt;String&amp;gt; apidList = (List&amp;lt;String&amp;gt;) Config.getInstance().getMapper().readValue(response.getEntity().getContent(),
+                                        new TypeReference&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;(){});
+                                list.addAll(apidList);
+                            } catch (ClientException e) {
+                                    throw new Exception(&amp;quot;Client Exception: &amp;quot;, e);
+                            } catch (IOException e) {
+                                    throw new Exception(&amp;quot;IOException:&amp;quot;, e);
+                            }
+                            // now add API B specific messages
+                            list.add(&amp;quot;API B: Message 1&amp;quot;);
+                            list.add(&amp;quot;API B: Message 2&amp;quot;);
+                            exchange.getResponseSender().send(Config.getInstance().getMapper().writeValueAsString(list));
+                        }
+                    })
+
+        ;
+        return handler;
+    }
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start these servers and test it. Don&amp;rsquo;t forget to start undertow-oauth2
+server.&lt;/p&gt;
+
+&lt;p&gt;Run the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Authorization: Bearer eyJraWQiOiIxMDAiLCJhbGciOiJSUzI1NidvcmtudCIsImV4cCI6MTc5MDAzNTcwOSwianRpIjoiSTJnSmdBSHN6NzJEV2JWdUFMdUU2QSIsImlhdCI6MTQ3NDY3NTcwOSwibmJmIjoxNDc0Njc1NTg5LCJ2ZXJzaW9uIjoiMS4wIiwidXNlcl9pZCI6InN0ZXZlIiwidXNlcl90eXBlIjoiRU1QTE9ZRUUiLCJjbGllbnRfaWQiOiJmN2Q0MjM0OC1jNjQ3LTRlZmItYTUyZC00YzU3ODc0MjFlNzIiLCJzY29wZSI6WyJ3cml0ZTpwZXRzIiwicmVhZDpwZXRzIl19.mue6eh70kGS3Nt2BCYz7ViqwO7lh_4JSFwcHYdJMY6VfgKTHhsIGKq2uEDt3zwT56JFAePwAxENMGUTGvgceVneQzyfQsJeVGbqw55E9IfM_uSM-YcHwTfR7eSLExN4pbqzVDI353sSOvXxA98ZtJlUZKgXNE1Ngun3XFORCRIB_eH8B0FY_nT_D1Dq2WJrR-re-fbR6_va95vwoUdCofLRa4IpDfXXx19ZlAtfiVO44nw6CS8O87eGfAm7rCMZIzkWlCOFWjNHnCeRsh7CVdEH34LF-B48beiG5lM7h4N12-EME8_VDefgMjZ8eqs1ICvJMxdIut58oYbdnkwTjkA&amp;quot; localhost:8080/v1/data
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here is the result.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[&amp;quot;API C: Message 1&amp;quot;,&amp;quot;API C: Message 2&amp;quot;,&amp;quot;API D: Message 1&amp;quot;,&amp;quot;API D: Message 2&amp;quot;,&amp;quot;API B: Message 1&amp;quot;,&amp;quot;API B: Message 2&amp;quot;,&amp;quot;API A: Message 1&amp;quot;,&amp;quot;API A: Message 2&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;dockerization&#34;&gt;Dockerization&lt;/h2&gt;
+
+&lt;h2 id=&#34;integration&#34;&gt;Integration&lt;/h2&gt;
+
+&lt;h2 id=&#34;performance&#34;&gt;Performance&lt;/h2&gt;
+
+&lt;h2 id=&#34;production&#34;&gt;Production&lt;/h2&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
