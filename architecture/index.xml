@@ -2,20 +2,146 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Architecture-rsses on Undertow Server - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/undertow-server/architecture/index.xml</link>
+    <link>https://networknt.github.io/light-java/architecture/index.xml</link>
     <description>Recent content in Architecture-rsses on Undertow Server - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sun, 09 Oct 2016 08:15:27 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/undertow-server/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Oct 2016 14:34:09 -0400</lastBuildDate>
+    <atom:link href="https://networknt.github.io/light-java/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>security</title>
+      <link>https://networknt.github.io/light-java/architecture/security/</link>
+      <pubDate>Thu, 20 Oct 2016 14:34:09 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/security/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Note: If this is the first time you hear about OAuth2 or you want to getting familiar with
+the grant types we are using, please read this
+&lt;a href=&#34;https://github.com/networknt/undertow-oauth2/wiki/OAuth2-Introduction&#34;&gt;article&lt;/a&gt; first.&lt;/p&gt;
+
+&lt;p&gt;While designing microserivces, big monolithic application is breaking down to smaller
+services that can be independently deployed or replaced. The final application will have
+more http calls then a single application, how can we protect these calls between services?&lt;/p&gt;
+
+&lt;p&gt;To protect APIs, the answer is OAuth2 and most simple and popular solution will be
+simple web token as access token. The client authenticate itself on OAuth2 server and OAuth2
+server issue
+a simple web token (a UUID in most of the cases), then the client send the request to API
+server with access token in the Authorization header. Once API server receives the request,
+it has to send the access token to OAuth2 server to verify if this is valid token and if
+this token is allowed to access this API. As you can see there must be a database lookup on
+OAuth2 server to do that. Distributed cache help a lot but there is still a network call and
+lookup for every single request. OAuth2 server eventually becomes a bottleneck and a single
+point of failure.&lt;/p&gt;
+
+&lt;p&gt;Years ago, when JWT draft spec. was out, I came up with the idea to do the
+distributed security verification with JWT to replace Simple Web Token for one of the big
+banks in Canada. At that time, there is nobody using JWT this way and the bank sent the design to
+Paul Madson and John Bradley who are the Authors of OAuth2 and JWT specifications and got
+their endorsement to use JWT this way.&lt;/p&gt;
+
+&lt;p&gt;Here is the diagram of distributed JWT verification for microservices.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_distributed_jwt.png&#34; alt=&#34;ms_distributed_jwt&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>gateway</title>
+      <link>https://networknt.github.io/light-java/architecture/gateway/</link>
+      <pubDate>Thu, 20 Oct 2016 14:33:53 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/gateway/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;When your organization is thinking about breaking up the big monolithic
+application to adopt microservices architecture, chances are there are
+some vendors coming to sell their gateway solutions. Why they want to
+sell you gateways and do you really need a gateway?&lt;/p&gt;
+
+&lt;p&gt;The reason they want to sell you a gateway is because the solutions they
+provided are not truely microservices as there is no gateway in the
+picture of the real microservices. Their solution is coming from web services
+(SOA) design and all services behind the gateway are flattened.&lt;/p&gt;
+
+&lt;p&gt;Here is a picture of their typical solution in the beginning.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_oauth2_gateway.png&#34; alt=&#34;ms_oauth2_gateway&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After awhile, they realized that for every request from client, there are two
+calls from client and api to oauth2 server and remote calls are too heavy.&lt;/p&gt;
+
+&lt;p&gt;Then the solution for gateway vendor is to move oauth2 server inside the
+gateway so that there is no remote calls for security. Here is an updated
+gateway.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_oauth2_in_gateway.png&#34; alt=&#34;ms_oauth2_in_gateway&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With increasing volume, the monolithic gateway becomes bottleneck and the only
+solutions is to horizontally scaling. That means you have a cluster of gateway
+instances and gateway becomes a single point of failure. If any component fails
+in gateway, all your APIs are not accessible.&lt;/p&gt;
+
+&lt;p&gt;When you look inside the APIs protected by the gateway, you can see these APIs
+are implemented in JEE containers like WebLogic/WebSphere/JBoss/SpringBoot etc.
+and they don&amp;rsquo;t call each other. They are simply monolithic JEE application packaged
+in ear or war and exposed REST APIs. These APIs are normally deployed in Data
+Centers and lately moved to cloud. They are not real microservices at all.&lt;/p&gt;
+
+&lt;p&gt;Some smart developers attempted to break these big application into smaller
+pieces and move into the direction of microservices but gateway became a problem.
+Let&amp;rsquo;s take a look at how API to API call looks like with gateway in the following
+diagram.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_gateway_api_to_api.png&#34; alt=&#34;ms_gateway_api_to_api&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, when API A calls API B, although both of them are behind of the
+gateway, the request has to go in front of gateway to properly
+authenticate/authorize the request. Clearly, the centralized gateway design is
+against the decentralized principle of microservices architecture.&lt;/p&gt;
+
+&lt;p&gt;In my framework, the solution is to move all the cross cutting concerns to the
+API framework and APIs are built on top of the framework. In another world, a
+distributed gateway. Here is a diagram to show you client calls API A and API A
+calls API B and API C and API B calls API D.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_distributed_gateway.png&#34; alt=&#34;ms_distributed_gateway&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this architecture, every API instance contains functions from the framework
+and act like a mini gateway embedded. Along with container orchestration tools like
+Kubernetes or Docker Swarm, the traditional gateway is replaced. As there is no remote
+calls between API to gateway, all the cross cutting concerns are addressed in the same
+request/response chain. This gives you the best performance for your APIs. Here
+is an &lt;a href=&#34;https://networknt.github.io/undertow-server/tutorials/microservices/&#34;&gt;tutorial&lt;/a&gt;
+which implements the above diagram and source code for four APIs can
+be found &lt;a href=&#34;https://github.com/networknt/undertow-server-example&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Our framework is built on top of Undertow http core server which is very light
+and serves 1.4 million &amp;ldquo;Hello World&amp;rdquo; requests on my desktop with average response
+time 2ms. Is it 44 times faster then the most popular REST container Sprint Boot.&lt;/p&gt;
+
+&lt;p&gt;The performance test code can be found in
+&lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above diagram, OAuth2 server is an independent entity and you might ask
+if it is a bottleneck. I have written another &lt;a href=&#34;https://networknt.github.io/light-java/architecture/security&#34;&gt;document&lt;/a&gt; to address it with
+distributed JWT token verification and client credentials token caching and renewal.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>spring is bloated</title>
-      <link>https://networknt.github.io/undertow-server/architecture/spring-is-bloated/</link>
+      <link>https://networknt.github.io/light-java/architecture/spring-is-bloated/</link>
       <pubDate>Sun, 09 Oct 2016 08:15:27 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/architecture/spring-is-bloated/</guid>
+      <guid>https://networknt.github.io/light-java/architecture/spring-is-bloated/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -43,7 +169,7 @@ right due to backward compatible requirement.&lt;/p&gt;
 
 &lt;p&gt;I did a performance test between Spring Boot and My own Undertow Framework
 and Spring Boot is 44 times slower and the code and test result can be
-found &lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The test result for Spring Boot was based on the embedded tomcat server and
 later on I have switched to Undertow servlet container for Spring Boot. The
@@ -57,10 +183,10 @@ Boot overhead and it is very significant.&lt;/p&gt;
     
     <item>
       <title>jee is dead</title>
-      <link>https://networknt.github.io/undertow-server/architecture/jee-is-dead/</link>
+      <link>https://networknt.github.io/light-java/architecture/jee-is-dead/</link>
       <pubDate>Sun, 09 Oct 2016 08:14:57 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/architecture/jee-is-dead/</guid>
+      <guid>https://networknt.github.io/light-java/architecture/jee-is-dead/</guid>
       <description>
 
 &lt;h2 id=&#34;history&#34;&gt;History&lt;/h2&gt;
@@ -174,11 +300,92 @@ microservices in them.&lt;/p&gt;
     
     <item>
       <title>microservices</title>
-      <link>https://networknt.github.io/undertow-server/architecture/microservices/</link>
+      <link>https://networknt.github.io/light-java/architecture/microservices/</link>
       <pubDate>Sun, 09 Oct 2016 08:13:52 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/architecture/microservices/</guid>
-      <description></description>
+      <guid>https://networknt.github.io/light-java/architecture/microservices/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Speed and Safety at Scale and in Harmony.&lt;/p&gt;
+
+&lt;p&gt;If you’re like most software developers, team leaders, and architects responsible for getting
+working code out the door of your company, this phrase describes your job in a nutshell. Most
+of you have probably struggled at this, too. Getting to market quickly seems to imply giving
+up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient
+means slowing down the pace of feature and bug-fix releases. And “at scale” is just a dream.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Microservices are ideal for big systems&lt;/li&gt;
+&lt;li&gt;Microservice architecture is goal-oriented not solution-oriented&lt;/li&gt;
+&lt;li&gt;Microservices are focused on replaceability&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;microservice applications share some important characteristics:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Small in size&lt;/li&gt;
+&lt;li&gt;Messaging enabled&lt;/li&gt;
+&lt;li&gt;Bounded by contexts&lt;/li&gt;
+&lt;li&gt;Autonomously developed&lt;/li&gt;
+&lt;li&gt;Independently deployable&lt;/li&gt;
+&lt;li&gt;Decentralized&lt;/li&gt;
+&lt;li&gt;Built and released with automated processes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When you build software in this way, the cost of controlling and managing output increases
+significantly. In a microservice architec‐ ture, the services tend to get simpler, but the
+architecture tends to get more complex. That complexity is often managed with tooling,
+automation, and process.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The Speed of Change&lt;/li&gt;
+&lt;li&gt;The Safety of Change&lt;/li&gt;
+&lt;li&gt;At Scale&lt;/li&gt;
+&lt;li&gt;In Harmony&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;the original intent of the microservice architecture con‐ cept—to replace complex monolithic
+applications with software systems made of replaceable components.&lt;/p&gt;
+
+&lt;p&gt;There are common goals and benefits that emerge from these implementation stories. The goal
+of improving software delivery speed as functional scope grows is realized through greater
+agility, higher composability, improved comprehensibility, independ‐ ent service deployability,
+organizational alignment, and polyglotism. The goal of maintaining software system safety as
+scale increases is achieved through higher availability and resiliency, better efficiency,
+independent manageability and replacea‐ bility of components, increased runtime scalability,
+and more simplified testability.&lt;/p&gt;
+
+&lt;h3 id=&#34;speed&#34;&gt;Speed&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Agility allows organizations to deliver new products, functions, and features more quickly and pivot more easily if needed.&lt;/li&gt;
+&lt;li&gt;Composability reduces development time and provides a compound benefit through reusability over time.&lt;/li&gt;
+&lt;li&gt;Comprehensibility of the software system simplifies development planning, increases accuracy, and allows new resources to come up to speed more quickly.&lt;/li&gt;
+&lt;li&gt;Independent deployability of components gets new features into production more quickly and provides more flexible options for piloting and prototyping.&lt;/li&gt;
+&lt;li&gt;Organizational alignment of services to teams reduces ramp-up time and encour‐ ages teams to build more complex products and features iteratively.&lt;/li&gt;
+&lt;li&gt;Polyglotism permits the use of the right tools for the right task, thus accelerating technology introduction and increasing solution options.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;safety&#34;&gt;Safety&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Greater e ciency in the software system reduces infrastructure costs and reduces the risk of capacity-related service outages.&lt;/li&gt;
+&lt;li&gt;Independent manageability contributes to improved efficiency, and also reduces the need for scheduled downtime.&lt;/li&gt;
+&lt;li&gt;Replaceability of components reduces the technical debt that can lead to aging, unreliable environments.&lt;/li&gt;
+&lt;li&gt;Stronger resilience and higher availability ensure a good customer experience.&lt;/li&gt;
+&lt;li&gt;Better runtime scalability allows the software system to grow or shrink with the
+business.&lt;/li&gt;
+&lt;li&gt;Improved testability allows the business to mitigate implementation risks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;history&#34;&gt;History&lt;/h1&gt;
+
+&lt;h1 id=&#34;distributed-gateway&#34;&gt;Distributed Gateway&lt;/h1&gt;
+
+&lt;h1 id=&#34;distributed-auth&#34;&gt;Distributed Auth&lt;/h1&gt;
+</description>
     </item>
     
   </channel>

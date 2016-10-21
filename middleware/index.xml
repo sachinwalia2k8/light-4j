@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Middleware-rsses on Undertow Server - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/undertow-server/middleware/index.xml</link>
+    <link>https://networknt.github.io/light-java/middleware/index.xml</link>
     <description>Recent content in Middleware-rsses on Undertow Server - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sat, 15 Oct 2016 20:42:32 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/undertow-server/middleware/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://networknt.github.io/light-java/middleware/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Metrics</title>
-      <link>https://networknt.github.io/undertow-server/middleware/metrics/</link>
+      <link>https://networknt.github.io/light-java/middleware/metrics/</link>
       <pubDate>Sat, 15 Oct 2016 20:42:32 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/metrics/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/metrics/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -68,21 +68,21 @@ grafana:
 
 &lt;h2 id=&#34;metrics-collected&#34;&gt;Metrics Collected&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/measurements.png&#34; alt=&#34;measurements&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/measurements.png&#34; alt=&#34;measurements&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see, there two perspectives in collecting metrics info. The measurements started with clientId are client
 centric info and the measurements started with API name are API centric info.&lt;/p&gt;
 
 &lt;p&gt;Currently, we are collecting 5 metrics each.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/client_metrics.png&#34; alt=&#34;client metrics&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/client_metrics.png&#34; alt=&#34;client metrics&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is request count for client f7d42348-c647-4efb-a52d-4c5787421e72&lt;/p&gt;
 
 &lt;p&gt;The first column is timestamp and value column is the value for this time series. Other columns are tags and they
 are endpoint, hostname/container id, ipAddress and version.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/api_metrics.png&#34; alt=&#34;api metrics&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/api_metrics.png&#34; alt=&#34;api metrics&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is request count for API swagger_petstore.&lt;/p&gt;
 
@@ -100,10 +100,10 @@ InfluxDB.&lt;/p&gt;
     
     <item>
       <title>Server</title>
-      <link>https://networknt.github.io/undertow-server/middleware/server/</link>
+      <link>https://networknt.github.io/light-java/middleware/server/</link>
       <pubDate>Sat, 15 Oct 2016 19:27:03 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/server/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/server/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -182,10 +182,10 @@ deployment. In the future, these parameters might be exposed in the server.json.
     
     <item>
       <title>Client</title>
-      <link>https://networknt.github.io/undertow-server/middleware/client/</link>
+      <link>https://networknt.github.io/light-java/middleware/client/</link>
       <pubDate>Wed, 12 Oct 2016 19:59:08 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/client/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/client/</guid>
       <description>
 
 &lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
@@ -224,10 +224,10 @@ renew process is start again.&lt;/p&gt;
     
     <item>
       <title>validator</title>
-      <link>https://networknt.github.io/undertow-server/middleware/validator/</link>
+      <link>https://networknt.github.io/light-java/middleware/validator/</link>
       <pubDate>Wed, 12 Oct 2016 19:13:19 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/validator/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/validator/</guid>
       <description>
 
 &lt;p&gt;The framework encourages design driven implementation so swagger specification
@@ -296,10 +296,10 @@ development.&lt;/p&gt;
     
     <item>
       <title>utility</title>
-      <link>https://networknt.github.io/undertow-server/middleware/utility/</link>
+      <link>https://networknt.github.io/light-java/middleware/utility/</link>
       <pubDate>Wed, 12 Oct 2016 19:12:00 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/utility/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/utility/</guid>
       <description>
 
 &lt;p&gt;This module contains some useful classes that shared by multiple modules within
@@ -323,10 +323,10 @@ plugged in modules and their configurations.&lt;/p&gt;
     
     <item>
       <title>swagger</title>
-      <link>https://networknt.github.io/undertow-server/middleware/swagger/</link>
+      <link>https://networknt.github.io/light-java/middleware/swagger/</link>
       <pubDate>Wed, 12 Oct 2016 19:10:34 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/swagger/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/swagger/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -368,10 +368,10 @@ time.&lt;/p&gt;
     
     <item>
       <title>status</title>
-      <link>https://networknt.github.io/undertow-server/middleware/status/</link>
+      <link>https://networknt.github.io/light-java/middleware/status/</link>
       <pubDate>Wed, 12 Oct 2016 19:09:18 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/status/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/status/</guid>
       <description>
 
 &lt;p&gt;In the scenario that error happens on the server, a Status object is designed
@@ -475,10 +475,10 @@ teams, here is the rule&lt;/p&gt;
     
     <item>
       <title>security</title>
-      <link>https://networknt.github.io/undertow-server/middleware/security/</link>
+      <link>https://networknt.github.io/light-java/middleware/security/</link>
       <pubDate>Wed, 12 Oct 2016 19:07:43 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/security/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/security/</guid>
       <description>
 
 &lt;p&gt;The current framework supports OAuth2 with JWT token but can be extended to
@@ -498,11 +498,11 @@ the token signing certificate is available at resource server. Due to security
 concerns, there should be two pair of private key and public key certificate
 available at any time in case the primary key is compromised.&lt;/p&gt;
 
-&lt;h1 id=&#34;undertow-server-oauth2-server&#34;&gt;undertow-server-oauth2 server&lt;/h1&gt;
+&lt;h1 id=&#34;light-oauth2-server&#34;&gt;light-oauth2 server&lt;/h1&gt;
 
 &lt;p&gt;By default, the framework contains two pairs of public key certificates issued
 by our own oauth2 server which can be installed from docker. For more info,
-please refer to &lt;a href=&#34;https://github.com/networknt/undertow-server-oauth2&#34;&gt;https://github.com/networknt/undertow-server-oauth2&lt;/a&gt;&lt;/p&gt;
+please refer to &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;https://github.com/networknt/light-oauth2&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;kid&#34;&gt;Kid&lt;/h1&gt;
 
@@ -524,10 +524,10 @@ server and it can be found at &lt;a href=&#34;https://github.com/networknt/under
     
     <item>
       <title>mask</title>
-      <link>https://networknt.github.io/undertow-server/middleware/mask/</link>
+      <link>https://networknt.github.io/light-java/middleware/mask/</link>
       <pubDate>Wed, 12 Oct 2016 19:06:24 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/mask/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/mask/</guid>
       <description>
 
 &lt;p&gt;In the entire life cycle of the exchange, there might a lot of logging statements
@@ -552,15 +552,15 @@ and can be applied at header, cookie, query parameters and body.&lt;/p&gt;
     
     <item>
       <title>info</title>
-      <link>https://networknt.github.io/undertow-server/middleware/info/</link>
+      <link>https://networknt.github.io/light-java/middleware/info/</link>
       <pubDate>Wed, 12 Oct 2016 19:04:51 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/info/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/info/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 
-&lt;p&gt;Almost every module in undertow-server has a configuration file that can be
+&lt;p&gt;Almost every module in light-java has a configuration file that can be
 externalized with default can be in the module itself or the API implementation
 config folder. In order to give an overview of the server runtime, system
 properties, specification as well as configurations for each enabled modules,
@@ -1783,10 +1783,10 @@ ModuleRegistry.registerModule(Client.class.getName(), Config.getInstance().getJs
     
     <item>
       <title>exception</title>
-      <link>https://networknt.github.io/undertow-server/middleware/exception/</link>
+      <link>https://networknt.github.io/light-java/middleware/exception/</link>
       <pubDate>Wed, 12 Oct 2016 19:03:24 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/exception/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/exception/</guid>
       <description>
 
 &lt;p&gt;If any handler throws an exception within the handler chain, that exception
@@ -1817,10 +1817,10 @@ in the status object.&lt;/p&gt;
     
     <item>
       <title>Config</title>
-      <link>https://networknt.github.io/undertow-server/middleware/config/</link>
+      <link>https://networknt.github.io/light-java/middleware/config/</link>
       <pubDate>Wed, 12 Oct 2016 19:00:54 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/config/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/config/</guid>
       <description>
 
 &lt;p&gt;A configuration module that supports externalized config in official standalone
@@ -1926,15 +1926,15 @@ config copies in test cases into class path for unit testing.&lt;/p&gt;
 
 &lt;p&gt;For official runtime environment, config files should be externalized to a
 separate folder outside of the package by a system property
-&amp;ldquo;undertow-server-config-dir&amp;rdquo;. You can start the server with
-a &amp;ldquo;-Dundertow-server-config-dir=/config&amp;rdquo; option and put all your files
+&amp;ldquo;light-java-config-dir&amp;rdquo;. You can start the server with
+a &amp;ldquo;-Dlight-java-config-dir=/config&amp;rdquo; option and put all your files
 into /config. Once in docker image, it can be mapped to a host volume
 with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
 
 &lt;p&gt;Given above explanation, the loading sequence is:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;System property &amp;ldquo;undertow-server-config-dir&amp;rdquo; specified directory&lt;/li&gt;
+&lt;li&gt;System property &amp;ldquo;light-java-config-dir&amp;rdquo; specified directory&lt;/li&gt;
 &lt;li&gt;Class Path&lt;/li&gt;
 &lt;li&gt;Application resources/config folder&lt;/li&gt;
 &lt;li&gt;Module resources/config folder&lt;/li&gt;
@@ -1957,10 +1957,10 @@ with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
     
     <item>
       <title>Body</title>
-      <link>https://networknt.github.io/undertow-server/middleware/body/</link>
+      <link>https://networknt.github.io/light-java/middleware/body/</link>
       <pubDate>Wed, 12 Oct 2016 18:57:17 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/body/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/body/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -1976,10 +1976,10 @@ that it can be used in validator handler in the handler chain.&lt;/p&gt;
     
     <item>
       <title>Audit</title>
-      <link>https://networknt.github.io/undertow-server/middleware/audit/</link>
+      <link>https://networknt.github.io/light-java/middleware/audit/</link>
       <pubDate>Wed, 12 Oct 2016 18:48:58 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/audit/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/audit/</guid>
       <description>
 
 &lt;p&gt;There are two builtin audit handlers that write logs into audit.log that setup in the
@@ -2007,63 +2007,63 @@ to, they can create their own audit handler and replace the default audit handle
     
     <item>
       <title>Middleware Handlers</title>
-      <link>https://networknt.github.io/undertow-server/middleware/</link>
+      <link>https://networknt.github.io/light-java/middleware/</link>
       <pubDate>Fri, 07 Oct 2016 22:02:13 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/middleware/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;undertow-server is a Java API framework based on undertow http core that supports
+&lt;p&gt;light-java is a Java API framework based on undertow http core that supports
 swagger code generation and runtime request validation.&lt;/p&gt;
 
 &lt;p&gt;It contains the following components:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/server/&#34;&gt;server&lt;/a&gt; - a framework on top of undertow http core that support plugins to
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/server/&#34;&gt;server&lt;/a&gt; - a framework on top of undertow http core that support plugins to
 performance different middleware handling.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/security/&#34;&gt;security&lt;/a&gt; - oauth2 jwt token verification and mock token generation. Also,
-there is an testing OAuth2 server released &lt;a href=&#34;https://github.com/networknt/undertow-server-oauth2&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/security/&#34;&gt;security&lt;/a&gt; - oauth2 jwt token verification and mock token generation. Also,
+there is an testing OAuth2 server released &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/config/&#34;&gt;config&lt;/a&gt; - A module
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/config/&#34;&gt;config&lt;/a&gt; - A module
 that supports externalized configuration for standalone application and docker
 container.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/utility/&#34;&gt;utility&lt;/a&gt; - utility classes that are shared between modules.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/utility/&#34;&gt;utility&lt;/a&gt; - utility classes that are shared between modules.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/client/&#34;&gt;client&lt;/a&gt; - wrapper of apache HttpClient and HttpAsyncClient. support automatically
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/client/&#34;&gt;client&lt;/a&gt; - wrapper of apache HttpClient and HttpAsyncClient. support automatically
 cache and renew client credentials jwt token&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/validator/&#34;&gt;validator&lt;/a&gt; - validate request based on the swagger.json for uri parameters,
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/validator/&#34;&gt;validator&lt;/a&gt; - validate request based on the swagger.json for uri parameters,
 query parameters and body which is based on &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/audit/&#34;&gt;audit&lt;/a&gt; - dump most important info about request and response into audit.log in
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/audit/&#34;&gt;audit&lt;/a&gt; - dump most important info about request and response into audit.log in
 JSON format. Also, there is a full audit handler to dump everything regarding to
 request and response.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/info/&#34;&gt;info&lt;/a&gt; - a handler that
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/info/&#34;&gt;info&lt;/a&gt; - a handler that
 injects an endpoint /server/info that can out all plugged in component on the
 server and configuration of each component.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/mask/&#34;&gt;mask&lt;/a&gt; - used to mask sensitive info before logging to audit.log or server.log&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/mask/&#34;&gt;mask&lt;/a&gt; - used to mask sensitive info before logging to audit.log or server.log&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/status/&#34;&gt;status&lt;/a&gt; - used to model error http response and assist production monitoring
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/status/&#34;&gt;status&lt;/a&gt; - used to model error http response and assist production monitoring
 with unique error code.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/body/&#34;&gt;body&lt;/a&gt; A body parser middleware that is
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;body&lt;/a&gt; A body parser middleware that is
 responsible for parsing the content of the request based on Content-Type in the request header.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/exception/&#34;&gt;exception&lt;/a&gt; A generic exception
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/exception/&#34;&gt;exception&lt;/a&gt; A generic exception
 handler that handles runtime exception, ApiException and other checked exception if they are not handled
 properly in the handler chain.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/metrics/&#34;&gt;metrics&lt;/a&gt; A module that collect
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/metrics/&#34;&gt;metrics&lt;/a&gt; A module that collect
 API runtime info based on clientId and API name. The metrics info is sent to InfluxDB and accessible
 from Grafana Dashboard.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/undertow-server/middleware/swagger/&#34;&gt;swagger&lt;/a&gt; This is a middleware
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger/&#34;&gt;swagger&lt;/a&gt; This is a middleware
 that load swagger at runtime and parse it based on the request uri and method and attached the
 swagger data related to the current endpoint into the exchange for subsequent handlers to use.&lt;/p&gt;&lt;/li&gt;
 

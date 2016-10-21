@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Management-rsses on Undertow Server - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/undertow-server/management/index.xml</link>
+    <link>https://networknt.github.io/light-java/management/index.xml</link>
     <description>Recent content in Management-rsses on Undertow Server - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Wed, 12 Oct 2016 19:30:08 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/undertow-server/management/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://networknt.github.io/light-java/management/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Development Flow</title>
-      <link>https://networknt.github.io/undertow-server/management/flow/</link>
+      <link>https://networknt.github.io/light-java/management/flow/</link>
       <pubDate>Wed, 12 Oct 2016 19:30:08 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/management/flow/</guid>
+      <guid>https://networknt.github.io/light-java/management/flow/</guid>
       <description>
 
 &lt;h2 id=&#34;development-flow&#34;&gt;Development Flow&lt;/h2&gt;
@@ -34,7 +34,7 @@ be generated from swagger specification immediately.&lt;/p&gt;
 &lt;p&gt;During the process, specification might be changed and the changes will be propagated
 to API implementation team and Client implementation team(s).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/undertow-server/images/api_flow.png&#34; alt=&#34;API Flow&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/api_flow.png&#34; alt=&#34;API Flow&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

@@ -2,47 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorials-rsses on Undertow Server - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/undertow-server/tutorials/index.xml</link>
+    <link>https://networknt.github.io/light-java/tutorials/index.xml</link>
     <description>Recent content in Tutorials-rsses on Undertow Server - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Wed, 12 Oct 2016 17:21:40 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/undertow-server/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://networknt.github.io/light-java/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>End to End Test</title>
-      <link>https://networknt.github.io/undertow-server/tutorials/end-to-end-test/</link>
+      <link>https://networknt.github.io/light-java/tutorials/end-to-end-test/</link>
       <pubDate>Wed, 12 Oct 2016 17:21:40 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tutorials/end-to-end-test/</guid>
+      <guid>https://networknt.github.io/light-java/tutorials/end-to-end-test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Integration Test</title>
-      <link>https://networknt.github.io/undertow-server/tutorials/integration-test/</link>
+      <link>https://networknt.github.io/light-java/tutorials/integration-test/</link>
       <pubDate>Wed, 12 Oct 2016 17:06:30 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tutorials/integration-test/</guid>
+      <guid>https://networknt.github.io/light-java/tutorials/integration-test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Unit Test</title>
-      <link>https://networknt.github.io/undertow-server/tutorials/unit-test/</link>
+      <link>https://networknt.github.io/light-java/tutorials/unit-test/</link>
       <pubDate>Wed, 12 Oct 2016 17:05:47 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tutorials/unit-test/</guid>
+      <guid>https://networknt.github.io/light-java/tutorials/unit-test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Debug</title>
-      <link>https://networknt.github.io/undertow-server/tutorials/debug/</link>
+      <link>https://networknt.github.io/light-java/tutorials/debug/</link>
       <pubDate>Wed, 12 Oct 2016 17:03:28 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tutorials/debug/</guid>
+      <guid>https://networknt.github.io/light-java/tutorials/debug/</guid>
       <description>&lt;p&gt;As there is no container in Undertow Server and everything is built on top of POJO, it
 is very easy to debug your API application within your IDE.&lt;/p&gt;
 
@@ -66,16 +66,16 @@ standard Maven project. To debug your code, you need to start the server.&lt;/p&
 code or set a break point in framework code. To pick up the framework class to debug,
 click External Libraries on the Project tree and click the class name. Idea will
 automatically decompile the class. You can import the soruce code of that particular
-version of framework source code from &lt;a href=&#34;https://github.com/networknt/undertow-server/releases&#34;&gt;Release&lt;/a&gt;&lt;/p&gt;
+version of framework source code from &lt;a href=&#34;https://github.com/networknt/light-java/releases&#34;&gt;Release&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>microservices</title>
-      <link>https://networknt.github.io/undertow-server/tutorials/microservices/</link>
+      <link>https://networknt.github.io/light-java/tutorials/microservices/</link>
       <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tutorials/microservices/</guid>
+      <guid>https://networknt.github.io/light-java/tutorials/microservices/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -103,10 +103,10 @@ implementation without worrying about how each components wired together.&lt;/p&
 
 &lt;p&gt;To create swagger specification, the best tool is
 &lt;a href=&#34;http://swagger.io/swagger-editor/&#34;&gt;swagger-editor&lt;/a&gt; and I have an
-&lt;a href=&#34;https://networknt.github.io/undertow-server/tools/swagger-editor/&#34;&gt;article&lt;/a&gt;
+&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;article&lt;/a&gt;
 in tools section to describe how to use it.&lt;/p&gt;
 
-&lt;p&gt;By following the &lt;a href=&#34;https://networknt.github.io/undertow-server/tools/swagger-editor/&#34;&gt;instructions&lt;/a&gt;
+&lt;p&gt;By following the &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;instructions&lt;/a&gt;
 on how to use the editor, let&amp;rsquo;s create four APIs in swagger repo.&lt;/p&gt;
 
 &lt;p&gt;API A will call API B and API C to fulfill its request and API B will call API D
@@ -170,7 +170,7 @@ securityDefinitions:
 &lt;h2 id=&#34;swagger-codegen&#34;&gt;Swagger-Codegen&lt;/h2&gt;
 
 &lt;p&gt;Now we have four API swagger.yaml files available. Let&amp;rsquo;s use swagger-codegen
-to start four projects in undertow-server-example. In normal API build, you
+to start four projects in light-java-example. In normal API build, you
 should create a repo for each API.&lt;/p&gt;
 
 &lt;h4 id=&#34;clone-and-build-undertow-server-generator&#34;&gt;Clone and build Undertow Server Generator&lt;/h4&gt;
@@ -186,43 +186,43 @@ mvn clean install
 &lt;h4 id=&#34;generate-first-project&#34;&gt;Generate first project&lt;/h4&gt;
 
 &lt;p&gt;Now you have your swagger-codegen built, let&amp;rsquo;s generate a project. Assume that
-swagger, undertow-server-example and swagger-codegen are in the same working
+swagger, light-java-example and swagger-codegen are in the same working
 directory.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../undertow-server-example/api_a
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Here is the generator output.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../undertow-server-example/api_a
+&lt;pre&gt;&lt;code&gt;steve@joy:~/networknt/swagger-codegen$ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_a/swagger.yaml -l undertow -o ../light-java-example/api_a
 Picked up JAVA_TOOL_OPTIONS: -Dconfig.dir=/home/steve/config
 [main] INFO io.swagger.parser.Swagger20Parser - reading from ../swagger/api_a/swagger.yaml
 swaggerio.swagger.models.Swagger@cb84fa41
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/pom.xml
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/README.md
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/.gitignore
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/config/swagger.json
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/java/io/swagger/handler/PathHandlerProvider.java
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/test/java/io/swagger/handler/PathHandlerProviderTest.java
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/META-INF/services/com.networknt.server.HandlerProvider
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/META-INF/services/com.networknt.handler.MiddlewareHandler
-[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/config/server.json
-[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/config/security.json
-[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/config/oauth/primary.crt
-[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/src/main/resources/config/oauth/secondary.crt
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/.swagger-codegen-ignore
-[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../undertow-server-example/api_a/LICENSE
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/pom.xml
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/README.md
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/.gitignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/swagger.json
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/java/io/swagger/handler/PathHandlerProvider.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/test/java/io/swagger/handler/PathHandlerProviderTest.java
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/META-INF/services/com.networknt.server.HandlerProvider
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/META-INF/services/com.networknt.handler.MiddlewareHandler
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/server.json
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/security.json
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/oauth/primary.crt
+[main] INFO io.swagger.codegen.DefaultGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/src/main/resources/config/oauth/secondary.crt
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/.swagger-codegen-ignore
+[main] INFO io.swagger.codegen.AbstractGenerator - writing file /home/steve/networknt/swagger-codegen/../light-java-example/api_a/LICENSE
 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;build-and-run-the-mock-api&#34;&gt;Build and run the mock API&lt;/h4&gt;
 
-&lt;p&gt;And now you have a new project created in undertow-server-example. Let&amp;rsquo;s build
+&lt;p&gt;And now you have a new project created in light-java-example. Let&amp;rsquo;s build
 it and run the test cases. If everything is OK, start the server.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;cd ..
-cd undertow-server-example/api_a
+cd light-java-example/api_a
 mvn clean install
 mvn exec:exec
 &lt;/code&gt;&lt;/pre&gt;
@@ -239,16 +239,16 @@ mvn exec:exec
 &lt;p&gt;Follow the above steps to generate other APIs. Make sure you are in swagger_codegen
 directory.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l undertow -o ../undertow-server-example/api_b
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l undertow -o ../undertow-server-example/api_c
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l undertow -o ../undertow-server-example/api_d
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_b/swagger.yaml -l undertow -o ../light-java-example/api_b
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_c/swagger.yaml -l undertow -o ../light-java-example/api_c
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/api_d/swagger.yaml -l undertow -o ../light-java-example/api_d
 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now you have four APIs generated from four OpenAPI specifications. Let&amp;rsquo;s check
 them in.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cd ../undertow-server-example
+&lt;pre&gt;&lt;code&gt;cd ../light-java-example
 git add .
 git commit -m &amp;quot;checkin 4 apis&amp;quot;
 git push origin master
@@ -695,7 +695,7 @@ mvn clean install exec:exec
 
 &lt;p&gt;Now let&amp;rsquo;s see if these servers are performing with
 &lt;a href=&#34;https://github.com/wg/wrk&#34;&gt;wrk&lt;/a&gt;. To learn how to use it, please see my
-article in tools &lt;a href=&#34;https://networknt.github.io/undertow-server/tools/wrk-perf/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+article in tools &lt;a href=&#34;https://networknt.github.io/light-java/tools/wrk-perf/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Assume you have wrk installed, run the following command.&lt;/p&gt;
 

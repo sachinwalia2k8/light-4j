@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools-rsses on Undertow Server - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/undertow-server/tools/index.xml</link>
+    <link>https://networknt.github.io/light-java/tools/index.xml</link>
     <description>Recent content in Tools-rsses on Undertow Server - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sat, 08 Oct 2016 22:14:59 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/undertow-server/tools/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://networknt.github.io/light-java/tools/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Swagger codegen to generate server stub skeleton</title>
-      <link>https://networknt.github.io/undertow-server/tools/swagger-codegen/</link>
+      <link>https://networknt.github.io/light-java/tools/swagger-codegen/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:59 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tools/swagger-codegen/</guid>
+      <guid>https://networknt.github.io/light-java/tools/swagger-codegen/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -68,7 +68,7 @@ you can use:&lt;/p&gt;
 
 &lt;p&gt;Note: For organizations with multiple APIs, some of the common yaml files will be created that can be
 shared between APIs in specifications. In that case, you cannot use yaml file to generate the code as
-the tool doesn&amp;rsquo;t know how to locate the external reference files. Please find &lt;a href=&#34;https://networknt.github.io/undertow-server/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt;
+the tool doesn&amp;rsquo;t know how to locate the external reference files. Please find &lt;a href=&#34;https://networknt.github.io/light-java/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt;
 to convert several yaml files into one Json file to feed the generator.&lt;/p&gt;
 
 &lt;h2 id=&#34;customization&#34;&gt;Customization&lt;/h2&gt;
@@ -117,19 +117,19 @@ mvn clean install exec:exec
     
     <item>
       <title>Swagger cli to bundle and validate specification files</title>
-      <link>https://networknt.github.io/undertow-server/tools/swagger-cli/</link>
+      <link>https://networknt.github.io/light-java/tools/swagger-cli/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tools/swagger-cli/</guid>
+      <guid>https://networknt.github.io/light-java/tools/swagger-cli/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Swagger Editor for OpenAPI Specification</title>
-      <link>https://networknt.github.io/undertow-server/tools/swagger-editor/</link>
+      <link>https://networknt.github.io/light-java/tools/swagger-editor/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:33 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tools/swagger-editor/</guid>
+      <guid>https://networknt.github.io/light-java/tools/swagger-editor/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -213,16 +213,16 @@ error.yaml, etc. To refer these common specification files in API specification&
     
     <item>
       <title>wrk performance test</title>
-      <link>https://networknt.github.io/undertow-server/tools/wrk-perf/</link>
+      <link>https://networknt.github.io/light-java/tools/wrk-perf/</link>
       <pubDate>Sat, 08 Oct 2016 21:47:07 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tools/wrk-perf/</guid>
+      <guid>https://networknt.github.io/light-java/tools/wrk-perf/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;For most API frameworks in Java, the server can only handle up to ten thousands request per second and Apache JMeter
-or Apache Bench will do the job. However, when we are talking about millions requests per second undertow-server
+or Apache Bench will do the job. However, when we are talking about millions requests per second light-java
 handles, they won&amp;rsquo;t work as these tools will use up all the cpu resources. For high performance testing,
 &lt;a href=&#34;https://github.com/wg/wrk&#34;&gt;wrk&lt;/a&gt; is the best as it can send tens of millions requests per seconds on a
 commodity hardware.&lt;/p&gt;
@@ -311,7 +311,7 @@ end
 
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 
-&lt;p&gt;For some output examples, you can find at &lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;undertow-server-example/performance&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For some output examples, you can find at &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;light-java-example/performance&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;additional-info&#34;&gt;Additional Info&lt;/h2&gt;
 
@@ -322,10 +322,10 @@ and &lt;a href=&#34;http://czerasz.com/2015/07/19/wrk-http-benchmarking-tool-exa
     
     <item>
       <title>Hugo for project documentation on github</title>
-      <link>https://networknt.github.io/undertow-server/tools/hugo-docs/</link>
+      <link>https://networknt.github.io/light-java/tools/hugo-docs/</link>
       <pubDate>Sat, 08 Oct 2016 19:25:24 -0400</pubDate>
       
-      <guid>https://networknt.github.io/undertow-server/tools/hugo-docs/</guid>
+      <guid>https://networknt.github.io/light-java/tools/hugo-docs/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -445,7 +445,7 @@ directories.&lt;/p&gt;
 
 &lt;h2 id=&#34;config&#34;&gt;Config&lt;/h2&gt;
 
-&lt;p&gt;Copy the content of &lt;a href=&#34;https://raw.githubusercontent.com/networknt/undertow-server/master/docs/config.toml&#34;&gt;my config&lt;/a&gt;
+&lt;p&gt;Copy the content of &lt;a href=&#34;https://raw.githubusercontent.com/networknt/light-java/master/docs/config.toml&#34;&gt;my config&lt;/a&gt;
 into config.toml under docs and update it accordingly&lt;/p&gt;
 
 &lt;h2 id=&#34;theme&#34;&gt;Theme&lt;/h2&gt;
