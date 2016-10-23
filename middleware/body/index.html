@@ -252,7 +252,7 @@
 
 
 
-<a  title="Other Components" href="https://networknt.github.io/light-java/other-components/">
+<a  title="Other Components" href="https://networknt.github.io/light-java/other/">
 	
 	Other Components
 </a>
@@ -417,8 +417,16 @@
 request header and attach the parsed result into the exchange so that subsequent
 handlers will use it directly.</p>
 
-<p>The current implementation is to convert the input stream to String object so
-that it can be used in validator handler in the handler chain.</p>
+<p>The current implementation only support JSON and need content type header to be
+started with &ldquo;application/json&rdquo;. If the content type is correct, it will parse it
+to List or Map and put it into REQUEST_BODY exchange attachment.</p>
+
+<p>If content type is missing or if it is not started as &ldquo;application/json&rdquo;, the body
+won&rsquo;t be parsed.</p>
+
+<p><a href="https://networknt.github.io/light-java/middleware/sanitizer/">Sanitizer</a>
+and <a href="https://networknt.github.io/light-java/middleware/validator/">Validator</a>
+depend on this middleware.</p>
 
 
 			<aside class="copyright" role="note">

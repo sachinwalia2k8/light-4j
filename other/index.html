@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>gateway - Light Java - The fastest Java API Framework</title>
+    <title>Others - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/architecture/gateway/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/other/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/architecture/gateway/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/other/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,14 +69,12 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
+    <link href="https://networknt.github.io/light-java/other/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
+    <link href="https://networknt.github.io/light-java/other/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
+    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
-
-
-
-	
-	
 
 
 <div class="backdrop">
@@ -97,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        gateway
+        Others
       </div>
     </div>
 
@@ -139,9 +137,6 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
-        
-          <br>
-          networknt/light-java
         
       </div>
     </div>
@@ -252,11 +247,14 @@
 
 
 
-<a  title="Other Components" href="https://networknt.github.io/light-java/other/">
+<a class="current" title="Other Components" href="https://networknt.github.io/light-java/other/">
 	
 	Other Components
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -407,85 +405,21 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>gateway </h1>
+			<h1>Pages in Other</h1>
 
 			
+			<a href="https://networknt.github.io/light-java/other/client/" title="Client">
+				<h2>Client</h2>
+			</a>
 
-<h1 id="introduction">Introduction</h1>
+			<br>
+			Client is used to call APIs from the following sources:
+ Web server Standalone Application API  It provides method to get authorization jwt token and automatically gets client credentials token for scopes in API to API calls.
+Sync Client This is a wrapper of Apache HttpClient with built-in connection pools and TLS support. It can be used to call another API in the request context.
+Async Client This is a wrapper of Apache HttpAsyncClient with built-in connection pools and TLS support.
 
-<p>When your organization is thinking about breaking up the big monolithic
-application to adopt microservices architecture, chances are there are
-some vendors coming to sell their gateway solutions. Why they want to
-sell you gateways and do you really need a gateway?</p>
-
-<p>The reason they want to sell you a gateway is because the solutions they
-provided are not truely microservices as there is no gateway in the
-picture of the real microservices. Their solution is coming from web services
-(SOA) design and all services behind the gateway are flattened.</p>
-
-<p>Here is a picture of their typical solution in the beginning.</p>
-
-<p><img src="https://networknt.github.io/light-java/images/ms_oauth2_gateway.png" alt="ms_oauth2_gateway" /></p>
-
-<p>After awhile, they realized that for every request from client, there are two
-calls from client and api to oauth2 server and remote calls are too heavy.</p>
-
-<p>Then the solution for gateway vendors is to move oauth2 server inside the
-gateway so that there is no remote calls for security. Here is an updated
-gateway.</p>
-
-<p><img src="https://networknt.github.io/light-java/images/ms_oauth2_in_gateway.png" alt="ms_oauth2_in_gateway" /></p>
-
-<p>With increasing volume, the monolithic gateway becomes bottleneck and the only
-solutions is horizontal scaling. That means you have a cluster of gateway
-instances and gateway becomes a single point of failure. If any component fails
-in gateway, all your APIs are not accessible.</p>
-
-<p>When you look inside the APIs protected by the gateway, you can see these APIs
-are implemented in JEE containers like WebLogic/WebSphere/JBoss/SpringBoot etc.
-and they don&rsquo;t call each other. They are simply monolithic JEE application packaged
-in ear or war and exposed REST APIs. These APIs are normally deployed in Data
-Centers and lately moved to cloud. They are not real microservices at all.</p>
-
-<p>Some smart developers attempted to break these big application into smaller
-pieces and move into the direction of microservices but gateway became a problem.
-Let&rsquo;s take a look at how API to API call looks like with gateway in the following
-diagram.</p>
-
-<p><img src="https://networknt.github.io/light-java/images/ms_gateway_api_to_api.png" alt="ms_gateway_api_to_api" /></p>
-
-<p>As you can see, when API A calls API B, although both of them are behind of the
-gateway, the request has to go in front of gateway to properly
-authenticate/authorize the request. Clearly, the centralized gateway design is
-against the decentralized principle of microservices architecture.</p>
-
-<p>In my framework, the solution is to move all the cross cutting concerns to the
-API framework and APIs are built on top of the framework. In another word, a
-distributed gateway. Here is a diagram to show you client calls API A and API A
-calls API B and API C and API B calls API D.</p>
-
-<p><img src="https://networknt.github.io/light-java/images/ms_distributed_gateway.png" alt="ms_distributed_gateway" /></p>
-
-<p>In this architecture, every API instance contains functions from the framework
-and act like a mini gateway embedded. Along with container orchestration tools like
-Kubernetes or Docker Swarm, the traditional gateway is replaced. As there is no remote
-calls between API to gateway, all the cross cutting concerns are addressed in the same
-request/response chain. This gives you the best performance for your APIs. Here
-is an <a href="https://networknt.github.io/light-java/tutorials/microservices/">tutorial</a>
-which implements the above diagram and source code for four APIs can
-be found <a href="https://github.com/networknt/light-java-example">here</a></p>
-
-<p>Our framework is built on top of Undertow http core server which is very light
-and serves 1.4 million &ldquo;Hello World&rdquo; requests on my desktop with average response
-time 2ms. Is it 44 times faster then the most popular REST container Sprint Boot.</p>
-
-<p>The performance test code can be found in
-<a href="https://github.com/networknt/light-java-example/tree/master/performance">here</a></p>
-
-<p>In the above diagram, OAuth2 server is an independent entity and you might ask
-if it is a bottleneck. I have written another <a href="https://networknt.github.io/light-java/architecture/security">document</a> to address it with
-distributed JWT token verification and client credentials token caching and renewal.</p>
-
+			<hr>
+			
 
 			<aside class="copyright" role="note">
 				
@@ -496,57 +430,6 @@ distributed JWT token verification and client credentials token caching and rene
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
-
-			<footer class="footer">
-				
-
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  
-      <a href="https://networknt.github.io/light-java/architecture/security/" title="security">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              security
-            </div>
-          </div>
-        </div>
-      </a>
-  
-  </div>
-
-  <div class="next">
-  
-      <a href="https://networknt.github.io/light-java/getting-started/" title="Getting Started">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Getting Started
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  
-  </div>
-</nav>
-
-
-
-
-
-			</footer>
 		</div>
 	</article>
 
@@ -562,8 +445,8 @@ distributed JWT token verification and client credentials token caching and rene
 
     <script>
     
-      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
-      var repo_id  = 'networknt\/light-java';
+      var base_url = '';
+      var repo_id  = '';
     
     </script>
 

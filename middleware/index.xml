@@ -7,8 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 15 Oct 2016 20:42:32 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 23 Oct 2016 10:35:04 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/middleware/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Sanitizer</title>
+      <link>https://networknt.github.io/light-java/middleware/sanitizer/</link>
+      <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/middleware/sanitizer/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This is a middleware that addresses cross site scripting concerns. It encodes the header
+and body according to the configuration. As body encoding depends on
+&lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;Body&lt;/a&gt; middleware, it has to be
+plugged into the request/response chain after Body.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Metrics</title>
@@ -181,49 +198,7 @@ deployment. In the future, these parameters might be exposed in the server.json.
     </item>
     
     <item>
-      <title>Client</title>
-      <link>https://networknt.github.io/light-java/middleware/client/</link>
-      <pubDate>Wed, 12 Oct 2016 19:59:08 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/middleware/client/</guid>
-      <description>
-
-&lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Web server&lt;/li&gt;
-&lt;li&gt;Standalone Application&lt;/li&gt;
-&lt;li&gt;API&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;It provides method to get authorization jwt token and automatically gets client
-credentials token for scopes in API to API calls.&lt;/p&gt;
-
-&lt;h1 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h1&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
-support. It can be used to call another API in the request context.&lt;/p&gt;
-
-&lt;h1 id=&#34;async-client&#34;&gt;Async Client&lt;/h1&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
-TLS support. It should be used it multiple APIs will be called in the request
-context.&lt;/p&gt;
-
-&lt;h1 id=&#34;client-credentials-token-renew&#34;&gt;Client Credentials token renew&lt;/h1&gt;
-
-&lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
-is OAuth2 server is down or busy. It renew the token pro-actively before the
-current one is expired and let all requests go with the current token. It only
-block other request if the current request is trying to renew an expired token.
-When token renew in this case fails, all request will be rejected with timeout
-and subsequent requests the same until a grace period is passed so that the
-renew process is start again.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>validator</title>
+      <title>Validator</title>
       <link>https://networknt.github.io/light-java/middleware/validator/</link>
       <pubDate>Wed, 12 Oct 2016 19:13:19 -0400</pubDate>
       
@@ -1969,8 +1944,16 @@ with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
 request header and attach the parsed result into the exchange so that subsequent
 handlers will use it directly.&lt;/p&gt;
 
-&lt;p&gt;The current implementation is to convert the input stream to String object so
-that it can be used in validator handler in the handler chain.&lt;/p&gt;
+&lt;p&gt;The current implementation only support JSON and need content type header to be
+started with &amp;ldquo;application/json&amp;rdquo;. If the content type is correct, it will parse it
+to List or Map and put it into REQUEST_BODY exchange attachment.&lt;/p&gt;
+
+&lt;p&gt;If content type is missing or if it is not started as &amp;ldquo;application/json&amp;rdquo;, the body
+won&amp;rsquo;t be parsed.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/sanitizer/&#34;&gt;Sanitizer&lt;/a&gt;
+and &lt;a href=&#34;https://networknt.github.io/light-java/middleware/validator/&#34;&gt;Validator&lt;/a&gt;
+depend on this middleware.&lt;/p&gt;
 </description>
     </item>
     

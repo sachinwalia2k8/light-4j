@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Other-rsses on Light Java - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/light-java/other/index.xml</link>
+    <description>Recent content in Other-rsses on Light Java - The fastest Java API Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Sun, 23 Oct 2016 12:26:20 -0400</lastBuildDate>
+    <atom:link href="https://networknt.github.io/light-java/other/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Client</title>
+      <link>https://networknt.github.io/light-java/other/client/</link>
+      <pubDate>Sun, 23 Oct 2016 12:26:20 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/client/</guid>
+      <description>
+
+&lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Web server&lt;/li&gt;
+&lt;li&gt;Standalone Application&lt;/li&gt;
+&lt;li&gt;API&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It provides method to get authorization jwt token and automatically gets client
+credentials token for scopes in API to API calls.&lt;/p&gt;
+
+&lt;h1 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h1&gt;
+
+&lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
+support. It can be used to call another API in the request context.&lt;/p&gt;
+
+&lt;h1 id=&#34;async-client&#34;&gt;Async Client&lt;/h1&gt;
+
+&lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
+TLS support. It should be used it multiple APIs will be called in the request
+context.&lt;/p&gt;
+
+&lt;h1 id=&#34;client-credentials-token-renew&#34;&gt;Client Credentials token renew&lt;/h1&gt;
+
+&lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
+is OAuth2 server is down or busy. It renew the token pro-actively before the
+current one is expired and let all requests go with the current token. It only
+block other request if the current request is trying to renew an expired token.
+When token renew in this case fails, all request will be rejected with timeout
+and subsequent requests the same until a grace period is passed so that the
+renew process is start again.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

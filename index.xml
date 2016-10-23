@@ -7,8 +7,67 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 22 Oct 2016 21:02:01 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 23 Oct 2016 12:26:20 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Client</title>
+      <link>https://networknt.github.io/light-java/other/client/</link>
+      <pubDate>Sun, 23 Oct 2016 12:26:20 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/client/</guid>
+      <description>
+
+&lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Web server&lt;/li&gt;
+&lt;li&gt;Standalone Application&lt;/li&gt;
+&lt;li&gt;API&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It provides method to get authorization jwt token and automatically gets client
+credentials token for scopes in API to API calls.&lt;/p&gt;
+
+&lt;h1 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h1&gt;
+
+&lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
+support. It can be used to call another API in the request context.&lt;/p&gt;
+
+&lt;h1 id=&#34;async-client&#34;&gt;Async Client&lt;/h1&gt;
+
+&lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
+TLS support. It should be used it multiple APIs will be called in the request
+context.&lt;/p&gt;
+
+&lt;h1 id=&#34;client-credentials-token-renew&#34;&gt;Client Credentials token renew&lt;/h1&gt;
+
+&lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
+is OAuth2 server is down or busy. It renew the token pro-actively before the
+current one is expired and let all requests go with the current token. It only
+block other request if the current request is trying to renew an expired token.
+When token renew in this case fails, all request will be rejected with timeout
+and subsequent requests the same until a grace period is passed so that the
+renew process is start again.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sanitizer</title>
+      <link>https://networknt.github.io/light-java/middleware/sanitizer/</link>
+      <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/middleware/sanitizer/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This is a middleware that addresses cross site scripting concerns. It encodes the header
+and body according to the configuration. As body encoding depends on
+&lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;Body&lt;/a&gt; middleware, it has to be
+plugged into the request/response chain after Body.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>swagger</title>
@@ -151,18 +210,18 @@ with the testing result on my desktop.&lt;/p&gt;
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;Note: If this is the first time you hear about OAuth2 or you want to getting familiar with
+&lt;p&gt;Note: If this is the first time you hear about OAuth2 or you want to get familiar with
 the grant types we are using, please read this
 &lt;a href=&#34;https://github.com/networknt/undertow-oauth2/wiki/OAuth2-Introduction&#34;&gt;article&lt;/a&gt; first.&lt;/p&gt;
 
 &lt;p&gt;While designing microserivces, big monolithic application is breaking down to smaller
 services that can be independently deployed or replaced. The final application will have
-more http calls then a single application, how can we protect these calls between services?&lt;/p&gt;
+more http calls than a single application, how can we protect these calls between services?&lt;/p&gt;
 
-&lt;p&gt;To protect APIs, the answer is OAuth2 and most simple and popular solution will be
-simple web token as access token. The client authenticate itself on OAuth2 server and OAuth2
-server issue
-a simple web token (a UUID in most of the cases), then the client send the request to API
+&lt;p&gt;To protect APIs/services, the answer is OAuth2 and most simple and popular solution will be
+simple web token as access token. The client authenticates itself on OAuth2 server and OAuth2
+server issues
+a simple web token (a UUID in most of the cases), then the client sends the request to API
 server with access token in the Authorization header. Once API server receives the request,
 it has to send the access token to OAuth2 server to verify if this is valid token and if
 this token is allowed to access this API. As you can see there must be a database lookup on
@@ -170,15 +229,114 @@ OAuth2 server to do that. Distributed cache help a lot but there is still a netw
 lookup for every single request. OAuth2 server eventually becomes a bottleneck and a single
 point of failure.&lt;/p&gt;
 
-&lt;p&gt;Years ago, when JWT draft spec. was out, I came up with the idea to do the
+&lt;p&gt;Years ago, when JWT draft specification was out, I came up with the idea to do the
 distributed security verification with JWT to replace Simple Web Token for one of the big
-banks in Canada. At that time, there is nobody using JWT this way and the bank sent the design to
+banks in Canada. At that time, there was nobody using JWT this way and the bank sent the design to
 Paul Madson and John Bradley who are the Authors of OAuth2 and JWT specifications and got
-their endorsement to use JWT this way.&lt;/p&gt;
+their endorsements to use JWT this way.&lt;/p&gt;
+
+&lt;h1 id=&#34;distributed-jwt-verification&#34;&gt;Distributed JWT Verification&lt;/h1&gt;
 
 &lt;p&gt;Here is the diagram of distributed JWT verification for microservices.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_distributed_jwt.png&#34; alt=&#34;ms_distributed_jwt&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s assume the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Client1 is a web server and it has client1 as client_id.&lt;/li&gt;
+&lt;li&gt;API A is a microservice and it has apia as client_id and it requires a.r scope to access.&lt;/li&gt;
+&lt;li&gt;API B is a microserivce and it has apib as client_id and it requires b.r scope to access.&lt;/li&gt;
+&lt;li&gt;API C is a microservice and it has apic as client_id and it requires c.r scope to access.&lt;/li&gt;
+&lt;li&gt;API D is a microservice and it has apid as client_id and it requires d.r scope to access.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;user-trigger-the-authentication&#34;&gt;User trigger the authentication&lt;/h3&gt;
+
+&lt;p&gt;When user clicks the login button or accesses resource that is protected, he will be
+redirect to OAuth2 server to authenticate himself. After input username and password, an
+authorization code is redirected back to the browser. The client1 will handle the redirect
+url and get the authorization code. By sending client1 client_id, client_secret and
+authorization code from user to OAuth2 server, Client1 gets a JWT token with&lt;/p&gt;
+
+&lt;p&gt;user_id = user1&lt;/p&gt;
+
+&lt;p&gt;client_id = client1&lt;/p&gt;
+
+&lt;p&gt;scope = [a.r]&lt;/p&gt;
+
+&lt;p&gt;This token will be put into the Authorization header of the request to API A. When API A
+receives the request, it verifies the JWT token with public key issued by OAuth2 server with
+the security middleware in the framework. If the signature verification is successful, it
+will verify the scope in the token against the swagger specification defined for the
+endpoint Client1 is accessing. As a.r is required and it is in the JWT scope, it allows
+the access.&lt;/p&gt;
+
+&lt;h3 id=&#34;api-a-calls-api-b-and-api-c&#34;&gt;API A calls API B and API C&lt;/h3&gt;
+
+&lt;p&gt;Now API A needs to call API B and API C to fulfill the request. As this is API to API call or
+service to service call, there is no user id involved and Client Credentials flow will be
+used here to get another JWT token to B and C. The original JWT token doesn&amp;rsquo;t have the scopes
+to access B and C as Client1 does not even care A is calling B and C. So here API A needs to
+get a token associate with client_id apia which has proper scope to access API B and API C.&lt;/p&gt;
+
+&lt;p&gt;This token will have the following claims.&lt;/p&gt;
+
+&lt;p&gt;client_id = apia&lt;/p&gt;
+
+&lt;p&gt;scope = [b.r c.r]&lt;/p&gt;
+
+&lt;p&gt;As the original token has the original user_id, it is carried in the entire service to service
+calls so that each service has a chance to do role based or user based authorization if it is
+necessary. The new client_credentials token will be passed in the request header &amp;ldquo;X-Scope-Token&amp;rdquo;.&lt;/p&gt;
+
+&lt;h3 id=&#34;api-b-and-api-c-tokens-verification&#34;&gt;API B and API C tokens verification&lt;/h3&gt;
+
+&lt;p&gt;The tokens verification on API B and API C are the same. So le&amp;rsquo;t use API B as an example to
+explain the verification process.&lt;/p&gt;
+
+&lt;p&gt;When API B receives the request, it first check the Authorization token to make sure it is valid. Then
+if scope verification is enabled, it will check if &amp;lsquo;X-Scope-Token&amp;rsquo; header exists. If yes, it will verify
+it and match the scope with endpoint defined scope. If scope matching is failed, it will fall back
+to Authorization token to see if it has the scope required. If none of the tokens has the scope required,
+an error will be sent back to the caller.&lt;/p&gt;
+
+&lt;h3 id=&#34;api-b-calls-api-d&#34;&gt;API B calls API D&lt;/h3&gt;
+
+&lt;p&gt;The process is very similar like API A calls API B and API C. A client credentials token will be
+retrieved by API B from OAuth2 server and it has the following claims.&lt;/p&gt;
+
+&lt;p&gt;client_id = apib&lt;/p&gt;
+
+&lt;p&gt;scope = [d.r]&lt;/p&gt;
+
+&lt;h3 id=&#34;api-d-token-verification&#34;&gt;API D token verification&lt;/h3&gt;
+
+&lt;p&gt;Similar like API B and API C tokens verification.&lt;/p&gt;
+
+&lt;h1 id=&#34;client-credentials-scope-token-cache&#34;&gt;Client Credentials / Scope Token Cache&lt;/h1&gt;
+
+&lt;p&gt;As described above, for every API to API call, the caller must pass in a scope token in addition to
+the original token. Unlike the original token which is associated with a user, the scope token is only
+associated with a client (API / service) and it won&amp;rsquo;t be expired after a period configured on OAuth2
+server. So it is not necessary to get the new scope token for every API to API call. The token is
+retrieved and cached in memory until it is about to be expired then a new token will be retrieved.&lt;/p&gt;
+
+&lt;p&gt;The entire token renew process is managed
+by &lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;Client&lt;/a&gt; module provided in the light-java
+framework. This client module encapsulate a lot of features to help API to API calls.&lt;/p&gt;
+
+&lt;h1 id=&#34;authorization-token-cache&#34;&gt;Authorization Token Cache&lt;/h1&gt;
+
+&lt;p&gt;The original token normally will be cached in the web server session so that the subsequent calls
+from the same user can use the cached token.&lt;/p&gt;
+
+&lt;h1 id=&#34;single-sign-on&#34;&gt;Single Sign On&lt;/h1&gt;
+
+&lt;p&gt;As the end user login is managed by OAuth2 server, there is a session established between user&amp;rsquo;s
+browser and OAuth2 server. The the user switch to another tab on his browser to access another
+application, the login on OAuth2 is not necessary and a new authorization code will immediately
+redirected back.&lt;/p&gt;
 </description>
     </item>
     
@@ -209,14 +367,14 @@ picture of the real microservices. Their solution is coming from web services
 &lt;p&gt;After awhile, they realized that for every request from client, there are two
 calls from client and api to oauth2 server and remote calls are too heavy.&lt;/p&gt;
 
-&lt;p&gt;Then the solution for gateway vendor is to move oauth2 server inside the
+&lt;p&gt;Then the solution for gateway vendors is to move oauth2 server inside the
 gateway so that there is no remote calls for security. Here is an updated
 gateway.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_oauth2_in_gateway.png&#34; alt=&#34;ms_oauth2_in_gateway&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With increasing volume, the monolithic gateway becomes bottleneck and the only
-solutions is to horizontally scaling. That means you have a cluster of gateway
+solutions is horizontal scaling. That means you have a cluster of gateway
 instances and gateway becomes a single point of failure. If any component fails
 in gateway, all your APIs are not accessible.&lt;/p&gt;
 
@@ -239,7 +397,7 @@ authenticate/authorize the request. Clearly, the centralized gateway design is
 against the decentralized principle of microservices architecture.&lt;/p&gt;
 
 &lt;p&gt;In my framework, the solution is to move all the cross cutting concerns to the
-API framework and APIs are built on top of the framework. In another world, a
+API framework and APIs are built on top of the framework. In another word, a
 distributed gateway. Here is a diagram to show you client calls API A and API A
 calls API B and API C and API B calls API D.&lt;/p&gt;
 
@@ -250,16 +408,16 @@ and act like a mini gateway embedded. Along with container orchestration tools l
 Kubernetes or Docker Swarm, the traditional gateway is replaced. As there is no remote
 calls between API to gateway, all the cross cutting concerns are addressed in the same
 request/response chain. This gives you the best performance for your APIs. Here
-is an &lt;a href=&#34;https://networknt.github.io/undertow-server/tutorials/microservices/&#34;&gt;tutorial&lt;/a&gt;
+is an &lt;a href=&#34;https://networknt.github.io/light-java/tutorials/microservices/&#34;&gt;tutorial&lt;/a&gt;
 which implements the above diagram and source code for four APIs can
-be found &lt;a href=&#34;https://github.com/networknt/undertow-server-example&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+be found &lt;a href=&#34;https://github.com/networknt/light-java-example&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Our framework is built on top of Undertow http core server which is very light
 and serves 1.4 million &amp;ldquo;Hello World&amp;rdquo; requests on my desktop with average response
 time 2ms. Is it 44 times faster then the most popular REST container Sprint Boot.&lt;/p&gt;
 
 &lt;p&gt;The performance test code can be found in
-&lt;a href=&#34;https://github.com/networknt/undertow-server-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;In the above diagram, OAuth2 server is an independent entity and you might ask
 if it is a bottleneck. I have written another &lt;a href=&#34;https://networknt.github.io/light-java/architecture/security&#34;&gt;document&lt;/a&gt; to address it with
@@ -472,48 +630,6 @@ ready.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Client</title>
-      <link>https://networknt.github.io/light-java/middleware/client/</link>
-      <pubDate>Wed, 12 Oct 2016 19:59:08 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/middleware/client/</guid>
-      <description>
-
-&lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Web server&lt;/li&gt;
-&lt;li&gt;Standalone Application&lt;/li&gt;
-&lt;li&gt;API&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;It provides method to get authorization jwt token and automatically gets client
-credentials token for scopes in API to API calls.&lt;/p&gt;
-
-&lt;h1 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h1&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
-support. It can be used to call another API in the request context.&lt;/p&gt;
-
-&lt;h1 id=&#34;async-client&#34;&gt;Async Client&lt;/h1&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
-TLS support. It should be used it multiple APIs will be called in the request
-context.&lt;/p&gt;
-
-&lt;h1 id=&#34;client-credentials-token-renew&#34;&gt;Client Credentials token renew&lt;/h1&gt;
-
-&lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
-is OAuth2 server is down or busy. It renew the token pro-actively before the
-current one is expired and let all requests go with the current token. It only
-block other request if the current request is trying to renew an expired token.
-When token renew in this case fails, all request will be rejected with timeout
-and subsequent requests the same until a grace period is passed so that the
-renew process is start again.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Development Flow</title>
       <link>https://networknt.github.io/light-java/management/flow/</link>
       <pubDate>Wed, 12 Oct 2016 19:30:08 -0400</pubDate>
@@ -538,78 +654,6 @@ be generated from swagger specification immediately.&lt;/p&gt;
 to API implementation team and Client implementation team(s).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/api_flow.png&#34; alt=&#34;API Flow&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>validator</title>
-      <link>https://networknt.github.io/light-java/middleware/validator/</link>
-      <pubDate>Wed, 12 Oct 2016 19:13:19 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/middleware/validator/</guid>
-      <description>
-
-&lt;p&gt;The framework encourages design driven implementation so swagger specification
-should be done before the implementation starts. With the swagger-codegen
-undertow generator, the server stub can be generated and start running within
-minutes. However, we cannot rely on generator for validation as specification
-will be changed along  the life cycle of the API. This is why we have provided
-a validator that works on top of the specification at runtime. In this way,
-the generator should only be used once and the validator will take the latest
-spec. and validate according the spec. at runtime.&lt;/p&gt;
-
-&lt;h1 id=&#34;fail-fast&#34;&gt;Fail fast&lt;/h1&gt;
-
-&lt;p&gt;As you may noticed that our Status object only supports one code and message.
-This is the indication the framework validation is designed as fail fast.
-Whenever there is an error, the server will stop processing the request and
-return the error to the consumer immediately. There are two reasons on this
-design:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Security - you don&amp;rsquo;t want to return so many errors if someone is trying
-to hack your server.&lt;/li&gt;
-&lt;li&gt;Performance - you don&amp;rsquo;t want to spend resource to handle invalid request
-to the next step.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;validatorhandler&#34;&gt;ValidatorHandler&lt;/h1&gt;
-
-&lt;p&gt;This is the entry point of the validator and it is injected during server
-start up if validator.json enableValidator is true. By default, only
-RequestValidator will be called. However, ResponseValidator can be enabled
-by setting enableResponseValidator to true in validator.json.&lt;/p&gt;
-
-&lt;h1 id=&#34;requestvalidator&#34;&gt;RequestValidator&lt;/h1&gt;
-
-&lt;p&gt;It will validate the following:
-* uri
-* method
-* header
-* query parameters
-* path parameters
-* body if available&lt;/p&gt;
-
-&lt;p&gt;When necessary, schema validator will be called to do json schema validation.&lt;/p&gt;
-
-&lt;h1 id=&#34;responsevalidator&#34;&gt;ResponseValidator&lt;/h1&gt;
-
-&lt;p&gt;It will validate the following:
-* header
-* response code
-* body if available&lt;/p&gt;
-
-&lt;p&gt;when necessary, json schema validator will be called.&lt;/p&gt;
-
-&lt;h1 id=&#34;schemavalidator&#34;&gt;SchemaValidator&lt;/h1&gt;
-
-&lt;p&gt;If schema is defined in swagger.json, then the &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt; will be called to validate the input against a json schema defined in draft v4.&lt;/p&gt;
-
-&lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
-
-&lt;p&gt;In order to test validator, the test suite starts an undertow server and serves
-petstore api for testing. It is a demo on how to unit test your API during
-development.&lt;/p&gt;
 </description>
     </item>
     
