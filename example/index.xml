@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Example-rsses on Light Java - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/light-java/example/index.xml</link>
+    <description>Recent content in Example-rsses on Light Java - The fastest Java API Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Sat, 22 Oct 2016 21:02:01 -0400</lastBuildDate>
+    <atom:link href="https://networknt.github.io/light-java/example/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>swagger</title>
+      <link>https://networknt.github.io/light-java/example/swagger/</link>
+      <pubDate>Sat, 22 Oct 2016 21:02:01 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/swagger/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>routing</title>
+      <link>https://networknt.github.io/light-java/example/routing/</link>
+      <pubDate>Sat, 22 Oct 2016 21:00:30 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/routing/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This is an example to show you how to use undertow routing handler.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://networknt.github.io/light-java/example/performance/</link>
+      <pubDate>Sat, 22 Oct 2016 20:55:36 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/performance/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This is a example to compare performance between Spring Boot and Light Java framework. It can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;
+with the testing result on my desktop.&lt;/p&gt;
+
+&lt;p&gt;The light-java implementation is much simpler and faster(44 times faster) then Spring Boot which is the most popular API/microservices platform at the moment.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>microservices</title>
+      <link>https://networknt.github.io/light-java/example/microservices/</link>
+      <pubDate>Sat, 22 Oct 2016 20:48:04 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/microservices/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This example contains four projects:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/api_a&#34;&gt;API A&lt;/a&gt; is calling &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/api_b&#34;&gt;API B&lt;/a&gt; and &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/api_c&#34;&gt;API C&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;API B is calling &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/api_d&#34;&gt;API D&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This example shows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to build microservices&lt;/li&gt;
+&lt;li&gt;How to do API to API call with light-java client component&lt;/li&gt;
+&lt;li&gt;How to protect API with JWT token with scopes&lt;/li&gt;
+&lt;li&gt;How to performance test APIs with wrk&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is a &lt;a href=&#34;https://networknt.github.io/light-java/tutorials/microservices/&#34;&gt;tutorial&lt;/a&gt; for these projects.&lt;/p&gt;
+
+&lt;p&gt;Note: these projects are not 100% completed yet. I am going to dockerize them and then compose them with OAuth2 server.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>petstore</title>
+      <link>https://networknt.github.io/light-java/example/petstore/</link>
+      <pubDate>Sat, 22 Oct 2016 20:40:35 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/petstore/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/petstore&#34;&gt;Petstore&lt;/a&gt; is a generated API project based on OpenAPI specification found &lt;a href=&#34;http://petstore.swagger.io/v2/swagger.json&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This project will be updated constantly when a new version of light-java framework released or any updates in swagger-codegen.&lt;/p&gt;
+
+&lt;p&gt;Here is the command line to generate this project from swagger-codegen directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l light-java -o ~/networknt/light-java-example/petstore
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://networknt.github.io/light-java/example/database/</link>
+      <pubDate>Sat, 22 Oct 2016 20:22:34 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/database/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;This example can be found at &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/database&#34;&gt;https://github.com/networknt/light-java-example/tree/master/database&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;There are three parts in this projects:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;An API implemented on top of light-java framework.&lt;/li&gt;
+&lt;li&gt;Mysql database as part of the docker compose with init script.&lt;/li&gt;
+&lt;li&gt;Postgres database as part of the docker compose with init script.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The project shows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to use &lt;a href=&#34;https://github.com/brettwooldridge/HikariCP&#34;&gt;HikariCP&lt;/a&gt; for JDBC connection pool.&lt;/li&gt;
+&lt;li&gt;How to initialize database connection pool and plug it into light-java startup hooks.&lt;/li&gt;
+&lt;li&gt;How to dockerize light-java application.&lt;/li&gt;
+&lt;li&gt;How to compose databases with light-java application so that you can start all servers together.&lt;/li&gt;
+&lt;li&gt;How to performance test API application with wrk.&lt;/li&gt;
+&lt;li&gt;Postgres performs better than mysql on my i5 desktop.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

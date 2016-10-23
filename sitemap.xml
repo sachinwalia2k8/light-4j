@@ -3,7 +3,37 @@
   
   <url>
     <loc>https://networknt.github.io/light-java/</loc>
-    <lastmod>2016-10-20T14:34:09-04:00</lastmod>
+    <lastmod>2016-10-22T21:02:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/example/swagger/</loc>
+    <lastmod>2016-10-22T21:02:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/example/routing/</loc>
+    <lastmod>2016-10-22T21:00:30-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/example/performance/</loc>
+    <lastmod>2016-10-22T20:55:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/example/microservices/</loc>
+    <lastmod>2016-10-22T20:48:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/example/petstore/</loc>
+    <lastmod>2016-10-22T20:40:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/example/database/</loc>
+    <lastmod>2016-10-22T20:22:34-04:00</lastmod>
   </url>
   
   <url>
