@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>security - Light Java - The fastest Java API Framework</title>
+    <title>Mask - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/security/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/other/mask/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/security/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/other/mask/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        security
+        Mask
       </div>
     </div>
 
@@ -407,48 +407,27 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>security </h1>
+			<h1>Mask </h1>
 
 			
 
-<p>The current framework supports OAuth2 with JWT token but can be extended to
-other authentication and authorization approaches.</p>
+<p>In the entire life cycle of the exchange, there might a lot of logging statements
+written to log files or other persistence storage. These logs will be used to
+assist production issue identifying and resolving and a wide group of people might
+have access to these logs. In order to reduce the risk of leak customer info,
+sensitive info needs to masked before logging. For example, credit card number,
+sin number etc.</p>
 
-<h1 id="jwtverifyhandler">JwtVerifyHandler</h1>
+<h1 id="configuration">Configuration</h1>
 
-<p>This is the handler that is injected during server start up if security.json
-enableVerifyJwt is true. It does further scope verification if enableVerifyScope
-is true against swagger specification.</p>
+<p>Given different API will have different sensitive data, the mask is configurable
+and can be applied at header, cookie, query parameters and body.</p>
 
-<h1 id="distributed-jwt-verification">Distributed JWT verification</h1>
+<h1 id="mask-with-string">Mask with String</h1>
 
-<p>Unlike simple web token, the resource server has to contact Authorization server
-to validate the bearer token. JWT can be verified by resource server as long as
-the token signing certificate is available at resource server. Due to security
-concerns, there should be two pair of private key and public key certificate
-available at any time in case the primary key is compromised.</p>
+<h1 id="mask-with-regex">Mask with Regex</h1>
 
-<h1 id="light-oauth2-server">light-oauth2 server</h1>
-
-<p>By default, the framework contains two pairs of public key certificates issued
-by our own oauth2 server which can be installed from docker. For more info,
-please refer to <a href="https://github.com/networknt/light-oauth2">https://github.com/networknt/light-oauth2</a></p>
-
-<h1 id="kid">Kid</h1>
-
-<p>Since there are two certificates available, the kid in the header of the JWT
-token will decide which certificate will be used to verify the JWT signature.</p>
-
-<h1 id="jwtmockhandler">JwtMockHandler</h1>
-
-<p>This is a testing OAuth2 endpoints provider and it can be injected into the handler
-chain for unit testing so that it won&rsquo;t depend on an instance of
-undertow-oauth2.</p>
-
-<h1 id="long-lived-token">Long lived token</h1>
-
-<p>To make integration test easier, a long lived token is provided by the oauth2
-server and it can be found at <a href="https://github.com/networknt/undertow-oauth2">https://github.com/networknt/undertow-oauth2</a></p>
+<h1 id="mask-with-jsonpath">Mask with JsonPath</h1>
 
 
 			<aside class="copyright" role="note">
@@ -467,7 +446,7 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/middleware/swagger/" title="swagger">
+      <a href="https://networknt.github.io/light-java/other/utility/" title="utility">
         <span class="direction">
           Previous
         </span>
@@ -477,7 +456,7 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
           </div>
           <div class="stretch">
             <div class="title">
-              swagger
+              utility
             </div>
           </div>
         </div>
@@ -487,14 +466,14 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/exception/" title="exception">
+      <a href="https://networknt.github.io/light-java/other/config/" title="Config">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              exception
+              Config
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

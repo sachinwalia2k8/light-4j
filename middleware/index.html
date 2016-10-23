@@ -422,20 +422,8 @@ swagger code generation and runtime request validation.</p>
 <p>It contains the following components:</p>
 
 <ul>
-<li><p><a href="https://networknt.github.io/light-java/middleware/server/">server</a> - a framework on top of undertow http core that support plugins to
-performance different middleware handling.</p></li>
-
 <li><p><a href="https://networknt.github.io/light-java/middleware/security/">security</a> - oauth2 jwt token verification and mock token generation. Also,
 there is an testing OAuth2 server released <a href="https://github.com/networknt/light-oauth2">here</a></p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/config/">config</a> - A module
-that supports externalized configuration for standalone application and docker
-container.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/utility/">utility</a> - utility classes that are shared between modules.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/client/">client</a> - wrapper of apache HttpClient and HttpAsyncClient. support automatically
-cache and renew client credentials jwt token</p></li>
 
 <li><p><a href="https://networknt.github.io/light-java/middleware/validator/">validator</a> - validate request based on the swagger.json for uri parameters,
 query parameters and body which is based on <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a></p></li>
@@ -443,15 +431,6 @@ query parameters and body which is based on <a href="https://github.com/networkn
 <li><p><a href="https://networknt.github.io/light-java/middleware/audit/">audit</a> - dump most important info about request and response into audit.log in
 JSON format. Also, there is a full audit handler to dump everything regarding to
 request and response.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/info/">info</a> - a handler that
-injects an endpoint /server/info that can out all plugged in component on the
-server and configuration of each component.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/mask/">mask</a> - used to mask sensitive info before logging to audit.log or server.log</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/status/">status</a> - used to model error http response and assist production monitoring
-with unique error code.</p></li>
 
 <li><p><a href="https://networknt.github.io/light-java/middleware/body/">body</a> A body parser middleware that is
 responsible for parsing the content of the request based on Content-Type in the request header.</p></li>
@@ -468,8 +447,8 @@ from Grafana Dashboard.</p></li>
 that load swagger at runtime and parse it based on the request uri and method and attached the
 swagger data related to the current endpoint into the exchange for subsequent handlers to use.</p></li>
 
-<li><p><a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a> - a code generator
-that generates the routing handlers and running API application based on swagger specification.</p></li>
+<li><p><a href="https://networknt.github.io/light-java/middleware/sanitizer/">sanitizer</a> This is a middleware
+that address cross site scripting concerns. It encodes header and body based on configuration.</p></li>
 </ul>
 
 

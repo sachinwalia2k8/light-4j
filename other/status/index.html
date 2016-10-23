@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>security - Light Java - The fastest Java API Framework</title>
+    <title>status - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/security/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/other/status/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/security/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/other/status/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        security
+        status
       </div>
     </div>
 
@@ -407,48 +407,106 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>security </h1>
+			<h1>status </h1>
 
 			
 
-<p>The current framework supports OAuth2 with JWT token but can be extended to
-other authentication and authorization approaches.</p>
+<p>In the scenario that error happens on the server, a Status object is designed
+to encapsulate standard http response 4xx and 5xx as well as application specific
+error code ERRXXXXX (prefixed with ERR with another 5 digits) and error message.
+Additionally, an description of the error will be available for more info about
+the error.</p>
 
-<h1 id="jwtverifyhandler">JwtVerifyHandler</h1>
+<h1 id="data-elements">Data Elements</h1>
 
-<p>This is the handler that is injected during server start up if security.json
-enableVerifyJwt is true. It does further scope verification if enableVerifyScope
-is true against swagger specification.</p>
+<p>Here are the four fields in the Status object.</p>
 
-<h1 id="distributed-jwt-verification">Distributed JWT verification</h1>
+<pre><code>    int statusCode;
+    String code;
+    String message;
+    String description;
+</code></pre>
 
-<p>Unlike simple web token, the resource server has to contact Authorization server
-to validate the bearer token. JWT can be verified by resource server as long as
-the token signing certificate is available at resource server. Due to security
-concerns, there should be two pair of private key and public key certificate
-available at any time in case the primary key is compromised.</p>
+<h1 id="construct-the-object-from-status-json">Construct the object from status.json</h1>
 
-<h1 id="light-oauth2-server">light-oauth2 server</h1>
+<p>status.json is a configuration file that contains all the status error defined
+for the application and it has the structure like this.</p>
 
-<p>By default, the framework contains two pairs of public key certificates issued
-by our own oauth2 server which can be installed from docker. For more info,
-please refer to <a href="https://github.com/networknt/light-oauth2">https://github.com/networknt/light-oauth2</a></p>
+<pre><code>{
+  &quot;ERR10000&quot;: {
+    &quot;statusCode&quot;: 401,
+    &quot;code&quot;: &quot;ERR10000&quot;,
+    &quot;message&quot;: &quot;INVALID_AUTH_TOKEN&quot;,
+    &quot;description&quot;: &quot;Incorrect signature or malformed token in authorization header&quot;
+  },
+  &quot;ERR10001&quot;: {
+    &quot;statusCode&quot;: 401,
+    &quot;code&quot;: &quot;ERR10001&quot;,
+    &quot;message&quot;: &quot;AUTH_TOKEN_EXPIRED&quot;,
+    &quot;description&quot;: &quot;Jwt token in authorization header expired&quot;
+  },
+  .
+  .
+  .
+}
+</code></pre>
 
-<h1 id="kid">Kid</h1>
+<p>To construct the object from this config</p>
 
-<p>Since there are two certificates available, the kid in the header of the JWT
-token will decide which certificate will be used to verify the JWT signature.</p>
+<pre><code>    static final String STATUS_METHOD_NOT_ALLOWED = &quot;ERR10008&quot;;
+    .
+    .
+    .
+    Status status = new Status(STATUS_METHOD_NOT_ALLOWED);
 
-<h1 id="jwtmockhandler">JwtMockHandler</h1>
+</code></pre>
 
-<p>This is a testing OAuth2 endpoints provider and it can be injected into the handler
-chain for unit testing so that it won&rsquo;t depend on an instance of
-undertow-oauth2.</p>
+<p>To construct the object with arguments to have a description with context
+information.</p>
 
-<h1 id="long-lived-token">Long lived token</h1>
+<pre><code>   return new Status(&quot;ERR11000&quot;, queryParameter.getName(), swaggerOperation.getPathString().original());
 
-<p>To make integration test easier, a long lived token is provided by the oauth2
-server and it can be found at <a href="https://github.com/networknt/undertow-oauth2">https://github.com/networknt/undertow-oauth2</a></p>
+</code></pre>
+
+<h1 id="convert-to-json-response">Convert to JSON response.</h1>
+
+<p>There are several way to serialize the object to JSON in response. And string
+concat is almost 10 times faster than Jackson ObjectMapper. For one million
+objects:</p>
+
+<pre><code>Jackson Perf 503
+ToString Perf 65
+
+</code></pre>
+
+<h1 id="error-code-range-allocation">Error code range allocation</h1>
+
+<p>The error code prefixed with ERR with another 5 digits so that it can be easily
+scanned in log files. Also, certain error code can be used to trigger an alert
+such as email or pager notification on system wide issues.</p>
+
+<p>In order to make sure there is no conflict for error code allocation between
+teams, here is the rule</p>
+
+<p>10000-19999 reserved for the framework/system.
+   * 10000-10100 security</p>
+
+<ul>
+<li><p>11000-11999 validation</p></li>
+
+<li><p>12000-12999 undertow-oauth2</p></li>
+</ul>
+
+<p>20000-29999 common error codes within your business domain.
+90000-99999 customize error code that cannot be found in common range.</p>
+
+<h1 id="send-the-json-as-response">Send the JSON as response</h1>
+
+<pre><code>    Status status = new Status(STATUS_METHOD_NOT_ALLOWED);
+    exchange.setStatusCode(status.getStatusCode());
+    exchange.getResponseSender().send(status.toString());
+
+</code></pre>
 
 
 			<aside class="copyright" role="note">
@@ -467,7 +525,7 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/middleware/swagger/" title="swagger">
+      <a href="https://networknt.github.io/light-java/other/server/" title="server">
         <span class="direction">
           Previous
         </span>
@@ -477,7 +535,7 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
           </div>
           <div class="stretch">
             <div class="title">
-              swagger
+              server
             </div>
           </div>
         </div>
@@ -487,14 +545,14 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/exception/" title="exception">
+      <a href="https://networknt.github.io/light-java/other/utility/" title="utility">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              exception
+              utility
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

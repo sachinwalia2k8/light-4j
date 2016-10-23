@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Others - Light Java - The fastest Java API Framework</title>
+    <title>Other Component - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
@@ -69,12 +69,14 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/light-java/other/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/light-java/other/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
 
 
 <div class="backdrop">
@@ -95,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Others
+        Other Component
       </div>
     </div>
 
@@ -137,6 +139,9 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        
+          <br>
+          networknt/light-java
         
       </div>
     </div>
@@ -405,21 +410,43 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Other</h1>
+			<h1>Other Component </h1>
 
 			
-			<a href="https://networknt.github.io/light-java/other/client/" title="Client">
-				<h2>Client</h2>
-			</a>
 
-			<br>
-			Client is used to call APIs from the following sources:
- Web server Standalone Application API  It provides method to get authorization jwt token and automatically gets client credentials token for scopes in API to API calls.
-Sync Client This is a wrapper of Apache HttpClient with built-in connection pools and TLS support. It can be used to call another API in the request context.
-Async Client This is a wrapper of Apache HttpAsyncClient with built-in connection pools and TLS support.
+<h1 id="introduction">Introduction</h1>
 
-			<hr>
-			
+<p>light-java is a Java API framework based on undertow http core that supports
+swagger code generation and runtime request validation and security verification.</p>
+
+<p>It contains the following components:</p>
+
+<ul>
+<li><p><a href="https://networknt.github.io/light-java/middleware/server/">server</a> - a framework on top of undertow http core that support plugins to
+performance different middleware handling.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/config/">config</a> - A module
+that supports externalized configuration for standalone application and docker
+container.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/utility/">utility</a> - utility classes that are shared between modules.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/client/">client</a> - wrapper of apache HttpClient and HttpAsyncClient. support automatically
+cache and renew client credentials jwt token</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/info/">info</a> - a handler that
+injects an endpoint /server/info that can out all plugged in component on the
+server and configuration of each component.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/mask/">mask</a> - used to mask sensitive info before logging to audit.log or server.log</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/status/">status</a> - used to model error http response and assist production monitoring
+with unique error code.</p></li>
+
+<li><p><a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a> - a code generator
+that generates the routing handlers and running API application based on swagger specification.</p></li>
+</ul>
+
 
 			<aside class="copyright" role="note">
 				
@@ -430,6 +457,57 @@ Async Client This is a wrapper of Apache HttpAsyncClient with built-in connectio
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/other/info/" title="info">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              info
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/other/server/" title="server">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              server
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
 		</div>
 	</article>
 
@@ -445,8 +523,8 @@ Async Client This is a wrapper of Apache HttpAsyncClient with built-in connectio
 
     <script>
     
-      var base_url = '';
-      var repo_id  = '';
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
     
     </script>
 

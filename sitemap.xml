@@ -3,7 +3,42 @@
   
   <url>
     <loc>https://networknt.github.io/light-java/</loc>
-    <lastmod>2016-10-23T12:26:20-04:00</lastmod>
+    <lastmod>2016-10-23T13:23:59-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/info/</loc>
+    <lastmod>2016-10-23T13:23:59-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/</loc>
+    <lastmod>2016-10-23T13:22:33-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/server/</loc>
+    <lastmod>2016-10-23T13:21:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/status/</loc>
+    <lastmod>2016-10-23T13:20:51-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/utility/</loc>
+    <lastmod>2016-10-23T13:20:22-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/mask/</loc>
+    <lastmod>2016-10-23T13:19:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/config/</loc>
+    <lastmod>2016-10-23T13:18:22-04:00</lastmod>
   </url>
   
   <url>
@@ -67,11 +102,6 @@
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/server/</loc>
-    <lastmod>2016-10-15T19:27:03-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://networknt.github.io/light-java/roadmap/</loc>
     <lastmod>2016-10-15T19:19:57-04:00</lastmod>
   </url>
@@ -87,18 +117,8 @@
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/utility/</loc>
-    <lastmod>2016-10-12T19:12:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://networknt.github.io/light-java/middleware/swagger/</loc>
     <lastmod>2016-10-12T19:10:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/middleware/status/</loc>
-    <lastmod>2016-10-12T19:09:18-04:00</lastmod>
   </url>
   
   <url>
@@ -107,23 +127,8 @@
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/mask/</loc>
-    <lastmod>2016-10-12T19:06:24-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/middleware/info/</loc>
-    <lastmod>2016-10-12T19:04:51-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://networknt.github.io/light-java/middleware/exception/</loc>
     <lastmod>2016-10-12T19:03:24-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/middleware/config/</loc>
-    <lastmod>2016-10-12T19:00:54-04:00</lastmod>
   </url>
   
   <url>
