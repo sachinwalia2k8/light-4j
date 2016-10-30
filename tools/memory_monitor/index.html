@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>sanitizer - Light Java - The fastest Java API Framework</title>
+    <title>Memory Monitoring on Mac - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/sanitizer/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/tools/memory_monitor/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/sanitizer/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/tools/memory_monitor/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        sanitizer
+        Memory Monitoring on Mac
       </div>
     </div>
 
@@ -407,47 +407,40 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>sanitizer </h1>
+			<h1>Memory Monitoring on Mac </h1>
 
 			
 
 <h1 id="introduction">Introduction</h1>
 
-<p>This is a middleware that addresses cross site scripting concerns. It encodes the header
-and body according to the configuration. As body encoding depends on
-<a href="https://networknt.github.io/light-java/middleware/body/">Body</a> middleware, it has to be
-plugged into the request/response chain after Body.</p>
+<p>While you are testing performance of your microservices, you might be interested in
+monitoring your server memory usage. The memory footprint is very important as we
+are talking about microservices - we might need to deploy hundreds or even thousands
+of microservices to compose a big application. In today&rsquo;s cloud environment, you can
+create vms or containers based on cpu, memory and hard drive usage and usually memory
+is the big constraint and more costly than cpu and hard drive.</p>
 
-<h1 id="configuration">Configuration</h1>
+<h1 id="monitoring-memory-usage-for-java">Monitoring Memory Usage for Java</h1>
 
-<p>Here is the default configuration sanitizer.json</p>
+<p>It is very hard to get the accurate memory usage for Java process.</p>
 
-<pre><code>{
-  &quot;description&quot;: &quot;Sanitize request for cross site scripting during runtime&quot;,
-  &quot;enabled&quot;: true,
-  &quot;sanitizeBody&quot;: true,
-  &quot;sanitizeHeader&quot;: true
-}
-</code></pre>
+<h1 id="on-mac">On Mac</h1>
 
-<p>If enabled is false, this middleware won&rsquo;t be loaded during server startup.
-sanitizeBody and sanitizeHeader control if body and header need to be sanitized or both.</p>
+<p>On Mac, I usually start my performance test with [wrk]() and run it for 1 minute and
+monitor the memory with Activity Monitor. The memory tab will give you a snapshot of
+memory usage on each process. The number is not the real memory usage but the max
+memory usage and you can see it only increases to certain point and stays there.</p>
 
-<h1 id="query-parameters">Query Parameters</h1>
+<h1 id="on-linux">On Linux</h1>
 
-<p>In other platforms especially JEE containers, query parameters need to be sanitized as well.
-However, I have found that Undertow does sanitize special characters in query parameters. This
-is why this handler doesn&rsquo;t do anything about query parameters.</p>
+<h1 id="on-windows">On Windows</h1>
 
-<h1 id="encode-library">Encode Library</h1>
+<p>I am not using Windows so I have limited experience on how to monitor Java memory usage
+on this platform. However, the generic JDK tools should work as other platforms.</p>
 
-<p>The library used for cross site scripting sanitization is from <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS">https://www.owasp.org/index.php/Cross-site_Scripting_(XSS</a>)
-and the library can be found at <a href="https://github.com/OWASP/owasp-java-encoder">https://github.com/OWASP/owasp-java-encoder</a></p>
+<p>If anyone has better ideas, please let me know or send me a pull request.</p>
 
-<h1 id="encode-level">Encode Level</h1>
-
-<p>The encode level we are using for both header and body is &ldquo;forJavaScriptSource&rdquo;. This gives us
-certain level of confident and it won&rsquo;t mess up header and body in most the case.</p>
+<h1 id="example">Example</h1>
 
 
 			<aside class="copyright" role="note">
@@ -466,7 +459,7 @@ certain level of confident and it won&rsquo;t mess up header and body in most th
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/other/client/" title="Client">
+      <a href="https://networknt.github.io/light-java/architecture/plugin/" title="plugin">
         <span class="direction">
           Previous
         </span>
@@ -476,7 +469,7 @@ certain level of confident and it won&rsquo;t mess up header and body in most th
           </div>
           <div class="stretch">
             <div class="title">
-              Client
+              plugin
             </div>
           </div>
         </div>
@@ -486,14 +479,14 @@ certain level of confident and it won&rsquo;t mess up header and body in most th
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/example/swagger/" title="swagger">
+      <a href="https://networknt.github.io/light-java/other/info/" title="info">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              swagger
+              info
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

@@ -11,7 +11,7 @@
     <atom:link href="https://networknt.github.io/light-java/middleware/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Sanitizer</title>
+      <title>sanitizer</title>
       <link>https://networknt.github.io/light-java/middleware/sanitizer/</link>
       <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
       
@@ -24,6 +24,37 @@
 and body according to the configuration. As body encoding depends on
 &lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;Body&lt;/a&gt; middleware, it has to be
 plugged into the request/response chain after Body.&lt;/p&gt;
+
+&lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
+
+&lt;p&gt;Here is the default configuration sanitizer.json&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;Sanitize request for cross site scripting during runtime&amp;quot;,
+  &amp;quot;enabled&amp;quot;: true,
+  &amp;quot;sanitizeBody&amp;quot;: true,
+  &amp;quot;sanitizeHeader&amp;quot;: true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.
+sanitizeBody and sanitizeHeader control if body and header need to be sanitized or both.&lt;/p&gt;
+
+&lt;h1 id=&#34;query-parameters&#34;&gt;Query Parameters&lt;/h1&gt;
+
+&lt;p&gt;In other platforms especially JEE containers, query parameters need to be sanitized as well.
+However, I have found that Undertow does sanitize special characters in query parameters. This
+is why this handler doesn&amp;rsquo;t do anything about query parameters.&lt;/p&gt;
+
+&lt;h1 id=&#34;encode-library&#34;&gt;Encode Library&lt;/h1&gt;
+
+&lt;p&gt;The library used for cross site scripting sanitization is from &lt;a href=&#34;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS&#34;&gt;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS&lt;/a&gt;)
+and the library can be found at &lt;a href=&#34;https://github.com/OWASP/owasp-java-encoder&#34;&gt;https://github.com/OWASP/owasp-java-encoder&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;encode-level&#34;&gt;Encode Level&lt;/h1&gt;
+
+&lt;p&gt;The encode level we are using for both header and body is &amp;ldquo;forJavaScriptSource&amp;rdquo;. This gives us
+certain level of confident and it won&amp;rsquo;t mess up header and body in most the case.&lt;/p&gt;
 </description>
     </item>
     

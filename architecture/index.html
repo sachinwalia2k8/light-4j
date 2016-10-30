@@ -408,13 +408,24 @@
 			<h1>Pages in Architecture</h1>
 
 			
+			<a href="https://networknt.github.io/light-java/architecture/plugin/" title="plugin">
+				<h2>plugin</h2>
+			</a>
+
+			<br>
+			Introduction In the framework design, we have adopted the same principal of microservices architecture to break down the entire framework into smaller pieces so that each can be customized and replaced if necessary. The only difference is that all the modules in the framework are wired in request/response chain for best performance.
+There are four type of components that can be wired in at different stage of the server start up.
+
+			<hr>
+			
 			<a href="https://networknt.github.io/light-java/architecture/security/" title="security">
 				<h2>security</h2>
 			</a>
 
 			<br>
 			Introduction Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
-While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced. The final application will have more http calls than a single application, how can we protect these calls between services?
+Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
+While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.
 
 			<hr>
 			

@@ -7,8 +7,220 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sun, 23 Oct 2016 13:23:59 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 29 Oct 2016 17:22:16 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>plugin</title>
+      <link>https://networknt.github.io/light-java/architecture/plugin/</link>
+      <pubDate>Sat, 29 Oct 2016 17:22:16 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/plugin/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In the framework design, we have adopted the same principal of microservices architecture to break
+down the entire framework into smaller pieces so that each can be customized and replaced if
+necessary. The only difference is that all the modules in the framework are wired in request/response
+chain for best performance.&lt;/p&gt;
+
+&lt;p&gt;There are four type of components that can be wired in at different stage of the server start up. The
+following is the loading sequence.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Shutdown Hook Providers&lt;/li&gt;
+&lt;li&gt;Startup Hook Providers&lt;/li&gt;
+&lt;li&gt;Handler Provider&lt;/li&gt;
+&lt;li&gt;Middleware Handlers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;plugin-implementation&#34;&gt;Plugin implementation&lt;/h1&gt;
+
+&lt;p&gt;There are so many way to implement plugins and wire in different implementations of the same
+interface. Spring is one of the popular ways. However, it will make our framework depending on
+a version of spring framework and that can cause a lot of problems if the API handlers are
+using different version of spring framework. Also, we don&amp;rsquo;t want to make the framework depending
+on spring and force everyone to include it. In the end, we are using Java SPI
+(Service Provider Interface). In your generated API project, you can find four files in
+/src/main/resources/META-INF/services. These files contains plugins to be loaded/executed during
+server startup and shutdown.&lt;/p&gt;
+
+&lt;h1 id=&#34;shutdown-hook-providers&#34;&gt;Shutdown Hook Providers&lt;/h1&gt;
+
+&lt;p&gt;Shutdown hook providers are plugins that would be called during server shutdown in order to release
+resources. For example, close database connections.&lt;/p&gt;
+
+&lt;p&gt;All shutdown hook providers will implement interface com.networknt.server.ShutdownHookProvider&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface ShutdownHookProvider {
+    void onShutdown();
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The onShutdown() in your implementation will be called before server shutdown.&lt;/p&gt;
+
+&lt;h1 id=&#34;startup-hook-providers&#34;&gt;Startup Hook Providers&lt;/h1&gt;
+
+&lt;p&gt;Startup hook providers are plugins that would be called during server startup in order to initialize
+resources. For example, create database connection pool, load spring application context etc.&lt;/p&gt;
+
+&lt;p&gt;All startup hook providers will implement interface com.networknt.server.StartupHookProvider&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface StartupHookProvider {
+    void onStartup();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The onStartup() in your implementation will be called before server startup.&lt;/p&gt;
+
+&lt;h1 id=&#34;handler-provider&#34;&gt;Handler Provider&lt;/h1&gt;
+
+&lt;p&gt;There is only one handler provider that is needed to wire in API implementations. In most of the
+cases, it would be an instance of io.undertow.server.RoutingHandler just like the generated &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/petstore&#34;&gt;petstore
+project&lt;/a&gt;. However, it is not
+limited and it can be several handlers chained together. One example is the
+&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/webserver&#34;&gt;webserver example&lt;/a&gt; and it
+has several handlers chained together to provide API routing as well as static website. The handler
+provide code can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/blob/master/webserver/src/main/java/com/networknt/webserver/handler/WebServerHandlerProvider.java&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you have OpenAPI specification defined, this handler provider will be generated from
+&lt;a href=&#34;https://github.com/networknt/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt;. &lt;a href=&#34;https://github.com/networknt/light-java-example/blob/master/petstore/src/main/java/io/swagger/handler/PathHandlerProvider.java&#34;&gt;Here&lt;/a&gt;
+is a generated petstore handler provider that has the mapping for all endpoints.&lt;/p&gt;
+
+&lt;p&gt;Handler provider implements interface com.networknt.server.HandlerProvider&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface HandlerProvider {
+    HttpHandler getHandler();
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The getHandler() will return an HttpHandler or a chain of HttpHandlers wrapped together. This handler
+will be called in the request/response chain right after all middleware handlers are called.&lt;/p&gt;
+
+&lt;h1 id=&#34;middleware-handlers&#34;&gt;Middleware Handlers&lt;/h1&gt;
+
+&lt;p&gt;There are some &lt;a href=&#34;https://networknt.github.io/light-java/middleware/&#34;&gt;builtin middleware components&lt;/a&gt;
+in the framework to address common cross cutting concerns. There are implemented in a way we think
+the best to meet most of business requirements. In other words, there are opinionated. For product
+that built top of the framework, you can add/customize/replace existing middleware handlers.&lt;/p&gt;
+
+&lt;p&gt;All middleware handlers need to implement interface com.networknt.handler.MiddlewareHandler.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface MiddlewareHandler extends HttpHandler {
+
+    HttpHandler getNext();
+
+    MiddlewareHandler setNext(final HttpHandler next);
+
+    boolean isEnabled();
+
+    void register();
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;boolean isEnabled()&lt;/p&gt;
+
+&lt;p&gt;Every middleware handler has a corresponding config file which is the same name lower case
+with .json extension. There must be flag to indicate if the handle will be wired in during
+server startup. This gives user a chance to temporary disable a particular middleware handler
+without changing the SPI configuration.&lt;/p&gt;
+
+&lt;p&gt;void register()&lt;/p&gt;
+
+&lt;p&gt;This function will be called when the middleware is wired in the request/response chain. It registers
+itself and configuration to server info component which can be accessed through a special endpoint
+to get runtime information on middleware handlers and their configuration along with other system
+info.&lt;/p&gt;
+
+&lt;p&gt;MiddlewareHandler setNext(final HttpHandler next)&lt;/p&gt;
+
+&lt;p&gt;As middleware handler are chained together, so the existing handler must be put in the current
+handler as next. When the current handler is completed, it will call the next handler if there is
+no error. And eventually, the user provided handler will be called if all middleware handler are
+completed without an error.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-sequence-of-middleware-handlers&#34;&gt;The sequence of middleware handlers.&lt;/h3&gt;
+
+&lt;p&gt;There are dependencies between middleware handlers so the sequence to plug them in is very important.&lt;/p&gt;
+
+&lt;p&gt;Here is the configuration for the built in middleware handlers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# This file is generated and should not be changed unless you want to plug in more handlers into the handler chain
+# for cross cutting concerns. In most cases, you should replace some of the default handlers with your own implementation
+# Please note: the sequence of these handlers are very important.
+
+#Validator
+com.networknt.validator.ValidatorHandler
+#FullAudit
+com.networknt.audit.FullAuditHandler
+#SimpleAudit
+com.networknt.audit.SimpleAuditHandler
+#Body
+com.networknt.body.BodyHandler
+#Security
+com.networknt.security.JwtVerifyHandler
+#Swagger
+com.networknt.swagger.SwaggerHandler
+#Metrics
+com.networknt.metrics.MetricsHandler
+#Exception
+com.networknt.exception.ExceptionHandler
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;diagram&#34;&gt;Diagram&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/handler_chain.png&#34; alt=&#34;handler_chain&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that audit, metrics and exception need to hooked in the response in order to handle exceptions
+on both request and response phase, calculate response time and dump response info into the audit.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Memory Monitoring on Mac</title>
+      <link>https://networknt.github.io/light-java/tools/memory_monitor/</link>
+      <pubDate>Thu, 27 Oct 2016 08:44:57 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tools/memory_monitor/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;While you are testing performance of your microservices, you might be interested in
+monitoring your server memory usage. The memory footprint is very important as we
+are talking about microservices - we might need to deploy hundreds or even thousands
+of microservices to compose a big application. In today&amp;rsquo;s cloud environment, you can
+create vms or containers based on cpu, memory and hard drive usage and usually memory
+is the big constraint and more costly than cpu and hard drive.&lt;/p&gt;
+
+&lt;h1 id=&#34;monitoring-memory-usage-for-java&#34;&gt;Monitoring Memory Usage for Java&lt;/h1&gt;
+
+&lt;p&gt;It is very hard to get the accurate memory usage for Java process.&lt;/p&gt;
+
+&lt;h1 id=&#34;on-mac&#34;&gt;On Mac&lt;/h1&gt;
+
+&lt;p&gt;On Mac, I usually start my performance test with [wrk]() and run it for 1 minute and
+monitor the memory with Activity Monitor. The memory tab will give you a snapshot of
+memory usage on each process. The number is not the real memory usage but the max
+memory usage and you can see it only increases to certain point and stays there.&lt;/p&gt;
+
+&lt;h1 id=&#34;on-linux&#34;&gt;On Linux&lt;/h1&gt;
+
+&lt;h1 id=&#34;on-windows&#34;&gt;On Windows&lt;/h1&gt;
+
+&lt;p&gt;I am not using Windows so I have limited experience on how to monitor Java memory usage
+on this platform. However, the generic JDK tools should work as other platforms.&lt;/p&gt;
+
+&lt;p&gt;If anyone has better ideas, please let me know or send me a pull request.&lt;/p&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+</description>
+    </item>
     
     <item>
       <title>info</title>
@@ -1358,7 +1570,7 @@ deployment. In the future, these parameters might be exposed in the server.json.
 
 &lt;pre&gt;&lt;code&gt;{
   &amp;quot;description&amp;quot;: &amp;quot;server config&amp;quot;,
-  &amp;quot;ip&amp;quot;: &amp;quot;localhost&amp;quot;,
+  &amp;quot;ip&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,
   &amp;quot;port&amp;quot;: 8080
 }
 
@@ -1711,7 +1923,7 @@ renew process is start again.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Sanitizer</title>
+      <title>sanitizer</title>
       <link>https://networknt.github.io/light-java/middleware/sanitizer/</link>
       <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
       
@@ -1724,6 +1936,37 @@ renew process is start again.&lt;/p&gt;
 and body according to the configuration. As body encoding depends on
 &lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;Body&lt;/a&gt; middleware, it has to be
 plugged into the request/response chain after Body.&lt;/p&gt;
+
+&lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
+
+&lt;p&gt;Here is the default configuration sanitizer.json&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;Sanitize request for cross site scripting during runtime&amp;quot;,
+  &amp;quot;enabled&amp;quot;: true,
+  &amp;quot;sanitizeBody&amp;quot;: true,
+  &amp;quot;sanitizeHeader&amp;quot;: true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.
+sanitizeBody and sanitizeHeader control if body and header need to be sanitized or both.&lt;/p&gt;
+
+&lt;h1 id=&#34;query-parameters&#34;&gt;Query Parameters&lt;/h1&gt;
+
+&lt;p&gt;In other platforms especially JEE containers, query parameters need to be sanitized as well.
+However, I have found that Undertow does sanitize special characters in query parameters. This
+is why this handler doesn&amp;rsquo;t do anything about query parameters.&lt;/p&gt;
+
+&lt;h1 id=&#34;encode-library&#34;&gt;Encode Library&lt;/h1&gt;
+
+&lt;p&gt;The library used for cross site scripting sanitization is from &lt;a href=&#34;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS&#34;&gt;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS&lt;/a&gt;)
+and the library can be found at &lt;a href=&#34;https://github.com/OWASP/owasp-java-encoder&#34;&gt;https://github.com/OWASP/owasp-java-encoder&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;encode-level&#34;&gt;Encode Level&lt;/h1&gt;
+
+&lt;p&gt;The encode level we are using for both header and body is &amp;ldquo;forJavaScriptSource&amp;rdquo;. This gives us
+certain level of confident and it won&amp;rsquo;t mess up header and body in most the case.&lt;/p&gt;
 </description>
     </item>
     
@@ -1800,61 +2043,6 @@ with the testing result on my desktop.&lt;/p&gt;
 &lt;p&gt;There is a &lt;a href=&#34;https://networknt.github.io/light-java/tutorials/microservices/&#34;&gt;tutorial&lt;/a&gt; for these projects.&lt;/p&gt;
 
 &lt;p&gt;Note: these projects are not 100% completed yet. I am going to dockerize them and then compose them with OAuth2 server.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>petstore</title>
-      <link>https://networknt.github.io/light-java/example/petstore/</link>
-      <pubDate>Sat, 22 Oct 2016 20:40:35 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/example/petstore/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/petstore&#34;&gt;Petstore&lt;/a&gt; is a generated API project based on OpenAPI specification found &lt;a href=&#34;http://petstore.swagger.io/v2/swagger.json&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This project will be updated constantly when a new version of light-java framework released or any updates in swagger-codegen.&lt;/p&gt;
-
-&lt;p&gt;Here is the command line to generate this project from swagger-codegen directory.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l light-java -o ~/networknt/light-java-example/petstore
-
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>database</title>
-      <link>https://networknt.github.io/light-java/example/database/</link>
-      <pubDate>Sat, 22 Oct 2016 20:22:34 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/example/database/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;This example can be found at &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/database&#34;&gt;https://github.com/networknt/light-java-example/tree/master/database&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;There are three parts in this projects:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;An API implemented on top of light-java framework.&lt;/li&gt;
-&lt;li&gt;Mysql database as part of the docker compose with init script.&lt;/li&gt;
-&lt;li&gt;Postgres database as part of the docker compose with init script.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The project shows:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to use &lt;a href=&#34;https://github.com/brettwooldridge/HikariCP&#34;&gt;HikariCP&lt;/a&gt; for JDBC connection pool.&lt;/li&gt;
-&lt;li&gt;How to initialize database connection pool and plug it into light-java startup hooks.&lt;/li&gt;
-&lt;li&gt;How to dockerize light-java application.&lt;/li&gt;
-&lt;li&gt;How to compose databases with light-java application so that you can start all servers together.&lt;/li&gt;
-&lt;li&gt;How to performance test API application with wrk.&lt;/li&gt;
-&lt;li&gt;Postgres performs better than mysql on my i5 desktop.&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

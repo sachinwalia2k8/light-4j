@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>sanitizer - Light Java - The fastest Java API Framework</title>
+    <title>plugin - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/sanitizer/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/architecture/plugin/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/sanitizer/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/architecture/plugin/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        sanitizer
+        plugin
       </div>
     </div>
 
@@ -407,47 +407,170 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>sanitizer </h1>
+			<h1>plugin </h1>
 
 			
 
 <h1 id="introduction">Introduction</h1>
 
-<p>This is a middleware that addresses cross site scripting concerns. It encodes the header
-and body according to the configuration. As body encoding depends on
-<a href="https://networknt.github.io/light-java/middleware/body/">Body</a> middleware, it has to be
-plugged into the request/response chain after Body.</p>
+<p>In the framework design, we have adopted the same principal of microservices architecture to break
+down the entire framework into smaller pieces so that each can be customized and replaced if
+necessary. The only difference is that all the modules in the framework are wired in request/response
+chain for best performance.</p>
 
-<h1 id="configuration">Configuration</h1>
+<p>There are four type of components that can be wired in at different stage of the server start up. The
+following is the loading sequence.</p>
 
-<p>Here is the default configuration sanitizer.json</p>
+<ul>
+<li>Shutdown Hook Providers</li>
+<li>Startup Hook Providers</li>
+<li>Handler Provider</li>
+<li>Middleware Handlers</li>
+</ul>
 
-<pre><code>{
-  &quot;description&quot;: &quot;Sanitize request for cross site scripting during runtime&quot;,
-  &quot;enabled&quot;: true,
-  &quot;sanitizeBody&quot;: true,
-  &quot;sanitizeHeader&quot;: true
+<h1 id="plugin-implementation">Plugin implementation</h1>
+
+<p>There are so many way to implement plugins and wire in different implementations of the same
+interface. Spring is one of the popular ways. However, it will make our framework depending on
+a version of spring framework and that can cause a lot of problems if the API handlers are
+using different version of spring framework. Also, we don&rsquo;t want to make the framework depending
+on spring and force everyone to include it. In the end, we are using Java SPI
+(Service Provider Interface). In your generated API project, you can find four files in
+/src/main/resources/META-INF/services. These files contains plugins to be loaded/executed during
+server startup and shutdown.</p>
+
+<h1 id="shutdown-hook-providers">Shutdown Hook Providers</h1>
+
+<p>Shutdown hook providers are plugins that would be called during server shutdown in order to release
+resources. For example, close database connections.</p>
+
+<p>All shutdown hook providers will implement interface com.networknt.server.ShutdownHookProvider</p>
+
+<pre><code>public interface ShutdownHookProvider {
+    void onShutdown();
+}
+
+</code></pre>
+
+<p>The onShutdown() in your implementation will be called before server shutdown.</p>
+
+<h1 id="startup-hook-providers">Startup Hook Providers</h1>
+
+<p>Startup hook providers are plugins that would be called during server startup in order to initialize
+resources. For example, create database connection pool, load spring application context etc.</p>
+
+<p>All startup hook providers will implement interface com.networknt.server.StartupHookProvider</p>
+
+<pre><code>public interface StartupHookProvider {
+    void onStartup();
 }
 </code></pre>
 
-<p>If enabled is false, this middleware won&rsquo;t be loaded during server startup.
-sanitizeBody and sanitizeHeader control if body and header need to be sanitized or both.</p>
+<p>The onStartup() in your implementation will be called before server startup.</p>
 
-<h1 id="query-parameters">Query Parameters</h1>
+<h1 id="handler-provider">Handler Provider</h1>
 
-<p>In other platforms especially JEE containers, query parameters need to be sanitized as well.
-However, I have found that Undertow does sanitize special characters in query parameters. This
-is why this handler doesn&rsquo;t do anything about query parameters.</p>
+<p>There is only one handler provider that is needed to wire in API implementations. In most of the
+cases, it would be an instance of io.undertow.server.RoutingHandler just like the generated <a href="https://github.com/networknt/light-java-example/tree/master/petstore">petstore
+project</a>. However, it is not
+limited and it can be several handlers chained together. One example is the
+<a href="https://github.com/networknt/light-java-example/tree/master/webserver">webserver example</a> and it
+has several handlers chained together to provide API routing as well as static website. The handler
+provide code can be found <a href="https://github.com/networknt/light-java-example/blob/master/webserver/src/main/java/com/networknt/webserver/handler/WebServerHandlerProvider.java">here</a></p>
 
-<h1 id="encode-library">Encode Library</h1>
+<p>If you have OpenAPI specification defined, this handler provider will be generated from
+<a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a>. <a href="https://github.com/networknt/light-java-example/blob/master/petstore/src/main/java/io/swagger/handler/PathHandlerProvider.java">Here</a>
+is a generated petstore handler provider that has the mapping for all endpoints.</p>
 
-<p>The library used for cross site scripting sanitization is from <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS">https://www.owasp.org/index.php/Cross-site_Scripting_(XSS</a>)
-and the library can be found at <a href="https://github.com/OWASP/owasp-java-encoder">https://github.com/OWASP/owasp-java-encoder</a></p>
+<p>Handler provider implements interface com.networknt.server.HandlerProvider</p>
 
-<h1 id="encode-level">Encode Level</h1>
+<pre><code>public interface HandlerProvider {
+    HttpHandler getHandler();
+}
 
-<p>The encode level we are using for both header and body is &ldquo;forJavaScriptSource&rdquo;. This gives us
-certain level of confident and it won&rsquo;t mess up header and body in most the case.</p>
+</code></pre>
+
+<p>The getHandler() will return an HttpHandler or a chain of HttpHandlers wrapped together. This handler
+will be called in the request/response chain right after all middleware handlers are called.</p>
+
+<h1 id="middleware-handlers">Middleware Handlers</h1>
+
+<p>There are some <a href="https://networknt.github.io/light-java/middleware/">builtin middleware components</a>
+in the framework to address common cross cutting concerns. There are implemented in a way we think
+the best to meet most of business requirements. In other words, there are opinionated. For product
+that built top of the framework, you can add/customize/replace existing middleware handlers.</p>
+
+<p>All middleware handlers need to implement interface com.networknt.handler.MiddlewareHandler.</p>
+
+<pre><code>public interface MiddlewareHandler extends HttpHandler {
+
+    HttpHandler getNext();
+
+    MiddlewareHandler setNext(final HttpHandler next);
+
+    boolean isEnabled();
+
+    void register();
+
+}
+</code></pre>
+
+<p>boolean isEnabled()</p>
+
+<p>Every middleware handler has a corresponding config file which is the same name lower case
+with .json extension. There must be flag to indicate if the handle will be wired in during
+server startup. This gives user a chance to temporary disable a particular middleware handler
+without changing the SPI configuration.</p>
+
+<p>void register()</p>
+
+<p>This function will be called when the middleware is wired in the request/response chain. It registers
+itself and configuration to server info component which can be accessed through a special endpoint
+to get runtime information on middleware handlers and their configuration along with other system
+info.</p>
+
+<p>MiddlewareHandler setNext(final HttpHandler next)</p>
+
+<p>As middleware handler are chained together, so the existing handler must be put in the current
+handler as next. When the current handler is completed, it will call the next handler if there is
+no error. And eventually, the user provided handler will be called if all middleware handler are
+completed without an error.</p>
+
+<h3 id="the-sequence-of-middleware-handlers">The sequence of middleware handlers.</h3>
+
+<p>There are dependencies between middleware handlers so the sequence to plug them in is very important.</p>
+
+<p>Here is the configuration for the built in middleware handlers.</p>
+
+<pre><code># This file is generated and should not be changed unless you want to plug in more handlers into the handler chain
+# for cross cutting concerns. In most cases, you should replace some of the default handlers with your own implementation
+# Please note: the sequence of these handlers are very important.
+
+#Validator
+com.networknt.validator.ValidatorHandler
+#FullAudit
+com.networknt.audit.FullAuditHandler
+#SimpleAudit
+com.networknt.audit.SimpleAuditHandler
+#Body
+com.networknt.body.BodyHandler
+#Security
+com.networknt.security.JwtVerifyHandler
+#Swagger
+com.networknt.swagger.SwaggerHandler
+#Metrics
+com.networknt.metrics.MetricsHandler
+#Exception
+com.networknt.exception.ExceptionHandler
+
+</code></pre>
+
+<h1 id="diagram">Diagram</h1>
+
+<p><img src="https://networknt.github.io/light-java/images/handler_chain.png" alt="handler_chain" /></p>
+
+<p>Note that audit, metrics and exception need to hooked in the response in order to handle exceptions
+on both request and response phase, calculate response time and dump response info into the audit.</p>
 
 
 			<aside class="copyright" role="note">
@@ -466,34 +589,18 @@ certain level of confident and it won&rsquo;t mess up header and body in most th
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/other/client/" title="Client">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Client
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/example/swagger/" title="swagger">
+      <a href="https://networknt.github.io/light-java/tools/memory_monitor/" title="Memory Monitoring on Mac">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              swagger
+              Memory Monitoring on Mac
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

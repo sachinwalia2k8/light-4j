@@ -7,8 +7,49 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 08 Oct 2016 22:14:59 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 27 Oct 2016 08:44:57 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Memory Monitoring on Mac</title>
+      <link>https://networknt.github.io/light-java/tools/memory_monitor/</link>
+      <pubDate>Thu, 27 Oct 2016 08:44:57 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tools/memory_monitor/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;While you are testing performance of your microservices, you might be interested in
+monitoring your server memory usage. The memory footprint is very important as we
+are talking about microservices - we might need to deploy hundreds or even thousands
+of microservices to compose a big application. In today&amp;rsquo;s cloud environment, you can
+create vms or containers based on cpu, memory and hard drive usage and usually memory
+is the big constraint and more costly than cpu and hard drive.&lt;/p&gt;
+
+&lt;h1 id=&#34;monitoring-memory-usage-for-java&#34;&gt;Monitoring Memory Usage for Java&lt;/h1&gt;
+
+&lt;p&gt;It is very hard to get the accurate memory usage for Java process.&lt;/p&gt;
+
+&lt;h1 id=&#34;on-mac&#34;&gt;On Mac&lt;/h1&gt;
+
+&lt;p&gt;On Mac, I usually start my performance test with [wrk]() and run it for 1 minute and
+monitor the memory with Activity Monitor. The memory tab will give you a snapshot of
+memory usage on each process. The number is not the real memory usage but the max
+memory usage and you can see it only increases to certain point and stays there.&lt;/p&gt;
+
+&lt;h1 id=&#34;on-linux&#34;&gt;On Linux&lt;/h1&gt;
+
+&lt;h1 id=&#34;on-windows&#34;&gt;On Windows&lt;/h1&gt;
+
+&lt;p&gt;I am not using Windows so I have limited experience on how to monitor Java memory usage
+on this platform. However, the generic JDK tools should work as other platforms.&lt;/p&gt;
+
+&lt;p&gt;If anyone has better ideas, please let me know or send me a pull request.&lt;/p&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+</description>
+    </item>
     
     <item>
       <title>Swagger codegen to generate server stub skeleton</title>
