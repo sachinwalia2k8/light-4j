@@ -147,31 +147,8 @@ completed without an error.&lt;/p&gt;
 
 &lt;p&gt;There are dependencies between middleware handlers so the sequence to plug them in is very important.&lt;/p&gt;
 
-&lt;p&gt;Here is the configuration for the built in middleware handlers.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# This file is generated and should not be changed unless you want to plug in more handlers into the handler chain
-# for cross cutting concerns. In most cases, you should replace some of the default handlers with your own implementation
-# Please note: the sequence of these handlers are very important.
-
-#Validator Validate request based on swagger specification (depending on Swagger and Body)
-com.networknt.validator.ValidatorHandler
-#Sanitizer Encode cross site scripting
-com.networknt.sanitizer.SanitizerHandler
-#SimpleAudit Log important info about the request into audit log
-com.networknt.audit.SimpleAuditHandler
-#Body Parse body based on content type in the header.
-com.networknt.body.BodyHandler
-#Security JWT token verification and scope verification (depending on SwaggerHandler)
-com.networknt.security.JwtVerifyHandler
-#Swagger Parsing swagger specification based on request uri and method.
-com.networknt.swagger.SwaggerHandler
-#Metrics In order to calculate response time accurately, this needs to be the second.
-com.networknt.metrics.MetricsHandler
-#Exception Global exception handler that needs to be called first.
-com.networknt.exception.ExceptionHandler
-
-
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For default plugins generated from &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-codegen/&#34;&gt;swagger-codegen&lt;/a&gt;,
+please refer to &lt;a href=&#34;https://networknt.github.io/light-java/other/server/&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;diagram&#34;&gt;Diagram&lt;/h1&gt;
 
@@ -1470,25 +1447,25 @@ swagger code generation and runtime request validation and security verification
 &lt;p&gt;It contains the following components:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/server/&#34;&gt;server&lt;/a&gt; - a framework on top of undertow http core that support plugins to
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/server/&#34;&gt;server&lt;/a&gt; - a framework on top of undertow http core that support plugins to
 performance different middleware handling.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/config/&#34;&gt;config&lt;/a&gt; - A module
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/config/&#34;&gt;config&lt;/a&gt; - A module
 that supports externalized configuration for standalone application and docker
 container.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/utility/&#34;&gt;utility&lt;/a&gt; - utility classes that are shared between modules.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/utility/&#34;&gt;utility&lt;/a&gt; - utility classes that are shared between modules.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/client/&#34;&gt;client&lt;/a&gt; - wrapper of apache HttpClient and HttpAsyncClient. support automatically
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;client&lt;/a&gt; - wrapper of apache HttpClient and HttpAsyncClient. support automatically
 cache and renew client credentials jwt token&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/info/&#34;&gt;info&lt;/a&gt; - a handler that
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/info/&#34;&gt;info&lt;/a&gt; - a handler that
 injects an endpoint /server/info that can out all plugged in component on the
 server and configuration of each component.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/mask/&#34;&gt;mask&lt;/a&gt; - used to mask sensitive info before logging to audit.log or server.log&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/mask/&#34;&gt;mask&lt;/a&gt; - used to mask sensitive info before logging to audit.log or server.log&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/status/&#34;&gt;status&lt;/a&gt; - used to model error http response and assist production monitoring
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/status/&#34;&gt;status&lt;/a&gt; - used to model error http response and assist production monitoring
 with unique error code.&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt; - a code generator
@@ -1517,7 +1494,7 @@ allow the resources to be released even someone click ctrl+c.&lt;/p&gt;
 scene. These components address the cross cutting concerns for all API implementation so that API developers
 can focus on their domain logic only. Each component will have a config file (same name but with .json ext)
 to control if the component will be enabled and its behavior. The framework has provide a list of the
-middleware plugins and experience developers can add other plugins into the request/response chain.&lt;/p&gt;
+middleware plugins and experienced developers can add other plugins into the request/response chain.&lt;/p&gt;
 
 &lt;p&gt;To add your own middleware plugins, update com.networknt.handler.MiddlewareHandler in
 your API project folder src/main/resources/META-INF/services&lt;/p&gt;
@@ -1528,23 +1505,24 @@ your API project folder src/main/resources/META-INF/services&lt;/p&gt;
 # for cross cutting concerns. In most cases, you should replace some of the default handlers with your own implementation
 # Please note: the sequence of these handlers are very important.
 
-#Validator
+#Validator Validate request based on swagger specification (depending on Swagger and Body)
 com.networknt.validator.ValidatorHandler
-#FullAudit
-com.networknt.audit.FullAuditHandler
-#SimpleAudit
+#Sanitizer Encode cross site scripting
+com.networknt.sanitizer.SanitizerHandler
+#SimpleAudit Log important info about the request into audit log
 com.networknt.audit.SimpleAuditHandler
-#Body
+#Body Parse body based on content type in the header.
 com.networknt.body.BodyHandler
-#Security
+#Security JWT token verification and scope verification (depending on SwaggerHandler)
 com.networknt.security.JwtVerifyHandler
-#Swagger
+#Swagger Parsing swagger specification based on request uri and method.
 com.networknt.swagger.SwaggerHandler
-#Metrics
+#Traceability check if X-Traceability-Id is in request header and put it into response header
+com.networknt.traceability.TraceabilityHandler
+#Metrics In order to calculate response time accurately, this needs to be the second.
 com.networknt.metrics.MetricsHandler
-#Exception
+#Exception Global exception handler that needs to be called first.
 com.networknt.exception.ExceptionHandler
-
 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2009,10 +1987,12 @@ certain level of confident and it won&amp;rsquo;t mess up header and body in mos
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;This is a example to compare performance between Spring Boot and Light Java framework. It can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;
+&lt;p&gt;This is an example to compare performance between other microservices
+platforms and Light Java framework. It can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;
 with the testing result on my desktop.&lt;/p&gt;
 
-&lt;p&gt;The light-java implementation is much simpler and faster(44 times faster) then Spring Boot which is the most popular API/microservices platform at the moment.&lt;/p&gt;
+&lt;p&gt;The light-java implementation is much simpler and faster(44 times faster)
+than Spring Boot which is the most popular API/microservices platform at the moment.&lt;/p&gt;
 </description>
     </item>
     

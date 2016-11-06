@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Examples - Light Java - The fastest Java API Framework</title>
+    <title>status - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/example/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/status/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/example/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/status/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,12 +69,14 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/light-java/example/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/light-java/example/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
 
 
 <div class="backdrop">
@@ -95,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Examples
+        status
       </div>
     </div>
 
@@ -137,6 +139,9 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        
+          <br>
+          networknt/light-java
         
       </div>
     </div>
@@ -283,14 +288,11 @@
 
 
 
-<a class="current" title="Examples" href="https://networknt.github.io/light-java/example/">
+<a  title="Examples" href="https://networknt.github.io/light-java/example/">
 	
 	Examples
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -358,7 +360,7 @@
 
 
 
-<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+<a  title="License" href="https://networknt.github.io/light-java/license/">
 	
 	License
 </a>
@@ -405,75 +407,107 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Example</h1>
+			<h1>status </h1>
 
 			
-			<a href="https://networknt.github.io/light-java/example/swagger/" title="swagger">
-				<h2>swagger</h2>
-			</a>
 
-			<br>
-			Introduction This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.
+<p>In the scenario that error happens on the server, a Status object is designed
+to encapsulate standard http response 4xx and 5xx as well as application specific
+error code ERRXXXXX (prefixed with ERR with another 5 digits) and error message.
+Additionally, an description of the error will be available for more info about
+the error.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/routing/" title="routing">
-				<h2>routing</h2>
-			</a>
+<h1 id="data-elements">Data Elements</h1>
 
-			<br>
-			Introduction This is an example to show you how to use undertow routing handler.
+<p>Here are the four fields in the Status object.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/performance/" title="performance">
-				<h2>performance</h2>
-			</a>
+<pre><code>    int statusCode;
+    String code;
+    String message;
+    String description;
+</code></pre>
 
-			<br>
-			Introduction This is an example to compare performance between other microservices platforms and Light Java framework. It can be found here with the testing result on my desktop.
-The light-java implementation is much simpler and faster(44 times faster) than Spring Boot which is the most popular API/microservices platform at the moment.
+<h1 id="construct-the-object-from-status-json">Construct the object from status.json</h1>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/microservices/" title="microservices">
-				<h2>microservices</h2>
-			</a>
+<p>status.json is a configuration file that contains all the status error defined
+for the application and it has the structure like this.</p>
 
-			<br>
-			Introduction This example contains four projects:
-API A is calling API B and API C
-API B is calling API D
-This example shows:
- How to build microservices How to do API to API call with light-java client component How to protect API with JWT token with scopes How to performance test APIs with wrk  There is a tutorial for these projects.
-Note: these projects are not 100% completed yet.
+<pre><code>{
+  &quot;ERR10000&quot;: {
+    &quot;statusCode&quot;: 401,
+    &quot;code&quot;: &quot;ERR10000&quot;,
+    &quot;message&quot;: &quot;INVALID_AUTH_TOKEN&quot;,
+    &quot;description&quot;: &quot;Incorrect signature or malformed token in authorization header&quot;
+  },
+  &quot;ERR10001&quot;: {
+    &quot;statusCode&quot;: 401,
+    &quot;code&quot;: &quot;ERR10001&quot;,
+    &quot;message&quot;: &quot;AUTH_TOKEN_EXPIRED&quot;,
+    &quot;description&quot;: &quot;Jwt token in authorization header expired&quot;
+  },
+  .
+  .
+  .
+}
+</code></pre>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/petstore/" title="petstore">
-				<h2>petstore</h2>
-			</a>
+<p>To construct the object from this config</p>
 
-			<br>
-			Introduction Petstore is a generated API project based on OpenAPI specification found here.
-This project will be updated constantly when a new version of light-java framework released or any updates in swagger-codegen.
-Here is the command line to generate this project from swagger-codegen directory.
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i <a href="http://petstore.swagger.io/v2/swagger.json">http://petstore.swagger.io/v2/swagger.json</a> -l light-java -o ~/networknt/light-java-example/petstore
+<pre><code>    static final String STATUS_METHOD_NOT_ALLOWED = &quot;ERR10008&quot;;
+    .
+    .
+    .
+    Status status = new Status(STATUS_METHOD_NOT_ALLOWED);
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/database/" title="database">
-				<h2>database</h2>
-			</a>
+</code></pre>
 
-			<br>
-			Introduction This example can be found at <a href="https://github.com/networknt/light-java-example/tree/master/database">https://github.com/networknt/light-java-example/tree/master/database</a>
-There are three parts in this projects:
- An API implemented on top of light-java framework. Mysql database as part of the docker compose with init script. Postgres database as part of the docker compose with init script.  The project shows:
- How to use HikariCP for JDBC connection pool. How to initialize database connection pool and plug it into light-java startup hooks.
+<p>To construct the object with arguments to have a description with context
+information.</p>
 
-			<hr>
-			
+<pre><code>   return new Status(&quot;ERR11000&quot;, queryParameter.getName(), swaggerOperation.getPathString().original());
+
+</code></pre>
+
+<h1 id="convert-to-json-response">Convert to JSON response.</h1>
+
+<p>There are several way to serialize the object to JSON in response. And string
+concat is almost 10 times faster than Jackson ObjectMapper. For one million
+objects:</p>
+
+<pre><code>Jackson Perf 503
+ToString Perf 65
+
+</code></pre>
+
+<h1 id="error-code-range-allocation">Error code range allocation</h1>
+
+<p>The error code prefixed with ERR with another 5 digits so that it can be easily
+scanned in log files. Also, certain error code can be used to trigger an alert
+such as email or pager notification on system wide issues.</p>
+
+<p>In order to make sure there is no conflict for error code allocation between
+teams, here is the rule</p>
+
+<p>10000-19999 reserved for the framework/system.
+   * 10000-10100 security</p>
+
+<ul>
+<li><p>11000-11999 validation</p></li>
+
+<li><p>12000-12999 undertow-oauth2</p></li>
+</ul>
+
+<p>20000-29999 common error codes within your business domain.
+90000-99999 customize error code that cannot be found in common range.</p>
+
+<h1 id="send-the-json-as-response">Send the JSON as response</h1>
+
+<pre><code>    Status status = new Status(STATUS_METHOD_NOT_ALLOWED);
+    exchange.setStatusCode(status.getStatusCode());
+    exchange.getResponseSender().send(status.toString());
+
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -484,6 +518,57 @@ There are three parts in this projects:
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/middleware/swagger/" title="swagger">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              swagger
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/middleware/security/" title="security">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              security
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
 		</div>
 	</article>
 
@@ -499,8 +584,8 @@ There are three parts in this projects:
 
     <script>
     
-      var base_url = '';
-      var repo_id  = '';
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
     
     </script>
 

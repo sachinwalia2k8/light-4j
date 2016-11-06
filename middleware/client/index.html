@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Examples - Light Java - The fastest Java API Framework</title>
+    <title>Client - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/example/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/client/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/example/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/client/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,12 +69,14 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/light-java/example/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/light-java/example/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
 
 
 <div class="backdrop">
@@ -95,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Examples
+        Client
       </div>
     </div>
 
@@ -137,6 +139,9 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        
+          <br>
+          networknt/light-java
         
       </div>
     </div>
@@ -247,7 +252,7 @@
 
 
 
-<a  title="Other Components" href="https://networknt.github.io/light-java/other/">
+<a  title="Other Components" href="https://networknt.github.io/light-java/other-components/">
 	
 	Other Components
 </a>
@@ -283,14 +288,11 @@
 
 
 
-<a class="current" title="Examples" href="https://networknt.github.io/light-java/example/">
+<a  title="Examples" href="https://networknt.github.io/light-java/example/">
 	
 	Examples
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -358,7 +360,7 @@
 
 
 
-<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+<a  title="License" href="https://networknt.github.io/light-java/license/">
 	
 	License
 </a>
@@ -405,75 +407,42 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Example</h1>
+			<h1>Client </h1>
 
 			
-			<a href="https://networknt.github.io/light-java/example/swagger/" title="swagger">
-				<h2>swagger</h2>
-			</a>
 
-			<br>
-			Introduction This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.
+<p>Client is used to call APIs from the following sources:</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/routing/" title="routing">
-				<h2>routing</h2>
-			</a>
+<ol>
+<li>Web server</li>
+<li>Standalone Application</li>
+<li>API</li>
+</ol>
 
-			<br>
-			Introduction This is an example to show you how to use undertow routing handler.
+<p>It provides method to get authorization jwt token and automatically gets client
+credentials token for scopes in API to API calls.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/performance/" title="performance">
-				<h2>performance</h2>
-			</a>
+<h1 id="sync-client">Sync Client</h1>
 
-			<br>
-			Introduction This is an example to compare performance between other microservices platforms and Light Java framework. It can be found here with the testing result on my desktop.
-The light-java implementation is much simpler and faster(44 times faster) than Spring Boot which is the most popular API/microservices platform at the moment.
+<p>This is a wrapper of Apache HttpClient with built-in connection pools and TLS
+support. It can be used to call another API in the request context.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/microservices/" title="microservices">
-				<h2>microservices</h2>
-			</a>
+<h1 id="async-client">Async Client</h1>
 
-			<br>
-			Introduction This example contains four projects:
-API A is calling API B and API C
-API B is calling API D
-This example shows:
- How to build microservices How to do API to API call with light-java client component How to protect API with JWT token with scopes How to performance test APIs with wrk  There is a tutorial for these projects.
-Note: these projects are not 100% completed yet.
+<p>This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
+TLS support. It should be used it multiple APIs will be called in the request
+context.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/petstore/" title="petstore">
-				<h2>petstore</h2>
-			</a>
+<h1 id="client-credentials-token-renew">Client Credentials token renew</h1>
 
-			<br>
-			Introduction Petstore is a generated API project based on OpenAPI specification found here.
-This project will be updated constantly when a new version of light-java framework released or any updates in swagger-codegen.
-Here is the command line to generate this project from swagger-codegen directory.
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i <a href="http://petstore.swagger.io/v2/swagger.json">http://petstore.swagger.io/v2/swagger.json</a> -l light-java -o ~/networknt/light-java-example/petstore
+<p>The renew of token happens behind the scene and it supports circuit breaker
+is OAuth2 server is down or busy. It renew the token pro-actively before the
+current one is expired and let all requests go with the current token. It only
+block other request if the current request is trying to renew an expired token.
+When token renew in this case fails, all request will be rejected with timeout
+and subsequent requests the same until a grace period is passed so that the
+renew process is start again.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/database/" title="database">
-				<h2>database</h2>
-			</a>
-
-			<br>
-			Introduction This example can be found at <a href="https://github.com/networknt/light-java-example/tree/master/database">https://github.com/networknt/light-java-example/tree/master/database</a>
-There are three parts in this projects:
- An API implemented on top of light-java framework. Mysql database as part of the docker compose with init script. Postgres database as part of the docker compose with init script.  The project shows:
- How to use HikariCP for JDBC connection pool. How to initialize database connection pool and plug it into light-java startup hooks.
-
-			<hr>
-			
 
 			<aside class="copyright" role="note">
 				
@@ -484,6 +453,57 @@ There are three parts in this projects:
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/roadmap/" title="Road Map">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Road Map
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/management/flow/" title="Development Flow">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Development Flow
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
 		</div>
 	</article>
 
@@ -499,8 +519,8 @@ There are three parts in this projects:
 
     <script>
     
-      var base_url = '';
-      var repo_id  = '';
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
     
     </script>
 

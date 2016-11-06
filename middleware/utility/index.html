@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Examples - Light Java - The fastest Java API Framework</title>
+    <title>utility - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/example/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/utility/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/example/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/utility/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,12 +69,14 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/light-java/example/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/light-java/example/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
 
 
 <div class="backdrop">
@@ -95,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Examples
+        utility
       </div>
     </div>
 
@@ -137,6 +139,9 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        
+          <br>
+          networknt/light-java
         
       </div>
     </div>
@@ -283,14 +288,11 @@
 
 
 
-<a class="current" title="Examples" href="https://networknt.github.io/light-java/example/">
+<a  title="Examples" href="https://networknt.github.io/light-java/example/">
 	
 	Examples
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -358,7 +360,7 @@
 
 
 
-<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+<a  title="License" href="https://networknt.github.io/light-java/license/">
 	
 	License
 </a>
@@ -405,75 +407,27 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Example</h1>
+			<h1>utility </h1>
 
 			
-			<a href="https://networknt.github.io/light-java/example/swagger/" title="swagger">
-				<h2>swagger</h2>
-			</a>
 
-			<br>
-			Introduction This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.
+<p>This module contains some useful classes that shared by multiple modules within
+the framework.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/routing/" title="routing">
-				<h2>routing</h2>
-			</a>
+<h1 id="constants">Constants</h1>
 
-			<br>
-			Introduction This is an example to show you how to use undertow routing handler.
+<p>Contains all the constants shared by all modules.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/performance/" title="performance">
-				<h2>performance</h2>
-			</a>
+<h1 id="moduleregistry">ModuleRegistry</h1>
 
-			<br>
-			Introduction This is an example to compare performance between other microservices platforms and Light Java framework. It can be found here with the testing result on my desktop.
-The light-java implementation is much simpler and faster(44 times faster) than Spring Boot which is the most popular API/microservices platform at the moment.
+<p>When the plugin modules are loaded, it will register itself to this module along
+with configuration. When /server/info is called, the endpoint will return all
+plugged in modules and their configurations.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/microservices/" title="microservices">
-				<h2>microservices</h2>
-			</a>
+<h1 id="util">Util</h1>
 
-			<br>
-			Introduction This example contains four projects:
-API A is calling API B and API C
-API B is calling API D
-This example shows:
- How to build microservices How to do API to API call with light-java client component How to protect API with JWT token with scopes How to performance test APIs with wrk  There is a tutorial for these projects.
-Note: these projects are not 100% completed yet.
+<p>Some useful utility method like uuid generator etc.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/petstore/" title="petstore">
-				<h2>petstore</h2>
-			</a>
-
-			<br>
-			Introduction Petstore is a generated API project based on OpenAPI specification found here.
-This project will be updated constantly when a new version of light-java framework released or any updates in swagger-codegen.
-Here is the command line to generate this project from swagger-codegen directory.
-java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i <a href="http://petstore.swagger.io/v2/swagger.json">http://petstore.swagger.io/v2/swagger.json</a> -l light-java -o ~/networknt/light-java-example/petstore
-
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/example/database/" title="database">
-				<h2>database</h2>
-			</a>
-
-			<br>
-			Introduction This example can be found at <a href="https://github.com/networknt/light-java-example/tree/master/database">https://github.com/networknt/light-java-example/tree/master/database</a>
-There are three parts in this projects:
- An API implemented on top of light-java framework. Mysql database as part of the docker compose with init script. Postgres database as part of the docker compose with init script.  The project shows:
- How to use HikariCP for JDBC connection pool. How to initialize database connection pool and plug it into light-java startup hooks.
-
-			<hr>
-			
 
 			<aside class="copyright" role="note">
 				
@@ -484,6 +438,57 @@ There are three parts in this projects:
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/middleware/validator/" title="Validator">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Validator
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/middleware/swagger/" title="swagger">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              swagger
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
 		</div>
 	</article>
 
@@ -499,8 +504,8 @@ There are three parts in this projects:
 
     <script>
     
-      var base_url = '';
-      var repo_id  = '';
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
     
     </script>
 

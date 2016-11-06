@@ -48,10 +48,12 @@
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;This is a example to compare performance between Spring Boot and Light Java framework. It can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;
+&lt;p&gt;This is an example to compare performance between other microservices
+platforms and Light Java framework. It can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;
 with the testing result on my desktop.&lt;/p&gt;
 
-&lt;p&gt;The light-java implementation is much simpler and faster(44 times faster) then Spring Boot which is the most popular API/microservices platform at the moment.&lt;/p&gt;
+&lt;p&gt;The light-java implementation is much simpler and faster(44 times faster)
+than Spring Boot which is the most popular API/microservices platform at the moment.&lt;/p&gt;
 </description>
     </item>
     
