@@ -1247,11 +1247,7 @@ ModuleRegistry.registerModule(Client.class.getName(), Config.getInstance().getJs
       <pubDate>Sun, 23 Oct 2016 13:22:33 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;light-java is a Java API framework based on undertow http core that supports
+      <description>&lt;p&gt;light-java is a Java API framework based on undertow http core that supports
 swagger code generation and runtime request validation and security verification.&lt;/p&gt;
 
 &lt;p&gt;It contains the following components:&lt;/p&gt;
@@ -1320,7 +1316,7 @@ com.networknt.validator.ValidatorHandler
 #Sanitizer Encode cross site scripting
 com.networknt.sanitizer.SanitizerHandler
 #SimpleAudit Log important info about the request into audit log
-com.networknt.audit.SimpleAuditHandler
+com.networknt.audit.AuditHandler
 #Body Parse body based on content type in the header.
 com.networknt.body.BodyHandler
 #Security JWT token verification and scope verification (depending on SwaggerHandler)
@@ -1677,37 +1673,96 @@ with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
       <guid>https://networknt.github.io/light-java/other/client/</guid>
       <description>
 
+&lt;p&gt;#&lt;/p&gt;
+
 &lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Web server&lt;/li&gt;
-&lt;li&gt;Standalone Application&lt;/li&gt;
-&lt;li&gt;API&lt;/li&gt;
+&lt;li&gt;Web Server&lt;/li&gt;
+&lt;li&gt;Standalone Application/Mobile Application&lt;/li&gt;
+&lt;li&gt;API/Service&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;It provides method to get authorization jwt token and automatically gets client
-credentials token for scopes in API to API calls.&lt;/p&gt;
+&lt;p&gt;It provides method to get authorization token and automatically gets client
+credentials token for scopes in API to API calls. It also helps to pass correlationId
+and traceabilityId to the next service.&lt;/p&gt;
 
-&lt;h1 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h1&gt;
+&lt;h1 id=&#34;type-of-client&#34;&gt;Type of client&lt;/h1&gt;
+
+&lt;h2 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h2&gt;
 
 &lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
-support. It can be used to call another API in the request context.&lt;/p&gt;
+support. It can be used to call another API/Service in the request context.&lt;/p&gt;
 
-&lt;h1 id=&#34;async-client&#34;&gt;Async Client&lt;/h1&gt;
+&lt;h2 id=&#34;async-client&#34;&gt;Async Client&lt;/h2&gt;
 
 &lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
-TLS support. It should be used it multiple APIs will be called in the request
+TLS support. It should be used if multiple APIs will be called in the request
 context.&lt;/p&gt;
 
-&lt;h1 id=&#34;client-credentials-token-renew&#34;&gt;Client Credentials token renew&lt;/h1&gt;
+&lt;h1 id=&#34;client-credentials-token-renew-and-cache&#34;&gt;Client Credentials token renew and cache&lt;/h1&gt;
 
 &lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
-is OAuth2 server is down or busy. It renew the token pro-actively before the
-current one is expired and let all requests go with the current token. It only
+if OAuth2 server is down or busy. It renews the token pro-actively before the
+current one is expired and lets all requests go with the current token. It only
 block other request if the current request is trying to renew an expired token.
-When token renew in this case fails, all request will be rejected with timeout
+When token renewal in this case fails, all request will be rejected with timeout
 and subsequent requests the same until a grace period is passed so that the
 renew process is start again.&lt;/p&gt;
+
+&lt;h1 id=&#34;examples&#34;&gt;Examples&lt;/h1&gt;
+
+&lt;h3 id=&#34;get-sync-client&#34;&gt;get sync client&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;    CloseableHttpClient client = Client.getInstance().getSyncClient();
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;get-async-client&#34;&gt;get async client&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;    CloseableHttpAsyncClient client = Client.getInstance().getAsyncClient();
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;call-from-web-server&#34;&gt;call from web server&lt;/h3&gt;
+
+&lt;p&gt;To set the header with authorization code JWT token.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public void addAuthToken(HttpRequest request, String token) 
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To set the header with authorization code JWT token and traceabilityId.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public void addAuthTokenTrace(HttpRequest request, String token, String traceabilityId) 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;call-from-standalone-app-mobile-app&#34;&gt;call from standalone app/mobile app&lt;/h3&gt;
+
+&lt;p&gt;To set the header with client credentials JWT token.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public void addCcToken(HttpRequest request) throws ClientException, ApiException 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To set the header with client credentials JWT token and traceabilityId.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public void addCcTokenTrace(HttpRequest request, String traceabilityId) throws ClientException, ApiException 
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;call-from-api-service&#34;&gt;call from API/service&lt;/h3&gt;
+
+&lt;p&gt;To pass in exchange.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public void propagateHeaders(HttpRequest request, final HttpServerExchange exchange) throws ClientException, ApiException 
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To pass in variables individually.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public void populateHeader(HttpRequest request, String authToken, String correlationId, String traceabilityId) throws ClientException, ApiException 
+
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

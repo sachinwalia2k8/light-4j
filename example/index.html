@@ -426,13 +426,14 @@
 
 			<hr>
 			
-			<a href="https://networknt.github.io/light-java/example/performance/" title="performance">
-				<h2>performance</h2>
+			<a href="https://networknt.github.io/light-java/example/performance/" title="Performance">
+				<h2>Performance</h2>
 			</a>
 
 			<br>
-			Introduction This is an example to compare performance between other microservices platforms and Light Java framework. It can be found here with the testing result on my desktop.
-The light-java implementation is much simpler and faster(44 times faster) than Spring Boot which is the most popular API/microservices platform at the moment.
+			This is an example to compare performance between other microservices platforms and Light Java framework. Source code can be found here with the testing result on my desktop.
+Test Results Here is the light-java server performance.
+steve@joy:~/tool/wrk$ wrk -t4 -c128 -d30s <a href="http://localhost:8080">http://localhost:8080</a> -s pipeline.lua &ndash;latency &ndash; / 16 Running 30s test @ <a href="http://localhost:8080">http://localhost:8080</a> 4 threads and 128 connections Thread Stats Avg Stdev Max +/- Stdev Latency 2.46ms 3.83ms 85.33ms 89.
 
 			<hr>
 			

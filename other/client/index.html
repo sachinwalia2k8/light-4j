@@ -411,37 +411,96 @@
 
 			
 
+<p>#</p>
+
 <p>Client is used to call APIs from the following sources:</p>
 
 <ol>
-<li>Web server</li>
-<li>Standalone Application</li>
-<li>API</li>
+<li>Web Server</li>
+<li>Standalone Application/Mobile Application</li>
+<li>API/Service</li>
 </ol>
 
-<p>It provides method to get authorization jwt token and automatically gets client
-credentials token for scopes in API to API calls.</p>
+<p>It provides method to get authorization token and automatically gets client
+credentials token for scopes in API to API calls. It also helps to pass correlationId
+and traceabilityId to the next service.</p>
 
-<h1 id="sync-client">Sync Client</h1>
+<h1 id="type-of-client">Type of client</h1>
+
+<h2 id="sync-client">Sync Client</h2>
 
 <p>This is a wrapper of Apache HttpClient with built-in connection pools and TLS
-support. It can be used to call another API in the request context.</p>
+support. It can be used to call another API/Service in the request context.</p>
 
-<h1 id="async-client">Async Client</h1>
+<h2 id="async-client">Async Client</h2>
 
 <p>This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
-TLS support. It should be used it multiple APIs will be called in the request
+TLS support. It should be used if multiple APIs will be called in the request
 context.</p>
 
-<h1 id="client-credentials-token-renew">Client Credentials token renew</h1>
+<h1 id="client-credentials-token-renew-and-cache">Client Credentials token renew and cache</h1>
 
 <p>The renew of token happens behind the scene and it supports circuit breaker
-is OAuth2 server is down or busy. It renew the token pro-actively before the
-current one is expired and let all requests go with the current token. It only
+if OAuth2 server is down or busy. It renews the token pro-actively before the
+current one is expired and lets all requests go with the current token. It only
 block other request if the current request is trying to renew an expired token.
-When token renew in this case fails, all request will be rejected with timeout
+When token renewal in this case fails, all request will be rejected with timeout
 and subsequent requests the same until a grace period is passed so that the
 renew process is start again.</p>
+
+<h1 id="examples">Examples</h1>
+
+<h3 id="get-sync-client">get sync client</h3>
+
+<pre><code>    CloseableHttpClient client = Client.getInstance().getSyncClient();
+
+</code></pre>
+
+<h3 id="get-async-client">get async client</h3>
+
+<pre><code>    CloseableHttpAsyncClient client = Client.getInstance().getAsyncClient();
+
+</code></pre>
+
+<h3 id="call-from-web-server">call from web server</h3>
+
+<p>To set the header with authorization code JWT token.</p>
+
+<pre><code>    public void addAuthToken(HttpRequest request, String token) 
+
+</code></pre>
+
+<p>To set the header with authorization code JWT token and traceabilityId.</p>
+
+<pre><code>    public void addAuthTokenTrace(HttpRequest request, String token, String traceabilityId) 
+</code></pre>
+
+<h3 id="call-from-standalone-app-mobile-app">call from standalone app/mobile app</h3>
+
+<p>To set the header with client credentials JWT token.</p>
+
+<pre><code>    public void addCcToken(HttpRequest request) throws ClientException, ApiException 
+</code></pre>
+
+<p>To set the header with client credentials JWT token and traceabilityId.</p>
+
+<pre><code>    public void addCcTokenTrace(HttpRequest request, String traceabilityId) throws ClientException, ApiException 
+
+</code></pre>
+
+<h3 id="call-from-api-service">call from API/service</h3>
+
+<p>To pass in exchange.</p>
+
+<pre><code>    public void propagateHeaders(HttpRequest request, final HttpServerExchange exchange) throws ClientException, ApiException 
+
+</code></pre>
+
+<p>To pass in variables individually.</p>
+
+<pre><code>    public void populateHeader(HttpRequest request, String authToken, String correlationId, String traceabilityId) throws ClientException, ApiException 
+
+</code></pre>
 
 
 			<aside class="copyright" role="note">
