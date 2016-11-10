@@ -7,8 +7,113 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sun, 06 Nov 2016 11:04:20 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 09 Nov 2016 21:13:27 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://networknt.github.io/light-java/architecture/monitoring/</link>
+      <pubDate>Wed, 09 Nov 2016 21:13:27 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/monitoring/</guid>
+      <description>
+
+&lt;p&gt;Monitoring used to be a somewhat passive thing. You used tools to monitor the
+application process/logs and perhaps send an alert if something seemed wrong,&lt;br /&gt;
+but mostly it was hands off. When we move to microservices architecture, things
+are changing.&lt;/p&gt;
+
+&lt;h2 id=&#34;user-experience-and-microservices-monitoring&#34;&gt;User Experience and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;With Microservices which are released more often, you can try new features and
+see how they impact user usage patterns. With this feedback, you can improve
+your application. It is not uncommon to employ A/B testing and multi-variant
+testing to try out new combinations of features. Monitoring is more than just
+watching for failure. With big data, data science, and microservices,
+monitoring microservices runtime stats is required to know your application
+users. You want to know what your users like and dislike and react.&lt;/p&gt;
+
+&lt;h2 id=&#34;debugging-and-microservices-monitoring&#34;&gt;Debugging and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Runtime statistics and metrics are critical for distributed systems. Since
+microservices architecture use a lot of remote calls. Monitoring microservices
+metrics can include request per second, available memory, #threads, #connections,
+failed authentication, expired tokens, etc. These parameters are important for
+understanding and debugging your code. Working with distributed systems is hard.
+Working with distributed systems without reactive monitoring is crazy. Reactive
+monitoring allows you to react to failure conditions and ramp of services for
+higher loads.&lt;/p&gt;
+
+&lt;h2 id=&#34;circuit-breaker-and-microservices-monitoring&#34;&gt;Circuit Breaker and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;You can employ the Circuit Breaker pattern to prevent a catastrophic cascade,
+and reactive microservices monitoring can be the trigger. Downstream services
+can be registered in a service discovery so that you can mark nodes as unhealthy
+as well react by reroute in the case of outages. The reaction can be serving up
+a deprecated version of the data or service, but the key is to avoid cascading
+failure. You don&amp;rsquo;t want your services falling over like dominoes.&lt;/p&gt;
+
+&lt;h2 id=&#34;cloud-orchestration-and-microservices-monitoring&#34;&gt;Cloud Orchestration and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Reactive microservices monitoring would enable you to detect heavy load, and
+spin up new instances with the cloud orchestration platform of your choice
+(EC2, CloudStack, OpenStack, Rackspace, boto, etc.).&lt;/p&gt;
+
+&lt;h2 id=&#34;public-microservices-and-microservices-monitoring&#34;&gt;Public Microservices and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Microservices monitoring of runtime statistics can be used to rate limiting
+a partners Application ID. You don&amp;rsquo;t want partners to consume all of your
+well-tuned, high-performant microservices resources. It is okay to trust your
+partners but use Microservices Monitoring to verify.&lt;/p&gt;
+
+&lt;p&gt;Monitoring public microservices is your way to verify. Once you make microservices
+publicly available or partner available, you have to monitor and rate limit.&lt;/p&gt;
+
+&lt;p&gt;This is not a new concept. If you have ever used a public REST API from Google for
+example, you are well aware of rate limiting. A rate limit will do things like limit
+the number of connections you’re allowed to make. It is common for rate limits to
+limit the number of certain requests that a client id or partner id is allowed to
+make in a given time period. This is protection.&lt;/p&gt;
+
+&lt;p&gt;Deploying public or partner accessible microservices without this protection is
+lunacy and a recipe for disaster, unless you like failing when someone decides to
+hit your endpoints 10x more than you did the capacity planning for. Avoid long
+nights and tears. Monitor microservices that you publish, and limit access to them.&lt;/p&gt;
+
+&lt;p&gt;The reactive manifesto is a good tutor for the types of monitoring you will want
+to do and states that your system should react to change instead of just fail.&lt;/p&gt;
+
+&lt;h2 id=&#34;microservices-framework-and-microservices-monitoring&#34;&gt;Microservices Framework and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Light-Java a mircoservices framework that comes with a runtime metrics which can
+be used for Microservices Monitoring.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can query /server/health endpoint to detect if the service is available and healthy.&lt;/li&gt;
+&lt;li&gt;The framework collects metrics info and pushes it into influxdb and dashboard can be viewed from Grafana.&lt;/li&gt;
+&lt;li&gt;Rate limiting can be enabled at client_id level or ip address/user level.&lt;/li&gt;
+&lt;li&gt;Kubernetes monitors load of each pods and can start new instances on demand.&lt;/li&gt;
+&lt;li&gt;TraceabilityId and CorrelationId in logs that can be traced with tools like Logstash, GrayLog and Splunk.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;reactive-microservices-monitoring&#34;&gt;Reactive Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Reactive Microservices Monitoring is an essential ingredient of microservices architecture.
+You need it for debugging, knowing your users, working with partners, building reactive
+systems that react to load and failures without cascading outages. Reactive Microservices
+Monitoring can not be a hindsight decision. Build your microservices with microservices
+monitoring in mind from the start. Make sure that the microservices lib that you use has
+monitoring of runtime statistics built in from the start. Make sure that is a core part of
+the microservices library. Code Hale Statistics allow you to gather metrics in
+a standard way. Tools like Influxdb and Grafana, Kibana help you understand the
+data, and build dashboards. Light Java, the Java Microservices Framework, includes a metrics
+middleware which feeds into CodeHale Metrics. Light Java also proivdes a rate limiting
+middleware to limit access per client_id or IP address/user. The container orchestration tool
+like Kubernetes can also spin up new nodes/pods. With big data, data science,
+and microservices, monitoring microservices runtime stats is required to know your application
+users, know your partners, know what your system will do under load, etc.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>traceability</title>
@@ -18,7 +123,7 @@
       <guid>https://networknt.github.io/light-java/architecture/traceability/</guid>
       <description>
 
-&lt;p&gt;For microservices architecture, it is very important to trace request from one servcie to
+&lt;p&gt;For microservices architecture, it is very important to trace request from one service to
 another in the entire call tree in order to have big picture if something happens or have
 an audit log that is aggregated by database or Splunk.&lt;/p&gt;
 
@@ -55,6 +160,14 @@ the HttpRequest header with method calls.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;recommended-log-analysis-tool&#34;&gt;Recommended Log Analysis Tool&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/products/logstash&#34;&gt;ELK/Logstash (Open Source)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Graylog2/graylog2-server&#34;&gt;Graylog (Open Source with commercial version)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.splunk.com/&#34;&gt;Splunk (Commercial)&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -438,8 +551,6 @@ distributed JWT token verification and client credentials token caching and rene
       <guid>https://networknt.github.io/light-java/architecture/spring-is-bloated/</guid>
       <description>
 
-&lt;p&gt;#&lt;/p&gt;
-
 &lt;p&gt;Over the years, Spring seemed to be the replacement of JEE servers with IoC
 container and light weight servlet container as its foundation. Especially
 recently, Spring Boot brings in an easy development model and increases
@@ -451,10 +562,10 @@ developer productivity dramatically.&lt;/p&gt;
 
 &lt;p&gt;When Spring was out, it was only a small core with IoC contain and it was
 fast and easy to use. Now, I cannot even count how many Spring Components
-available. In order to complete with JEE, Spring basically implemented all
+available today. In order to complete with JEE, Spring basically implemented all
 replacements of JEE and these are heavy components.&lt;/p&gt;
 
-&lt;h3 id=&#34;spring-is-based-on-old-servlet-api-and-it-is-slow&#34;&gt;Spring is based on old servlet API and it is slow.&lt;/h3&gt;
+&lt;h3 id=&#34;most-spring-applications-are-based-on-old-servlet-api-and-it-is-slow&#34;&gt;Most Spring applications are based on old servlet API and it is slow.&lt;/h3&gt;
 
 &lt;p&gt;Another issue with Spring is due to the foundation of servlet container
 which was designed over ten years ago without multi-core, NIO etc in
@@ -467,18 +578,28 @@ found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/maste
 
 &lt;p&gt;The test result for Spring Boot was based on the embedded tomcat server and
 later on I have switched to Undertow servlet container for Spring Boot. The
-Undertow Servlet container is faster but still over 20 times slower then
+Undertow Servlet container is faster but still over 20-30 times slower then
 Light Java Framework which is built on top of Undertow core http server.&lt;/p&gt;
 
-&lt;p&gt;The 20 times difference between the two is due to Servlet overhead and Sprint
+&lt;p&gt;The 20-30 times difference between the two is due to Servlet overhead and Sprint
 Boot overhead and it is very significant.&lt;/p&gt;
+
+&lt;p&gt;After I published the peformance test results, one of the Spring developers pointed
+me to a new approach to build Spring Boot application with Netty. The performance
+is getting better but still very slow compare with Light Java.&lt;/p&gt;
+
+&lt;h3 id=&#34;memory-footprint&#34;&gt;Memory Footprint&lt;/h3&gt;
+
+&lt;p&gt;During these test, I observed that Spring Boot with embedded servlet container uses
+at least 5 times more memory. This is a big different in cloud computer as memory is
+very expensive.&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
-&lt;p&gt;Given above two main reasons, there is no way that Spring Boot can be used as a
+&lt;p&gt;Given above reasons, there is no way that Spring Boot can be used as a
 light weight platform for microservices. It is too heavy and two slow. And if you
 compare the codebase on both Spring Boot and Light Java, you can see Light Java
-code is small and easy to understand without any annotation.&lt;/p&gt;
+code is small and easy to understand without any annotations.&lt;/p&gt;
 </description>
     </item>
     
@@ -489,8 +610,6 @@ code is small and easy to understand without any annotation.&lt;/p&gt;
       
       <guid>https://networknt.github.io/light-java/architecture/jee-is-dead/</guid>
       <description>
-
-&lt;p&gt;##&lt;/p&gt;
 
 &lt;p&gt;When Java was out, big players like IBM, BEA, Oracle etc. saw a great opportunity
 to make money as it is a great language for web programming. But how can you make
@@ -571,11 +690,62 @@ independently.&lt;/p&gt;
 
 &lt;h2 id=&#34;microservices&#34;&gt;Microservices&lt;/h2&gt;
 
-&lt;p&gt;The answer for these questions is microservices. Wikipedia defines microservices as
+&lt;p&gt;The answer for these questions are microservices. Wikipedia defines microservices as
 &amp;ldquo;&amp;hellip;a software architecture style in which complex applications are composed of small,
 independent processes communicating with each other using language-agnostic APIs.
 These services are small, highly decoupled and focus on doing a small task,
 facilitating a modular approach to system-building.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Microservice Architecture make applications easier to build by breaking down application
+into services. The services are composable. Each service can be deployed and developed
+separately. The services can be composed into an application. The services have the
+possibility of being used in other applications more readily. This can speed up
+development as services can define an interface and then the services can be developed
+concurrently.&lt;/p&gt;
+
+&lt;p&gt;Another reason services make sense is resilience and scalability. Instead of depending
+on a single server and a single deployment, services can be spread around multiple
+machines, data centers or availability zones. If a service fails, you can start up
+another. Since the application is decomposed into microservices (small services),
+you can more efficiently scale it by spinning up more instances of the heaviest used
+services.&lt;/p&gt;
+
+&lt;p&gt;If you have lived through COM, DCOM, CORBA, EJBs, OSGi, J2EE, SOAP, SOA etc. then you
+know the idea of services and components is not a new thing. The issue with enterprise
+components is they assume the use of hardware servers which are large monoliths and
+you want to run a lot of things on the same server. We have EJBs, WAR files and EAR
+files, and all sorts of nifty components and archives because server acquisition was
+a lot more difficult. Well turns out in recent years, that makes no sense. Operating
+systems and servers are ephemeral, virtualized resources and can be shipped like a
+component. We have EC2, OpenStack, Vagrant and Docker. The world changed. Microservice
+Architecture just recognize this trend so you are not developing like you did when the
+hardware, cloud orchestration, multi-cores, and virtualization did not exist.&lt;/p&gt;
+
+&lt;p&gt;Don’t use an EAR file or a WAR file when you start a new project.  Now you can run a
+JVM in a Docker image which is just a process pretending to be an OS running in an OS
+that could be running in the cloud which is running inside of a virtual machine which
+is running in Linux server that you don’t own that you share with people who you don’t
+know. Got a busy season? Well then, spin up 100 more server instances for a few weeks
+or hours. This is why you run Java microservices as standalone processes and not running
+inside of a Java EE container, not even a servlet container.&lt;/p&gt;
+
+&lt;p&gt;Microservice generally provide an API endpoint over HTTP/JSON. This allows easy
+integration with not only services you build, but any software (open-source or from
+vendor) that provides an HTTP/JSON interface. This makes the services consumable and
+composable in ways that just make sense. A prime example of this is EC2, S3 and other
+services from Amazon (and others). The very infrastructure you deploy on can become
+part of the application and is programmable.&lt;/p&gt;
+
+&lt;p&gt;When you design your application to use microservices, you are designing it to be
+modular, programmable and composable. This allows you to replace microservices with
+other microservices. You can rewrite or improve parts of your larger application
+without disruption. When everything has a programmable API, communications between
+application microservices becomes easier. (Never trust a microservice that does not
+publish access to with curl).&lt;/p&gt;
+
+&lt;p&gt;While microservices are getting popular, a lot vendors are trying to re-brand their
+JEE based web services to microservices in order to sell their obsolete product.
+&lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;API Gateway&lt;/a&gt; is one of them.&lt;/p&gt;
 
 &lt;p&gt;Jason Bloomberg, president of Intellyx, talks about the distinction between a typical
 web service and a microservice, arguing against the tendency to try to simply rebrand
@@ -597,6 +767,16 @@ environment.&lt;/p&gt;
 containerizable by design. Furthermore, if you&amp;rsquo;re implementing containers,
 it&amp;rsquo;s difficult and typically unwise to put any new executable code other than
 microservices in them.&lt;/p&gt;
+
+&lt;p&gt;Docker and other container technologies are viewed by some as a integral to microservice
+architecture and some confuse and conflate containers with microservices. Containers are
+minimalist OS pieces to run your microservice on. Docker provides ease of development and
+enables easier integration testing.&lt;/p&gt;
+
+&lt;p&gt;Containers are just an enabler to microservices and you can do microservice development
+without containers. And you can use Docker to deploy monolithic application. Microservices
+and containers like Docker go well together. However, Microservices are a lot more than
+containers!&lt;/p&gt;
 
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 

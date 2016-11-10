@@ -7,8 +7,113 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sun, 06 Nov 2016 11:04:20 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 09 Nov 2016 21:13:27 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://networknt.github.io/light-java/architecture/monitoring/</link>
+      <pubDate>Wed, 09 Nov 2016 21:13:27 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/monitoring/</guid>
+      <description>
+
+&lt;p&gt;Monitoring used to be a somewhat passive thing. You used tools to monitor the
+application process/logs and perhaps send an alert if something seemed wrong,&lt;br /&gt;
+but mostly it was hands off. When we move to microservices architecture, things
+are changing.&lt;/p&gt;
+
+&lt;h2 id=&#34;user-experience-and-microservices-monitoring&#34;&gt;User Experience and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;With Microservices which are released more often, you can try new features and
+see how they impact user usage patterns. With this feedback, you can improve
+your application. It is not uncommon to employ A/B testing and multi-variant
+testing to try out new combinations of features. Monitoring is more than just
+watching for failure. With big data, data science, and microservices,
+monitoring microservices runtime stats is required to know your application
+users. You want to know what your users like and dislike and react.&lt;/p&gt;
+
+&lt;h2 id=&#34;debugging-and-microservices-monitoring&#34;&gt;Debugging and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Runtime statistics and metrics are critical for distributed systems. Since
+microservices architecture use a lot of remote calls. Monitoring microservices
+metrics can include request per second, available memory, #threads, #connections,
+failed authentication, expired tokens, etc. These parameters are important for
+understanding and debugging your code. Working with distributed systems is hard.
+Working with distributed systems without reactive monitoring is crazy. Reactive
+monitoring allows you to react to failure conditions and ramp of services for
+higher loads.&lt;/p&gt;
+
+&lt;h2 id=&#34;circuit-breaker-and-microservices-monitoring&#34;&gt;Circuit Breaker and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;You can employ the Circuit Breaker pattern to prevent a catastrophic cascade,
+and reactive microservices monitoring can be the trigger. Downstream services
+can be registered in a service discovery so that you can mark nodes as unhealthy
+as well react by reroute in the case of outages. The reaction can be serving up
+a deprecated version of the data or service, but the key is to avoid cascading
+failure. You don&amp;rsquo;t want your services falling over like dominoes.&lt;/p&gt;
+
+&lt;h2 id=&#34;cloud-orchestration-and-microservices-monitoring&#34;&gt;Cloud Orchestration and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Reactive microservices monitoring would enable you to detect heavy load, and
+spin up new instances with the cloud orchestration platform of your choice
+(EC2, CloudStack, OpenStack, Rackspace, boto, etc.).&lt;/p&gt;
+
+&lt;h2 id=&#34;public-microservices-and-microservices-monitoring&#34;&gt;Public Microservices and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Microservices monitoring of runtime statistics can be used to rate limiting
+a partners Application ID. You don&amp;rsquo;t want partners to consume all of your
+well-tuned, high-performant microservices resources. It is okay to trust your
+partners but use Microservices Monitoring to verify.&lt;/p&gt;
+
+&lt;p&gt;Monitoring public microservices is your way to verify. Once you make microservices
+publicly available or partner available, you have to monitor and rate limit.&lt;/p&gt;
+
+&lt;p&gt;This is not a new concept. If you have ever used a public REST API from Google for
+example, you are well aware of rate limiting. A rate limit will do things like limit
+the number of connections you’re allowed to make. It is common for rate limits to
+limit the number of certain requests that a client id or partner id is allowed to
+make in a given time period. This is protection.&lt;/p&gt;
+
+&lt;p&gt;Deploying public or partner accessible microservices without this protection is
+lunacy and a recipe for disaster, unless you like failing when someone decides to
+hit your endpoints 10x more than you did the capacity planning for. Avoid long
+nights and tears. Monitor microservices that you publish, and limit access to them.&lt;/p&gt;
+
+&lt;p&gt;The reactive manifesto is a good tutor for the types of monitoring you will want
+to do and states that your system should react to change instead of just fail.&lt;/p&gt;
+
+&lt;h2 id=&#34;microservices-framework-and-microservices-monitoring&#34;&gt;Microservices Framework and Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Light-Java a mircoservices framework that comes with a runtime metrics which can
+be used for Microservices Monitoring.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can query /server/health endpoint to detect if the service is available and healthy.&lt;/li&gt;
+&lt;li&gt;The framework collects metrics info and pushes it into influxdb and dashboard can be viewed from Grafana.&lt;/li&gt;
+&lt;li&gt;Rate limiting can be enabled at client_id level or ip address/user level.&lt;/li&gt;
+&lt;li&gt;Kubernetes monitors load of each pods and can start new instances on demand.&lt;/li&gt;
+&lt;li&gt;TraceabilityId and CorrelationId in logs that can be traced with tools like Logstash, GrayLog and Splunk.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;reactive-microservices-monitoring&#34;&gt;Reactive Microservices Monitoring&lt;/h2&gt;
+
+&lt;p&gt;Reactive Microservices Monitoring is an essential ingredient of microservices architecture.
+You need it for debugging, knowing your users, working with partners, building reactive
+systems that react to load and failures without cascading outages. Reactive Microservices
+Monitoring can not be a hindsight decision. Build your microservices with microservices
+monitoring in mind from the start. Make sure that the microservices lib that you use has
+monitoring of runtime statistics built in from the start. Make sure that is a core part of
+the microservices library. Code Hale Statistics allow you to gather metrics in
+a standard way. Tools like Influxdb and Grafana, Kibana help you understand the
+data, and build dashboards. Light Java, the Java Microservices Framework, includes a metrics
+middleware which feeds into CodeHale Metrics. Light Java also proivdes a rate limiting
+middleware to limit access per client_id or IP address/user. The container orchestration tool
+like Kubernetes can also spin up new nodes/pods. With big data, data science,
+and microservices, monitoring microservices runtime stats is required to know your application
+users, know your partners, know what your system will do under load, etc.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>traceability</title>
@@ -18,7 +123,7 @@
       <guid>https://networknt.github.io/light-java/architecture/traceability/</guid>
       <description>
 
-&lt;p&gt;For microservices architecture, it is very important to trace request from one servcie to
+&lt;p&gt;For microservices architecture, it is very important to trace request from one service to
 another in the entire call tree in order to have big picture if something happens or have
 an audit log that is aggregated by database or Splunk.&lt;/p&gt;
 
@@ -55,6 +160,14 @@ the HttpRequest header with method calls.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;recommended-log-analysis-tool&#34;&gt;Recommended Log Analysis Tool&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/products/logstash&#34;&gt;ELK/Logstash (Open Source)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Graylog2/graylog2-server&#34;&gt;Graylog (Open Source with commercial version)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.splunk.com/&#34;&gt;Splunk (Commercial)&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -2126,20 +2239,6 @@ certain level of confident and it won&amp;rsquo;t mess up header and body in mos
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>routing</title>
-      <link>https://networknt.github.io/light-java/example/routing/</link>
-      <pubDate>Sat, 22 Oct 2016 21:00:30 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/example/routing/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;This is an example to show you how to use undertow routing handler.&lt;/p&gt;
 </description>
     </item>
     
