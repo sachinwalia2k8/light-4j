@@ -413,15 +413,149 @@
 
 <h1 id="introduction">Introduction</h1>
 
-<p><a href="https://github.com/networknt/light-java-example/tree/master/petstore">Petstore</a> is a generated API project based on OpenAPI specification found <a href="http://petstore.swagger.io/v2/swagger.json">here</a>.</p>
+<p><a href="https://github.com/networknt/light-java-example/tree/master/petstore">Petstore</a>
+is a generated API project based on OpenAPI specification found <a href="http://petstore.swagger.io/v2/swagger.json">here</a>.</p>
 
-<p>This project will be updated constantly when a new version of light-java framework released or any updates in swagger-codegen.</p>
+<p>This project will be updated constantly when a new version of Light-Java framework
+is released or any updates in <a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a>.</p>
 
-<p>Here is the command line to generate this project from swagger-codegen directory.</p>
+<p>Here is the command line to generate this project from swagger-codegen directory. It
+assumes that you have light-java-example cloned in the same working directory and
+petstore directory is removed. If you keep the existing petstore, it will generate
+other files but not handlers and test cases for handlers by default. When you have
+new endpoints defined in the specification, then new handlers and handler test cases
+will be generated.</p>
 
 <pre><code>java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l light-java -o ~/networknt/light-java-example/petstore
 
 </code></pre>
+
+<h1 id="build-and-start">Build and Start</h1>
+
+<p>To build the generated server.</p>
+
+<pre><code>cd ..
+cd light-java-example/petstore
+mvn install exec:exec
+</code></pre>
+
+<p>Now the server will be started and listens to port 8080.</p>
+
+<h1 id="test">Test</h1>
+
+<p>The best tool to test REST API is <a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en">Postman</a>
+It is very easy to set headers and other parameters and save the configuration for future
+recall.</p>
+
+<p>Some people like curl command line and it works as well. Here is one example to access
+one of the endpoint petstore serves.</p>
+
+<pre><code>curl localhost:8080/v2/pet/111
+</code></pre>
+
+<p>And the result looks like this. This is the generated example response based on swagger
+specification.</p>
+
+<pre><code>{  &quot;photoUrls&quot; : [ &quot;aeiou&quot; ],  &quot;name&quot; : &quot;doggie&quot;,  &quot;id&quot; : 123456789,  &quot;category&quot; : {    &quot;name&quot; : &quot;aeiou&quot;,    &quot;id&quot; : 123456789  },  &quot;tags&quot; : [ {    &quot;name&quot; : &quot;aeiou&quot;,    &quot;id&quot; : 123456789  } ],  &quot;status&quot; : &quot;aeiou&quot;}
+</code></pre>
+
+<p>Now, let&rsquo;s test the server with an url that is not defined in the specification.</p>
+
+<pre><code>curl localhost:8080/abc
+</code></pre>
+
+<p>And the result is:</p>
+
+<pre><code>{&quot;statusCode&quot;:404,&quot;code&quot;:&quot;ERR10007&quot;,&quot;message&quot;:&quot;INVALID_REQUEST_PATH&quot;,&quot;description&quot;:&quot;Request path cannot be found in the spec.&quot;}
+</code></pre>
+
+<p>In fact, the specification is loaded into the framework at runtime and there is a
+module called Validator that does the validation against specification for headers,
+query parameters, uri parameters and body. It also supports validation using JSON
+schema with a independent library <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a></p>
+
+<h1 id="enable-secrity">Enable secrity</h1>
+
+<p>By default, the generated API has security turned off. You an turn on the JWT
+verification by updating src/main/resources/config/security.json</p>
+
+<p>Here is the default security.json</p>
+
+<pre><code>{
+  &quot;description&quot;: &quot;security configuration&quot;,
+  &quot;enableVerifyJwt&quot;: false,
+  &quot;enableVerifyScope&quot;: true,
+  &quot;enableMockJwt&quot;: false,
+  &quot;jwt&quot;: {
+    &quot;certificate&quot;: {
+      &quot;100&quot;: &quot;oauth/primary.crt&quot;,
+      &quot;101&quot;: &quot;oauth/secondary.crt&quot;
+    },
+    &quot;clockSkewInSeconds&quot;: 60
+  },
+  &quot;logJwtToken&quot;: true,
+  &quot;logClientUserScope&quot;: false
+}
+
+</code></pre>
+
+<p>And here is the updated security.json</p>
+
+<pre><code>{
+  &quot;description&quot;: &quot;security configuration&quot;,
+  &quot;enableVerifyJwt&quot;: true,
+  &quot;enableVerifyScope&quot;: true,
+  &quot;enableMockJwt&quot;: false,
+  &quot;jwt&quot;: {
+    &quot;certificate&quot;: {
+      &quot;100&quot;: &quot;oauth/primary.crt&quot;,
+      &quot;101&quot;: &quot;oauth/secondary.crt&quot;
+    },
+    &quot;clockSkewInSeconds&quot;: 60
+  },
+  &quot;logJwtToken&quot;: true,
+  &quot;logClientUserScope&quot;: false
+}
+
+</code></pre>
+
+<p>The updated security.json enabled JWT signature verification as well as scope
+verification.</p>
+
+<p>Let&rsquo;s shutdown the server by issuing a CTRL+C on the terminal. And restart the server
+after repackage it.</p>
+
+<pre><code>mvn package exec:exec
+</code></pre>
+
+<p>With the security enabled, the curl command won&rsquo;t work anymore.</p>
+
+<pre><code>curl localhost:8080/v2/pet/111
+</code></pre>
+
+<p>Result:</p>
+
+<pre><code>{&quot;statusCode&quot;:401,&quot;code&quot;:&quot;ERR10002&quot;,&quot;message&quot;:&quot;MISSING_AUTH_TOKEN&quot;,&quot;description&quot;:&quot;No Authorization header or the token is not bearer type&quot;}
+</code></pre>
+
+<p>In order to access it, you have to provide the right JWT token. There is a long lived
+token that can be found at <a href="https://github.com/networknt/light-oauth2">https://github.com/networknt/light-oauth2</a></p>
+
+<p>Let&rsquo;s use that token in curl.</p>
+
+<pre><code>curl -H &quot;Authorization: Bearer eyJraWQiOiIxMDAiLCJhbGciOiJSUJ1cm46Y29tOm5ldHdvcmtudDpvYXV0aDI6djEiLCJhdWQiOiJ1cm46Y29tLm5ldHdvcmtudCIsImV4cCI6MTc5NDgwMDYzOSwianRpIjoiWFhlQmpJYXUwUk5ZSTl3dVF0MWxtUSIsImlhdCI6MTQ3OTQ0MDYzOSwibmJmIjoxNDc5NDQwNTE5LCJ2ZXJzaW9uIjoiMS4wIiwidXNlcl9pZCI6InN0ZXZlIiwidXNlcl90eXBlIjoiRU1QTE9ZRUUiLCJjbGllbnRfaWQiOiJmN2Q0MjM0OC1jNjQ3LTRlZmItYTUyZC00YzU3ODc0MjFlNzIiLCJzY29wZSI6WyJ3cml0ZTpwZXRzIiwicmVhZDpwZXRzIl19.f5XdkmhOoHT2lgTobqVGPp2aWUv_ItA0tqyLHC_CeMbmwzPvREqb5-oJ9T_m3VwRcJlPTh8xTdSjrLITXClaQFE4Y0bT8C-u6bb38uT-NQ5mjUjLrFQYHCF6GqwL7YkwQt_rshEqtrDFe1T4HoEL_9FHbOxf3MSJ39UKq0Ef_9mHXkn4Y-SHfdapeuUWc_4dDPdxzEdzbqmf1WSOOgTuM5O5F2fK4p_ix8LQl0H3AnMZIhIDyygQEnYPxEG-u35gwh503wfxio6buIf0b2Kku2PXPE36lethZwIVaPTncEcY5OPxfBxXuy-Wq-YQizd7NnpJTteHYbdQXupjK7NDvQ&quot; localhost:8080/v2/pet/111
+</code></pre>
+
+<p>And we have the result:</p>
+
+<pre><code>{  &quot;photoUrls&quot; : [ &quot;aeiou&quot; ],  &quot;name&quot; : &quot;doggie&quot;,  &quot;id&quot; : 123456789,  &quot;category&quot; : {    &quot;name&quot; : &quot;aeiou&quot;,    &quot;id&quot; : 123456789  },  &quot;tags&quot; : [ {    &quot;name&quot; : &quot;aeiou&quot;,    &quot;id&quot; : 123456789  } ],  &quot;status&quot; : &quot;aeiou&quot;}
+</code></pre>
+
+<h1 id="docker">Docker</h1>
+
+<h1 id="metric">Metric</h1>
+
+<h1 id="logging">Logging</h1>
 
 
 			<aside class="copyright" role="note">

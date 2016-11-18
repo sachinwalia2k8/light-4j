@@ -7,8 +7,254 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Wed, 09 Nov 2016 21:13:27 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 18 Nov 2016 14:41:29 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>nodejs</title>
+      <link>https://networknt.github.io/light-java/architecture/nodejs/</link>
+      <pubDate>Fri, 18 Nov 2016 14:41:29 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/nodejs/</guid>
+      <description>
+
+&lt;p&gt;When talking about microservices, a lot of Nodejs developers will say that Node is
+a better platform than Java and other languages to build microservices. The arguments
+are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nodejs is faster than Java.&lt;/li&gt;
+&lt;li&gt;Nodejs development is more productive than Java.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These claims are proved to be false already as I&amp;rsquo;ve been working on both
+platforms in banking industry for the last couple of years. I have been
+building REST API frameworks on both Java and Nodejs and the following are
+my observations on Nodejs in enterprise computing.&lt;/p&gt;
+
+&lt;h2 id=&#34;production-hell&#34;&gt;Production hell&lt;/h2&gt;
+
+&lt;p&gt;As workers are single-threaded, any uncaught exception will crash the worker
+and all the in-flight transactions will be lost and you don&amp;rsquo;t know what is
+the state of each in-flight request. This is the biggest problem faced and
+I have worked with several core Nodejs developers trying to mitigate the risk.&lt;/p&gt;
+
+&lt;p&gt;The end result is to capture that in the server.js and then wait for in-flight
+to complete as many as possible in a unknown state of the server and then
+shutdown the server. Not ideal but it reduce the risk to certain level. Due to
+this reason, Nodejs API platform is only recommended for readonly API in the
+bank.&lt;/p&gt;
+
+&lt;h2 id=&#34;callback-hell&#34;&gt;Callback Hell&lt;/h2&gt;
+
+&lt;p&gt;This is know issue for Javascript. Although promise helps a lot, it is still a
+big issue with Node platform.&lt;/p&gt;
+
+&lt;h2 id=&#34;code-maintenance&#34;&gt;Code Maintenance&lt;/h2&gt;
+
+&lt;p&gt;Nodejs is easy to get into and very fast to build small Hello World application;
+however, building complex enterprise level application with thousands of line of
+code is not possible. When I look at my own code wrote one year ago, I couldn&amp;rsquo;t
+reason about what that piece code does. I have to put some debug info and run it
+to figure out how the code works. Callback Hell is one of the causes. For
+enterprise applications, easy to understand and maintain is very important and I
+feel sorry for the bank employees who are taking over my work.&lt;/p&gt;
+
+&lt;h2 id=&#34;debugging&#34;&gt;Debugging&lt;/h2&gt;
+
+&lt;p&gt;Javascript as a platform doesn&amp;rsquo;t have a good runtime debugging tool that you can inspect
+variables during runtime easily. There are some tools but one of them works as
+good as other languages. I use a customized logger built by my self and put a lot
+of logging statement in order to debug my code and I&amp;rsquo;ve seen so many js developers
+just use console.log:)&lt;/p&gt;
+
+&lt;h2 id=&#34;no-transaction-support&#34;&gt;No Transaction Support&lt;/h2&gt;
+
+&lt;p&gt;No transaction support on the platform makes it not enterprise ready. Let&amp;rsquo;s say
+you are building a stock order API, once the server receives the request, it needs
+to save the order in backend database and route the order to an exchange for execution.
+what if the communication to Exchange is down? There is no way that the local
+database update can be rollback.&lt;/p&gt;
+
+&lt;h2 id=&#34;lack-of-connectivity-to-backend-system&#34;&gt;Lack of Connectivity to Backend System&lt;/h2&gt;
+
+&lt;p&gt;In the above order API, the order has to be routed to an exchange through MQ Queue
+but node didn&amp;rsquo;t support it 2 years ago. Also, a lot of existing backend
+systems and databases are not supported even today. I have worked with Strongloop
+and IBM teams for three months to make IBM DB2
+drive(&lt;a href=&#34;https://github.com/ibmdb/node-ibm_db/issues/35&#34;&gt;https://github.com/ibmdb/node-ibm_db/issues/35&lt;/a&gt;) worked on production without
+memory leak.&lt;/p&gt;
+
+&lt;h2 id=&#34;insufficient-of-module-and-version-management&#34;&gt;Insufficient of Module and Version Management&lt;/h2&gt;
+
+&lt;p&gt;A lot of people praises npm and I agree that it is very good tool to manage modules.
+However, only manage modules is no enough, it has to manage modules with versions.&lt;/p&gt;
+
+&lt;p&gt;Most Node developers will have this experience. You have an application running today
+and tomorrow, you run npm install again and it stops working:) As one of the dependencies
+got a new version and it is not backward compatible. Shrinkwrap helps a little bit but
+it is very hard to update one or two immediate dependent modules as there is no way to
+update sub dependencies. Another way is to check in node_modules into git and packaged it
+into docker container. Now we always package node_modules into docker image.&lt;/p&gt;
+
+&lt;h2 id=&#34;public-module-quality&#34;&gt;Public Module Quality&lt;/h2&gt;
+
+&lt;p&gt;No doubt there is a very active community for Nodejs and there are a lot of modules published
+on public npm repository. I myself got several modules published.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, there are so many modules are in bad shape as developers of these modules
+often migrated from frontend without any enterprise level experience. Some of modules got
+10 line of the code but will depending on 8 other modules. Write a small express application
+in nodejs and take a look at how many modules in node_modules folder. Is you application
+using them all? I guess less than 5 percent of the code in node_modules are in the
+execution path and the rest of them are just wasting your hard drive space.&lt;/p&gt;
+
+&lt;h2 id=&#34;stability-of-the-platform&#34;&gt;Stability of the Platform&lt;/h2&gt;
+
+&lt;p&gt;For one back I worked last year, they are still using Nodejs 0.10.39 as that was the only
+production ready version. Both Strongloop and Joyent told us to stay on that version and as
+I understand, other customers are on the same version. We were told to upgrade to 0.12.x
+once it was prouduction ready and then before that Nodejs and IO.js were merged and Nodejs 4
+was out. Before Nodejs 4 was production ready, they&amp;rsquo;ve moved to Nodejs 5 and now on Nodejs 6.&lt;/p&gt;
+
+&lt;p&gt;We are having big issue with Nodejs 0.10.39 as https module is not performing with API to
+API calls and the issue was resolved in 0.12.x. So our recommenedation for Nodejs API
+framework added another condition upon only readonly API - The API must not call another
+API in https. All APIs that calling another API with https must be implemented in Java
+framework.&lt;/p&gt;
+
+&lt;h2 id=&#34;talents-abandon-the-ship&#34;&gt;Talents abandon the ship&lt;/h2&gt;
+
+&lt;p&gt;As you might know, TJ who is the developer of express - most popular nodejs framework left
+Nodejs to GO. Here is his &lt;a href=&#34;https://medium.com/@tjholowaychuk/farewell-node-js-4ba9e7f3e52b#.5brqa9has&#34;&gt;farewell&lt;/a&gt;
+There are other heavy weight Nodejs developers left and that might make you think what is going on.&lt;/p&gt;
+
+&lt;h2 id=&#34;existing-customers-are-stuck-or-leaving&#34;&gt;Existing Customers are stuck or leaving&lt;/h2&gt;
+
+&lt;p&gt;There are some early adopter of Nodejs and all of the are trapped with old version of Nodejs
+and they are so afraid to upgrade to the new version as memory leak will be hard to
+resolve - refer to my production hell.&lt;/p&gt;
+
+&lt;p&gt;Other companies, just rewrite the application with other language. One example is
+&lt;a href=&#34;https://medium.com/@theflapjack103/the-way-of-the-gopher-6693db15ae1f#.jfcsl8hlg&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For the bank I&amp;rsquo;ve worked, they wrote some APIs in Nodejs in 2014 but most of them were rewritten
+in Java in 2016.&lt;/p&gt;
+
+&lt;h2 id=&#34;memory-footprint-is-high-on-multiple-core-platform&#34;&gt;Memory Footprint is high on multiple core platform&lt;/h2&gt;
+
+&lt;p&gt;For one work, it uses less memory than Java, but on a multi-core system, you have to start
+workers per cpu core in order to utilize the resource to its full potential. These workers
+are independent and there is no shared memory, they allocate heap independently. If you start
+four or eight workers, it uses more memory than Java that have only one instance multi-threaded.&lt;/p&gt;
+
+&lt;h2 id=&#34;much-slower-than-new-java-platforms&#34;&gt;Much slower than New Java platforms&lt;/h2&gt;
+
+&lt;p&gt;As for speed, it is faster than WebSphere/WebLogic/JBoss but not in the same level as other
+new containerless Java frameworks and platforms.&lt;/p&gt;
+
+&lt;p&gt;Here is a &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;benchmarks&lt;/a&gt;
+that have both popular Java microservices frameworks and Nodejs/Express. The above performance
+result only focus on raw throughput and latency. While more code is added, Nodejs will be
+getting slower and slower.&lt;/p&gt;
+
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;I work on both Nodejs and Java so my opinion is not biased but to point out the facts on
+Nodejs platform. I am not saying Java is better as I know there are a lot of issues with
+Java. I hope these points will help you in choosing your next application platform.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Web Server</title>
+      <link>https://networknt.github.io/light-java/example/webserver/</link>
+      <pubDate>Fri, 18 Nov 2016 08:25:10 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/webserver/</guid>
+      <description>
+
+&lt;p&gt;Most documents and articles regarding to Light-Java are about REST API; however,
+there are a lot user cases that combine the API and static site rendering together,
+especially, single page applications built on top of React or Angular.&lt;/p&gt;
+
+&lt;h1 id=&#34;handler-provider&#34;&gt;Handler Provider&lt;/h1&gt;
+
+&lt;p&gt;As we know, the Light-Java needs a plugin to inject application logic and for
+API project that is based on OpenAPI specification, this is generated by the
+&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-codegen/&#34;&gt;swagger-codegen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The generated Handler Provider maps each endpoint to a corresponding handler
+generated. For API server that need to serve static content along with APIs,
+we need to wrap this map with Resource handler to serve static content. On top
+of resource handler, we need a predicates handler to rewrite request to index.html
+which can loaded your single page application.&lt;/p&gt;
+
+&lt;p&gt;In the example web server, I redirect to index.html if path is not in the
+following list.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;/images&lt;/li&gt;
+&lt;li&gt;/assets&lt;/li&gt;
+&lt;li&gt;/api&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Above rules make sure that images and other asserts(css etc) can be loaded and
+API endpoint will be started as /api/xxx&lt;/p&gt;
+
+&lt;h1 id=&#34;web-server-configuration&#34;&gt;Web Server Configuration&lt;/h1&gt;
+
+&lt;p&gt;In most of the case, each APP or API built on top of Light-Java framework will
+have a configuration file to control how it behaves during runtime. Here is the
+content of webserver.json&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;base&amp;quot;: &amp;quot;/public&amp;quot;,
+  &amp;quot;transferMinSize&amp;quot;: &amp;quot;100&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Given that base is defined as /public, we know the static content root will be
+/public and all static content will be served from this folder or subfolders.&lt;/p&gt;
+
+&lt;h1 id=&#34;location-of-static-content&#34;&gt;Location of static content&lt;/h1&gt;
+
+&lt;p&gt;As Light-Java applications are packaged as a jar so the static content must be
+served from somewhere inside the jar file. Where is the location for the static
+content that can be mapped to /public?&lt;/p&gt;
+
+&lt;p&gt;The answer is src/main/resources/public. As static content is loaded from /public
+and internally it is based on the classpath. As we all know that resources is
+part of the classpath.&lt;/p&gt;
+
+&lt;h1 id=&#34;docker-container&#34;&gt;Docker Container&lt;/h1&gt;
+
+&lt;p&gt;Above section describes how to serve static content from packaged jar file and it
+is only suitable for development. When you deploy the app/api to official environment
+with docker container, the /public must be externalized so that website can be updated
+independently without repackage the server.&lt;/p&gt;
+
+&lt;p&gt;Here is the Dockerfile in the example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM insideo/jre8
+EXPOSE 8080
+ADD /target/webserver-0.1.0.jar server.jar
+ADD /src/main/resources/public /public
+CMD [&amp;quot;/bin/sh&amp;quot;,&amp;quot;-c&amp;quot;,&amp;quot;java -Dlight-java-config-dir=/config -jar /server.jar&amp;quot;]
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The static contant in src/main/resources/public is added to the /public in the contain
+and this folder can be mapped to host directory with -v if you want to update the site
+in host file system.&lt;/p&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;p&gt;This example is very useful in self contained microservices that has a very
+simple UI built on top of React or Angular. It give you an interface to
+interact with the services running on the same instance.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Monitoring</title>
@@ -2199,68 +2445,6 @@ renew process is start again.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;    public void populateHeader(HttpRequest request, String authToken, String correlationId, String traceabilityId) throws ClientException, ApiException 
 
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>sanitizer</title>
-      <link>https://networknt.github.io/light-java/middleware/sanitizer/</link>
-      <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/middleware/sanitizer/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;This is a middleware that addresses cross site scripting concerns. It encodes the header
-and body according to the configuration. As body encoding depends on
-&lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;Body&lt;/a&gt; middleware, it has to be
-plugged into the request/response chain after Body.&lt;/p&gt;
-
-&lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
-
-&lt;p&gt;Here is the default configuration sanitizer.json&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;description&amp;quot;: &amp;quot;Sanitize request for cross site scripting during runtime&amp;quot;,
-  &amp;quot;enabled&amp;quot;: true,
-  &amp;quot;sanitizeBody&amp;quot;: true,
-  &amp;quot;sanitizeHeader&amp;quot;: true
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.
-sanitizeBody and sanitizeHeader control if body and header need to be sanitized or both.&lt;/p&gt;
-
-&lt;h1 id=&#34;query-parameters&#34;&gt;Query Parameters&lt;/h1&gt;
-
-&lt;p&gt;In other platforms especially JEE containers, query parameters need to be sanitized as well.
-However, I have found that Undertow does sanitize special characters in query parameters. This
-is why this handler doesn&amp;rsquo;t do anything about query parameters.&lt;/p&gt;
-
-&lt;h1 id=&#34;encode-library&#34;&gt;Encode Library&lt;/h1&gt;
-
-&lt;p&gt;The library used for cross site scripting sanitization is from &lt;a href=&#34;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS&#34;&gt;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS&lt;/a&gt;)
-and the library can be found at &lt;a href=&#34;https://github.com/OWASP/owasp-java-encoder&#34;&gt;https://github.com/OWASP/owasp-java-encoder&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;encode-level&#34;&gt;Encode Level&lt;/h1&gt;
-
-&lt;p&gt;The encode level we are using for both header and body is &amp;ldquo;forJavaScriptSource&amp;rdquo;. This gives us
-certain level of confident and it won&amp;rsquo;t mess up header and body in most the case.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>swagger</title>
-      <link>https://networknt.github.io/light-java/example/swagger/</link>
-      <pubDate>Sat, 22 Oct 2016 21:02:01 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/example/swagger/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.&lt;/p&gt;
 </description>
     </item>
     
