@@ -506,6 +506,28 @@ like Kubernetes can also spin up new nodes/pods. With big data, data science,
 and microservices, monitoring microservices runtime stats is required to know your application
 users, know your partners, know what your system will do under load, etc.</p>
 
+<h2 id="microservice-logging">Microservice Logging</h2>
+
+<p>Every instance of the service will have a unique identifier which most commonly will be
+the docker container name or the hostname if not deployed in docker container. The code
+to retrieve docker container name and hostname is the same.</p>
+
+<p>Along with docker container name, traceabilityId and correlationId will be logged as
+context info for each logging statement. And once log files are aggregated together in
+ELK, users can trace a particular transaction based on the traceabilityId or correlationId.</p>
+
+<p>As microservices might be deployed across multiple geo-regions, the timestamp logged must
+be UTC time so that logs can be easily ordered in the ELK.</p>
+
+<h2 id="microservice-alerting">Microservice Alerting</h2>
+
+<p>Logstash has features to send out alert when certain error code is spotted in the log files.</p>
+
+<p>The framework has a component called status and it has all the errors defined in a JSON
+file which can be externalized. All the error code will be in a format ERRXXXXX and
+certain error code can be setup in the alert to send out email or communicate to support
+team with other channels.</p>
+
 
 			<aside class="copyright" role="note">
 				

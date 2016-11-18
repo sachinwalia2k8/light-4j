@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Microservices - Light Java - The fastest Java API Framework</title>
+    <title>Config - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/architecture/microservices/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/config/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/architecture/microservices/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/config/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Microservices
+        Config
       </div>
     </div>
 
@@ -360,7 +360,7 @@
 
 
 
-<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+<a  title="License" href="https://networknt.github.io/light-java/license/">
 	
 	License
 </a>
@@ -407,99 +407,139 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Microservices </h1>
+			<h1>Config </h1>
 
 			
 
-<p>#</p>
+<p>A configuration module that supports externalized config in official standalone
+deployment or docker container</p>
 
-<p>Speed and Safety at Scale and in Harmony.</p>
+<h2 id="introduction">Introduction</h2>
 
-<p>If you’re like most software developers, team leaders, and architects responsible for getting
-working code out the door of your company, this phrase describes your job in a nutshell. Most
-of you have probably struggled at this, too. Getting to market quickly seems to imply giving
-up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient
-means slowing down the pace of feature and bug-fix releases. And “at scale” is just a dream.</p>
+<p>Externalized configuration from the application package is very important. It
+allows us to deploy the same package
+to DEV/SIT/UAT/PROD environment with different configuration packages without
+reopening the delivery package. For
+development, embedded configuration give us the flexibility to take default
+values out of the box.</p>
 
-<p>The three principals of the microservices architecture style.</p>
+<p>When dockerizing our application, the external configuration can be mapped to a
+volume which can be updated and
+restarted the container to take effect.</p>
 
-<ul>
-<li>Microservices are ideal for big systems</li>
-<li>Microservice architecture is goal-oriented not solution-oriented</li>
-<li>Microservices are focused on replaceability</li>
-</ul>
+<p>For now, only file system configuration is supported but in a long run, this
+module can be extended to support
+configurations from database, http/https server and config API served by config
+server. Given the risk of single
+point failure, file system config is still the foundation. Only when the server
+start, it will contact external
+config sever to load (first time) or update local file system so that config
+files are cached. Except first time
+start the server, the server can use the local cache to start if config service
+is not available.</p>
 
-<p>microservice applications share some important characteristics:</p>
+<h2 id="singleton">Singleton</h2>
 
-<ul>
-<li>Small in size</li>
-<li>Messaging enabled</li>
-<li>Bounded by contexts</li>
-<li>Autonomously developed</li>
-<li>Independently deployable</li>
-<li>Decentralized</li>
-<li>Built and released with automated processes</li>
-</ul>
+<p>For one JVM, there should be only one instance of Config and it should be
+shared by all the modules within the application. The class is designed as a
+singleton class and has several abstract methods that should be implemented
+in sub classes. A default File System based implementation is provided. Other
+implementation will be provided in the future when it is needed.
+ </p>
 
-<p>When you build software in this way, the cost of controlling and managing output increases
-significantly. In a microservice architecture, the services tend to get simpler, but the
-architecture tends to get more complex. That complexity is often managed with tooling,
-automation, and process.</p>
+<h2 id="interface">Interface</h2>
 
-<p>When you first begin learning about microservice architecture it’s easy to get caught up in
-the tangible parts of the solution. You don’t have to look hard to find people who are excited
-about Docker, continuous delivery, or service discovery. All of these things can help you to
-build a system that sounds like the microservice systems we’ve been discussing. But
-microservices can’t be achieved by focusing on a particular set of patterns, process, or tools.
-Instead, you’ll need to stay focused on the goal itself—a system that can make change easier.</p>
+<p>The following abstract methods are implemented in the default service provider.</p>
 
-<p>More specifically, the real value of microservices is realized when we focus on two key
-aspects—speed and safety. Every single decision you make about your software development ends
-up as a trade-off that impacts these two ideals. Finding an effective balance between them at
-scale is what we call the microservices way.</p>
+<pre><code>// Returns a HashMap by a config name (without .json)     
+public abstract Map&lt;String, Object&gt; getJsonMapConfig(String configName);
 
-<ul>
-<li>The Speed of Change</li>
-<li>The Safety of Change</li>
-<li>At Scale</li>
-<li>In Harmony</li>
-</ul>
+// Load config for server info so that the result can be masked with out impact the cached verison
+public abstract Map&lt;String, Object&gt; getJsonMapConfigNoCache(String configName);
 
-<p>The original intent of the microservice architecture concept—to replace complex monolithic
-applications with software systems made of replaceable components.</p>
+// Return a JsonNode by a config name (without .json)
+public abstract JsonNode getJsonNodeConfig(String configName);
 
-<p>Over the years, there are so many stories that big companies built their system in a microservices way.
-There are common goals and benefits that emerge from these implementation stories. The goal
-of improving software delivery speed as functional scope grows is realized through greater
-agility, higher composability, improved comprehensibility, independent service deployability,
-organizational alignment, and polyglotism. The goal of maintaining software system safety as
-scale increases is achieved through higher availability and resiliency, better efficiency,
-independent manageability and replaceability of components, increased runtime scalability,
-and more simplified testability.</p>
+// Map the json to a POJO from a config name and class name
+public abstract Object getJsonObjectConfig(String configName, Class clazz);
 
-<h3 id="speed">Speed</h3>
+// Load config into a string by providing the full filename
+public abstract String getStringFromFile(String filename);
 
-<ul>
-<li>Agility allows organizations to deliver new products, functions, and features more quickly and pivot more easily if needed.</li>
-<li>Composability reduces development time and provides a compound benefit through reusability over time.</li>
-<li>Comprehensibility of the software system simplifies development planning, increases accuracy, and allows new resources to come up to speed more quickly.</li>
-<li>Independent deployability of components gets new features into production more quickly and provides more flexible options for piloting and prototyping.</li>
-<li>Organizational alignment of services to teams reduces ramp-up time and encour‐ ages teams to build more complex products and features iteratively.</li>
-<li>Polyglotism permits the use of the right tools for the right task, thus accelerating technology introduction and increasing solution options.</li>
-</ul>
+// Load config into a InputStream by providing full filename
+public abstract InputStream getInputStreamFromFile(String filename);
 
-<h3 id="safety">Safety</h3>
+// A cached Jackson ObjectMapper that is shared to other modules
+public abstract ObjectMapper getMapper();
 
-<ul>
-<li>Greater e ciency in the software system reduces infrastructure costs and reduces the risk of capacity-related service outages.</li>
-<li>Independent manageability contributes to improved efficiency, and also reduces the need for scheduled downtime.</li>
-<li>Replaceability of components reduces the technical debt that can lead to aging, unreliable environments.</li>
-<li>Stronger resilience and higher availability ensure a good customer experience.</li>
-<li>Better runtime scalability allows the software system to grow or shrink with the business.</li>
-<li>Improved testability allows the business to mitigate implementation risks.</li>
-</ul>
+// Clean up the config cache if there are any
+public abstract void clear();
 
-<h1 id="history">History</h1>
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<p>It is encouraged to create a POJO for your config if the JSON structure is static.
+However, some of the config file have repeatable elements, a map is the only
+options to represent the data in this case.</p>
+
+<p>The two methods return String and InputStream is for loading files such as text
+file with different format and X509 certificates etc.</p>
+
+<p>getMapper() is a convenient way to get ObjectMapper instead of create one which
+is too heavy.</p>
+
+<h2 id="cache">Cache</h2>
+
+<p>Loading configuration files from file system takes time so the config file will
+be cached once it is loaded the first time. All subsequent access to the same
+config file (maybe different key/value pair) will read from the cached copy.
+In order to make sure that server start up won&rsquo;t be impacted by all modules to
+load config files, lazy loading is encouraged unless the module must be
+initialized during server start up.</p>
+
+<h2 id="loading-sequence">Loading sequence</h2>
+
+<p>Each module should have a config file that named the same as the module name.
+For example, Security module as a config file named security.json and it is
+reside in the module /src/main/resources/config folder by default.</p>
+
+<p>For application that uses Security module, it can override the default module
+level config by provide security.json in application&rsquo;s resource
+folder /src/main/resources/config.</p>
+
+<p>Config will also be loaded from class path of the application and this is
+mainly used for testing as it is easy to inject different combination of
+config copies in test cases into class path for unit testing.</p>
+
+<p>For official runtime environment, config files should be externalized to a
+separate folder outside of the package by a system property
+&ldquo;light-java-config-dir&rdquo;. You can start the server with
+a &ldquo;-Dlight-java-config-dir=/config&rdquo; option and put all your files
+into /config. Once in docker image, it can be mapped to a host volume
+with -v /etc/undertow:/config in docker run command.</p>
+
+<p>Given above explanation, the loading sequence is:</p>
+
+<ol>
+<li>System property &ldquo;light-java-config-dir&rdquo; specified directory</li>
+<li>Class Path</li>
+<li>Application resources/config folder</li>
+<li>Module resources/config folder</li>
+</ol>
+
+<h2 id="example">Example</h2>
+
+<p>Load config into static variable</p>
+
+<pre><code>static final Map&lt;String, Object&gt; config = Config.getInstance().getJsonMapConfig(JwtHelper.SECURITY_CONFIG);
+</code></pre>
+
+<p>Load config when it is used</p>
+
+<pre><code>ValidatorConfig config = (ValidatorConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, ValidatorConfig.class);
+
+</code></pre>
 
 
 			<aside class="copyright" role="note">
@@ -518,7 +558,7 @@ and more simplified testability.</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/architecture/jee-is-dead/" title="JEE is dead">
+      <a href="https://networknt.github.io/light-java/middleware/exception/" title="exception">
         <span class="direction">
           Previous
         </span>
@@ -528,7 +568,7 @@ and more simplified testability.</p>
           </div>
           <div class="stretch">
             <div class="title">
-              JEE is dead
+              exception
             </div>
           </div>
         </div>
@@ -538,14 +578,14 @@ and more simplified testability.</p>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/tutorials/microservices/" title="Microservices">
+      <a href="https://networknt.github.io/light-java/middleware/body/" title="Body">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Microservices
+              Body
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
