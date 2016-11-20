@@ -486,7 +486,7 @@ token that can be found at &lt;a href=&#34;https://github.com/networknt/light-oa
 
 &lt;p&gt;Let&amp;rsquo;s use that token in curl.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Authorization: Bearer eyJraWQiOiIxMDAiLCJhbGciOiJSUJ1cm46Y29tOm5ldHdvcmtudDpvYXV0aDI6djEiLCJhdWQiOiJ1cm46Y29tLm5ldHdvcmtudCIsImV4cCI6MTc5NDgwMDYzOSwianRpIjoiWFhlQmpJYXUwUk5ZSTl3dVF0MWxtUSIsImlhdCI6MTQ3OTQ0MDYzOSwibmJmIjoxNDc5NDQwNTE5LCJ2ZXJzaW9uIjoiMS4wIiwidXNlcl9pZCI6InN0ZXZlIiwidXNlcl90eXBlIjoiRU1QTE9ZRUUiLCJjbGllbnRfaWQiOiJmN2Q0MjM0OC1jNjQ3LTRlZmItYTUyZC00YzU3ODc0MjFlNzIiLCJzY29wZSI6WyJ3cml0ZTpwZXRzIiwicmVhZDpwZXRzIl19.f5XdkmhOoHT2lgTobqVGPp2aWUv_ItA0tqyLHC_CeMbmwzPvREqb5-oJ9T_m3VwRcJlPTh8xTdSjrLITXClaQFE4Y0bT8C-u6bb38uT-NQ5mjUjLrFQYHCF6GqwL7YkwQt_rshEqtrDFe1T4HoEL_9FHbOxf3MSJ39UKq0Ef_9mHXkn4Y-SHfdapeuUWc_4dDPdxzEdzbqmf1WSOOgTuM5O5F2fK4p_ix8LQl0H3AnMZIhIDyygQEnYPxEG-u35gwh503wfxio6buIf0b2Kku2PXPE36lethZwIVaPTncEcY5OPxfBxXuy-Wq-YQizd7NnpJTteHYbdQXupjK7NDvQ&amp;quot; localhost:8080/v2/pet/111
+&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Authorization: Bearer eyJraWQiOiIxMDAiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ1cm46Y29tOm5ldHdvcmtudDpvYXV0aDI6djEiLCJhdWQiOiJ1cm46Y29tLm5ldHdvcmtudCIsImV4cCI6MTc5NDg3MzA1MiwianRpIjoiSjFKdmR1bFFRMUF6cjhTNlJueHEwQSIsImlhdCI6MTQ3OTUxMzA1MiwibmJmIjoxNDc5NTEyOTMyLCJ2ZXJzaW9uIjoiMS4wIiwidXNlcl9pZCI6InN0ZXZlIiwidXNlcl90eXBlIjoiRU1QTE9ZRUUiLCJjbGllbnRfaWQiOiJmN2Q0MjM0OC1jNjQ3LTRlZmItYTUyZC00YzU3ODc0MjFlNzIiLCJzY29wZSI6WyJ3cml0ZTpwZXRzIiwicmVhZDpwZXRzIl19.gUcM-JxNBH7rtoRUlxmaK6P4xZdEOueEqIBNddAAx4SyWSy2sV7d7MjAog6k7bInXzV0PWOZZ-JdgTTSn6jTb4K3Je49BcGz1BRwzTslJIOwmvqyziF3lcg6aF5iWOTjmVEF0zXwMJtMc_IcF9FAA8iQi2s5l0DYgkMrjkQ3fBhWnopgfkzjbCuZU2mHDSQ6DJmomWpnE9hDxBp_lGjsQ73HWNNKN-XmBEzH-nz-K5-2wm_hiCq3d0BXm57VxuL7dxpnIwhOIMAYR04PvYHyz2S-Nu9dw6apenfyKe8-ydVt7KHnnWWmk1ErlFzCHmsDigJz0ku0QX59lM7xY5i4qA&amp;quot; localhost:8080/v2/pet/111`
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And we have the result:&lt;/p&gt;
@@ -496,9 +496,157 @@ token that can be found at &lt;a href=&#34;https://github.com/networknt/light-oa
 
 &lt;h1 id=&#34;docker&#34;&gt;Docker&lt;/h1&gt;
 
+&lt;p&gt;When petstore is generated, a default Dockerfile is there ready for any customization. Let&amp;rsquo;s
+just use it to create a docker image and start a docker container.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker build -t networknt/example-petstore .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start the docker container.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d -p 8080:8080 networknt/example-petstore
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In another terminal, run the curl to access the server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Authorization: Bearer eyJraWQiOiIxMDAiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ1cm46Y29tOm5ldHdvcmtudDpvYXV0aDI6djEiLCJhdWQiOiJ1cm46Y29tLm5ldHdvcmtudCIsImV4cCI6MTc5NDg3MzA1MiwianRpIjoiSjFKdmR1bFFRMUF6cjhTNlJueHEwQSIsImlhdCI6MTQ3OTUxMzA1MiwibmJmIjoxNDc5NTEyOTMyLCJ2ZXJzaW9uIjoiMS4wIiwidXNlcl9pZCI6InN0ZXZlIiwidXNlcl90eXBlIjoiRU1QTE9ZRUUiLCJjbGllbnRfaWQiOiJmN2Q0MjM0OC1jNjQ3LTRlZmItYTUyZC00YzU3ODc0MjFlNzIiLCJzY29wZSI6WyJ3cml0ZTpwZXRzIiwicmVhZDpwZXRzIl19.gUcM-JxNBH7rtoRUlxmaK6P4xZdEOueEqIBNddAAx4SyWSy2sV7d7MjAog6k7bInXzV0PWOZZ-JdgTTSn6jTb4K3Je49BcGz1BRwzTslJIOwmvqyziF3lcg6aF5iWOTjmVEF0zXwMJtMc_IcF9FAA8iQi2s5l0DYgkMrjkQ3fBhWnopgfkzjbCuZU2mHDSQ6DJmomWpnE9hDxBp_lGjsQ73HWNNKN-XmBEzH-nz-K5-2wm_hiCq3d0BXm57VxuL7dxpnIwhOIMAYR04PvYHyz2S-Nu9dw6apenfyKe8-ydVt7KHnnWWmk1ErlFzCHmsDigJz0ku0QX59lM7xY5i4qA&amp;quot; localhost:8080/v2/pet/111
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And the result should be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{  &amp;quot;photoUrls&amp;quot; : [ &amp;quot;aeiou&amp;quot; ],  &amp;quot;name&amp;quot; : &amp;quot;doggie&amp;quot;,  &amp;quot;id&amp;quot; : 123456789,  &amp;quot;category&amp;quot; : {    &amp;quot;name&amp;quot; : &amp;quot;aeiou&amp;quot;,    &amp;quot;id&amp;quot; : 123456789  },  &amp;quot;tags&amp;quot; : [ {    &amp;quot;name&amp;quot; : &amp;quot;aeiou&amp;quot;,    &amp;quot;id&amp;quot; : 123456789  } ],  &amp;quot;status&amp;quot; : &amp;quot;aeiou&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s shutdown the docker container. First use &amp;ldquo;docker ps&amp;rdquo; to find the container_id
+and then issue docker stop with that container_id.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker ps
+docker stop ad86cc533270
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The next step, let&amp;rsquo;s push the docker image to docker hub. This assumes that you have
+an account on docker hub. For me, I am going to push it to networknt/petstore.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker images
+docker tag 9f0b9fe29c44 networknt/example-petstore:latest
+docker push networknt/example-petstore
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The example_petstore can be found at &lt;a href=&#34;https://hub.docker.com/u/networknt/dashboard/&#34;&gt;https://hub.docker.com/u/networknt/dashboard/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And the following command can pull and run the docker image on your local if you have
+docker installed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d -p 8080:8080 networknt/example-petstore
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h1 id=&#34;metric&#34;&gt;Metric&lt;/h1&gt;
 
+&lt;p&gt;In order to use oauth2(light-oauth2), metrics(Influxdb and Grafana) and
+logging(Elasticsearch, Logstash and Kibana), please clone the light-docker repo.&lt;/p&gt;
+
+&lt;p&gt;Make sure you are in your working directory. For me it is ~/networknt&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/light-docker.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s start all services defined in docker-compose.yml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-compose up --build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First let&amp;rsquo;s make sure that Influxdb and Grafana can be accessed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://localhost:8083/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure Influxdb admin page is shown up and metrics database is created.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://localhost:3000/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure Grafana dashboard is up and you can login with admin/admin.&lt;/p&gt;
+
+&lt;p&gt;Once both Influxdb and Grafana are up and running, let&amp;rsquo;s stop the example-petstore
+container by issuing &amp;ldquo;docker ps&amp;rdquo; on another terminal to find out the container_id of
+example-petstore. Note: there are several docker containers running so double check
+you have picked the right container_id.&lt;/p&gt;
+
+&lt;p&gt;Now run the following command to stop the example-petstore&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker stop [container_id of example-petstore]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the next step, we are going to start the same container with externalized metrics
+config so that the server can connect to the Influxdb container to report the metrics.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create a folder under /tmp and name it petstore. Within /tmp/petstore, create
+another folder called config. Now create metrics.json in /tmp/petstore/config folder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;Metrics handler configuration&amp;quot;,
+  &amp;quot;enabled&amp;quot;: true,
+  &amp;quot;influxdbProtocol&amp;quot;: &amp;quot;http&amp;quot;,
+  &amp;quot;influxdbHost&amp;quot;: &amp;quot;influxdb&amp;quot;,
+  &amp;quot;influxdbPort&amp;quot;: 8086,
+  &amp;quot;influxdbName&amp;quot;: &amp;quot;metrics&amp;quot;,
+  &amp;quot;influxdbUser&amp;quot;: &amp;quot;root&amp;quot;,
+  &amp;quot;influxdbPass&amp;quot;: &amp;quot;root&amp;quot;,
+  &amp;quot;reportInMinutes&amp;quot;: 1
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please note that the above configuration is only for testing.&lt;/p&gt;
+
+&lt;p&gt;Now start the container and linked to Influxdb.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d -p 8080:8080 -v /tmp/petstore/config:/config --network=lightdocker_light networknt/example-petstore
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Access the one endpint several with curl command and wait for one minute.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Authorization: Bearer eyJraWQiOiIxMDAiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ1cm46Y29tOm5ldHdvcmtudDpvYXV0aDI6djEiLCJhdWQiOiJ1cm46Y29tLm5ldHdvcmtudCIsImV4cCI6MTc5NDg3MzA1MiwianRpIjoiSjFKdmR1bFFRMUF6cjhTNlJueHEwQSIsImlhdCI6MTQ3OTUxMzA1MiwibmJmIjoxNDc5NTEyOTMyLCJ2ZXJzaW9uIjoiMS4wIiwidXNlcl9pZCI6InN0ZXZlIiwidXNlcl90eXBlIjoiRU1QTE9ZRUUiLCJjbGllbnRfaWQiOiJmN2Q0MjM0OC1jNjQ3LTRlZmItYTUyZC00YzU3ODc0MjFlNzIiLCJzY29wZSI6WyJ3cml0ZTpwZXRzIiwicmVhZDpwZXRzIl19.gUcM-JxNBH7rtoRUlxmaK6P4xZdEOueEqIBNddAAx4SyWSy2sV7d7MjAog6k7bInXzV0PWOZZ-JdgTTSn6jTb4K3Je49BcGz1BRwzTslJIOwmvqyziF3lcg6aF5iWOTjmVEF0zXwMJtMc_IcF9FAA8iQi2s5l0DYgkMrjkQ3fBhWnopgfkzjbCuZU2mHDSQ6DJmomWpnE9hDxBp_lGjsQ73HWNNKN-XmBEzH-nz-K5-2wm_hiCq3d0BXm57VxuL7dxpnIwhOIMAYR04PvYHyz2S-Nu9dw6apenfyKe8-ydVt7KHnnWWmk1ErlFzCHmsDigJz0ku0QX59lM7xY5i4qA&amp;quot; localhost:8080/v2/pet/111
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Go to &lt;a href=&#34;http://localhost:8083/&#34;&gt;http://localhost:8083/&lt;/a&gt; and select metrics database and select &amp;ldquo;SHOW MEASUREMENTS&amp;rdquo;.
+You will find several measurements created. Some of them are for api view and some of them
+are for client view.&lt;/p&gt;
+
+&lt;p&gt;You can connect Grafana to Influxdb and create dashboards on Grafana to visualize
+the metrics.&lt;/p&gt;
+
 &lt;h1 id=&#34;logging&#34;&gt;Logging&lt;/h1&gt;
+
+&lt;p&gt;Logging is very important in microservices architecture as logs must be aggregated in
+order to trace all the activities of a particular request from consumer. We are using
+ELK stack for logging. In the above step, Elasticsearch, Logstash and Kibana are all
+started in the same docker-compose.yml.&lt;/p&gt;
+
+&lt;p&gt;In order for the example-petstore container to forward log files to ELK, we need to
+set up log driver on the application container to forward logs to Logstash.&lt;/p&gt;
+
+&lt;p&gt;Here is the command line to start the example-petstore&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LOGSTASH_ADDRESS=$(docker inspect --format &#39;{{ .NetworkSettings.Networks.lightdocker_light.IPAddress }}&#39; lightdocker_logstash_1)
+docker run -d -p 8080:8080 -v /tmp/petstore/config:/config --network=lightdocker_light --log-driver=gelf --log-opt gelf-address=udp://$LOGSTASH_ADDRESS:12201 --log-opt tag=&amp;quot;petstore&amp;quot; --log-opt env=dev networknt/example-petstore
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you example-petstore is up and running and all logs have sent to the Logstash and
+then ElasticSearch. Let&amp;rsquo;s go to the Kibana to see if our logs can be viewed there.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://localhost:5601/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just select the default template and you can see the logs there.&lt;/p&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;p&gt;This conclude the petstore example on the dev environment; however, the steps are not for
+production as there are a lot of security issues need to be addressed and containers
+won&amp;rsquo;t be managed by docker-compose on production. Kubernetes or Docker Swarm will be utilized
+likely. This is out of the scope for this tutorial for now.&lt;/p&gt;
 </description>
     </item>
     
