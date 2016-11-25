@@ -179,6 +179,82 @@ Java. I just hope these points will help you in choosing your next application p
     </item>
     
     <item>
+      <title>Integration</title>
+      <link>https://networknt.github.io/light-java/architecture/integration/</link>
+      <pubDate>Sat, 12 Nov 2016 20:55:44 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/integration/</guid>
+      <description>
+
+&lt;p&gt;While working with my clients to transform monolithic Java EE applications to
+microservices architecture, one of the most frequently asked questions from
+my clients is how do you integrate your newly built microservices with existing
+Java EE applications. In other words, how to leverage existing application
+stacks when exposing REST APIs with microservices?&lt;/p&gt;
+
+&lt;p&gt;For most organizations especially financial institutions, they have big Java
+EE applications running on Weblogic/Websphere that they&amp;rsquo;ve invested efforts
+for a decade or longer. You cannot image that they can rewrite everything and
+switch to microservices overnight.&lt;/p&gt;
+
+&lt;p&gt;I have been working the following four different approaches over the list 5
+years and I will give my recommendations based on my experience. Please be
+aware that this is just a generic recommendation and it cannot be applied
+to all use cases.&lt;/p&gt;
+
+&lt;h1 id=&#34;api-gateway&#34;&gt;API Gateway&lt;/h1&gt;
+
+&lt;p&gt;Most commercial API gateways offer the XML to JSON and JSON to XML
+transformation feature and this was good selling point to in early days. They
+promised that you buy their product and the gateway will transform your
+XML based web services to JSON based REST APIs. The problem with this
+approach is performance, as all of them provide a generic transformer working
+with external defined mapping logic. The transformation is CPU intensive and
+with the overhead of gateway security and other layers, the throughput and
+latency are not acceptable. Also, there are other issues with commercial
+gateways as I documented at &lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;https://networknt.github.io/light-java/architecture/gateway/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;customized-transformation-in-api&#34;&gt;Customized Transformation in API&lt;/h1&gt;
+
+&lt;p&gt;Some developers and architects realized that buying a gateway cannot resolve
+the problem magically so they tried to build the transform logic into the API
+itself. The transformation code is customized per API and it is much more
+efficient that generic transformer in gateways. This provide a little bit
+more flexibility and a little bit increased performance but it is not easy
+to write the transform code as most web services have very complicated request
+and response schemas. Performance wise, it is better than commercial gateway
+solutions but still very bad.&lt;/p&gt;
+
+&lt;h1 id=&#34;calling-service-layer-behind-soa-or-emb&#34;&gt;Calling service layer behind SOA or EMB&lt;/h1&gt;
+
+&lt;p&gt;Most web services are built with multiple layers and chances are you have
+a service layer behind your web service tier with Java native APIs. In this
+case, we can bypass web services and calling the native Java API (most likely
+session beans) from your REST APIs. This gives us a relative good performance
+and leverage the most complicated services in the application tier. It is also
+a low cost solution to bring REST API on top of your existing applications.&lt;/p&gt;
+
+&lt;p&gt;The only drawback is that these app layers are deployed on Java EE platform
+and they have limited throughput and very hard to be scaled.&lt;/p&gt;
+
+&lt;h1 id=&#34;calling-book-of-record-directly&#34;&gt;Calling Book of Record directly&lt;/h1&gt;
+
+&lt;p&gt;In order to fully realize the benefits of microservices architecture, the
+existing monolithic application must be rewritten so that microservices can
+talk to the book of record directly. And this can be done during a long period
+of time to break up existing system to function areas and convert them one by
+one.&lt;/p&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;p&gt;As describe above, it is recommended to rewrite the existing monolithic app
+but if resources are constrained, then build microservices by calling
+existing services are acceptable. As microserivces can be individually deployed
+and replaced, it is easy to convert them all to the final stage one by one.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Monitoring</title>
       <link>https://networknt.github.io/light-java/architecture/monitoring/</link>
       <pubDate>Wed, 09 Nov 2016 21:13:27 -0500</pubDate>
@@ -840,7 +916,8 @@ and hard to make it scalable.&lt;/p&gt;
 and event-driven I/O. This increase the response rate dramatically as the server
 threads are well utilized and the throughput of a single server can be comparable
 to a cluster of JEE servers. Node.js is a very good design but it has its
-limitations. It is hard to scale and hard to integrate with existing legacy systems.&lt;/p&gt;
+&lt;a href=&#34;https://networknt.github.io/light-java/architecture/nodejs/&#34;&gt;limitations&lt;/a&gt;.
+It is hard to scale and hard to integrate with existing legacy systems.&lt;/p&gt;
 
 &lt;p&gt;In 2014, a new player Undertow came in town and it is Java based non-blocking web
 server. From techempower.com &lt;a href=&#34;https://www.techempower.com/benchmarks/#section=data-r12&amp;amp;hw=peak&amp;amp;test=plaintext&#34;&gt;test&lt;/a&gt;,

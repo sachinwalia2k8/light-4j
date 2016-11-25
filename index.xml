@@ -269,6 +269,82 @@ interact with the services running on the same instance.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Integration</title>
+      <link>https://networknt.github.io/light-java/architecture/integration/</link>
+      <pubDate>Sat, 12 Nov 2016 20:55:44 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/integration/</guid>
+      <description>
+
+&lt;p&gt;While working with my clients to transform monolithic Java EE applications to
+microservices architecture, one of the most frequently asked questions from
+my clients is how do you integrate your newly built microservices with existing
+Java EE applications. In other words, how to leverage existing application
+stacks when exposing REST APIs with microservices?&lt;/p&gt;
+
+&lt;p&gt;For most organizations especially financial institutions, they have big Java
+EE applications running on Weblogic/Websphere that they&amp;rsquo;ve invested efforts
+for a decade or longer. You cannot image that they can rewrite everything and
+switch to microservices overnight.&lt;/p&gt;
+
+&lt;p&gt;I have been working the following four different approaches over the list 5
+years and I will give my recommendations based on my experience. Please be
+aware that this is just a generic recommendation and it cannot be applied
+to all use cases.&lt;/p&gt;
+
+&lt;h1 id=&#34;api-gateway&#34;&gt;API Gateway&lt;/h1&gt;
+
+&lt;p&gt;Most commercial API gateways offer the XML to JSON and JSON to XML
+transformation feature and this was good selling point to in early days. They
+promised that you buy their product and the gateway will transform your
+XML based web services to JSON based REST APIs. The problem with this
+approach is performance, as all of them provide a generic transformer working
+with external defined mapping logic. The transformation is CPU intensive and
+with the overhead of gateway security and other layers, the throughput and
+latency are not acceptable. Also, there are other issues with commercial
+gateways as I documented at &lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;https://networknt.github.io/light-java/architecture/gateway/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;customized-transformation-in-api&#34;&gt;Customized Transformation in API&lt;/h1&gt;
+
+&lt;p&gt;Some developers and architects realized that buying a gateway cannot resolve
+the problem magically so they tried to build the transform logic into the API
+itself. The transformation code is customized per API and it is much more
+efficient that generic transformer in gateways. This provide a little bit
+more flexibility and a little bit increased performance but it is not easy
+to write the transform code as most web services have very complicated request
+and response schemas. Performance wise, it is better than commercial gateway
+solutions but still very bad.&lt;/p&gt;
+
+&lt;h1 id=&#34;calling-service-layer-behind-soa-or-emb&#34;&gt;Calling service layer behind SOA or EMB&lt;/h1&gt;
+
+&lt;p&gt;Most web services are built with multiple layers and chances are you have
+a service layer behind your web service tier with Java native APIs. In this
+case, we can bypass web services and calling the native Java API (most likely
+session beans) from your REST APIs. This gives us a relative good performance
+and leverage the most complicated services in the application tier. It is also
+a low cost solution to bring REST API on top of your existing applications.&lt;/p&gt;
+
+&lt;p&gt;The only drawback is that these app layers are deployed on Java EE platform
+and they have limited throughput and very hard to be scaled.&lt;/p&gt;
+
+&lt;h1 id=&#34;calling-book-of-record-directly&#34;&gt;Calling Book of Record directly&lt;/h1&gt;
+
+&lt;p&gt;In order to fully realize the benefits of microservices architecture, the
+existing monolithic application must be rewritten so that microservices can
+talk to the book of record directly. And this can be done during a long period
+of time to break up existing system to function areas and convert them one by
+one.&lt;/p&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;p&gt;As describe above, it is recommended to rewrite the existing monolithic app
+but if resources are constrained, then build microservices by calling
+existing services are acceptable. As microserivces can be individually deployed
+and replaced, it is easy to convert them all to the final stage one by one.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Monitoring</title>
       <link>https://networknt.github.io/light-java/architecture/monitoring/</link>
       <pubDate>Wed, 09 Nov 2016 21:13:27 -0500</pubDate>
@@ -2354,107 +2430,6 @@ with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
 &lt;p&gt;Load config when it is used&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ValidatorConfig config = (ValidatorConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, ValidatorConfig.class);
-
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Client</title>
-      <link>https://networknt.github.io/light-java/other/client/</link>
-      <pubDate>Sun, 23 Oct 2016 12:26:20 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/other/client/</guid>
-      <description>
-
-&lt;p&gt;#&lt;/p&gt;
-
-&lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Web Server&lt;/li&gt;
-&lt;li&gt;Standalone Application/Mobile Application&lt;/li&gt;
-&lt;li&gt;API/Service&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;It provides method to get authorization token and automatically gets client
-credentials token for scopes in API to API calls. It also helps to pass correlationId
-and traceabilityId to the next service.&lt;/p&gt;
-
-&lt;h1 id=&#34;type-of-client&#34;&gt;Type of client&lt;/h1&gt;
-
-&lt;h2 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h2&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
-support. It can be used to call another API/Service in the request context.&lt;/p&gt;
-
-&lt;h2 id=&#34;async-client&#34;&gt;Async Client&lt;/h2&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
-TLS support. It should be used if multiple APIs will be called in the request
-context.&lt;/p&gt;
-
-&lt;h1 id=&#34;client-credentials-token-renew-and-cache&#34;&gt;Client Credentials token renew and cache&lt;/h1&gt;
-
-&lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
-if OAuth2 server is down or busy. It renews the token pro-actively before the
-current one is expired and lets all requests go with the current token. It only
-block other request if the current request is trying to renew an expired token.
-When token renewal in this case fails, all request will be rejected with timeout
-and subsequent requests the same until a grace period is passed so that the
-renew process is start again.&lt;/p&gt;
-
-&lt;h1 id=&#34;examples&#34;&gt;Examples&lt;/h1&gt;
-
-&lt;h3 id=&#34;get-sync-client&#34;&gt;get sync client&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;    CloseableHttpClient client = Client.getInstance().getSyncClient();
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;get-async-client&#34;&gt;get async client&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;    CloseableHttpAsyncClient client = Client.getInstance().getAsyncClient();
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;call-from-web-server&#34;&gt;call from web server&lt;/h3&gt;
-
-&lt;p&gt;To set the header with authorization code JWT token.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addAuthToken(HttpRequest request, String token) 
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To set the header with authorization code JWT token and traceabilityId.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addAuthTokenTrace(HttpRequest request, String token, String traceabilityId) 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;call-from-standalone-app-mobile-app&#34;&gt;call from standalone app/mobile app&lt;/h3&gt;
-
-&lt;p&gt;To set the header with client credentials JWT token.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addCcToken(HttpRequest request) throws ClientException, ApiException 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To set the header with client credentials JWT token and traceabilityId.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addCcTokenTrace(HttpRequest request, String traceabilityId) throws ClientException, ApiException 
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;call-from-api-service&#34;&gt;call from API/service&lt;/h3&gt;
-
-&lt;p&gt;To pass in exchange.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void propagateHeaders(HttpRequest request, final HttpServerExchange exchange) throws ClientException, ApiException 
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To pass in variables individually.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void populateHeader(HttpRequest request, String authToken, String correlationId, String traceabilityId) throws ClientException, ApiException 
 
 &lt;/code&gt;&lt;/pre&gt;
 </description>
