@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Architectures - Light Java - The fastest Java API Framework</title>
+    <title>Config - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/architecture/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/config/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/architecture/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/config/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,12 +69,14 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/light-java/architecture/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/light-java/architecture/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
 
 
 <div class="backdrop">
@@ -95,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Architectures
+        Config
       </div>
     </div>
 
@@ -137,6 +139,9 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        
+          <br>
+          networknt/light-java
         
       </div>
     </div>
@@ -211,14 +216,11 @@
 
 
 
-<a class="current" title="Architecture" href="https://networknt.github.io/light-java/architecture/">
+<a  title="Architecture" href="https://networknt.github.io/light-java/architecture/">
 	
 	Architecture
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -358,7 +360,7 @@
 
 
 
-<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+<a  title="License" href="https://networknt.github.io/light-java/license/">
 	
 	License
 </a>
@@ -405,114 +407,140 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Architecture</h1>
+			<h1>Config </h1>
 
 			
-			<a href="https://networknt.github.io/light-java/architecture/nodejs/" title="nodejs">
-				<h2>nodejs</h2>
-			</a>
 
-			<br>
-			When talking about microservices, a lot of Nodejs developers will say that Node is a better platform than Java and other languages to build microservices. The arguments are:
- Nodejs is faster than Java. Nodejs development is more productive than Java.  These claims are proved to be false already as I&rsquo;ve been working on both platforms in banking industry for the last couple of years. I have been building REST API frameworks on both Java and Nodejs and the following are my observations on Nodejs in enterprise computing.
+<p>A configuration module that supports externalized config in official standalone
+deployment or docker container</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/integration/" title="Integration">
-				<h2>Integration</h2>
-			</a>
+<h2 id="introduction">Introduction</h2>
 
-			<br>
-			While working with my clients to transform monolithic Java EE applications to microservices architecture, one of the most frequently asked questions from my clients is how do you integrate your newly built microservices with existing Java EE applications. In other words, how to leverage existing application stacks when exposing REST APIs with microservices?
-For most organizations especially financial institutions, they have big Java EE applications running on Weblogic/Websphere that they&rsquo;ve invested efforts for a decade or longer.
+<p>Externalized configuration from the application package is very important. It
+allows us to deploy the same package
+to DEV/SIT/UAT/PROD environment with different configuration packages without
+reopening the delivery package. For
+development, embedded configuration give us the flexibility to take default
+values out of the box.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/monitoring/" title="Monitoring">
-				<h2>Monitoring</h2>
-			</a>
+<p>When dockerizing our application, the external configuration can be mapped to a
+volume which can be updated and
+restarted the container to take effect.</p>
 
-			<br>
-			Monitoring used to be a somewhat passive thing. You used tools to monitor the application process/logs and perhaps send an alert if something seemed wrong,
-but mostly it was hands off. When we move to microservices architecture, things are changing.
-User Experience and Microservices Monitoring With Microservices which are released more often, you can try new features and see how they impact user usage patterns. With this feedback, you can improve your application.
+<p>For now, only file system configuration is supported but in a long run, this
+module can be extended to support
+configurations from database, http/https server and config API served by config
+server. Given the risk of single
+point failure, file system config is still the foundation. Only when the server
+start, it will contact external
+config sever to load (first time) or update local file system so that config
+files are cached. Except first time
+start the server, the server can use the local cache to start if config service
+is not available.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/traceability/" title="traceability">
-				<h2>traceability</h2>
-			</a>
+<h2 id="singleton">Singleton</h2>
 
-			<br>
-			For microservices architecture, it is very important to trace request from one service to another in the entire call tree in order to have big picture if something happens or have an audit log that is aggregated by database or Splunk.
-In the framework, we have two Ids to serve this purpose.
-X-Traceability-Id  Generated by client Unique for this client only Can be database sequence number or UUID Must be passed to the next service Must be returned to the caller Will be logged in per request audit log  X-Correlation-Id  Generated in the immediate service from client Must be UUID Must be passed to the next service Will be logged in per request audit log Every service/API must check if this id available and generate one if doesn&rsquo;t exist in request header.
+<p>For one JVM, there should be only one instance of Config and it should be
+shared by all the modules within the application. The class is designed as a
+singleton class and has several abstract methods that should be implemented
+in sub classes. A default File System based implementation is provided. Other
+implementation will be provided in the future when it is needed.
+ </p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/plugin/" title="plugin">
-				<h2>plugin</h2>
-			</a>
+<h2 id="interface">Interface</h2>
 
-			<br>
-			In the framework design, we have adopted the same principal of microservices architecture to break down the entire framework into smaller pieces so that each can be customized and replaced if necessary. The only difference is that all the modules in the framework are wired in request/response chain for best performance.
-There are four type of components that can be wired in at different stage of the server start up.
+<p>The following abstract methods are implemented in the default service provider.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/security/" title="Security">
-				<h2>Security</h2>
-			</a>
+<pre><code>// Returns a HashMap by a config name (without .json)     
+public abstract Map&lt;String, Object&gt; getJsonMapConfig(String configName);
 
-			<br>
-			Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
-Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
-While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.
+// Load config for server info so that the result can be masked with out impact the cached verison
+public abstract Map&lt;String, Object&gt; getJsonMapConfigNoCache(String configName);
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/gateway/" title="Gateway">
-				<h2>Gateway</h2>
-			</a>
+// Return a JsonNode by a config name (without .json)
+public abstract JsonNode getJsonNodeConfig(String configName);
 
-			<br>
-			#
-When your organization is thinking about breaking up the big monolithic application to adopt microservices architecture, chances are there are some vendors coming to sell their gateway solutions. Why they want to sell you gateways and do you really need a gateway?
-The reason they want to sell you a gateway is because the solutions they provided are not truely microservices as there is no gateway in the picture of the real microservices.
+// Map the json to a POJO from a config name and class name
+public abstract Object getJsonObjectConfig(String configName, Class clazz);
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/spring-is-bloated/" title="Spring is bloated">
-				<h2>Spring is bloated</h2>
-			</a>
+// Load config into a string by providing the full filename
+public abstract String getStringFromFile(String filename);
 
-			<br>
-			Over the years, Spring seemed to be the replacement of JEE servers with IoC container and light weight servlet container as its foundation. Especially recently, Spring Boot brings in an easy development model and increases developer productivity dramatically.
-However, there are two issues or limitations in Spring applications.
-Spring is bloated and it becomes too heavy When Spring was out, it was only a small core with IoC contain and it was fast and easy to use.
+// Load config into a InputStream by providing full filename
+public abstract InputStream getInputStreamFromFile(String filename);
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/jee-is-dead/" title="Microservices - The final nail in the coffin for Java EE">
-				<h2>Microservices - The final nail in the coffin for Java EE</h2>
-			</a>
+// A cached Jackson ObjectMapper that is shared to other modules
+public abstract ObjectMapper getMapper();
 
-			<br>
-			When Java was out, big players like IBM, BEA, Oracle etc. saw a great opportunity to make money as it is a great language for web programming. But how can you make big money around a programming language? The answer is to build servers on top of it and make it complicated so big corporations will pay big bucks for it. That is why we have Java EE specs, JSRs, Weblogic, Websphere and other servers.
+// Clean up the config cache if there are any
+public abstract void clear();
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/microservices/" title="Microservices">
-				<h2>Microservices</h2>
-			</a>
+</code></pre>
 
-			<br>
-			#
-Speed and Safety at Scale and in Harmony.
-If you’re like most software developers, team leaders, and architects responsible for getting working code out the door of your company, this phrase describes your job in a nutshell. Most of you have probably struggled at this, too. Getting to market quickly seems to imply giving up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient means slowing down the pace of feature and bug-fix releases.
+<h2 id="usage">Usage</h2>
 
-			<hr>
-			
+<p>It is encouraged to create a POJO for your config if the JSON structure is static.
+However, some of the config file have repeatable elements, a map is the only
+options to represent the data in this case.</p>
+
+<p>The two methods return String and InputStream is for loading files such as text
+file with different format and X509 certificates etc.</p>
+
+<p>getMapper() is a convenient way to get ObjectMapper instead of create one which
+is too heavy.</p>
+
+<h2 id="cache">Cache</h2>
+
+<p>Loading configuration files from file system takes time so the config file will
+be cached once it is loaded the first time. All subsequent access to the same
+config file (maybe different key/value pair) will read from the cached copy.
+In order to make sure that server start up won&rsquo;t be impacted by all modules to
+load config files, lazy loading is encouraged unless the module must be
+initialized during server start up.</p>
+
+<h2 id="loading-sequence">Loading sequence</h2>
+
+<p>Each module should have a config file that named the same as the module name.
+For example, Security module as a config file named security.json and it is
+reside in the module /src/main/resources/config folder by default.</p>
+
+<p>For application that uses Security module, it can override the default module
+level config by provide security.json in application&rsquo;s resource
+folder /src/main/resources/config.</p>
+
+<p>Config will also be loaded from class path of the application and this is
+mainly used for testing as it is easy to inject different combination of
+config copies in test cases into class path for unit testing.</p>
+
+<p>For official runtime environment, config files should be externalized to a
+separate folder outside of the package by a system property
+&ldquo;light-java-config-dir&rdquo;. You can start the server with
+a &ldquo;-Dlight-java-config-dir=/config&rdquo; option and put all your files
+into /config. Once in docker image, it can be mapped to a host volume
+with -v /etc/undertow:/config in docker run command.</p>
+
+<p>Given above explanation, the loading sequence is:</p>
+
+<ol>
+<li>System property &ldquo;light-java-config-dir&rdquo; specified directory</li>
+<li>Class Path</li>
+<li>Application resources/config folder</li>
+<li>Module resources/config folder</li>
+</ol>
+
+<h2 id="example">Example</h2>
+
+<p>Load config into static variable</p>
+
+<pre><code>static final Map&lt;String, Object&gt; config = Config.getInstance().getJsonMapConfig(JwtHelper.SECURITY_CONFIG);
+</code></pre>
+
+<p>Load config when it is used</p>
+
+<pre><code>ValidatorConfig config = (ValidatorConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, ValidatorConfig.class);
+
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -523,6 +551,57 @@ If you’re like most software developers, team leaders, and architects responsi
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/middleware/exception/" title="exception">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              exception
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/middleware/body/" title="Body">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Body
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
 		</div>
 	</article>
 
@@ -538,8 +617,8 @@ If you’re like most software developers, team leaders, and architects responsi
 
     <script>
     
-      var base_url = '';
-      var repo_id  = '';
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
     
     </script>
 

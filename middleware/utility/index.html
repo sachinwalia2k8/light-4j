@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Architectures - Light Java - The fastest Java API Framework</title>
+    <title>utility - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/architecture/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/utility/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/architecture/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/utility/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,12 +69,14 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
-    <link href="https://networknt.github.io/light-java/architecture/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    <link href="https://networknt.github.io/light-java/architecture/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
-    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
 
 
 <div class="backdrop">
@@ -95,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Architectures
+        utility
       </div>
     </div>
 
@@ -137,6 +139,9 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        
+          <br>
+          networknt/light-java
         
       </div>
     </div>
@@ -211,14 +216,11 @@
 
 
 
-<a class="current" title="Architecture" href="https://networknt.github.io/light-java/architecture/">
+<a  title="Architecture" href="https://networknt.github.io/light-java/architecture/">
 	
 	Architecture
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -358,7 +360,7 @@
 
 
 
-<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+<a  title="License" href="https://networknt.github.io/light-java/license/">
 	
 	License
 </a>
@@ -405,114 +407,27 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Architecture</h1>
+			<h1>utility </h1>
 
 			
-			<a href="https://networknt.github.io/light-java/architecture/nodejs/" title="nodejs">
-				<h2>nodejs</h2>
-			</a>
 
-			<br>
-			When talking about microservices, a lot of Nodejs developers will say that Node is a better platform than Java and other languages to build microservices. The arguments are:
- Nodejs is faster than Java. Nodejs development is more productive than Java.  These claims are proved to be false already as I&rsquo;ve been working on both platforms in banking industry for the last couple of years. I have been building REST API frameworks on both Java and Nodejs and the following are my observations on Nodejs in enterprise computing.
+<p>This module contains some useful classes that shared by multiple modules within
+the framework.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/integration/" title="Integration">
-				<h2>Integration</h2>
-			</a>
+<h1 id="constants">Constants</h1>
 
-			<br>
-			While working with my clients to transform monolithic Java EE applications to microservices architecture, one of the most frequently asked questions from my clients is how do you integrate your newly built microservices with existing Java EE applications. In other words, how to leverage existing application stacks when exposing REST APIs with microservices?
-For most organizations especially financial institutions, they have big Java EE applications running on Weblogic/Websphere that they&rsquo;ve invested efforts for a decade or longer.
+<p>Contains all the constants shared by all modules.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/monitoring/" title="Monitoring">
-				<h2>Monitoring</h2>
-			</a>
+<h1 id="moduleregistry">ModuleRegistry</h1>
 
-			<br>
-			Monitoring used to be a somewhat passive thing. You used tools to monitor the application process/logs and perhaps send an alert if something seemed wrong,
-but mostly it was hands off. When we move to microservices architecture, things are changing.
-User Experience and Microservices Monitoring With Microservices which are released more often, you can try new features and see how they impact user usage patterns. With this feedback, you can improve your application.
+<p>When the plugin modules are loaded, it will register itself to this module along
+with configuration. When /server/info is called, the endpoint will return all
+plugged in modules and their configurations.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/traceability/" title="traceability">
-				<h2>traceability</h2>
-			</a>
+<h1 id="util">Util</h1>
 
-			<br>
-			For microservices architecture, it is very important to trace request from one service to another in the entire call tree in order to have big picture if something happens or have an audit log that is aggregated by database or Splunk.
-In the framework, we have two Ids to serve this purpose.
-X-Traceability-Id  Generated by client Unique for this client only Can be database sequence number or UUID Must be passed to the next service Must be returned to the caller Will be logged in per request audit log  X-Correlation-Id  Generated in the immediate service from client Must be UUID Must be passed to the next service Will be logged in per request audit log Every service/API must check if this id available and generate one if doesn&rsquo;t exist in request header.
+<p>Some useful utility method like uuid generator etc.</p>
 
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/plugin/" title="plugin">
-				<h2>plugin</h2>
-			</a>
-
-			<br>
-			In the framework design, we have adopted the same principal of microservices architecture to break down the entire framework into smaller pieces so that each can be customized and replaced if necessary. The only difference is that all the modules in the framework are wired in request/response chain for best performance.
-There are four type of components that can be wired in at different stage of the server start up.
-
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/security/" title="Security">
-				<h2>Security</h2>
-			</a>
-
-			<br>
-			Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
-Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
-While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.
-
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/gateway/" title="Gateway">
-				<h2>Gateway</h2>
-			</a>
-
-			<br>
-			#
-When your organization is thinking about breaking up the big monolithic application to adopt microservices architecture, chances are there are some vendors coming to sell their gateway solutions. Why they want to sell you gateways and do you really need a gateway?
-The reason they want to sell you a gateway is because the solutions they provided are not truely microservices as there is no gateway in the picture of the real microservices.
-
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/spring-is-bloated/" title="Spring is bloated">
-				<h2>Spring is bloated</h2>
-			</a>
-
-			<br>
-			Over the years, Spring seemed to be the replacement of JEE servers with IoC container and light weight servlet container as its foundation. Especially recently, Spring Boot brings in an easy development model and increases developer productivity dramatically.
-However, there are two issues or limitations in Spring applications.
-Spring is bloated and it becomes too heavy When Spring was out, it was only a small core with IoC contain and it was fast and easy to use.
-
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/jee-is-dead/" title="Microservices - The final nail in the coffin for Java EE">
-				<h2>Microservices - The final nail in the coffin for Java EE</h2>
-			</a>
-
-			<br>
-			When Java was out, big players like IBM, BEA, Oracle etc. saw a great opportunity to make money as it is a great language for web programming. But how can you make big money around a programming language? The answer is to build servers on top of it and make it complicated so big corporations will pay big bucks for it. That is why we have Java EE specs, JSRs, Weblogic, Websphere and other servers.
-
-			<hr>
-			
-			<a href="https://networknt.github.io/light-java/architecture/microservices/" title="Microservices">
-				<h2>Microservices</h2>
-			</a>
-
-			<br>
-			#
-Speed and Safety at Scale and in Harmony.
-If you’re like most software developers, team leaders, and architects responsible for getting working code out the door of your company, this phrase describes your job in a nutshell. Most of you have probably struggled at this, too. Getting to market quickly seems to imply giving up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient means slowing down the pace of feature and bug-fix releases.
-
-			<hr>
-			
 
 			<aside class="copyright" role="note">
 				
@@ -523,6 +438,57 @@ If you’re like most software developers, team leaders, and architects responsi
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/middleware/validator/" title="Validator">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Validator
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/middleware/swagger/" title="swagger">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              swagger
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
 		</div>
 	</article>
 
@@ -538,8 +504,8 @@ If you’re like most software developers, team leaders, and architects responsi
 
     <script>
     
-      var base_url = '';
-      var repo_id  = '';
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
     
     </script>
 
