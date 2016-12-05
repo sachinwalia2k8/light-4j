@@ -179,7 +179,7 @@ Java. I just hope these points will help you in choosing your next application p
     </item>
     
     <item>
-      <title>Integration</title>
+      <title>Integration Patterns</title>
       <link>https://networknt.github.io/light-java/architecture/integration/</link>
       <pubDate>Sat, 12 Nov 2016 20:55:44 -0500</pubDate>
       
@@ -197,7 +197,7 @@ EE applications running on Weblogic/Websphere that they&amp;rsquo;ve invested ef
 for a decade or longer. You cannot image that they can rewrite everything and
 switch to microservices overnight.&lt;/p&gt;
 
-&lt;p&gt;I have been working the following four different approaches over the list 5
+&lt;p&gt;I have been working the following four different approaches over the last 5
 years and I will give my recommendations based on my experience. Please be
 aware that this is just a generic recommendation and it cannot be applied
 to all use cases.&lt;/p&gt;
@@ -438,7 +438,7 @@ the HttpRequest header with method calls.&lt;/p&gt;
     </item>
     
     <item>
-      <title>plugin</title>
+      <title>Plugin Architecture</title>
       <link>https://networknt.github.io/light-java/architecture/plugin/</link>
       <pubDate>Sat, 29 Oct 2016 17:22:16 -0400</pubDate>
       
@@ -450,15 +450,19 @@ down the entire framework into smaller pieces so that each can be customized and
 necessary. The only difference is that all the modules in the framework are wired in request/response
 chain for best performance.&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/light_java_component.png&#34; alt=&#34;component&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;There are four type of components that can be wired in at different stage of the server start up. The
 following is the loading sequence.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Shutdown Hook Providers&lt;/li&gt;
 &lt;li&gt;Startup Hook Providers&lt;/li&gt;
+&lt;li&gt;Shutdown Hook Providers&lt;/li&gt;
 &lt;li&gt;Handler Provider&lt;/li&gt;
 &lt;li&gt;Middleware Handlers&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/startup_sequence.png&#34; alt=&#34;startup_sequence&#34; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;plugin-implementation&#34;&gt;Plugin implementation&lt;/h1&gt;
 

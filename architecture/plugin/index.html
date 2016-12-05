@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>plugin - Light Java - The fastest Java API Framework</title>
+    <title>Plugin Architecture - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        plugin
+        Plugin Architecture
       </div>
     </div>
 
@@ -407,7 +407,7 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>plugin </h1>
+			<h1>Plugin Architecture </h1>
 
 			
 
@@ -416,15 +416,19 @@ down the entire framework into smaller pieces so that each can be customized and
 necessary. The only difference is that all the modules in the framework are wired in request/response
 chain for best performance.</p>
 
+<p><img src="https://networknt.github.io/light-java/images/light_java_component.png" alt="component" /></p>
+
 <p>There are four type of components that can be wired in at different stage of the server start up. The
 following is the loading sequence.</p>
 
 <ul>
-<li>Shutdown Hook Providers</li>
 <li>Startup Hook Providers</li>
+<li>Shutdown Hook Providers</li>
 <li>Handler Provider</li>
 <li>Middleware Handlers</li>
 </ul>
+
+<p><img src="https://networknt.github.io/light-java/images/startup_sequence.png" alt="startup_sequence" /></p>
 
 <h1 id="plugin-implementation">Plugin implementation</h1>
 
