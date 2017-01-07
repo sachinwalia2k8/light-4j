@@ -11,12 +11,86 @@
     <atom:link href="https://networknt.github.io/light-java/devops/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>linux_service</title>
+      <title>Running Light-Java Application as Linux Service</title>
       <link>https://networknt.github.io/light-java/devops/linux_service/</link>
       <pubDate>Sat, 07 Jan 2017 08:03:47 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/devops/linux_service/</guid>
-      <description></description>
+      <description>
+
+&lt;p&gt;Light-Java application can be easily started as Unix/Linux services using either init.d or systemd given it
+is packaged as a fatjar.&lt;/p&gt;
+
+&lt;h2 id=&#34;installation-as-an-init-d-service-system-v&#34;&gt;Installation as an init.d service (System V)&lt;/h2&gt;
+
+&lt;p&gt;If your application is packaged as a fatjar, and you’re not using a custom script, then your application
+can be used as an init.d service. Simply symlink the jar to init.d to support the standard start, stop,
+restart and status commands.&lt;/p&gt;
+
+&lt;p&gt;The script supports the following features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Starts the services as the user that owns the jar file&lt;/li&gt;
+&lt;li&gt;Tracks application’s PID using /var/run/&lt;appname&gt;/&lt;appname&gt;.pid&lt;/li&gt;
+&lt;li&gt;Writes console logs to /var/log/&lt;appname&gt;.log&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assuming that you have a Light Java application installed in /var/myapp, to install the application as an
+init.d service simply create a symlink:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo ln -s /var/myapp/myapp.jar /etc/init.d/myapp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once installed, you can start and stop the service in the usual way. For example, on a Debian based system:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;service myapp start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also flag the application to start automatically using your standard operating system tools. For
+example, on Debian:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;update-rc.d myapp defaults &amp;lt;priority&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;securing-an-init-d-service&#34;&gt;Securing an init.d service&lt;/h3&gt;
+
+&lt;p&gt;When executed as root, as is the case when root is being used to start an init.d service, the default
+executable script will run the application as the user which owns the jar file. You should never run
+a Light Java application as root so your application’s jar file should never be owned by root. Instead,
+create a specific user to run your application and use chown to make it the owner of the jar file. For
+example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chown bootapp:bootapp your-app.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case, the default executable script will run the application as the bootapp user.&lt;/p&gt;
+
+&lt;p&gt;To reduce the chances of the application’s user account being compromised, you should consider preventing
+it from using a login shell. Set the account’s shell to /usr/sbin/nologin, for example.&lt;/p&gt;
+
+&lt;p&gt;You should also take steps to prevent the modification of your application’s jar file. Firstly, configure
+its permissions so that it cannot be written and can only be read or executed by its owner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chmod 500 your-app.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Secondly, you should also take steps to limit the damage if your application or the account that’s running
+it is compromised. If an attacker does gain access, they could make the jar file writable and change its
+contents. One way to protect against this is to make it immutable using chattr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chattr +i your-app.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will prevent any user, including root, from modifying the jar.&lt;/p&gt;
+
+&lt;p&gt;f root is used to control the application’s service and you use a .conf file to customize its startup,
+the .conf file will be read and evaluated by the root user. It should be secured accordingly. Use chmod
+so that the file can only be read by the owner and use chown to make root the owner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chmod 400 your-app.conf
+sudo chown root:root your-app.conf
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
