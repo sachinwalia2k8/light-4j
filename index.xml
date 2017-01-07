@@ -7,8 +7,91 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Fri, 18 Nov 2016 14:41:29 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 07 Jan 2017 08:03:47 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>linux_service</title>
+      <link>https://networknt.github.io/light-java/devops/linux_service/</link>
+      <pubDate>Sat, 07 Jan 2017 08:03:47 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/devops/linux_service/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Running Light-Java Application as Windows Service</title>
+      <link>https://networknt.github.io/light-java/devops/windows_service/</link>
+      <pubDate>Sat, 07 Jan 2017 08:03:33 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/devops/windows_service/</guid>
+      <description>
+
+&lt;p&gt;Light-Java is packaged as a fatjar and normally will be running in docker container
+on production; however, it can be executed on Windows or Linux host machine or VM
+with the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar filename.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For production deployment, you want to make sure that when you host server/VM
+is restarted, the application will be restarted automatically.&lt;/p&gt;
+
+&lt;p&gt;The following describes step-by-step how you can create a Windows service for your
+Light-Java application or any Java application that can be packaged in a fatjar.&lt;/p&gt;
+
+&lt;p&gt;There are two different options but the first option is more generic and popular.&lt;/p&gt;
+
+&lt;h2 id=&#34;windows-service-wrapper&#34;&gt;Windows Service Wrapper&lt;/h2&gt;
+
+&lt;p&gt;Due to difficulties with the GPL license of the Java Service Wrapper
+(the second option below) in combination with e.g. the MIT license of Jenkins,
+the Windows Service Wrapper project, also known as &lt;a href=&#34;https://github.com/kohsuke/winsw&#34;&gt;winsw&lt;/a&gt;,
+is the best choice.&lt;/p&gt;
+
+&lt;p&gt;Winsw provides programmatic means to install/uninstall/start/stop a service. In
+addition, it may be used to run any kind of executable as a service under Windows,
+whereas Java Service Wrapper, as implied by its name, only supports Java applications.&lt;/p&gt;
+
+&lt;p&gt;First, you download the binaries &lt;a href=&#34;http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, the configuration file that defines our Windows service, MyApp.xml, should
+look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;service&amp;gt;
+    &amp;lt;id&amp;gt;MyApp&amp;lt;/id&amp;gt;
+    &amp;lt;name&amp;gt;MyApp&amp;lt;/name&amp;gt;
+    &amp;lt;description&amp;gt;This runs Spring Boot as a Service.&amp;lt;/description&amp;gt;
+    &amp;lt;env name=&amp;quot;MYAPP_HOME&amp;quot; value=&amp;quot;%BASE%&amp;quot;/&amp;gt;
+    &amp;lt;executable&amp;gt;java&amp;lt;/executable&amp;gt;
+    &amp;lt;arguments&amp;gt;-Xmx256m -jar &amp;quot;%BASE%\MyApp.jar&amp;quot;&amp;lt;/arguments&amp;gt;
+    &amp;lt;logmode&amp;gt;rotate&amp;lt;/logmode&amp;gt;
+&amp;lt;/service&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, you have to rename the winsw.exe to MyApp.exe so that its name matches
+with the MyApp.xml configuration file. Thereafter you can install the service
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ MyApp.exe install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Similarly, you may use uninstall, start, stop, etc.&lt;/p&gt;
+
+&lt;h2 id=&#34;java-service-wrapper&#34;&gt;Java Service Wrapper&lt;/h2&gt;
+
+&lt;p&gt;In case you don’t mind the GPL licensing of the &lt;a href=&#34;http://wrapper.tanukisoftware.com/doc/english/index.html&#34;&gt;Java Service Wrapper&lt;/a&gt;
+project, this alternative may address your needs to configure your JAR file as
+a Windows service equally well. Basically, the Java Service Wrapper also requires
+you to specify in a configuration file which specifies how to run your process
+as a service under Windows.&lt;/p&gt;
+
+&lt;p&gt;This &lt;a href=&#34;http://edn.embarcadero.com/article/32068&#34;&gt;article&lt;/a&gt; explains in a very
+detailed way how to set up such an execution of a JAR file as a service under
+Windows.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Nodejs Pitfalls</title>
@@ -2294,174 +2377,6 @@ plugged in modules and their configurations.&lt;/p&gt;
 &lt;h1 id=&#34;util&#34;&gt;Util&lt;/h1&gt;
 
 &lt;p&gt;Some useful utility method like uuid generator etc.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mask</title>
-      <link>https://networknt.github.io/light-java/other/mask/</link>
-      <pubDate>Sun, 23 Oct 2016 13:19:36 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/other/mask/</guid>
-      <description>
-
-&lt;p&gt;In the entire life cycle of the exchange, there might a lot of logging statements
-written to log files or other persistence storage. These logs will be used to
-assist production issue identifying and resolving and a wide group of people might
-have access to these logs. In order to reduce the risk of leak customer info,
-sensitive info needs to masked before logging. For example, credit card number,
-sin number etc.&lt;/p&gt;
-
-&lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
-
-&lt;p&gt;Given different API will have different sensitive data, the mask is configurable
-and can be applied at header, cookie, query parameters and body.&lt;/p&gt;
-
-&lt;h1 id=&#34;mask-with-string&#34;&gt;Mask with String&lt;/h1&gt;
-
-&lt;h1 id=&#34;mask-with-regex&#34;&gt;Mask with Regex&lt;/h1&gt;
-
-&lt;h1 id=&#34;mask-with-jsonpath&#34;&gt;Mask with JsonPath&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Config</title>
-      <link>https://networknt.github.io/light-java/other/config/</link>
-      <pubDate>Sun, 23 Oct 2016 13:18:22 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/other/config/</guid>
-      <description>
-
-&lt;p&gt;A configuration module that supports externalized config in official standalone
-deployment or docker container&lt;/p&gt;
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;Externalized configuration from the application package is very important. It
-allows us to deploy the same package
-to DEV/SIT/UAT/PROD environment with different configuration packages without
-reopening the delivery package. For
-development, embedded configuration give us the flexibility to take default
-values out of the box.&lt;/p&gt;
-
-&lt;p&gt;When dockerizing our application, the external configuration can be mapped to a
-volume which can be updated and
-restarted the container to take effect.&lt;/p&gt;
-
-&lt;p&gt;For now, only file system configuration is supported but in a long run, this
-module can be extended to support
-configurations from database, http/https server and config API served by config
-server. Given the risk of single
-point failure, file system config is still the foundation. Only when the server
-start, it will contact external
-config sever to load (first time) or update local file system so that config
-files are cached. Except first time
-start the server, the server can use the local cache to start if config service
-is not available.&lt;/p&gt;
-
-&lt;h2 id=&#34;singleton&#34;&gt;Singleton&lt;/h2&gt;
-
-&lt;p&gt;For one JVM, there should be only one instance of Config and it should be
-shared by all the modules within the application. The class is designed as a
-singleton class and has several abstract methods that should be implemented
-in sub classes. A default File System based implementation is provided. Other
-implementation will be provided in the future when it is needed.
- &lt;/p&gt;
-
-&lt;h2 id=&#34;interface&#34;&gt;Interface&lt;/h2&gt;
-
-&lt;p&gt;The following abstract methods are implemented in the default service provider.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// Returns a HashMap by a config name (without .json)
-public abstract Map&amp;lt;String, Object&amp;gt; getJsonMapConfig(String configName);
-
-// Load config for server info so that the result can be masked with out impact the cached verison
-public abstract Map&amp;lt;String, Object&amp;gt; getJsonMapConfigNoCache(String configName);
-
-// Return a JsonNode by a config name (without .json)
-public abstract JsonNode getJsonNodeConfig(String configName);
-
-// Map the json to a POJO from a config name and class name
-public abstract Object getJsonObjectConfig(String configName, Class clazz);
-
-// Load config into a string by providing the full filename
-public abstract String getStringFromFile(String filename);
-
-// Load config into a InputStream by providing full filename
-public abstract InputStream getInputStreamFromFile(String filename);
-
-// A cached Jackson ObjectMapper that is shared to other modules
-public abstract ObjectMapper getMapper();
-
-// Clean up the config cache if there are any
-public abstract void clear();
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
-
-&lt;p&gt;It is encouraged to create a POJO for your config if the JSON structure is static.
-However, some of the config file have repeatable elements, a map is the only
-options to represent the data in this case.&lt;/p&gt;
-
-&lt;p&gt;The two methods return String and InputStream is for loading files such as text
-file with different format and X509 certificates etc.&lt;/p&gt;
-
-&lt;p&gt;getMapper() is a convenient way to get ObjectMapper instead of create one which
-is too heavy.&lt;/p&gt;
-
-&lt;h2 id=&#34;cache&#34;&gt;Cache&lt;/h2&gt;
-
-&lt;p&gt;Loading configuration files from file system takes time so the config file will
-be cached once it is loaded the first time. All subsequent access to the same
-config file (maybe different key/value pair) will read from the cached copy.
-In order to make sure that server start up won&amp;rsquo;t be impacted by all modules to
-load config files, lazy loading is encouraged unless the module must be
-initialized during server start up.&lt;/p&gt;
-
-&lt;h2 id=&#34;loading-sequence&#34;&gt;Loading sequence&lt;/h2&gt;
-
-&lt;p&gt;Each module should have a config file that named the same as the module name.
-For example, Security module as a config file named security.json and it is
-reside in the module /src/main/resources/config folder by default.&lt;/p&gt;
-
-&lt;p&gt;For application that uses Security module, it can override the default module
-level config by provide security.json in application&amp;rsquo;s resource
-folder /src/main/resources/config.&lt;/p&gt;
-
-&lt;p&gt;Config will also be loaded from class path of the application and this is
-mainly used for testing as it is easy to inject different combination of
-config copies in test cases into class path for unit testing.&lt;/p&gt;
-
-&lt;p&gt;For official runtime environment, config files should be externalized to a
-separate folder outside of the package by a system property
-&amp;ldquo;light-java-config-dir&amp;rdquo;. You can start the server with
-a &amp;ldquo;-Dlight-java-config-dir=/config&amp;rdquo; option and put all your files
-into /config. Once in docker image, it can be mapped to a host volume
-with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
-
-&lt;p&gt;Given above explanation, the loading sequence is:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;System property &amp;ldquo;light-java-config-dir&amp;rdquo; specified directory&lt;/li&gt;
-&lt;li&gt;Class Path&lt;/li&gt;
-&lt;li&gt;Application resources/config folder&lt;/li&gt;
-&lt;li&gt;Module resources/config folder&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-
-&lt;p&gt;Load config into static variable&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;static final Map&amp;lt;String, Object&amp;gt; config = Config.getInstance().getJsonMapConfig(JwtHelper.SECURITY_CONFIG);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Load config when it is used&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ValidatorConfig config = (ValidatorConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, ValidatorConfig.class);
-
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

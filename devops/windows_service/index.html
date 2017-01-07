@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Server - Light Java - The fastest Java API Framework</title>
-    <meta name="generator" content="Hugo 0.17" />
+    <title>Running Light-Java Application as Windows Service - Light Java - The fastest Java API Framework</title>
+    <meta name="generator" content="Hugo 0.18.1" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/server/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/devops/windows_service/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/server/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/devops/windows_service/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -33,14 +33,14 @@
     <style>
       @font-face {
         font-family: 'Icon';
-        src: url('https://networknt.github.io/light-java/fonts/icon.eot?52m981');
-        src: url('https://networknt.github.io/light-java/fonts/icon.eot?#iefix52m981')
+        src: url('https://networknt.github.io/light-java/fonts/icon.eot');
+        src: url('https://networknt.github.io/light-java/fonts/icon.eot')
                format('embedded-opentype'),
-             url('https://networknt.github.io/light-java/fonts/icon.woff?52m981')
+             url('https://networknt.github.io/light-java/fonts/icon.woff')
                format('woff'),
-             url('https://networknt.github.io/light-java/fonts/icon.ttf?52m981')
+             url('https://networknt.github.io/light-java/fonts/icon.ttf')
                format('truetype'),
-             url('https://networknt.github.io/light-java/fonts/icon.svg?52m981#icon')
+             url('https://networknt.github.io/light-java/fonts/icon.svg')
                format('svg');
         font-weight: normal;
         font-style: normal;
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Server
+        Running Light-Java Application as Windows Service
       </div>
     </div>
 
@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Light Java - The fastest Java API Framework <span class="version">1.0.0</span></strong>
+        <strong>Light Java - The fastest Java API Framework <span class="version">1.1.3</span></strong>
         
           <br>
           networknt/light-java
@@ -360,7 +360,7 @@
 
 
 
-<a  title="License" href="https://networknt.github.io/light-java/license/">
+<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
 	
 	License
 </a>
@@ -407,86 +407,78 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Server </h1>
+			<h1>Running Light-Java Application as Windows Service </h1>
 
 			
 
-<h2 id="introduction">Introduction</h2>
+<p>Light-Java is packaged as a fatjar and normally will be running in docker container
+on production; however, it can be executed on Windows or Linux host machine or VM
+with the following command.</p>
 
-<p>This module is responsible for managing life cycle of the embedded Undertow core http server. It starts the
-server and initializes all middleware plugins along with route handler providers. It stops the server and
-allow the resources to be released even someone click ctrl+c.</p>
+<pre><code>java -jar filename.jar
+</code></pre>
 
-<h2 id="middleware">Middleware</h2>
+<p>For production deployment, you want to make sure that when you host server/VM
+is restarted, the application will be restarted automatically.</p>
 
-<p>Middleware plugins are the key components in the framework as they perform the heavy lifting behind the
-scene. These components address the cross cutting concerns for all API implementation so that API developers
-can focus on their domain logic only. Each component will have a config file (same name but with .json ext)
-to control if the component will be enabled and its behavior. The framework has provide a list of the
-middleware plugins and experience developers can add other plugins into the request/response chain.</p>
+<p>The following describes step-by-step how you can create a Windows service for your
+Light-Java application or any Java application that can be packaged in a fatjar.</p>
 
-<p>To add your own middleware plugins, update com.networknt.handler.MiddlewareHandler in
-your API project folder src/main/resources/META-INF/services</p>
+<p>There are two different options but the first option is more generic and popular.</p>
 
-<p>Here is the default middleware configuration generated by <a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a></p>
+<h2 id="windows-service-wrapper">Windows Service Wrapper</h2>
 
-<pre><code># This file is generated and should not be changed unless you want to plug in more handlers into the handler chain
-# for cross cutting concerns. In most cases, you should replace some of the default handlers with your own implementation
-# Please note: the sequence of these handlers are very important.
+<p>Due to difficulties with the GPL license of the Java Service Wrapper
+(the second option below) in combination with e.g. the MIT license of Jenkins,
+the Windows Service Wrapper project, also known as <a href="https://github.com/kohsuke/winsw">winsw</a>,
+is the best choice.</p>
 
-#Validator
-com.networknt.validator.ValidatorHandler
-#FullAudit
-com.networknt.audit.FullAuditHandler
-#SimpleAudit
-com.networknt.audit.AuditHandler
-#Body
-com.networknt.body.TraceabilityHandler
-#Security
-com.networknt.security.JwtVerifyHandler
-#Swagger
-com.networknt.swagger.SwaggerHandler
-#Metrics
-com.networknt.metrics.MetricsHandler
-#Exception
-com.networknt.exception.ExceptionHandler
+<p>Winsw provides programmatic means to install/uninstall/start/stop a service. In
+addition, it may be used to run any kind of executable as a service under Windows,
+whereas Java Service Wrapper, as implied by its name, only supports Java applications.</p>
 
+<p>First, you download the binaries <a href="http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/">here</a>.</p>
+
+<p>Next, the configuration file that defines our Windows service, MyApp.xml, should
+look like this:</p>
+
+<pre><code>&lt;service&gt;
+    &lt;id&gt;MyApp&lt;/id&gt;
+    &lt;name&gt;MyApp&lt;/name&gt;
+    &lt;description&gt;This runs Spring Boot as a Service.&lt;/description&gt;
+    &lt;env name=&quot;MYAPP_HOME&quot; value=&quot;%BASE%&quot;/&gt;
+    &lt;executable&gt;java&lt;/executable&gt;
+    &lt;arguments&gt;-Xmx256m -jar &quot;%BASE%\MyApp.jar&quot;&lt;/arguments&gt;
+    &lt;logmode&gt;rotate&lt;/logmode&gt;
+&lt;/service&gt;
 
 </code></pre>
 
-<h2 id="route-provider">Route Provider</h2>
+<p>Finally, you have to rename the winsw.exe to MyApp.exe so that its name matches
+with the MyApp.xml configuration file. Thereafter you can install the service
+like so:</p>
 
-<p><a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a> generates all the handlers and corresponding
-test cases based on OpenAPI specification. It also generate PathHandlerProvider to group these handlers
-together. This class is loaded by the server via Java SPI. The config file
-com.networknt.server.HandlerProvider can be found at /src/main/resources/META-INF/services</p>
-
-<p>Here is an example of the config.</p>
-
-<pre><code>io.swagger.handler.PathHandlerProvider
-
+<pre><code>$ MyApp.exe install
 </code></pre>
 
-<h2 id="configuration">Configuration</h2>
+<p>Similarly, you may use uninstall, start, stop, etc.</p>
 
-<p>server.json is the configuration file for this module. To make it simpler, it only ip and port are
-configurable at the moment. Other server parameters are set for the best performance assuming clould
-deployment. In the future, these parameters might be exposed in the server.json.</p>
+<h2 id="java-service-wrapper">Java Service Wrapper</h2>
 
-<p>Here is an exmaple of server.json</p>
+<p>In case you don’t mind the GPL licensing of the <a href="http://wrapper.tanukisoftware.com/doc/english/index.html">Java Service Wrapper</a>
+project, this alternative may address your needs to configure your JAR file as
+a Windows service equally well. Basically, the Java Service Wrapper also requires
+you to specify in a configuration file which specifies how to run your process
+as a service under Windows.</p>
 
-<pre><code>{
-  &quot;description&quot;: &quot;server config&quot;,
-  &quot;ip&quot;: &quot;localhost&quot;,
-  &quot;port&quot;: 8080
-}
-
-</code></pre>
+<p>This <a href="http://edn.embarcadero.com/article/32068">article</a> explains in a very
+detailed way how to set up such an execution of a JAR file as a service under
+Windows.</p>
 
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2016 Released under the MIT license &ndash;
+				&copy; 2017 Released under the MIT license &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
@@ -500,7 +492,7 @@ deployment. In the future, these parameters might be exposed in the server.json.
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/middleware/metrics/" title="Metrics">
+      <a href="https://networknt.github.io/light-java/devops/linux_service/" title="linux_service">
         <span class="direction">
           Previous
         </span>
@@ -510,7 +502,7 @@ deployment. In the future, these parameters might be exposed in the server.json.
           </div>
           <div class="stretch">
             <div class="title">
-              Metrics
+              linux_service
             </div>
           </div>
         </div>
@@ -520,14 +512,14 @@ deployment. In the future, these parameters might be exposed in the server.json.
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/roadmap/" title="Road Map">
+      <a href="https://networknt.github.io/light-java/architecture/nodejs/" title="Nodejs Pitfalls">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Road Map
+              Nodejs Pitfalls
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -582,14 +574,14 @@ deployment. In the future, these parameters might be exposed in the server.json.
             a.setAttribute("href", "#" + headers[i].id);
             a.setAttribute("title", headers[i].innerHTML);
             a.innerHTML = headers[i].innerHTML;
-            
+
             li.appendChild(a)
             scrollspy.appendChild(li);
           }
         } else {
           scrollspy.parentElement.removeChild(scrollspy)
         }
-        
+
 
         /* Add permanent link next to the headers */
         var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -607,7 +599,8 @@ deployment. In the future, these parameters might be exposed in the server.json.
 
     
 
-    <script src="//gohugo.io/js/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
+

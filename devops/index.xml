@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on Light Java - The fastest Java API Framework</title>
+    <link>https://networknt.github.io/light-java/devops/index.xml</link>
+    <description>Recent content in Devops on Light Java - The fastest Java API Framework</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Sat, 07 Jan 2017 08:03:47 -0500</lastBuildDate>
+    <atom:link href="https://networknt.github.io/light-java/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>linux_service</title>
+      <link>https://networknt.github.io/light-java/devops/linux_service/</link>
+      <pubDate>Sat, 07 Jan 2017 08:03:47 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/devops/linux_service/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Running Light-Java Application as Windows Service</title>
+      <link>https://networknt.github.io/light-java/devops/windows_service/</link>
+      <pubDate>Sat, 07 Jan 2017 08:03:33 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/devops/windows_service/</guid>
+      <description>
+
+&lt;p&gt;Light-Java is packaged as a fatjar and normally will be running in docker container
+on production; however, it can be executed on Windows or Linux host machine or VM
+with the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar filename.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For production deployment, you want to make sure that when you host server/VM
+is restarted, the application will be restarted automatically.&lt;/p&gt;
+
+&lt;p&gt;The following describes step-by-step how you can create a Windows service for your
+Light-Java application or any Java application that can be packaged in a fatjar.&lt;/p&gt;
+
+&lt;p&gt;There are two different options but the first option is more generic and popular.&lt;/p&gt;
+
+&lt;h2 id=&#34;windows-service-wrapper&#34;&gt;Windows Service Wrapper&lt;/h2&gt;
+
+&lt;p&gt;Due to difficulties with the GPL license of the Java Service Wrapper
+(the second option below) in combination with e.g. the MIT license of Jenkins,
+the Windows Service Wrapper project, also known as &lt;a href=&#34;https://github.com/kohsuke/winsw&#34;&gt;winsw&lt;/a&gt;,
+is the best choice.&lt;/p&gt;
+
+&lt;p&gt;Winsw provides programmatic means to install/uninstall/start/stop a service. In
+addition, it may be used to run any kind of executable as a service under Windows,
+whereas Java Service Wrapper, as implied by its name, only supports Java applications.&lt;/p&gt;
+
+&lt;p&gt;First, you download the binaries &lt;a href=&#34;http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, the configuration file that defines our Windows service, MyApp.xml, should
+look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;service&amp;gt;
+    &amp;lt;id&amp;gt;MyApp&amp;lt;/id&amp;gt;
+    &amp;lt;name&amp;gt;MyApp&amp;lt;/name&amp;gt;
+    &amp;lt;description&amp;gt;This runs Spring Boot as a Service.&amp;lt;/description&amp;gt;
+    &amp;lt;env name=&amp;quot;MYAPP_HOME&amp;quot; value=&amp;quot;%BASE%&amp;quot;/&amp;gt;
+    &amp;lt;executable&amp;gt;java&amp;lt;/executable&amp;gt;
+    &amp;lt;arguments&amp;gt;-Xmx256m -jar &amp;quot;%BASE%\MyApp.jar&amp;quot;&amp;lt;/arguments&amp;gt;
+    &amp;lt;logmode&amp;gt;rotate&amp;lt;/logmode&amp;gt;
+&amp;lt;/service&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, you have to rename the winsw.exe to MyApp.exe so that its name matches
+with the MyApp.xml configuration file. Thereafter you can install the service
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ MyApp.exe install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Similarly, you may use uninstall, start, stop, etc.&lt;/p&gt;
+
+&lt;h2 id=&#34;java-service-wrapper&#34;&gt;Java Service Wrapper&lt;/h2&gt;
+
+&lt;p&gt;In case you don’t mind the GPL licensing of the &lt;a href=&#34;http://wrapper.tanukisoftware.com/doc/english/index.html&#34;&gt;Java Service Wrapper&lt;/a&gt;
+project, this alternative may address your needs to configure your JAR file as
+a Windows service equally well. Basically, the Java Service Wrapper also requires
+you to specify in a configuration file which specifies how to run your process
+as a service under Windows.&lt;/p&gt;
+
+&lt;p&gt;This &lt;a href=&#34;http://edn.embarcadero.com/article/32068&#34;&gt;article&lt;/a&gt; explains in a very
+detailed way how to set up such an execution of a JAR file as a service under
+Windows.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

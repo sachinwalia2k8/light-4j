@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tools-rsses on Light Java - The fastest Java API Framework</title>
+    <title>Tools on Light Java - The fastest Java API Framework</title>
     <link>https://networknt.github.io/light-java/tools/index.xml</link>
-    <description>Recent content in Tools-rsses on Light Java - The fastest Java API Framework</description>
+    <description>Recent content in Tools on Light Java - The fastest Java API Framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
@@ -371,11 +371,11 @@ and &lt;a href=&#34;http://czerasz.com/2015/07/19/wrk-http-benchmarking-tool-exa
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;This tutorial is written for Linux and Mac; however, it should be hard to follow it by Windows users.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This tutorial is written for Linux and Mac; however, it should not be hard to follow by Windows users.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;For most open source developers, they would ues github.com to manage their projects and then have a README.md
-for documentation. For some bigger project they might have wiki for additional documents and linked them to
-README.md.&lt;/p&gt;
+&lt;p&gt;For most open source developers, they would ues github.com to manage their projects and
+then have a README.md for documentation. For some bigger projects they might have wiki
+for additional documents and linked them to README.md.&lt;/p&gt;
 
 &lt;p&gt;Here I will introduce another way to manage documents in gh-pages with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static site
 generator.&lt;/p&gt;
@@ -397,7 +397,7 @@ sudo dpkg -i hugo_0.17-64bit.deb
 &lt;pre&gt;&lt;code&gt;hugo version
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;For Mac, the easiest way to use Homebrew.&lt;/p&gt;
+&lt;p&gt;For Mac, the easiest way is to use Homebrew.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;brew update &amp;amp;&amp;amp; brew install hugo
 &lt;/code&gt;&lt;/pre&gt;
@@ -419,15 +419,16 @@ sudo dpkg -i hugo_0.17-64bit.deb
 
 &lt;h2 id=&#34;create-gh-pages-branch&#34;&gt;Create gh-pages branch&lt;/h2&gt;
 
-&lt;p&gt;GitHub Pages will serve up a website for any repository that has a branch called gh-pages with a valid index.html
-file at that branch’s root.&lt;/p&gt;
+&lt;p&gt;GitHub Pages will serve up a website for any repository that has a branch called gh-pages
+with a valid index.html file at that branch’s root.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Create an orphaned gh-pages branch&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;To set up a Project Pages site, you need to create a new &amp;ldquo;orphan&amp;rdquo; branch (a branch that has no common history with
- an existing branch) in your repository. The safest way to do this is to start with a fresh clone:&lt;/p&gt;
+&lt;p&gt;To set up a Project Pages site, you need to create a new &amp;ldquo;orphan&amp;rdquo; branch (a branch that
+has no common history with an existing branch) in your repository. The safest way to do
+this is to start with a fresh clone:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;git clone github.com/user/repository.git
 cd repository
@@ -472,8 +473,9 @@ git push origin gh-pages
 &lt;pre&gt;&lt;code&gt;hugo new site docs
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now you have a docs directory in your project root folder and some empty sub directories under docs. By default, git
-will not commit empty directories to the repository. To work around it, we can include .gitkeep file in each of these
+&lt;p&gt;Now you have a docs directory in your project root folder and some empty sub
+directories under docs. By default, git will not commit empty directories to the
+repository. To work around it, we can include .gitkeep file in each of these
 directories.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;for DIR in `ls -p | grep /`; do touch ${DIR}.gitkeep; done
@@ -533,8 +535,8 @@ wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh &amp;amp
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;From docs folder run the following command to publish your site to gh-pages. This can be repeated every time you
-want to publish your site.&lt;/p&gt;
+&lt;p&gt;From docs folder run the following command to publish your site to gh-pages. This
+can be repeated every time you want to publish your site.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# For setting it up to build to a folder other than &amp;quot;dist&amp;quot;, see the options in deploy.sh.
 # Build the site to /dist.
