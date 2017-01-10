@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Monitoring - Light Java - The fastest Java API Framework</title>
+    <title>Benchmarks - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/architecture/monitoring/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/benchmarks/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/architecture/monitoring/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/benchmarks/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -69,14 +69,12 @@
     <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
 
     
+    <link href="https://networknt.github.io/light-java/benchmarks/index.xml" rel="alternate" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
+    <link href="https://networknt.github.io/light-java/benchmarks/index.xml" rel="feed" type="application/rss+xml" title="Light Java - The fastest Java API Framework" />
+    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
-
-
-
-	
-	
 
 
 <div class="backdrop">
@@ -97,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Monitoring
+        Benchmarks
       </div>
     </div>
 
@@ -139,9 +137,6 @@
       
       <div class="name">
         <strong>Light Java - The fastest Java API Framework <span class="version">1.1.6</span></strong>
-        
-          <br>
-          networknt/light-java
         
       </div>
     </div>
@@ -288,11 +283,14 @@
 
 
 
-<a  title="Benchmarks" href="https://networknt.github.io/light-java/benchmarks/">
+<a class="current" title="Benchmarks" href="https://networknt.github.io/light-java/benchmarks/">
 	
 	Benchmarks
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -443,127 +441,19 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Monitoring </h1>
+			<h1>Pages in Benchmark</h1>
 
 			
+			<a href="https://networknt.github.io/light-java/benchmarks/nodejs/" title="Nodejs Pitfalls">
+				<h2>Nodejs Pitfalls</h2>
+			</a>
 
-<p>Monitoring used to be a somewhat passive thing. You used tools to monitor the
-application process/logs and perhaps send an alert if something seemed wrong,<br />
-but mostly it was hands off. When we move to microservices architecture, things
-are changing.</p>
+			<br>
+			When talking about microservices, a lot of Nodejs developers will say that Node is a better platform than Java and other languages to build microservices. The arguments are:
+ Nodejs is faster than Java at runtime. Nodejs development is more productive than Java.  These claims are proved to be false already as I&rsquo;ve been working on both platforms in banking industry for the last couple of years. I have been building REST API frameworks on both Java and Nodejs and the following are my observations on Nodejs in enterprise computing.
 
-<h2 id="user-experience-and-microservices-monitoring">User Experience and Microservices Monitoring</h2>
-
-<p>With Microservices which are released more often, you can try new features and
-see how they impact user usage patterns. With this feedback, you can improve
-your application. It is not uncommon to employ A/B testing and multi-variant
-testing to try out new combinations of features. Monitoring is more than just
-watching for failure. With big data, data science, and microservices,
-monitoring microservices runtime stats is required to know your application
-users. You want to know what your users like and dislike and react.</p>
-
-<h2 id="debugging-and-microservices-monitoring">Debugging and Microservices Monitoring</h2>
-
-<p>Runtime statistics and metrics are critical for distributed systems. Since
-microservices architecture use a lot of remote calls. Monitoring microservices
-metrics can include request per second, available memory, #threads, #connections,
-failed authentication, expired tokens, etc. These parameters are important for
-understanding and debugging your code. Working with distributed systems is hard.
-Working with distributed systems without reactive monitoring is crazy. Reactive
-monitoring allows you to react to failure conditions and ramp of services for
-higher loads.</p>
-
-<h2 id="circuit-breaker-and-microservices-monitoring">Circuit Breaker and Microservices Monitoring</h2>
-
-<p>You can employ the Circuit Breaker pattern to prevent a catastrophic cascade,
-and reactive microservices monitoring can be the trigger. Downstream services
-can be registered in a service discovery so that you can mark nodes as unhealthy
-as well react by reroute in the case of outages. The reaction can be serving up
-a deprecated version of the data or service, but the key is to avoid cascading
-failure. You don&rsquo;t want your services falling over like dominoes.</p>
-
-<h2 id="cloud-orchestration-and-microservices-monitoring">Cloud Orchestration and Microservices Monitoring</h2>
-
-<p>Reactive microservices monitoring would enable you to detect heavy load, and
-spin up new instances with the cloud orchestration platform of your choice
-(EC2, CloudStack, OpenStack, Rackspace, boto, etc.).</p>
-
-<h2 id="public-microservices-and-microservices-monitoring">Public Microservices and Microservices Monitoring</h2>
-
-<p>Microservices monitoring of runtime statistics can be used to rate limiting
-a partners Application ID. You don&rsquo;t want partners to consume all of your
-well-tuned, high-performant microservices resources. It is okay to trust your
-partners but use Microservices Monitoring to verify.</p>
-
-<p>Monitoring public microservices is your way to verify. Once you make microservices
-publicly available or partner available, you have to monitor and rate limit.</p>
-
-<p>This is not a new concept. If you have ever used a public REST API from Google for
-example, you are well aware of rate limiting. A rate limit will do things like limit
-the number of connections you’re allowed to make. It is common for rate limits to
-limit the number of certain requests that a client id or partner id is allowed to
-make in a given time period. This is protection.</p>
-
-<p>Deploying public or partner accessible microservices without this protection is
-lunacy and a recipe for disaster, unless you like failing when someone decides to
-hit your endpoints 10x more than you did the capacity planning for. Avoid long
-nights and tears. Monitor microservices that you publish, and limit access to them.</p>
-
-<p>The reactive manifesto is a good tutor for the types of monitoring you will want
-to do and states that your system should react to change instead of just fail.</p>
-
-<h2 id="microservices-framework-and-microservices-monitoring">Microservices Framework and Microservices Monitoring</h2>
-
-<p>Light-Java a mircoservices framework that comes with a runtime metrics which can
-be used for Microservices Monitoring.</p>
-
-<ul>
-<li>You can query /server/health endpoint to detect if the service is available and healthy.</li>
-<li>The framework collects metrics info and pushes it into influxdb and dashboard can be viewed from Grafana.</li>
-<li>Rate limiting can be enabled at client_id level or ip address/user level.</li>
-<li>Kubernetes monitors load of each pods and can start new instances on demand.</li>
-<li>TraceabilityId and CorrelationId in logs that can be traced with tools like Logstash, GrayLog and Splunk.</li>
-</ul>
-
-<h2 id="reactive-microservices-monitoring">Reactive Microservices Monitoring</h2>
-
-<p>Reactive Microservices Monitoring is an essential ingredient of microservices architecture.
-You need it for debugging, knowing your users, working with partners, building reactive
-systems that react to load and failures without cascading outages. Reactive Microservices
-Monitoring can not be a hindsight decision. Build your microservices with microservices
-monitoring in mind from the start. Make sure that the microservices lib that you use has
-monitoring of runtime statistics built in from the start. Make sure that is a core part of
-the microservices library. Code Hale Statistics allow you to gather metrics in
-a standard way. Tools like Influxdb and Grafana, Kibana help you understand the
-data, and build dashboards. Light Java, the Java Microservices Framework, includes a metrics
-middleware which feeds into CodeHale Metrics. Light Java also proivdes a rate limiting
-middleware to limit access per client_id or IP address/user. The container orchestration tool
-like Kubernetes can also spin up new nodes/pods. With big data, data science,
-and microservices, monitoring microservices runtime stats is required to know your application
-users, know your partners, know what your system will do under load, etc.</p>
-
-<h2 id="microservice-logging">Microservice Logging</h2>
-
-<p>Every instance of the service will have a unique identifier which most commonly will be
-the docker container name or the hostname if not deployed in docker container. The code
-to retrieve docker container name and hostname is the same.</p>
-
-<p>Along with docker container name, traceabilityId and correlationId will be logged as
-context info for each logging statement. And once log files are aggregated together in
-ELK, users can trace a particular transaction based on the traceabilityId or correlationId.</p>
-
-<p>As microservices might be deployed across multiple geo-regions, the timestamp logged must
-be UTC time so that logs can be easily ordered in the ELK.</p>
-
-<h2 id="microservice-alerting">Microservice Alerting</h2>
-
-<p>Logstash has features to send out alert when certain error code is spotted in the log files.</p>
-
-<p>The framework has a component called status and it has all the errors defined in a JSON
-file which can be externalized. All the error code will be in a format ERRXXXXX and
-certain error code can be setup in the alert to send out email or communicate to support
-team with other channels.</p>
-
+			<hr>
+			
 
 			<aside class="copyright" role="note">
 				
@@ -574,57 +464,6 @@ team with other channels.</p>
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
-
-			<footer class="footer">
-				
-
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  
-      <a href="https://networknt.github.io/light-java/architecture/integration/" title="Integration Patterns">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Integration Patterns
-            </div>
-          </div>
-        </div>
-      </a>
-  
-  </div>
-
-  <div class="next">
-  
-      <a href="https://networknt.github.io/light-java/architecture/traceability/" title="traceability">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              traceability
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  
-  </div>
-</nav>
-
-
-
-
-
-			</footer>
 		</div>
 	</article>
 
@@ -640,8 +479,8 @@ team with other channels.</p>
 
     <script>
     
-      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
-      var repo_id  = 'networknt\/light-java';
+      var base_url = '';
+      var repo_id  = '';
     
     </script>
 
