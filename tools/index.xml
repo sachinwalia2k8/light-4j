@@ -62,18 +62,18 @@ on this platform. However, the generic JDK tools should work as other platforms.
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Many API projects were done without specifications and API specifications were
-produced after APIs were on production. When using Undertow Framework, design driven
+produced after APIs were on production. When using Light-Java-Rest Framework, design driven
 is encouraged so swagger specification must be produced before the development is
 started. Please see [Development Flow]() for details.&lt;/p&gt;
 
-&lt;p&gt;When Product Onwer starts the API, the first thing is find the swagger specification
-produced by data architect and generate a server skeleton with swagger codegen.&lt;/p&gt;
+&lt;p&gt;When product owner starts the API, the first thing is find the swagger specification
+produced by data architect and generate a server skeleton with swagger-codegen.&lt;/p&gt;
 
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 
-&lt;h4 id=&#34;install-locally&#34;&gt;Install locally&lt;/h4&gt;
+&lt;h3 id=&#34;local&#34;&gt;Local&lt;/h3&gt;
 
-&lt;p&gt;To install the tool locally, go to your working directory and run&lt;/p&gt;
+&lt;p&gt;To install the swagger-codegen locally, go to your working directory and run&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/swagger-codegen.git
 cd swagger-codegen
@@ -84,15 +84,7 @@ mvn clean install -DskipTests
 version of swagger-codegen is a fork of official &lt;a href=&#34;https://github.com/swagger-api/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt;
 as the official version doesn&amp;rsquo;t support Java 8.&lt;/p&gt;
 
-&lt;h4 id=&#34;docker&#34;&gt;Docker&lt;/h4&gt;
-
-&lt;p&gt;If you have docker installed, you can run the docker container of the swagger-codegen
-so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
 
 &lt;p&gt;Assume that you have just built your swagger-codegen and you are in the swagger-codegen
 folder now you can generate petstore API in your home directory with the following command.&lt;/p&gt;
@@ -107,34 +99,80 @@ you can use:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;-i ~/project/swagger/api_a/swagger.json
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Note: For organizations with multiple APIs, some of the common yaml files will be created that can be
-shared between APIs in specifications. In that case, you cannot use yaml file to generate the code as
-the tool doesn&amp;rsquo;t know how to locate the external reference files. Please find &lt;a href=&#34;https://networknt.github.io/light-java/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt;
-to convert several yaml files into one Json file to feed the generator.&lt;/p&gt;
+&lt;h3 id=&#34;docker&#34;&gt;Docker&lt;/h3&gt;
+
+&lt;p&gt;If you have docker installed, you can run the docker container of the swagger-codegen
+so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -it networknt/swagger-codegen config-help -l light-java
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Above command will list all the config options for light-java language generator.&lt;/p&gt;
+
+&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
+
+&lt;p&gt;Mount a volume to &lt;code&gt;/swagger-api/out&lt;/code&gt; for output.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -it -v ~/temp/swagger-generated:/swagger-api/out \
+    networknt/swagger-codegen generate \
+    -i /swagger-api/yaml/petstore-with-fake-endpoints-models-for-testing.yaml \
+    -l light-java \
+    -o /swagger-api/out/petstore
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your generated code will now be accessible under &lt;code&gt;~/temp/swagger-generated/petstore&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;customization&#34;&gt;Customization&lt;/h2&gt;
 
-&lt;p&gt;The tool support customized apiPackage and modelPackage defined as System properties. You will also
-specify the location of the swagger.json and the output folder of the generated code.&lt;/p&gt;
+&lt;p&gt;The tool support customized invokerPackage, apiPackage, modelPackage, artifactId and groupId defined in a json config file.
+You will also specify the location of the swagger.json and the output folder of the generated code.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# set as system properties
-swagger.codegen.light.apipackage = package for the handlers
-swagger.codegen.light.modelpackage = package for the models
+&lt;p&gt;Here is an example of config.json&lt;/p&gt;
 
-# set in the path
-path_to_specification_file = local path or url of swagger.json
-output_folder = output folder for generated artifacts
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;invokerPackage&amp;quot;: &amp;quot;com.networknt.petstore&amp;quot;,
+  &amp;quot;apiPackage&amp;quot;:&amp;quot;com.networknt.petstore.handler&amp;quot;,
+  &amp;quot;modelPackage&amp;quot;:&amp;quot;com.networknt.petstore.model&amp;quot;,
+  &amp;quot;artifactId&amp;quot;: &amp;quot;petstore&amp;quot;,
+  &amp;quot;groupId&amp;quot;: &amp;quot;com.networknt&amp;quot;
+}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;General Command&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.light.apipackage=&amp;lt;api_package_name&amp;gt; -Dswagger.codegen.light.modelpackage=&amp;lt;model_package_name&amp;gt; -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i &amp;lt;path_to_specification_file&amp;gt; -l light-java -o &amp;lt;output_folder&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c &amp;lt;path_to_config.json&amp;gt; -i &amp;lt;path_to_specification_file&amp;gt; -l light-java -o &amp;lt;output_folder&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Example&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -Dswagger.codegen.light.apipackage=com.networknt.handler -Dswagger.codegen.light.modelpackage=com.networknt.model -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ~/networknt/swagger/api_a/swagger.json -l light-java -o ~/projectc/generated
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c ~/networknt/swagger/api_a/config.json -i ~/networknt/swagger/api_a/swagger.yaml -l light-java -o ~/networknt/generated
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Docker Command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -it -v &amp;lt;path of swagger and config&amp;gt;:/swagger-api/swagger -v &amp;lt;path of generated project&amp;gt;:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -it -v ~/networknt/swagger/api_a:/swagger-api/swagger -v ~/networknt/generated:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: the generated code in Linux might be owned by root user, so you have to change the owner before compiling it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chown -R steve:steve generated
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;shared-swagger-files&#34;&gt;Shared swagger files&lt;/h2&gt;
+
+&lt;p&gt;For organizations with multiple APIs, some of the common yaml files will be created that can be
+shared between APIs in specifications. In that case, you cannot use yaml file to generate the code as
+the tool doesn&amp;rsquo;t know how to locate the external reference files. Please find &lt;a href=&#34;https://networknt.github.io/light-java/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt;
+to convert several yaml files into one Json file to feed the generator.&lt;/p&gt;
 
 &lt;h2 id=&#34;test&#34;&gt;Test&lt;/h2&gt;
 
