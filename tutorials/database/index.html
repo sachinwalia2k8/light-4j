@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Database Access Tutorial - Light Java - The fastest Java API Framework</title>
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    <meta name="description" content="Light Java Docs">
+    
+    <link rel="canonical" href="https://networknt.github.io/light-java/tutorials/database/">
+    
+    <meta name="author" content="Steve Hu">
+    
+
+    <meta property="og:url" content="https://networknt.github.io/light-java/tutorials/database/">
+    <meta property="og:title" content="Light Java - The fastest Java API Framework">
+    <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://networknt.github.io/light-java/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://networknt.github.io/light-java/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://networknt.github.io/light-java/fonts/icon.eot');
+        src: url('https://networknt.github.io/light-java/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://networknt.github.io/light-java/fonts/icon.woff')
+               format('woff'),
+             url('https://networknt.github.io/light-java/fonts/icon.ttf')
+               format('truetype'),
+             url('https://networknt.github.io/light-java/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://networknt.github.io/light-java/stylesheets/application.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-java/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-java/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-java/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://networknt.github.io/light-java/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Database Access Tutorial
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/stevehu" title="@stevehu on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/networknt/light-java" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://networknt.github.io/light-java/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Light Java - The fastest Java API Framework <span class="version">1.1.6</span></strong>
+        
+          <br>
+          networknt/light-java
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/networknt/light-java/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/networknt/light-java/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="https://networknt.github.io/light-java/index.html">
+	
+	Introduction
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting started" href="https://networknt.github.io/light-java/getting-started/">
+	
+	Getting started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Architecture" href="https://networknt.github.io/light-java/architecture/">
+	
+	Architecture
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Middleware" href="https://networknt.github.io/light-java/middleware/">
+	
+	Middleware
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Other Components" href="https://networknt.github.io/light-java/other/">
+	
+	Other Components
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="DevOps" href="https://networknt.github.io/light-java/devops/">
+	
+	DevOps
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Benchmarks" href="https://networknt.github.io/light-java/benchmarks/">
+	
+	Benchmarks
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://networknt.github.io/light-java/tutorials/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Examples" href="https://networknt.github.io/light-java/example/">
+	
+	Examples
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tools" href="https://networknt.github.io/light-java/tools/">
+	
+	Tools
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Issues &amp; Help" href="https://github.com/networknt/light-java/issues">
+	
+	Issues &amp; Help
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Roadmap" href="https://networknt.github.io/light-java/roadmap/">
+	
+	Roadmap
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+	
+	License
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/stevehu" target="_blank" title="@stevehu on GitHub">
+              @stevehu on GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="mailto:stevehu@gmail.com" title="Email of stevehu@gmail.com">
+              Contact via email
+            </a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Database Access Tutorial </h1>
+
+			
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Most microservices will have to access database in order to fulfill consumer requests.
+In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql:</p>
+
+<ul>
+<li>How to setup database connection pool</li>
+<li>How to connect to the database instance</li>
+<li>How to do query database tables</li>
+<li>How to update database tables</li>
+</ul>
+
+<h1 id="preparation">Preparation</h1>
+
+<p>In order to follow the steps below, please make sure you have the same working environment.</p>
+
+<ul>
+<li>A computer with MacOS or Linux (Windows should work but I never tried)</li>
+<li>Install git</li>
+<li>Install Docker</li>
+<li>Install JDK 8 and Maven</li>
+<li>Install Java IDE (Intellij IDEA Community Edition is recommended)</li>
+<li>Create a working directory under your user directory called networknt.</li>
+</ul>
+
+<h1 id="create-database-demo-specification">Create Database Demo Specification</h1>
+
+<p>First let&rsquo;s build an OpenAPI specification with several endpoints to demo database
+access. You will need <a href="https://networknt.github.io/light-java/tools/swagger-editor/">swagger editor</a>
+to create a specification.</p>
+
+<p>Here is the OpenAPI specification created and it can be found in
+<a href="https://github.com/networknt/swagger">swagger repo</a> database sub folder.</p>
+
+<pre><code>swagger: '2.0'
+
+info:
+  version: &quot;1.0.0&quot;
+  title: Light-Java-Rest Database Tutorial
+  description: A demo on how to connect, query and update Oracle/Mysql/Postgres. 
+  contact:
+    email: stevehu@gmail.com
+  license:
+    name: &quot;Apache 2.0&quot;
+    url: &quot;http://www.apache.org/licenses/LICENSE-2.0.html&quot;
+host: database.networknt.com
+schemes:
+  - http
+  - https
+basePath: /v1
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /query:
+    get:
+      description: Single query to database table
+      operationId: getQuery
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/RandomNumber&quot;          
+      security:
+      - database_auth:
+        - &quot;database.r&quot;
+  /queries:
+    get:
+      description: Multiple queries to database table
+      operationId: getQueries
+      parameters:
+      - name: &quot;queries&quot;
+        in: &quot;query&quot;
+        description: &quot;Number of random numbers&quot;
+        required: false
+        type: &quot;integer&quot;
+        format: &quot;int32&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            type: &quot;array&quot;
+            items:
+              $ref: &quot;#/definitions/RandomNumber&quot;
+      security:
+      - database_auth:
+        - &quot;database.r&quot;
+  /updates:
+    get:
+      description: Multiple updates to database table
+      operationId: getUpdates
+      parameters:
+      - name: &quot;queries&quot;
+        in: &quot;query&quot;
+        description: &quot;Number of random numbers&quot;
+        required: false
+        type: &quot;integer&quot;
+        format: &quot;int32&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            type: &quot;array&quot;
+            items:
+              $ref: &quot;#/definitions/RandomNumber&quot;
+      security:
+      - database_auth:
+        - &quot;database.w&quot;
+securityDefinitions:
+  database_auth:
+    type: &quot;oauth2&quot;
+    authorizationUrl: &quot;http://localhost:8888/oauth2/code&quot;
+    flow: &quot;implicit&quot;
+    scopes:
+      database.w: &quot;write database table&quot;
+      database.r: &quot;read database table&quot;
+definitions:
+  RandomNumber:
+    type: &quot;object&quot;
+    required:
+    - &quot;id&quot;
+    - &quot;randomNumber&quot;
+    properties:
+      id:
+        type: &quot;integer&quot;
+        format: &quot;int32&quot;
+        description: &quot;a unique id as primary key&quot;
+      randomNumber:
+        type: &quot;integer&quot;
+        format: &quot;int32&quot;
+        description: &quot;a random number&quot;
+</code></pre>
+
+<p>Now let&rsquo;s clone the swagger repo to your working directory.</p>
+
+<pre><code>cd ~/networknt
+git clone https://github.com/networknt/swagger
+</code></pre>
+
+<h1 id="generate-demo-project">Generate Demo Project</h1>
+
+<p>With the specification in place, we can generate the code with <a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a></p>
+
+<p>There are two different ways to generate the code:</p>
+
+<ul>
+<li>Local build</li>
+<li>Docker container</li>
+</ul>
+
+<p>To learn how to use the tool, please refer to this <a href="tools/swagger-codegen/">document</a></p>
+
+<h3 id="generate-code-with-local-build">Generate code with local build</h3>
+
+<p>Clone and build swagger-codegen</p>
+
+<pre><code>cd ~/networknt
+git clone git@github.com:networknt/swagger-codegen.git
+cd swagger-codegen
+mvn clean install -DskipTests
+</code></pre>
+
+<p>For this demo, I am going to generate the code into light-java-example/database/generated
+folder so that users can check the code later on from this repo.</p>
+
+<p>Let&rsquo;s checkout the light-java-example repo and backup the existing database project.</p>
+
+<pre><code>cd ~/networknt
+git clone git@github.com:networknt/light-java-example.git
+cd light-java-example
+mv database database.bak
+mkdir database
+cd database
+mkdir generated
+</code></pre>
+
+<p>Before generating the project, we need to create a config.json to define packages,
+artifactId and groupId for the project.</p>
+
+<p>Here is the content of the file and it can be found in ~/networknt/swagger/database</p>
+
+<pre><code>{
+  &quot;invokerPackage&quot;: &quot;com.networknt.database&quot;,
+  &quot;apiPackage&quot;:&quot;com.networknt.database.handler&quot;,
+  &quot;modelPackage&quot;:&quot;com.networknt.database.model&quot;,
+  &quot;artifactId&quot;: &quot;database&quot;,
+  &quot;groupId&quot;: &quot;com.networknt&quot;
+}
+</code></pre>
+
+<p>Code generation</p>
+
+<pre><code>cd ~/networknt/swagger-codegen
+java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c ~/networknt/swagger/database/config.json -i ~/networknt/swagger/database/swagger.yaml -l light-java -o ~/networknt/light-java-example/database/generated
+
+</code></pre>
+
+<p>Now you should have a project generated. Let&rsquo;s build it and run it.</p>
+
+<pre><code>cd ~/networknt
+cd light-java-example/database/generated
+mvn clean install exec:exec
+</code></pre>
+
+<p>Now you can access the service with curl following the step below.</p>
+
+<h3 id="generate-code-with-docker-container">Generate code with docker container</h3>
+
+<p>Let&rsquo;s remove the generated folder from light-java-example/database folder and
+generate the project again with docker container.</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+rm -rf generated
+</code></pre>
+
+<p>Now let&rsquo;s generate the project again with docker.</p>
+
+<pre><code>cd ~/networknt
+docker run -it -v ~/networknt/swagger/database:/swagger-api/swagger -v ~/networknt/light-java-example/database:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/generated
+
+</code></pre>
+
+<p>Let&rsquo;s build and start the service</p>
+
+<pre><code>cd ~/networknt/light-java-example/database/generated
+mvn clean install exec:exec
+</code></pre>
+
+<p>Now you can access the service with curl following the next step.</p>
+
+<h3 id="test-the-service">Test the service</h3>
+
+<p>Now the service is up and running. Let&rsquo;s access it from curl</p>
+
+<p>Single query</p>
+
+<pre><code>curl http://localhost:8080/v1/query
+
+{  &quot;randomNumber&quot; : 123,  &quot;id&quot; : 123}
+</code></pre>
+
+<p>Multiple queries with default number of object returned</p>
+
+<pre><code>curl http://localhost:8080/v1/queries
+
+[ {  &quot;randomNumber&quot; : 123,  &quot;id&quot; : 123} ]
+</code></pre>
+
+<p>Multiple queries with 10 numbers returned</p>
+
+<pre><code>curl http://localhost:8080/v1/queries?queries=10
+
+[ {  &quot;randomNumber&quot; : 123,  &quot;id&quot; : 123} ]
+</code></pre>
+
+<p>Multiple updates with default number of object updated</p>
+
+<pre><code>curl http://localhost:8080/v1/updates
+
+[ {  &quot;randomNumber&quot; : 123,  &quot;id&quot; : 123} ]
+</code></pre>
+
+<p>Multiple updates with 10 numbers updated</p>
+
+<pre><code>curl http://localhost:8080/v1/updates?queries=10
+
+[ {  &quot;randomNumber&quot; : 123,  &quot;id&quot; : 123} ]
+</code></pre>
+
+<h1 id="prepare-database-scripts">Prepare Database Scripts</h1>
+
+<p>For database access, we are going to prepare three scripts for Oracle, Mysql and Postgres.</p>
+
+<p>Oracle</p>
+
+<pre><code>DROP TABLE world CASCADE CONSTRAINTS;
+CREATE TABLE  world (
+  id int NOT NULL,
+  randomNumber int NOT NULL,
+  PRIMARY KEY  (id)
+);
+
+BEGIN
+FOR loop_counter IN 1..10000 LOOP
+INSERT INTO world (id, randomNumber)
+VALUES (loop_counter, dbms_random.value(1,10000)
+       );
+END LOOP;
+COMMIT;
+END;
+
+DROP TABLE fortune CASCADE CONSTRAINTS;
+CREATE TABLE fortune (
+  id int NOT NULL,
+  message varchar2(2048) NOT NULL,
+  PRIMARY KEY  (id)
+);
+
+INSERT INTO fortune (id, message) VALUES (1, 'fortune: No such file or directory');
+INSERT INTO fortune (id, message) VALUES (2, 'A computer scientist is someone who fixes things that aren''t broken.');
+INSERT INTO fortune (id, message) VALUES (3, 'After enough decimal places, nobody gives a damn.');
+INSERT INTO fortune (id, message) VALUES (4, 'A bad random number generator: 1, 1, 1, 1, 1, 4.33e+67, 1, 1, 1');
+INSERT INTO fortune (id, message) VALUES (5, 'A computer program does what you tell it to do, not what you want it to do.');
+INSERT INTO fortune (id, message) VALUES (6, 'Emacs is a nice operating system, but I prefer UNIX. — Tom Christaensen');
+INSERT INTO fortune (id, message) VALUES (7, 'Any program that runs right is obsolete.');
+INSERT INTO fortune (id, message) VALUES (8, 'A list is only as strong as its weakest link. — Donald Knuth');
+INSERT INTO fortune (id, message) VALUES (9, 'Feature: A bug with seniority.');
+INSERT INTO fortune (id, message) VALUES (10, 'Computers make very fast, very accurate mistakes.');
+INSERT INTO fortune (id, message) VALUES (11, '&lt;script&gt;alert(&quot;This should not be displayed in a browser alert box.&quot;);&lt;/script&gt;');
+INSERT INTO fortune (id, message) VALUES (12, 'フレームワークのベンチマーク');
+</code></pre>
+
+<p>Mysql</p>
+
+<pre><code># modified from SO answer http://stackoverflow.com/questions/5125096/for-loop-in-mysql
+DROP DATABASE IF EXISTS hello_world;
+CREATE DATABASE hello_world;
+USE hello_world;
+
+DROP TABLE IF EXISTS world;
+CREATE TABLE  world (
+  id int(10) unsigned NOT NULL auto_increment,
+  randomNumber int NOT NULL default 0,
+  PRIMARY KEY  (id)
+)
+ENGINE=INNODB;
+
+DROP PROCEDURE IF EXISTS load_data;
+
+DELIMITER #
+CREATE PROCEDURE load_data()
+BEGIN
+
+declare v_max int unsigned default 10000;
+declare v_counter int unsigned default 0;
+
+  TRUNCATE TABLE world;
+  START TRANSACTION;
+  while v_counter &lt; v_max do
+    INSERT INTO world (randomNumber) VALUES ( floor(0 + (rand() * 10000)) );
+    SET v_counter=v_counter+1;
+  end while;
+  commit;
+END #
+
+DELIMITER ;
+
+CALL load_data();
+
+DROP TABLE IF EXISTS fortune;
+CREATE TABLE  fortune (
+  id int(10) unsigned NOT NULL auto_increment,
+  message varchar(2048) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY  (id)
+)
+ENGINE=INNODB;
+
+INSERT INTO fortune (message) VALUES ('fortune: No such file or directory');
+INSERT INTO fortune (message) VALUES ('A computer scientist is someone who fixes things that aren''t broken.');
+INSERT INTO fortune (message) VALUES ('After enough decimal places, nobody gives a damn.');
+INSERT INTO fortune (message) VALUES ('A bad random number generator: 1, 1, 1, 1, 1, 4.33e+67, 1, 1, 1');
+INSERT INTO fortune (message) VALUES ('A computer program does what you tell it to do, not what you want it to do.');
+INSERT INTO fortune (message) VALUES ('Emacs is a nice operating system, but I prefer UNIX. — Tom Christaensen');
+INSERT INTO fortune (message) VALUES ('Any program that runs right is obsolete.');
+INSERT INTO fortune (message) VALUES ('A list is only as strong as its weakest link. — Donald Knuth');
+INSERT INTO fortune (message) VALUES ('Feature: A bug with seniority.');
+INSERT INTO fortune (message) VALUES ('Computers make very fast, very accurate mistakes.');
+INSERT INTO fortune (message) VALUES ('&lt;script&gt;alert(&quot;This should not be displayed in a browser alert box.&quot;);&lt;/script&gt;');
+INSERT INTO fortune (message) VALUES ('フレームワークのベンチマーク');
+
+</code></pre>
+
+<p>Postgres</p>
+
+<pre><code>
+DROP TABLE IF EXISTS world;
+CREATE TABLE  world (
+  id integer NOT NULL,
+  randomNumber integer NOT NULL default 0,
+  PRIMARY KEY  (id)
+);
+
+INSERT INTO world (id, randomnumber)
+SELECT x.id, random() * 10000 + 1 FROM generate_series(1,10000) as x(id);
+
+DROP TABLE IF EXISTS fortune;
+CREATE TABLE fortune (
+  id integer NOT NULL,
+  message varchar(2048) NOT NULL,
+  PRIMARY KEY  (id)
+);
+
+INSERT INTO fortune (id, message) VALUES (1, 'fortune: No such file or directory');
+INSERT INTO fortune (id, message) VALUES (2, 'A computer scientist is someone who fixes things that aren''t broken.');
+INSERT INTO fortune (id, message) VALUES (3, 'After enough decimal places, nobody gives a damn.');
+INSERT INTO fortune (id, message) VALUES (4, 'A bad random number generator: 1, 1, 1, 1, 1, 4.33e+67, 1, 1, 1');
+INSERT INTO fortune (id, message) VALUES (5, 'A computer program does what you tell it to do, not what you want it to do.');
+INSERT INTO fortune (id, message) VALUES (6, 'Emacs is a nice operating system, but I prefer UNIX. — Tom Christaensen');
+INSERT INTO fortune (id, message) VALUES (7, 'Any program that runs right is obsolete.');
+INSERT INTO fortune (id, message) VALUES (8, 'A list is only as strong as its weakest link. — Donald Knuth');
+INSERT INTO fortune (id, message) VALUES (9, 'Feature: A bug with seniority.');
+INSERT INTO fortune (id, message) VALUES (10, 'Computers make very fast, very accurate mistakes.');
+INSERT INTO fortune (id, message) VALUES (11, '&lt;script&gt;alert(&quot;This should not be displayed in a browser alert box.&quot;);&lt;/script&gt;');
+INSERT INTO fortune (id, message) VALUES (12, 'フレームワークのベンチマーク');
+
+</code></pre>
+
+<p>Above scripts can be found in <a href="https://github.com/networknt/light-java-example/tree/master/database/dbscript">https://github.com/networknt/light-java-example/tree/master/database/dbscript</a></p>
+
+<h1 id="start-databases">Start Databases</h1>
+
+<p>In order to work on our service, we need to start database standalone for now. Depending
+on which database you are working on, you can choose one of them below. For this demo
+use mysql and later on we can switch to Postgres and Oracle.</p>
+
+<p>Oracle Database</p>
+
+<pre><code>docker run -v ~/networknt/light-java-example/database/dbscript/oracle:/docker-entrypoint-initdb.d -d -p 1522:1521 wnameless/oracle-xe-11g
+</code></pre>
+
+<p>Mysql Database</p>
+
+<pre><code>docker run -v ~/networknt/light-java-example/database/dbscript/mysql:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d -p 3306:3306 mysql
+
+</code></pre>
+
+<p>Postgres Database</p>
+
+<pre><code>docker run -v ~/networknt/light-java-example/database/dbscript/postgres:/docker-entrypoint-initdb.d -e POSTGRES_PASSWORD=my-secret-pw -e POSTGRES_DB=hello_world -d -p 5432:5432 postgres
+
+</code></pre>
+
+<h1 id="setup-connection-pool">Setup Connection Pool</h1>
+
+<p>To connect to database we need to create service.json that can inject connection pool
+to the microservice you are building.</p>
+
+<p>Now we have generated project, let&rsquo;s copy it and update with db connection pool</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r generated connection
+</code></pre>
+
+<p>Add the following service.json to ~/networknt/light-java-example/database/connection/src/main/resources/config</p>
+
+<pre><code>{
+  &quot;description&quot;: &quot;singleton service factory configuration&quot;,
+  &quot;singletons&quot;: [
+    {
+      &quot;javax.sql.DataSource&quot;: [
+        {
+          &quot;com.zaxxer.hikari.HikariDataSource&quot;:
+          {
+            &quot;jdbcUrl&quot;: &quot;jdbc:mysql://localhost:3306/hello_world?useSSL=false&quot;,
+            &quot;username&quot;: &quot;root&quot;,
+            &quot;password&quot;: &quot;my-secret-pw&quot;,
+            &quot;maximumPoolSize&quot;: 95,
+            &quot;useServerPrepStmts&quot;: true,
+            &quot;cachePrepStmts&quot;: true,
+            &quot;cacheCallableStmts&quot;: true,
+            &quot;prepStmtCacheSize&quot;: 4096,
+            &quot;prepStmtCacheSqlLimit&quot;: 2048
+          }
+        }
+      ]
+    }
+  ]
+}
+
+</code></pre>
+
+<p>The service.json will make sure the a Hikari DataSource will be created during server startup
+with the dependency injection module. You can find other database&rsquo;s service.json in
+<a href="https://github.com/networknt/light-java-example/tree/master/database/dbscript">https://github.com/networknt/light-java-example/tree/master/database/dbscript</a></p>
+
+<p>In order to do that we need to add several jars into the dependency in pom.xml</p>
+
+<pre><code>        &lt;version.hikaricp&gt;2.5.1&lt;/version.hikaricp&gt;
+        &lt;version.fastscanner&gt;2.0.8&lt;/version.fastscanner&gt;
+        &lt;version.h2&gt;1.3.176&lt;/version.h2&gt;
+        &lt;version.hazelcast&gt;3.6.7&lt;/version.hazelcast&gt;
+        &lt;version.oracle&gt;11.2.0.3&lt;/version.oracle&gt;
+        &lt;version.mysql&gt;6.0.4&lt;/version.mysql&gt;
+        &lt;version.postgres&gt;9.4.1211&lt;/version.postgres&gt;
+
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.zaxxer&lt;/groupId&gt;
+            &lt;artifactId&gt;HikariCP&lt;/artifactId&gt;
+            &lt;version&gt;${version.hikaricp}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.github.lukehutch&lt;/groupId&gt;
+            &lt;artifactId&gt;fast-classpath-scanner&lt;/artifactId&gt;
+            &lt;version&gt;${version.fastscanner}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.oracle&lt;/groupId&gt;
+            &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
+            &lt;version&gt;${version.oracle}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;${version.mysql}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.postgresql&lt;/groupId&gt;
+            &lt;artifactId&gt;postgresql&lt;/artifactId&gt;
+            &lt;version&gt;${version.postgres}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+</code></pre>
+
+<p>Now you can add a line in each handler to get the DataSource as a static variable.</p>
+
+<pre><code>    private static final DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
+
+</code></pre>
+
+<p>If you can build, start and access the server with curl, that means the database connection
+is created. The next step we will try to query from database.</p>
+
+<h1 id="single-database-query">Single Database Query</h1>
+
+<p>Let&rsquo;s copy connection to query</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r connection query
+
+</code></pre>
+
+<p>And let&rsquo;s update QueryGetHandler.java</p>
+
+<pre><code>package com.networknt.database.handler;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.config.Config;
+import com.networknt.database.model.RandomNumber;
+import com.networknt.service.SingletonServiceFactory;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Headers;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
+
+public class QueryGetHandler implements HttpHandler {
+    private static final DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
+    private static final ObjectMapper mapper = Config.getInstance().getMapper();
+
+    @Override
+    public void handleRequest(HttpServerExchange exchange) throws Exception {
+        if (exchange.isInIoThread()) {
+            exchange.dispatch(this);
+            return;
+        }
+        int queries = 1;
+
+        RandomNumber[] randomNumbers = new RandomNumber[queries];
+        try (final Connection connection = ds.getConnection()) {
+            Map&lt;Integer, Future&lt;RandomNumber&gt;&gt; futureWorlds = new ConcurrentHashMap&lt;&gt;();
+            for (int i = 0; i &lt; queries; i++) {
+                futureWorlds.put(i, Helper.EXECUTOR.submit(new Callable&lt;RandomNumber&gt;(){
+                    @Override
+                    public RandomNumber call() throws Exception {
+                        try (PreparedStatement statement = connection.prepareStatement(
+                                &quot;SELECT * FROM world WHERE id = ?&quot;,
+                                ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)) {
+
+                            statement.setInt(1, Helper.randomWorld());
+                            ResultSet resultSet = statement.executeQuery();
+                            resultSet.next();
+                            return new RandomNumber(
+                                    resultSet.getInt(&quot;id&quot;),
+                                    resultSet.getInt(&quot;randomNumber&quot;));
+                        }
+                    }
+                }));
+            }
+
+            for (int i = 0; i &lt; queries; i++) {
+                randomNumbers[i] = futureWorlds.get(i).get();
+            }
+        }
+        exchange.getResponseHeaders().put(
+                Headers.CONTENT_TYPE, &quot;application/json&quot;);
+
+        exchange.getResponseSender().send(mapper.writeValueAsString(randomNumbers[0]));
+    }
+}
+
+</code></pre>
+
+<p>And add a helper class Helper.java</p>
+
+<pre><code>package com.networknt.database.handler;
+
+import io.undertow.server.HttpServerExchange;
+
+import java.util.Deque;
+import java.util.concurrent.*;
+
+/**
+ * Created by stevehu on 2017-01-23.
+ */
+public class Helper {
+    private Helper() {
+        throw new AssertionError();
+    }
+
+    /**
+     * Returns the value of the &quot;queries&quot; request parameter, which is an integer
+     * bound between 1 and 500 with a default value of 1.
+     *
+     * @param exchange the current HTTP exchange
+     * @return the value of the &quot;queries&quot; request parameter
+     */
+    static int getQueries(HttpServerExchange exchange) {
+        Deque&lt;String&gt; values = exchange.getQueryParameters().get(&quot;queries&quot;);
+        if (values == null) {
+            return 1;
+        }
+        String textValue = values.peekFirst();
+        if (textValue == null) {
+            return 1;
+        }
+        try {
+            int parsedValue = Integer.parseInt(textValue);
+            return Math.min(500, Math.max(1, parsedValue));
+        } catch (NumberFormatException e) {
+            return 1;
+        }
+    }
+
+    /**
+     * Returns a random integer that is a suitable value for both the {@code id}
+     * and {@code randomNumber} properties of a world object.
+     *
+     * @return a random world number
+     */
+    static int randomWorld() {
+        return 1 + ThreadLocalRandom.current().nextInt(10000);
+    }
+
+    private static final int cpuCount = Runtime.getRuntime().availableProcessors();
+
+    // todo: parameterize multipliers
+    public static ExecutorService EXECUTOR =
+            new ThreadPoolExecutor(
+                    cpuCount * 2, cpuCount * 25, 200, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue&lt;Runnable&gt;(cpuCount * 100),
+                    new ThreadPoolExecutor.CallerRunsPolicy());
+
+}
+
+</code></pre>
+
+<p>And add a constructor that accept two integer as parameters for RandomNumber.</p>
+
+<pre><code>  public RandomNumber(int id, int randomNumber) {
+    this.id = id;
+    this.randomNumber = randomNumber;
+  }
+
+</code></pre>
+
+<p>We are good to go.</p>
+
+<pre><code>cd ~/networknt/light-java-example/database/query
+mvn clean install exec:exec
+</code></pre>
+
+<p>Access the query endpoint and you will result the random number as result.</p>
+
+<pre><code>curl http://localhost:8080/v1/query
+
+{&quot;id&quot;:4495,&quot;randomNumber&quot;:6569}
+</code></pre>
+
+<h1 id="multiple-database-queries">Multiple Database Queries</h1>
+
+<p>Let&rsquo;s build multiple queries based on the codebase of single query.</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r query queries
+</code></pre>
+
+<p>Now let&rsquo;s update queries project for QueriesGetHandler.java</p>
+
+<pre><code>package com.networknt.database.handler;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.config.Config;
+import com.networknt.database.model.RandomNumber;
+import com.networknt.service.SingletonServiceFactory;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Headers;
+import io.undertow.util.HttpString;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import javax.sql.DataSource;
+
+public class QueriesGetHandler implements HttpHandler {
+    private static final DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
+    private static final ObjectMapper mapper = Config.getInstance().getMapper();
+
+    @Override
+    public void handleRequest(HttpServerExchange exchange) throws Exception {
+        if (exchange.isInIoThread()) {
+            exchange.dispatch(this);
+            return;
+        }
+        int queries = Helper.getQueries(exchange);
+
+        RandomNumber[] randomNumbers = new RandomNumber[queries];
+        try (final Connection connection = ds.getConnection()) {
+            Map&lt;Integer, Future&lt;RandomNumber&gt;&gt; futureWorlds = new ConcurrentHashMap&lt;&gt;();
+            for (int i = 0; i &lt; queries; i++) {
+                futureWorlds.put(i, Helper.EXECUTOR.submit(new Callable&lt;RandomNumber&gt;(){
+                    @Override
+                    public RandomNumber call() throws Exception {
+                        try (PreparedStatement statement = connection.prepareStatement(
+                                &quot;SELECT * FROM world WHERE id = ?&quot;,
+                                ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)) {
+
+                            statement.setInt(1, Helper.randomWorld());
+                            ResultSet resultSet = statement.executeQuery();
+                            resultSet.next();
+                            return new RandomNumber(
+                                    resultSet.getInt(&quot;id&quot;),
+                                    resultSet.getInt(&quot;randomNumber&quot;));
+                        }
+                    }
+                }));
+            }
+
+            for (int i = 0; i &lt; queries; i++) {
+                randomNumbers[i] = futureWorlds.get(i).get();
+            }
+        }
+        exchange.getResponseHeaders().put(
+                Headers.CONTENT_TYPE, &quot;application/json&quot;);
+        exchange.getResponseSender().send(mapper.writeValueAsString(randomNumbers));
+    }
+}
+
+</code></pre>
+
+<p>Now let&rsquo;s build and test the server</p>
+
+<pre><code>cd ~/networknt/light-java-example/database/queries
+mvn clean install exec:exec
+</code></pre>
+
+<p>Let&rsquo;s test it.</p>
+
+<pre><code>curl http://localhost:8080/v1/queries
+[{&quot;id&quot;:1480,&quot;randomNumber&quot;:4720}]
+</code></pre>
+
+<p>Again with 10 random numbers</p>
+
+<pre><code>curl http://localhost:8080/v1/queries?queries=10
+
+[{&quot;id&quot;:4473,&quot;randomNumber&quot;:2370},{&quot;id&quot;:1142,&quot;randomNumber&quot;:3999},{&quot;id&quot;:6022,&quot;randomNumber&quot;:1683},{&quot;id&quot;:159,&quot;randomNumber&quot;:4017},{&quot;id&quot;:8512,&quot;randomNumber&quot;:3248},{&quot;id&quot;:4291,&quot;randomNumber&quot;:620},{&quot;id&quot;:3238,&quot;randomNumber&quot;:1257},{&quot;id&quot;:8524,&quot;randomNumber&quot;:256},{&quot;id&quot;:7869,&quot;randomNumber&quot;:1709},{&quot;id&quot;:6410,&quot;randomNumber&quot;:9362}]
+</code></pre>
+
+<h1 id="update-database">Update Database</h1>
+
+<p>Let&rsquo;s copy the queries to updates in order to work on updates</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r queries updates
+</code></pre>
+
+<p>Now let&rsquo;s update UpdatesGetHandler.java in updates folder.</p>
+
+<pre><code>package com.networknt.database.handler;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.config.Config;
+import com.networknt.database.model.RandomNumber;
+import com.networknt.service.SingletonServiceFactory;
+import io.undertow.server.HttpHandler;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.util.Headers;
+import io.undertow.util.HttpString;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import javax.sql.DataSource;
+
+public class UpdatesGetHandler implements HttpHandler {
+    private static final DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
+    private static final ObjectMapper mapper = Config.getInstance().getMapper();
+
+    @Override
+    public void handleRequest(HttpServerExchange exchange) throws Exception {
+        if (exchange.isInIoThread()) {
+            exchange.dispatch(this);
+            return;
+        }
+        int queries = Helper.getQueries(exchange);
+        RandomNumber[] worlds = new RandomNumber[queries];
+        try (final Connection connection = ds.getConnection()) {
+            Map&lt;Integer, Future&lt;RandomNumber&gt;&gt; futureWorlds = new ConcurrentHashMap&lt;&gt;();
+            for (int i = 0; i &lt; queries; i++) {
+                futureWorlds.put(i, Helper.EXECUTOR.submit(new Callable&lt;RandomNumber&gt;() {
+                    @Override
+                    public RandomNumber call() throws Exception {
+                        RandomNumber rn;
+                        try (PreparedStatement update = connection.prepareStatement(
+                                &quot;UPDATE world SET randomNumber = ? WHERE id= ?&quot;)) {
+                            try (PreparedStatement query = connection.prepareStatement(
+                                    &quot;SELECT * FROM world WHERE id = ?&quot;,
+                                    ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)) {
+
+                                query.setInt(1, Helper.randomWorld());
+                                ResultSet resultSet = query.executeQuery();
+                                resultSet.next();
+                                rn = new RandomNumber(
+                                        resultSet.getInt(&quot;id&quot;),
+                                        resultSet.getInt(&quot;randomNumber&quot;));
+                            }
+                            rn.setRandomNumber(Helper.randomWorld());
+                            update.setInt(1, rn.getRandomNumber());
+                            update.setInt(2, rn.getId());
+                            update.executeUpdate();
+                            return rn;
+                        }
+                    }
+                }));
+            }
+            for (int i = 0; i &lt; queries; i++) {
+                worlds[i] = futureWorlds.get(i).get();
+            }
+        }
+        exchange.getResponseHeaders().put(
+                Headers.CONTENT_TYPE, &quot;application/json&quot;);
+        exchange.getResponseSender().send(mapper.writeValueAsString(worlds));
+    }
+}
+
+</code></pre>
+
+<p>Let&rsquo;s build and start the server</p>
+
+<pre><code>cd ~/networknt/light-java-example/database/updates
+mvn clean install exec:exec
+
+</code></pre>
+
+<p>Let&rsquo;s test it with one update</p>
+
+<pre><code>curl http://localhost:8080/v1/updates
+
+[{&quot;id&quot;:4682,&quot;randomNumber&quot;:1717}]
+</code></pre>
+
+<p>Let&rsquo;s test it with multiple updates</p>
+
+<pre><code>curl http://localhost:8080/v1/updates?queries=10
+
+[{&quot;id&quot;:6395,&quot;randomNumber&quot;:938},{&quot;id&quot;:4124,&quot;randomNumber&quot;:4406},{&quot;id&quot;:7694,&quot;randomNumber&quot;:936},{&quot;id&quot;:502,&quot;randomNumber&quot;:5784},{&quot;id&quot;:6992,&quot;randomNumber&quot;:8037},{&quot;id&quot;:3607,&quot;randomNumber&quot;:3462},{&quot;id&quot;:6910,&quot;randomNumber&quot;:6195},{&quot;id&quot;:7388,&quot;randomNumber&quot;:9233},{&quot;id&quot;:6235,&quot;randomNumber&quot;:4825},{&quot;id&quot;:4924,&quot;randomNumber&quot;:1066}]
+</code></pre>
+
+<h1 id="switch-to-postgres">Switch to Postgres</h1>
+
+<p>The first step is to start the postgres database in docker. The command
+has shown above.</p>
+
+<p>To switch to Postgres database, you just need to replace server.json from
+dbscript/postgres/config folder. First let&rsquo;s create a new folder from
+updates and modify the service.json</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r updates postgres
+cp dbscript/postgres/config/service.json postgres/src/main/resources/config
+</code></pre>
+
+<p>Now let&rsquo;s build the server from postgres folder.</p>
+
+<pre><code>cd postgres
+mvn clean install exec:exec
+</code></pre>
+
+<p>Now you can test the server with curl to verify that the server is working with
+Postgres database.</p>
+
+<pre><code>curl http://localhost:8080/v1/query
+</code></pre>
+
+<h1 id="switch-to-oracle">Switch to Oracle</h1>
+
+<p>The first step is to start Oracle database in docker. The command has
+shown above.</p>
+
+<p>Next we need to add a repo into pom.xml as Oracle client jar is not in
+maven central due to licensing issue.</p>
+
+<pre><code>    &lt;repositories&gt;
+        &lt;!-- Repository for ORACLE ojdbc6. --&gt;
+        &lt;repository&gt;
+            &lt;id&gt;codelds&lt;/id&gt;
+            &lt;url&gt;https://code.lds.org/nexus/content/groups/main-repo&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+
+</code></pre>
+
+<p>To switch to Oracle database, you just need to replace server.json from
+dbscript/oracle/config folder. First let&rsquo;s create a new folder from
+updates and modify the service.json</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r updates oracle
+cp dbscript/oracle/config/service.json oracle/src/main/resources/config
+</code></pre>
+
+<p>Now let&rsquo;s build the server from postgres folder.</p>
+
+<pre><code>cd oracle
+mvn clean install exec:exec
+</code></pre>
+
+<p>Now you can test the server with curl to verify that the server is working with
+Oracle database.</p>
+
+<pre><code>curl http://localhost:8080/v1/query
+</code></pre>
+
+<h1 id="end-to-end-test">End-to-End Test</h1>
+
+<p>In this step, we are going to create some end-to-end test cases. As these tests
+are very important in ensuring the server you build works. They give us confidence
+on changing the code and support continuous integration to production.</p>
+
+<p>Given our code is based on a light weight Http framework, all our tests will be
+using the real server. There is a TestServer.java in the generated code already
+and each handler will have a generated test case. The only thing we need to do
+is to add testing logic.</p>
+
+<p>First let&rsquo;s create a new folder call test from updates which is using Mysql.</p>
+
+<pre><code>cd ~/networknt/light-java-example/database
+cp -r updates test
+</code></pre>
+
+<p>Now let&rsquo;s go to IDE and navigate to the test folder under src. You can find there
+are three test cases for each handler and there is an extra class called
+TestServer.java</p>
+
+<p>Let&rsquo;s take a look at the generated QueryGetHandlerTest.java</p>
+
+<pre><code>package com.networknt.database.handler;
+
+import com.networknt.client.Client;
+import com.networknt.server.Server;
+import com.networknt.exception.ClientException;
+import com.networknt.exception.ApiException;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.*;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.junit.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+
+/**
+* Generated by swagger-codegen
+*/
+public class QueryGetHandlerTest {
+    @ClassRule
+    public static TestServer server = TestServer.getInstance();
+
+    static final Logger logger = LoggerFactory.getLogger(QueryGetHandlerTest.class);
+
+    @Test
+    public void testQueryGetHandler() throws ClientException, ApiException {
+        CloseableHttpClient client = Client.getInstance().getSyncClient();
+        HttpGet httpGet = new HttpGet(&quot;http://localhost:8080/v1/query&quot;);
+        /*
+        Client.getInstance().addAuthorization(httpPost);
+        try {
+            CloseableHttpResponse response = client.execute(httpGet);
+            Assert.assertEquals(200, response.getStatusLine().getStatusCode());
+            Assert.assertEquals(&quot;getQuery&quot;, IOUtils.toString(response.getEntity().getContent(), &quot;utf8&quot;));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
+    }
+}
+
+</code></pre>
+
+<p>In this test file, we can see that a static TestServer instance is started
+with @ClassRule to be shared by all test cases in this test file. Also, there
+is one test case with some of the logic commented out. This test is a positive
+test generated based on swagger specification. The result checking code
+is commented out because we don&rsquo;t know what is the exact object returned.</p>
+
+<p>Let&rsquo;s modify it to make it work in our service that is connecting to Mysql.
+Later on, we are going to remove Mysql dependency with H2 database embedded.</p>
+
+<h1 id="performance-test">Performance Test</h1>
+
+<p>To test the endpoint on your localhost, use the following command. You cannot
+use localhost, so you have to find out your ip address.</p>
+
+<p>You can use ifconfig to find you local ip.</p>
+
+<pre><code>docker run --rm williamyeh/wrk -t4 -c50 -d30s --timeout 2s http://192.168.1.131:8080/v1/query
+</code></pre>
+
+<p>Here is the result.</p>
+
+<pre><code>Running 30s test @ http://192.168.1.131:8080/v1/query
+  4 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    10.30ms    3.78ms  74.03ms   89.91%
+    Req/Sec     1.18k   160.15     1.86k    72.50%
+  141321 requests in 30.05s, 20.73MB read
+Requests/sec:   4703.17
+Transfer/sec:    706.30KB
+</code></pre>
+
+<p>As we are using Mysql docker container and its maximum connection can only reach 100.
+If you can increase the connection pool size, you can get even better performance.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Released under the MIT license &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-java/devops/linux_service/" title="Running Light-Java Application as Linux Service">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Running Light-Java Application as Linux Service
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/networknt.github.io\/light-java\/';
+      var repo_id  = 'networknt\/light-java';
+    
+    </script>
+
+    <script src="https://networknt.github.io/light-java/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
