@@ -7,8 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Thu, 27 Oct 2016 08:44:57 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2017 21:05:31 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tools</title>
+      <link>https://networknt.github.io/light-java/tools/</link>
+      <pubDate>Wed, 25 Jan 2017 21:05:31 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tools/</guid>
+      <description>&lt;p&gt;There are so many tools that help us to build microservices and here is a small list.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/hugo-docs/&#34;&gt;Hugo&lt;/a&gt; is used to create the document site for all our repositories.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/memory_monitor/&#34;&gt;Memory Monitoring&lt;/a&gt; on MacOS while doing performance test&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-cli/&#34;&gt;Swagger CLI&lt;/a&gt; to validate, merge and convert swagger specification files.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;Swagger Editor&lt;/a&gt; is used to create and update swagger specifications.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/wrk-perf/&#34;&gt;WRK&lt;/a&gt; is used as client for performance test.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Memory Monitoring on Mac</title>

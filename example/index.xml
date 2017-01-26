@@ -7,8 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Fri, 18 Nov 2016 08:25:10 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2017 21:12:31 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/example/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Examples</title>
+      <link>https://networknt.github.io/light-java/example/</link>
+      <pubDate>Wed, 25 Jan 2017 21:12:31 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/example/</guid>
+      <description>&lt;p&gt;The following examples can be found in &lt;a href=&#34;https://github.com/networknt/light-java-example&#34;&gt;light-java-example&lt;/a&gt; repository.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/database/&#34;&gt;Database&lt;/a&gt; - How to access database&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/microservices/&#34;&gt;Microservices&lt;/a&gt; - How to build microservices&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/performance/&#34;&gt;Performance&lt;/a&gt; - Perforamnce comprison with other frameworks&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/petstore/&#34;&gt;Petstore&lt;/a&gt; - Generated Petstore example service&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/routing/&#34;&gt;Routing&lt;/a&gt; - Demo how routing works&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/swagger/&#34;&gt;Swagger&lt;/a&gt; - All swagger/OpenAPI specifications&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/example/webserver/&#34;&gt;Web Server&lt;/a&gt; - How to integrate API server and Web server together&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Web Server</title>

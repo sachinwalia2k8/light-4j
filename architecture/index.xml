@@ -7,8 +7,44 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 12 Nov 2016 20:55:44 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2017 20:18:44 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://networknt.github.io/light-java/architecture/</link>
+      <pubDate>Wed, 25 Jan 2017 20:18:44 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/</guid>
+      <description>&lt;p&gt;light-java is aiming microservices and it has to be light weight and address a lot of cross-cutting
+concerns at the same time. It is based on Undertow Core Http server and depending on minimum third
+party libraries.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of architecture decisions for the framework:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Designed for &lt;a href=&#34;https://networknt.github.io/light-java/architecture/microservices/&#34;&gt;microservices&lt;/a&gt; that can be dockerized and deployed within containers.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Base on pure HTTP without JavaEE as it has too many problems and is &lt;a href=&#34;https://networknt.github.io/light-java/architecture/jee-is-dead/&#34;&gt;declining&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/architecture/security/&#34;&gt;Security&lt;/a&gt; first design with OAuth2 integration and distributed verification with embedded distributed gateway.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;All components are designed as &lt;a href=&#34;https://networknt.github.io/light-java/architecture/security/&#34;&gt;plugins&lt;/a&gt; and the framework is easy to be extended and customized.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Can be &lt;a href=&#34;https://networknt.github.io/light-java/architecture/integration/&#34;&gt;integrated&lt;/a&gt; with existing application to protect investment over the year for your organization.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Support direct calls from microservice to microservice without any &lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;gateway&lt;/a&gt;, proxy as they add too much overhead.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Service logs will be aggragated with ElasticSearch, LogStash and Kibana with &lt;a href=&#34;https://networknt.github.io/light-java/architecture/monitoring/&#34;&gt;monitoring and alerting&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Built-in &lt;a href=&#34;https://networknt.github.io/light-java/architecture/traceability/&#34;&gt;CorrelationId and TraceabilityId&lt;/a&gt; to trace service to service calls in aggragated logs.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Designed for &lt;a href=&#34;https://networknt.github.io/light-java/architecture/scalability/&#34;&gt;scalability&lt;/a&gt; so that you can have thousands instances running at the same time.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Has its own dependency injection framework so that developers can avoid heavy Spring or Guice as they are &lt;a href=&#34;https://networknt.github.io/light-java/architecture/spring-is-bloated/&#34;&gt;bloated&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Integration Patterns</title>
@@ -658,6 +694,106 @@ in the background.&lt;/p&gt;
 fast that it can handle 60K user login to get authorization code per second.
 For access token, it can serve about 700 access tokens in a second. It is
 also open sourced and can be found at &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;https://github.com/networknt/light-oauth2&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scalability</title>
+      <link>https://networknt.github.io/light-java/architecture/scalability/</link>
+      <pubDate>Tue, 11 Oct 2016 12:32:21 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/architecture/scalability/</guid>
+      <description>
+
+&lt;p&gt;##&lt;/p&gt;
+
+&lt;p&gt;One of the benefits utilizing microservices architecture is to make sure
+your application is easily scaling. When we talk about scalability, one
+of the best books is &lt;a href=&#34;http://theartofscalability.com/&#34;&gt;The Art of Scalability&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It introduced the scale cube as following.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/app_scale.png&#34; alt=&#34;scale_cube&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Scale Cube consists of an X, Y and Z axes – each addressing a
+different approach to scale a service. The lowest left point of the
+cube (coordinates X=0, Y=0 and Z=0) represents the worst case
+monolithic service or product identified above: a product wherein
+all functions exist within a single code base on a single server making
+use of that server’s finite resources of memory, cpu speed, network
+ports, mass storage, etc.&lt;/p&gt;
+
+&lt;p&gt;In this model, scaling an application by running clones behind a load
+balancer is known as X-axis scaling. The other two kinds of scaling are
+Y-axis scaling and Z-axis scaling. The microservice architecture is an
+application of Y-axis scaling but let’s also look at X-axis and Z-axis
+scaling.&lt;/p&gt;
+
+&lt;h2 id=&#34;x-axis-scaling&#34;&gt;X-axis scaling&lt;/h2&gt;
+
+&lt;p&gt;X-axis scaling consists of running multiple copies of an application
+behind a load balancer. If there are N copies then each copy handles
+1/N of the load. This is a simple, commonly used approach of scaling
+an application.&lt;/p&gt;
+
+&lt;p&gt;One drawback of this approach is that because each copy potentially
+accesses all of the data, caches require more memory to be effective.
+Another problem with this approach is that it does not tackle the
+problems of increasing development and application complexity.&lt;/p&gt;
+
+&lt;h2 id=&#34;y-axis-scaling&#34;&gt;Y-axis scaling&lt;/h2&gt;
+
+&lt;p&gt;Unlike X-axis and Z-axis, which consist of running multiple, identical
+copies of the application, Y-axis axis scaling splits the application
+into multiple, different services. Each service is responsible for one
+or more closely related functions. There are a couple of different ways
+of decomposing the application into services. One approach is to use
+verb-based decomposition and define services that implement a single use
+case such as checkout. The other option is to decompose the application
+by noun and create services responsible for all operations related to a
+particular entity such as customer management. An application might use
+a combination of verb-based and noun-based decomposition.&lt;/p&gt;
+
+&lt;h2 id=&#34;z-axis-scaling&#34;&gt;Z-axis scaling&lt;/h2&gt;
+
+&lt;p&gt;When using Z-axis scaling each server runs an identical copy of the code.
+In this respect, it’s similar to X-axis scaling. The big difference is
+that each server is responsible for only a subset of the data. Some
+components of the system are responsible for routing each request to the
+appropriate server. One commonly used routing criteria is an attribute
+of the request such as the primary key of the entity being accessed.
+Another common routing criteria is the customer type. For example, an
+application might provide paying customers with a higher SLA than free
+customers by routing their requests to a different set of servers with
+more capacity.&lt;/p&gt;
+
+&lt;p&gt;Z-axis splits are commonly used to scale databases. Data is partitioned
+(a.k.a. sharded) across a set of servers based on an attribute of each
+record. In this example, the primary key of the RESTAURANT table is used
+to partition the rows between two different database servers. Note that
+X-axis cloning might be applied to each partition by deploying one or
+more servers as replicas/slaves. Z-axis scaling can also be applied to
+applications. In this example, the search service consists of a number
+of partitions. A router sends each content item to the appropriate
+partition, where it is indexed and stored. A query aggregator sends
+each query to all of the partitions, and combines the results from each
+of them.&lt;/p&gt;
+
+&lt;p&gt;Z-axis scaling has a number of benefits.&lt;/p&gt;
+
+&lt;p&gt;Each server only deals with a subset of the data. This improves cache
+utilization and reduces memory usage and I/O traffic. It also improves
+transaction scalability since requests are typically distributed across
+multiple servers. Also, Z-axis scaling improves fault isolation since a
+failure only makes part of the data in accessible.&lt;/p&gt;
+
+&lt;p&gt;Z-axis scaling has some drawbacks.&lt;/p&gt;
+
+&lt;p&gt;One drawback is increased application complexity. We need to implement a
+partitioning scheme, which can be tricky especially if we ever need to
+repartition the data. Another drawback of Z-axis scaling is that doesn’t
+solve the problems of increasing development and application complexity.
+To solve those problems we need to apply Y-axis scaling.&lt;/p&gt;
 </description>
     </item>
     

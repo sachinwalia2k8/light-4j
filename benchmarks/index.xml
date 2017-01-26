@@ -7,8 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Fri, 18 Nov 2016 14:41:29 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2017 20:48:38 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/benchmarks/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Performance</title>
+      <link>https://networknt.github.io/light-java/benchmarks/</link>
+      <pubDate>Wed, 25 Jan 2017 20:48:38 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/benchmarks/</guid>
+      <description>&lt;p&gt;Light-Java framework is the fastest so far on the market and there are a lot of effort to make that happen.
+There are a lot of frameworks, languages to build microservices but most popular ones are Java, Go and Nodejs.&lt;/p&gt;
+
+&lt;p&gt;Nodejs used to be really fast compare with JavaEE platforms but it has a lot of
+&lt;a href=&#34;https://networknt.github.io/light-java/benchmarks/nodejs/&#34;&gt;issues&lt;/a&gt; in enterprise world. Go has potentials but
+still not in enterprise applications. We are starting with Java due to the fact that it is highly optimized
+and there are so many existing investment in all sorts of organizations.&lt;/p&gt;
+
+&lt;p&gt;We have tested most of microservices frameworks and here is the
+&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;benchmarks&lt;/a&gt; along with source code.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Nodejs Pitfalls</title>
