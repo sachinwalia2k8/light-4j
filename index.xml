@@ -1639,6 +1639,8 @@ docker run -it -p 7004:7004 --net=host --name=com.networknt.apid-1.0.0 networknt
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/integration-test/&#34;&gt;How to do integration test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/debug/&#34;&gt;How to debug the service&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/discovery/&#34;&gt;How to register and discover services&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
