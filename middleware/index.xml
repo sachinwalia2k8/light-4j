@@ -7,8 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Mon, 06 Feb 2017 09:59:28 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 06 Feb 2017 21:40:01 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/middleware/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Request and Response Dump</title>
+      <link>https://networknt.github.io/light-java/middleware/dump/</link>
+      <pubDate>Mon, 06 Feb 2017 21:40:01 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/middleware/dump/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Correlation Id</title>
@@ -600,8 +609,9 @@ into the backend and return to the consumer for transaction tracing.&lt;/p&gt;&l
 Sharing (CORS) handler supports single page applications from another domain to access
 APIs/services.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;[dump]() - A full request/response log handler to dump everything regarding to request
-and response into log file for developers.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/dump/&#34;&gt;dump&lt;/a&gt; -
+A full request/response log handler to dump everything regarding to request and response
+into log file for developers.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

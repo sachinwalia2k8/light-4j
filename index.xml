@@ -7,8 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Mon, 06 Feb 2017 21:34:10 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 06 Feb 2017 21:40:01 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Request and Response Dump</title>
+      <link>https://networknt.github.io/light-java/middleware/dump/</link>
+      <pubDate>Mon, 06 Feb 2017 21:40:01 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/middleware/dump/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>zookeeper</title>
@@ -1795,32 +1804,6 @@ docker run -it -p 7004:7004 --net=host --name=com.networknt.apid-1.0.0 networknt
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;Swagger Editor&lt;/a&gt; is used to create and update swagger specifications.&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/wrk-perf/&#34;&gt;WRK&lt;/a&gt; is used as client for performance test.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tutorials</title>
-      <link>https://networknt.github.io/light-java/tutorials/</link>
-      <pubDate>Wed, 25 Jan 2017 20:59:08 -0500</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/tutorials/</guid>
-      <description>&lt;p&gt;The following tutorials will help users to get started and more will be added later.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/microservices/&#34;&gt;How to build, test and deploy microserivces&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/database/&#34;&gt;How to access database in microservices&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/unit-test/&#34;&gt;How to do unit test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/end-to-end-test/&#34;&gt;How to do end-to-end test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/integration-test/&#34;&gt;How to do integration test&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/debug/&#34;&gt;How to debug the service&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tutorials/discovery/&#34;&gt;How to register and discover services&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
