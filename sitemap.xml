@@ -3,7 +3,62 @@
   
   <url>
     <loc>https://networknt.github.io/light-java/</loc>
-    <lastmod>2017-01-27T20:57:14-05:00</lastmod>
+    <lastmod>2017-02-06T21:34:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/zookeeper/</loc>
+    <lastmod>2017-02-06T21:34:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/switcher/</loc>
+    <lastmod>2017-02-06T21:34:02-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/service/</loc>
+    <lastmod>2017-02-06T21:33:54-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/registry/</loc>
+    <lastmod>2017-02-06T21:33:47-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/health/</loc>
+    <lastmod>2017-02-06T21:33:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/handler/</loc>
+    <lastmod>2017-02-06T21:33:25-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/consul/</loc>
+    <lastmod>2017-02-06T21:33:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/cluster/</loc>
+    <lastmod>2017-02-06T21:33:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/balance/</loc>
+    <lastmod>2017-02-06T21:32:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/middleware/correlation/</loc>
+    <lastmod>2017-02-06T09:59:28-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/tools/keytool/</loc>
+    <lastmod>2017-02-03T14:12:47-05:00</lastmod>
   </url>
   
   <url>
@@ -202,17 +257,22 @@
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/validator/</loc>
+    <loc>https://networknt.github.io/light-java/middleware/swagger-validator/</loc>
     <lastmod>2016-10-12T19:13:19-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/swagger/</loc>
+    <loc>https://networknt.github.io/light-java/middleware/swagger-meta/</loc>
     <lastmod>2016-10-12T19:10:34-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/security/</loc>
+    <loc>https://networknt.github.io/light-java/middleware/swagger-security/</loc>
+    <lastmod>2016-10-12T19:07:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/other/security/</loc>
     <lastmod>2016-10-12T19:07:43-04:00</lastmod>
   </url>
   

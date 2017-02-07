@@ -7,8 +7,64 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sun, 06 Nov 2016 10:24:22 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 06 Feb 2017 09:59:28 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/middleware/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Correlation Id</title>
+      <link>https://networknt.github.io/light-java/middleware/correlation/</link>
+      <pubDate>Mon, 06 Feb 2017 09:59:28 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/middleware/correlation/</guid>
+      <description>
+
+&lt;p&gt;This is a handler that checks if X-Correlation-Id exists in request header. If it doesn&amp;rsquo;t exist
+it will generate a UUID and put it into the request header. During API to API calls, this header
+will be passed to the next API by Client module.&lt;/p&gt;
+
+&lt;h1 id=&#34;generating&#34;&gt;Generating&lt;/h1&gt;
+
+&lt;p&gt;The correlationId is very useful in microservices architecture as there are multiple services
+involved in a same client request. When logs are aggregated into a centralized tool, it is
+very important there is an unique identifier to associate logs from multiple services for the
+same request. The Id is an UUID and must be generated in the first service called from client.&lt;/p&gt;
+
+&lt;h1 id=&#34;passing&#34;&gt;Passing&lt;/h1&gt;
+
+&lt;p&gt;Since the first service generates the Id, it must be passed to other services somehow so that
+subsequent services can use it to log their messages. In our &lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;client&lt;/a&gt;
+module, it passes the correlationId from the current request header to the request to the next
+service.&lt;/p&gt;
+
+&lt;h1 id=&#34;logging&#34;&gt;Logging&lt;/h1&gt;
+
+&lt;p&gt;This handler gets the X-Correlation-Id from request header or generate one if it doesn&amp;rsquo;t
+exist in the request header. After that, it puts it into the org.slf4j.MDC so that logback
+can put it into the log for every logging statement.&lt;/p&gt;
+
+&lt;h1 id=&#34;logback-xml&#34;&gt;logback.xml&lt;/h1&gt;
+
+&lt;p&gt;In the generated logback.xml, the cId is part of the appender config as pattern &amp;ldquo;%X{cId}&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;appender name=&amp;quot;stdout&amp;quot; class=&amp;quot;ch.qos.logback.core.ConsoleAppender&amp;quot;&amp;gt;
+        &amp;lt;!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default --&amp;gt;
+        &amp;lt;encoder&amp;gt;
+            &amp;lt;pattern&amp;gt;%d{HH:mm:ss.SSS} [%thread] %X{cId} %-5level %logger{36} - %msg%n&amp;lt;/pattern&amp;gt;
+        &amp;lt;/encoder&amp;gt;
+    &amp;lt;/appender&amp;gt;
+
+    &amp;lt;appender name=&amp;quot;log&amp;quot; class=&amp;quot;ch.qos.logback.core.FileAppender&amp;quot;&amp;gt;
+        &amp;lt;File&amp;gt;target/test.log&amp;lt;/File&amp;gt;
+        &amp;lt;Append&amp;gt;false&amp;lt;/Append&amp;gt;
+        &amp;lt;layout class=&amp;quot;ch.qos.logback.classic.PatternLayout&amp;quot;&amp;gt;
+            &amp;lt;Pattern&amp;gt;%d{HH:mm:ss.SSS} [%thread] %X{cId} %-5level %class{36}:%L %M - %msg%n&amp;lt;/Pattern&amp;gt;
+        &amp;lt;/layout&amp;gt;
+    &amp;lt;/appender&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Traceability</title>
@@ -20,37 +76,47 @@
 
 &lt;p&gt;#&lt;/p&gt;
 
-&lt;p&gt;For microservices architecture, a request sent from client may pass through several services to the
-backend respository/Book of Record and then response is returned in the reverse path. If there is an
-error in the call tree, we need to identify where is the problem during runtime. Also, for some mission
-critical applications, the entire call tree must be in the audit log to meet regulatory compliance
-requirement. For example, Banking applications.&lt;/p&gt;
+&lt;p&gt;For microservices architecture, a request sent from client may pass
+through several services to the backend respository/Book of Record
+and then response is returned in the reverse path. If there is an
+error in the call tree, we need to identify where is the problem
+during runtime. Also, for some mission critical applications, the
+entire call tree must be in the audit log to meet regulatory compliance
+requirement. For example, banking applications.&lt;/p&gt;
 
-&lt;p&gt;The framework has two tracing IDs built in and X-Traceability-Id is one of them that handled by this
-Middleware component. Another one is X-Correlation-Id which is documented in [Traceability]().&lt;/p&gt;
+&lt;p&gt;The framework has two tracing IDs built in and X-Traceability-Id is one
+of them that handled by this middleware component. Another one is
+X-Correlation-Id which is documented in &lt;a href=&#34;https://networknt.github.io/light-java/middleware/correlation/&#34;&gt;correlation&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;X-Traceability-Id is generated by the original client and might not be unique across the API domain. It
-is unique for that particular client though. It is usually a sequence number generated from database
-or a UUID. The usage of this id is to debug broken transactions as every service will have this id
-logged once if the service is called and will return this id in response header to the caller.&lt;/p&gt;
+&lt;p&gt;X-Traceability-Id is generated by the original client and might not
+be unique across the API domain. It is unique for that particular
+client though. It is usually a sequence number generated from database
+or a UUID. The usage of this id is to debug broken transactions as every
+service will have this id logged once if the service is called and will
+return this id in response header to the caller.&lt;/p&gt;
 
-&lt;p&gt;Every API/Service is responsible to pass the X-Traceability-Id (from request header) to the next service
-(set the request header by Client when calling another service).&lt;/p&gt;
+&lt;p&gt;Every API/Service is responsible to pass the X-Traceability-Id (from
+request header) to the next service (set the request header by Client
+when calling another service).&lt;/p&gt;
 
-&lt;p&gt;Not all client will supply traceability_id so this is an optional field in the request header. If it
-doesn&amp;rsquo;t exist, do nothing. If it does exist, the framework is responsible to pass it to the next API
-in the chain or pass to the Book of Record.&lt;/p&gt;
+&lt;p&gt;Not all client will supply traceability_id so this is an optional field
+in the request header. If it doesn&amp;rsquo;t exist, do nothing. If it does exist,
+the framework is responsible to pass it to the next API in the chain or
+pass to the Book of Record.&lt;/p&gt;
 
-&lt;p&gt;It is recommended that X-Traceability-Id should be persisted in Backend Repository/Book of Record.
-However, this might not be possible for some legacy application, i.e.
-mainframe applications.&lt;/p&gt;
+&lt;p&gt;It is recommended that X-Traceability-Id should be persisted in Backend
+Repository/Book of Record. However, this might not be possible for some
+legacy application, i.e. mainframe applications.&lt;/p&gt;
 
-&lt;p&gt;It should only be logged once in the audit log once your API processing is done and successful.&lt;/p&gt;
+&lt;p&gt;It should only be logged once in the audit log once your API processing
+is done and successful.&lt;/p&gt;
 
 &lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
 
-&lt;p&gt;The configuration for this handler is very simple, just control if this handler is enabled or not.
-It will only be pluged into the request/response chain if enabled is true in the traceability.json&lt;/p&gt;
+&lt;p&gt;The configuration for this handler is very simple, just control if this
+handler is enabled or not.
+It will only be plugged into the request/response chain if enabled is
+true in the traceability.json&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
   &amp;quot;description&amp;quot;: &amp;quot;Traceability Handler&amp;quot;,
@@ -65,12 +131,15 @@ It will only be pluged into the request/response chain if enabled is true in the
 
 &lt;h1 id=&#34;dependencies&#34;&gt;Dependencies&lt;/h1&gt;
 
-&lt;p&gt;This handler set the response header from request header; however, to make it work across services, it
-depends the following middleware or component to work.&lt;/p&gt;
+&lt;p&gt;This handler set the response header from request header; however, to make
+it work across services, it depends the following middleware or component
+to work.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;SimpleAuditHandler to log the traceabilityId to the audit log file.&lt;/li&gt;
-&lt;li&gt;Client to pass the X-Traceability-Id to the next service through HttpRequest Header.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/audit/&#34;&gt;Audit&lt;/a&gt;
+to log the traceabilityId to the audit log file.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;Client&lt;/a&gt;
+to pass the X-Traceability-Id to the next service through HttpRequest Header.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -212,21 +281,24 @@ InfluxDB.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Validator</title>
-      <link>https://networknt.github.io/light-java/middleware/validator/</link>
+      <title>Swagger Validator</title>
+      <link>https://networknt.github.io/light-java/middleware/swagger-validator/</link>
       <pubDate>Wed, 12 Oct 2016 19:13:19 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/middleware/validator/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/swagger-validator/</guid>
       <description>
 
-&lt;p&gt;The framework encourages design driven implementation so swagger specification
-should be done before the implementation starts. With the swagger-codegen
-undertow generator, the server stub can be generated and start running within
-minutes. However, we cannot rely on generator for validation as specification
-will be changed along  the life cycle of the API. This is why we have provided
-a validator that works on top of the specification at runtime. In this way,
-the generator should only be used once and the validator will take the latest
-spec. and validate according the spec. at runtime.&lt;/p&gt;
+&lt;p&gt;This handler is part of the &lt;a href=&#34;https://github.com/networknt/light-java-rest&#34;&gt;light-java-rest&lt;/a&gt;
+which is built on top of light-java but focused on RESTful API only.&lt;/p&gt;
+
+&lt;p&gt;It encourages design driven implementation so swagger specification should be
+done before the implementation starts. With the swagger-codegen light-java
+generator, the server stub can be generated and start running within minutes.
+However, we cannot rely on generator for validation as specification will be
+changed along the life cycle of the API. This is why we have provided a validator
+that works on top of the specification at runtime. In this way, the generator
+should only be used once and the validator will take the latest specification and
+validate according the specification at runtime.&lt;/p&gt;
 
 &lt;h1 id=&#34;fail-fast&#34;&gt;Fail fast&lt;/h1&gt;
 
@@ -252,56 +324,70 @@ by setting enableResponseValidator to true in validator.json.&lt;/p&gt;
 
 &lt;h1 id=&#34;requestvalidator&#34;&gt;RequestValidator&lt;/h1&gt;
 
-&lt;p&gt;It will validate the following:
-* uri
-* method
-* header
-* query parameters
-* path parameters
-* body if available&lt;/p&gt;
+&lt;p&gt;It will validate the following:&lt;/p&gt;
 
-&lt;p&gt;When necessary, schema validator will be called to do json schema validation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;uri&lt;/li&gt;
+&lt;li&gt;method&lt;/li&gt;
+&lt;li&gt;header&lt;/li&gt;
+&lt;li&gt;query parameters&lt;/li&gt;
+&lt;li&gt;path parameters&lt;/li&gt;
+&lt;li&gt;body if available&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When necessary, &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt;
+will be called to do json schema validation.&lt;/p&gt;
 
 &lt;h1 id=&#34;responsevalidator&#34;&gt;ResponseValidator&lt;/h1&gt;
 
-&lt;p&gt;It will validate the following:
-* header
-* response code
-* body if available&lt;/p&gt;
+&lt;p&gt;It will validate the following:&lt;/p&gt;
 
-&lt;p&gt;when necessary, json schema validator will be called.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;header&lt;/li&gt;
+&lt;li&gt;response code&lt;/li&gt;
+&lt;li&gt;body if available&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;when necessary, &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt;
+will be called.&lt;/p&gt;
 
 &lt;h1 id=&#34;schemavalidator&#34;&gt;SchemaValidator&lt;/h1&gt;
 
-&lt;p&gt;If schema is defined in swagger.json, then the &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt; will be called to validate the input against a json schema defined in draft v4.&lt;/p&gt;
+&lt;p&gt;If schema is defined in swagger.json, then the &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt;
+will be called to validate the input against a json schema defined in draft v4.&lt;/p&gt;
 
 &lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
 
-&lt;p&gt;In order to test validator, the test suite starts an undertow server and serves
+&lt;p&gt;In order to test validator, the test suite starts a light-java server and serves
 petstore api for testing. It is a demo on how to unit test your API during
 development.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>swagger</title>
-      <link>https://networknt.github.io/light-java/middleware/swagger/</link>
+      <title>Swagger Meta</title>
+      <link>https://networknt.github.io/light-java/middleware/swagger-meta/</link>
       <pubDate>Wed, 12 Oct 2016 19:10:34 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/middleware/swagger/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/swagger-meta/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;The framework is designed based on swagger specification so it is our best interest
-to utilize the swagger.json to its full potential. Currently there are two
-components are using the swagger spec during runtime.&lt;/p&gt;
+&lt;p&gt;This handler is part of the &lt;a href=&#34;https://github.com/networknt/light-java-rest&#34;&gt;light-java-rest&lt;/a&gt;
+which is built on top of light-java but focused on RESTful API only.&lt;/p&gt;
+
+&lt;p&gt;It is designed based on swagger specification so it is our best interest to utilize
+the swagger.json to its full potential. Currently there are two components are using
+the swagger specification during runtime.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Security - verify scope in the JWT token against scope defined in swagger spec
-if scope verificatio is true.&lt;/li&gt;
-&lt;li&gt;Validator - validate request and response based on the definition in swagger
-spec for the uri and method.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-security/&#34;&gt;swagger-security&lt;/a&gt; -
+Verify scope in the JWT token against scope defined in swagger specification if
+scope verification is true.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-validator/&#34;&gt;swagger-validator&lt;/a&gt; -
+Validate request and response based on the definition in swagger specification for
+the uri and method.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;As you have noticed, both components need to have swagger operation available
@@ -322,21 +408,24 @@ provides an API to match the request path to the paths in swagger specification.
 &lt;h1 id=&#34;swaggerhandler&#34;&gt;SwaggerHandler&lt;/h1&gt;
 
 &lt;p&gt;This is an HttpHandler to parse the swagger spec based on the request uri and
-method and attach an SwaggerOperation object to the exchange. The security and
-validator modules are using it to do their job without parsing the swagger second
-time.&lt;/p&gt;
+method and attach an SwaggerOperation object to the exchange. The swagger-security
+and swagger-validator modules are using it to do their jobs without parsing the
+swagger.json second time.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>security</title>
-      <link>https://networknt.github.io/light-java/middleware/security/</link>
+      <title>Swagger Security</title>
+      <link>https://networknt.github.io/light-java/middleware/swagger-security/</link>
       <pubDate>Wed, 12 Oct 2016 19:07:43 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/middleware/security/</guid>
+      <guid>https://networknt.github.io/light-java/middleware/swagger-security/</guid>
       <description>
 
-&lt;p&gt;The current framework supports OAuth2 with JWT token but can be extended to
+&lt;p&gt;This handler is part of the &lt;a href=&#34;https://github.com/networknt/light-java-rest&#34;&gt;light-java-rest&lt;/a&gt;
+which is built on top of light-java but focused on RESTful API only.&lt;/p&gt;
+
+&lt;p&gt;It supports OAuth2 with JWT token distributed verification and can be extended to
 other authentication and authorization approaches.&lt;/p&gt;
 
 &lt;h1 id=&#34;jwtverifyhandler&#34;&gt;JwtVerifyHandler&lt;/h1&gt;
@@ -349,36 +438,12 @@ is true against swagger specification.&lt;/p&gt;
 
 &lt;p&gt;Unlike simple web token, the resource server has to contact Authorization server
 to validate the bearer token. JWT can be verified by resource server as long as
-the token signing certificate is available at resource server. Due to security
-concerns, there should be two pair of private key and public key certificate
-available at any time in case the primary key is compromised.&lt;/p&gt;
-
-&lt;h1 id=&#34;light-oauth2-server&#34;&gt;light-oauth2 server&lt;/h1&gt;
-
-&lt;p&gt;By default, the framework contains two pairs of public key certificates issued
-by our own oauth2 server which can be installed from docker. For more info,
-please refer to &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;https://github.com/networknt/light-oauth2&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;kid&#34;&gt;Kid&lt;/h1&gt;
-
-&lt;p&gt;Since there are two certificates available, the kid in the header of the JWT
-token will decide which certificate will be used to verify the JWT signature.&lt;/p&gt;
-
-&lt;h1 id=&#34;jwtmockhandler&#34;&gt;JwtMockHandler&lt;/h1&gt;
-
-&lt;p&gt;This is a testing OAuth2 endpoints provider and it can be injected into the handler
-chain for unit testing so that it won&amp;rsquo;t depend on an instance of
-undertow-oauth2.&lt;/p&gt;
-
-&lt;h1 id=&#34;long-lived-token&#34;&gt;Long lived token&lt;/h1&gt;
-
-&lt;p&gt;To make integration test easier, a long lived token is provided by the oauth2
-server and it can be found at &lt;a href=&#34;https://github.com/networknt/undertow-oauth2&#34;&gt;https://github.com/networknt/undertow-oauth2&lt;/a&gt;&lt;/p&gt;
+the token signing certificate is available at resource server.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>exception</title>
+      <title>Exception Handler</title>
       <link>https://networknt.github.io/light-java/middleware/exception/</link>
       <pubDate>Wed, 12 Oct 2016 19:03:24 -0400</pubDate>
       
@@ -389,6 +454,11 @@ server and it can be found at &lt;a href=&#34;https://github.com/networknt/under
 will bubble up to the undertow server and eventually a 500 response will be
 sent to the consumer. In order to change the behaviour, an exception handler
 is provided to handle ApiException and other uncaught exceptions.&lt;/p&gt;
+
+&lt;p&gt;Please note that developers should capture any checked exceptions including
+ApiException in their handlers and return a specific error code to help client
+to debug what is going on on the server. This exception handler is designed
+as last defense and only should be used to something unexpected.&lt;/p&gt;
 
 &lt;h1 id=&#34;runtime-exception&#34;&gt;Runtime Exception&lt;/h1&gt;
 
@@ -412,7 +482,7 @@ in the status object.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Body</title>
+      <title>Body Parser</title>
       <link>https://networknt.github.io/light-java/middleware/body/</link>
       <pubDate>Wed, 12 Oct 2016 18:57:17 -0400</pubDate>
       
@@ -425,7 +495,7 @@ in the status object.&lt;/p&gt;
 request header and attach the parsed result into the exchange so that subsequent
 handlers will use it directly.&lt;/p&gt;
 
-&lt;p&gt;The current implementation only support JSON and need content type header to be
+&lt;p&gt;The current implementation only supports JSON and needs content type header to be
 started with &amp;ldquo;application/json&amp;rdquo;. If the content type is correct, it will parse it
 to List or Map and put it into REQUEST_BODY exchange attachment.&lt;/p&gt;
 
@@ -433,7 +503,7 @@ to List or Map and put it into REQUEST_BODY exchange attachment.&lt;/p&gt;
 won&amp;rsquo;t be parsed.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/sanitizer/&#34;&gt;Sanitizer&lt;/a&gt;
-and &lt;a href=&#34;https://networknt.github.io/light-java/middleware/validator/&#34;&gt;Validator&lt;/a&gt;
+and &lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-validator/&#34;&gt;Swagger Validator&lt;/a&gt;
 depend on this middleware.&lt;/p&gt;
 </description>
     </item>
@@ -446,8 +516,8 @@ depend on this middleware.&lt;/p&gt;
       <guid>https://networknt.github.io/light-java/middleware/audit/</guid>
       <description>
 
-&lt;p&gt;There are two builtin audit handlers that write logs into audit.log that setup in the
-logback appender.&lt;/p&gt;
+&lt;p&gt;There are two built-in audit handlers that write logs into audit.log that setup
+in the logback appender.&lt;/p&gt;
 
 &lt;h1 id=&#34;simpleaudithandler&#34;&gt;SimpleAuditHandler&lt;/h1&gt;
 
@@ -485,33 +555,53 @@ swagger code generation and runtime request validation.&lt;/p&gt;
 &lt;p&gt;It contains the following components:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/security/&#34;&gt;security&lt;/a&gt; - oauth2 jwt token verification and mock token generation. Also,
-there is an testing OAuth2 server released &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-security/&#34;&gt;swagger-security&lt;/a&gt; -
+Oauth2 jwt token verification distributed in every microservice. Also, there is an OAuth2
+server based on light-java released &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/validator/&#34;&gt;validator&lt;/a&gt; - validate request based on the swagger.json for uri parameters,
-query parameters and body which is based on &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-validator/&#34;&gt;swagger-validator&lt;/a&gt; -
+Validate request based on the swagger.json for uri parameters, query parameters and body
+which is based on &lt;a href=&#34;https://github.com/networknt/json-schema-validator&#34;&gt;json-schema-validator&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/audit/&#34;&gt;audit&lt;/a&gt; - dump most important info about request and response into audit.log in
-JSON format. Also, there is a full audit handler to dump everything regarding to
-request and response.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/audit/&#34;&gt;audit&lt;/a&gt; - Log most important info
+about request and response into audit.log in JSON format with config file that controls which
+fieds to be logged.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;body&lt;/a&gt; A body parser middleware that is
-responsible for parsing the content of the request based on Content-Type in the request header.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/body/&#34;&gt;body&lt;/a&gt; - A body parser middleware
+that is responsible for parsing the content of the request based on Content-Type in the
+request header.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/exception/&#34;&gt;exception&lt;/a&gt; A generic exception
-handler that handles runtime exception, ApiException and other checked exception if they are not handled
-properly in the handler chain.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/exception/&#34;&gt;exception&lt;/a&gt; - A generic
+exception handler that handles runtime exception, ApiException and other checked exception
+if they are not handled properly in the handler chain.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/metrics/&#34;&gt;metrics&lt;/a&gt; A module that collect
-API runtime info based on clientId and API name. The metrics info is sent to InfluxDB and accessible
-from Grafana Dashboard.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/metrics/&#34;&gt;metrics&lt;/a&gt; - A module that collect
+API runtime info based on clientId and API name. The metrics info is sent to InfluxDB and
+accessible from Grafana Dashboard.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger/&#34;&gt;swagger&lt;/a&gt; This is a middleware
-that load swagger at runtime and parse it based on the request uri and method and attached the
-swagger data related to the current endpoint into the exchange for subsequent handlers to use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-meta/&#34;&gt;swagger-meta&lt;/a&gt; - This is a
+middleware that load swagger at runtime and parse it based on the request uri and method and
+attached the swagger data related to the current endpoint into the exchange for subsequent
+handlers to use.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/sanitizer/&#34;&gt;sanitizer&lt;/a&gt; This is a middleware
-that address cross site scripting concerns. It encodes header and body based on configuration.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/sanitizer/&#34;&gt;sanitizer&lt;/a&gt; - This is a
+middleware that address cross site scripting concerns. It encodes header and body based on
+configuration.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/correlation/&#34;&gt;correlation&lt;/a&gt; - Generate
+a UUID in the first API/service and pass it to all other APIs/services in the call tree for
+tracking purpose.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/traceability/&#34;&gt;traceability&lt;/a&gt; - It is an
+Id passed in from client and will be unique with an application context. The Id will be passed
+into the backend and return to the consumer for transaction tracing.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/cors/&#34;&gt;cors&lt;/a&gt; - The Cross-Origin Resource
+Sharing (CORS) handler supports single page applications from another domain to access
+APIs/services.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[dump]() - A full request/response log handler to dump everything regarding to request
+and response into log file for developers.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

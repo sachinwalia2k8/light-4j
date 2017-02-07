@@ -7,8 +7,89 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sun, 23 Oct 2016 13:23:59 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 06 Feb 2017 21:34:10 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/other/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>zookeeper</title>
+      <link>https://networknt.github.io/light-java/other/zookeeper/</link>
+      <pubDate>Mon, 06 Feb 2017 21:34:10 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/zookeeper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>switcher</title>
+      <link>https://networknt.github.io/light-java/other/switcher/</link>
+      <pubDate>Mon, 06 Feb 2017 21:34:02 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/switcher/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>service</title>
+      <link>https://networknt.github.io/light-java/other/service/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:54 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/service/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>registry</title>
+      <link>https://networknt.github.io/light-java/other/registry/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:47 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/registry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>health</title>
+      <link>https://networknt.github.io/light-java/other/health/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:38 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/health/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>handler</title>
+      <link>https://networknt.github.io/light-java/other/handler/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:25 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/handler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>consul</title>
+      <link>https://networknt.github.io/light-java/other/consul/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:14 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/consul/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cluster</title>
+      <link>https://networknt.github.io/light-java/other/cluster/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:04 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>balance</title>
+      <link>https://networknt.github.io/light-java/other/balance/</link>
+      <pubDate>Mon, 06 Feb 2017 21:32:51 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/other/balance/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>info</title>
@@ -1253,29 +1334,67 @@ swagger code generation and runtime request validation and security verification
 &lt;p&gt;It contains the following components:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/server/&#34;&gt;server&lt;/a&gt; - a framework on top of undertow http core that support plugins to
-performance different middleware handling.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/server/&#34;&gt;server&lt;/a&gt; -
+a framework on top of undertow http core that support plugins to performance
+different middleware handling.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/config/&#34;&gt;config&lt;/a&gt; - A module
-that supports externalized configuration for standalone application and docker
-container.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/config/&#34;&gt;config&lt;/a&gt; -
+A module that supports externalized configuration for standalone application and
+docker container.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/utility/&#34;&gt;utility&lt;/a&gt; - utility classes that are shared between modules.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/utility/&#34;&gt;utility&lt;/a&gt; -
+utility classes that are shared between modules.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;client&lt;/a&gt; - wrapper of apache HttpClient and HttpAsyncClient. support automatically
-cache and renew client credentials jwt token&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;client&lt;/a&gt; -
+wrapper of apache HttpClient and HttpAsyncClient. support automatically cache and
+renew client credentials jwt token&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/info/&#34;&gt;info&lt;/a&gt; - a handler that
-injects an endpoint /server/info that can out all plugged in component on the
-server and configuration of each component.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/info/&#34;&gt;info&lt;/a&gt; -
+a handler that injects an endpoint /server/info that can out all plugged in component
+on the server and configuration of each component.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/mask/&#34;&gt;mask&lt;/a&gt; - used to mask sensitive info before logging to audit.log or server.log&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/mask/&#34;&gt;mask&lt;/a&gt; -
+used to mask sensitive info before logging to audit.log or server.log&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/status/&#34;&gt;status&lt;/a&gt; - used to model error http response and assist production monitoring
-with unique error code.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/status/&#34;&gt;status&lt;/a&gt; -
+used to model error http response and assist production monitoring with unique error
+code.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt; - a code generator
-that generates the routing handlers and running API application based on swagger specification.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/status/&#34;&gt;security&lt;/a&gt; -
+used by swagger-security currently but these utilities and helpers can be used by
+other security handlers.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt; -
+a code generator that generates the routing handlers and running API application
+based on swagger specification.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/balance/&#34;&gt;balance&lt;/a&gt; -
+A load balance module that is used by cluster module with service discovery module.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/cluster/&#34;&gt;cluster&lt;/a&gt; -
+A module caches discovered services and calling load balance module for load balancing.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/consul/&#34;&gt;consul&lt;/a&gt; -
+A module manages communication with Consul server for registry and discovery.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/handler/&#34;&gt;handler&lt;/a&gt; -
+A module defines middleware handler interface for all middleware components.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/health/&#34;&gt;Health&lt;/a&gt; -
+A health check module that can be called by API portal to determine if the service is healthy.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/registry/&#34;&gt;registry&lt;/a&gt; -
+An interface definition and generic direct registry implementation for service
+registry and discovery.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/service/&#34;&gt;service&lt;/a&gt; -
+A light weight dependency injection framework for testing and startup hooks.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/switcher/&#34;&gt;switcher&lt;/a&gt; -
+A switcher that turn things on an off based on certain conditions.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/other/zookeeper/&#34;&gt;zookeeper&lt;/a&gt; -
+A module manages communication with ZooKeeper server for registry and discovery.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1360,6 +1479,24 @@ deployment. In the future, these parameters might be exposed in the server.json.
 }
 
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;tls-hostname-verification&#34;&gt;TLS Hostname Verification&lt;/h2&gt;
+
+&lt;p&gt;For testing, we can disable the hostname verification on the client for the certificate;
+however, it is recommended that on production, hostname verification should be turned on
+to eliminate man-in-the-middle attacks.&lt;/p&gt;
+
+&lt;p&gt;You have two options:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Buy certificates from a CA like VeriSign.&lt;/li&gt;
+&lt;li&gt;Setup a CA in your organization and use openssl to generate certificate.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more information&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/29546834/trust-not-trusted-certificates-and-skip-hostname-verification/29547114#29547114&#34;&gt;http://stackoverflow.com/questions/29546834/trust-not-trusted-certificates-and-skip-hostname-verification/29547114#29547114&lt;/a&gt;
+&lt;a href=&#34;https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning&#34;&gt;https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1522,247 +1659,6 @@ and can be applied at header, cookie, query parameters and body.&lt;/p&gt;
 &lt;h1 id=&#34;mask-with-regex&#34;&gt;Mask with Regex&lt;/h1&gt;
 
 &lt;h1 id=&#34;mask-with-jsonpath&#34;&gt;Mask with JsonPath&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Config</title>
-      <link>https://networknt.github.io/light-java/other/config/</link>
-      <pubDate>Sun, 23 Oct 2016 13:18:22 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/other/config/</guid>
-      <description>
-
-&lt;p&gt;A configuration module that supports externalized config in official standalone
-deployment or docker container&lt;/p&gt;
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;Externalized configuration from the application package is very important. It
-allows us to deploy the same package
-to DEV/SIT/UAT/PROD environment with different configuration packages without
-reopening the delivery package. For
-development, embedded configuration give us the flexibility to take default
-values out of the box.&lt;/p&gt;
-
-&lt;p&gt;When dockerizing our application, the external configuration can be mapped to a
-volume which can be updated and
-restarted the container to take effect.&lt;/p&gt;
-
-&lt;p&gt;For now, only file system configuration is supported but in a long run, this
-module can be extended to support
-configurations from database, http/https server and config API served by config
-server. Given the risk of single
-point failure, file system config is still the foundation. Only when the server
-start, it will contact external
-config sever to load (first time) or update local file system so that config
-files are cached. Except first time
-start the server, the server can use the local cache to start if config service
-is not available.&lt;/p&gt;
-
-&lt;h2 id=&#34;singleton&#34;&gt;Singleton&lt;/h2&gt;
-
-&lt;p&gt;For one JVM, there should be only one instance of Config and it should be
-shared by all the modules within the application. The class is designed as a
-singleton class and has several abstract methods that should be implemented
-in sub classes. A default File System based implementation is provided. Other
-implementation will be provided in the future when it is needed.
- &lt;/p&gt;
-
-&lt;h2 id=&#34;interface&#34;&gt;Interface&lt;/h2&gt;
-
-&lt;p&gt;The following abstract methods are implemented in the default service provider.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// Returns a HashMap by a config name (without .json)
-public abstract Map&amp;lt;String, Object&amp;gt; getJsonMapConfig(String configName);
-
-// Load config for server info so that the result can be masked with out impact the cached verison
-public abstract Map&amp;lt;String, Object&amp;gt; getJsonMapConfigNoCache(String configName);
-
-// Return a JsonNode by a config name (without .json)
-public abstract JsonNode getJsonNodeConfig(String configName);
-
-// Map the json to a POJO from a config name and class name
-public abstract Object getJsonObjectConfig(String configName, Class clazz);
-
-// Load config into a string by providing the full filename
-public abstract String getStringFromFile(String filename);
-
-// Load config into a InputStream by providing full filename
-public abstract InputStream getInputStreamFromFile(String filename);
-
-// A cached Jackson ObjectMapper that is shared to other modules
-public abstract ObjectMapper getMapper();
-
-// Clean up the config cache if there are any
-public abstract void clear();
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
-
-&lt;p&gt;It is encouraged to create a POJO for your config if the JSON structure is static.
-However, some of the config file have repeatable elements, a map is the only
-options to represent the data in this case.&lt;/p&gt;
-
-&lt;p&gt;The two methods return String and InputStream is for loading files such as text
-file with different format and X509 certificates etc.&lt;/p&gt;
-
-&lt;p&gt;getMapper() is a convenient way to get ObjectMapper instead of create one which
-is too heavy.&lt;/p&gt;
-
-&lt;h2 id=&#34;cache&#34;&gt;Cache&lt;/h2&gt;
-
-&lt;p&gt;Loading configuration files from file system takes time so the config file will
-be cached once it is loaded the first time. All subsequent access to the same
-config file (maybe different key/value pair) will read from the cached copy.
-In order to make sure that server start up won&amp;rsquo;t be impacted by all modules to
-load config files, lazy loading is encouraged unless the module must be
-initialized during server start up.&lt;/p&gt;
-
-&lt;h2 id=&#34;loading-sequence&#34;&gt;Loading sequence&lt;/h2&gt;
-
-&lt;p&gt;Each module should have a config file that named the same as the module name.
-For example, Security module as a config file named security.json and it is
-reside in the module /src/main/resources/config folder by default.&lt;/p&gt;
-
-&lt;p&gt;For application that uses Security module, it can override the default module
-level config by provide security.json in application&amp;rsquo;s resource
-folder /src/main/resources/config.&lt;/p&gt;
-
-&lt;p&gt;Config will also be loaded from class path of the application and this is
-mainly used for testing as it is easy to inject different combination of
-config copies in test cases into class path for unit testing.&lt;/p&gt;
-
-&lt;p&gt;For official runtime environment, config files should be externalized to a
-separate folder outside of the package by a system property
-&amp;ldquo;light-java-config-dir&amp;rdquo;. You can start the server with
-a &amp;ldquo;-Dlight-java-config-dir=/config&amp;rdquo; option and put all your files
-into /config. Once in docker image, it can be mapped to a host volume
-with -v /etc/undertow:/config in docker run command.&lt;/p&gt;
-
-&lt;p&gt;Given above explanation, the loading sequence is:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;System property &amp;ldquo;light-java-config-dir&amp;rdquo; specified directory&lt;/li&gt;
-&lt;li&gt;Class Path&lt;/li&gt;
-&lt;li&gt;Application resources/config folder&lt;/li&gt;
-&lt;li&gt;Module resources/config folder&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-
-&lt;p&gt;Load config into static variable&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;static final Map&amp;lt;String, Object&amp;gt; config = Config.getInstance().getJsonMapConfig(JwtHelper.SECURITY_CONFIG);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Load config when it is used&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ValidatorConfig config = (ValidatorConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, ValidatorConfig.class);
-
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Client</title>
-      <link>https://networknt.github.io/light-java/other/client/</link>
-      <pubDate>Sun, 23 Oct 2016 12:26:20 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/other/client/</guid>
-      <description>
-
-&lt;p&gt;#&lt;/p&gt;
-
-&lt;p&gt;Client is used to call APIs from the following sources:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Web Server&lt;/li&gt;
-&lt;li&gt;Standalone Application/Mobile Application&lt;/li&gt;
-&lt;li&gt;API/Service&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;It provides method to get authorization token and automatically gets client
-credentials token for scopes in API to API calls. It also helps to pass correlationId
-and traceabilityId to the next service.&lt;/p&gt;
-
-&lt;h1 id=&#34;type-of-client&#34;&gt;Type of client&lt;/h1&gt;
-
-&lt;h2 id=&#34;sync-client&#34;&gt;Sync Client&lt;/h2&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpClient with built-in connection pools and TLS
-support. It can be used to call another API/Service in the request context.&lt;/p&gt;
-
-&lt;h2 id=&#34;async-client&#34;&gt;Async Client&lt;/h2&gt;
-
-&lt;p&gt;This is a wrapper of Apache HttpAsyncClient with built-in connection pools and
-TLS support. It should be used if multiple APIs will be called in the request
-context.&lt;/p&gt;
-
-&lt;h1 id=&#34;client-credentials-token-renew-and-cache&#34;&gt;Client Credentials token renew and cache&lt;/h1&gt;
-
-&lt;p&gt;The renew of token happens behind the scene and it supports circuit breaker
-if OAuth2 server is down or busy. It renews the token pro-actively before the
-current one is expired and lets all requests go with the current token. It only
-block other request if the current request is trying to renew an expired token.
-When token renewal in this case fails, all request will be rejected with timeout
-and subsequent requests the same until a grace period is passed so that the
-renew process is start again.&lt;/p&gt;
-
-&lt;h1 id=&#34;examples&#34;&gt;Examples&lt;/h1&gt;
-
-&lt;h3 id=&#34;get-sync-client&#34;&gt;get sync client&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;    CloseableHttpClient client = Client.getInstance().getSyncClient();
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;get-async-client&#34;&gt;get async client&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;    CloseableHttpAsyncClient client = Client.getInstance().getAsyncClient();
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;call-from-web-server&#34;&gt;call from web server&lt;/h3&gt;
-
-&lt;p&gt;To set the header with authorization code JWT token.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addAuthToken(HttpRequest request, String token) 
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To set the header with authorization code JWT token and traceabilityId.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addAuthTokenTrace(HttpRequest request, String token, String traceabilityId) 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;call-from-standalone-app-mobile-app&#34;&gt;call from standalone app/mobile app&lt;/h3&gt;
-
-&lt;p&gt;To set the header with client credentials JWT token.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addCcToken(HttpRequest request) throws ClientException, ApiException 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To set the header with client credentials JWT token and traceabilityId.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void addCcTokenTrace(HttpRequest request, String traceabilityId) throws ClientException, ApiException 
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;call-from-api-service&#34;&gt;call from API/service&lt;/h3&gt;
-
-&lt;p&gt;To pass in exchange.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void propagateHeaders(HttpRequest request, final HttpServerExchange exchange) throws ClientException, ApiException 
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To pass in variables individually.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    public void populateHeader(HttpRequest request, String authToken, String correlationId, String traceabilityId) throws ClientException, ApiException 
-
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

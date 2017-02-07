@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Development Flow - Light Java - The fastest Java API Framework</title>
+    <title>security - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/management/flow/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/other/security/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/management/flow/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/other/security/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Development Flow
+        security
       </div>
     </div>
 
@@ -443,27 +443,34 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Development Flow </h1>
+			<h1>security </h1>
 
 			
 
-<h2 id="development-flow">Development Flow</h2>
+<p>The current framework supports OAuth2 with JWT token but can be extended to
+other authentication and authorization approaches.</p>
 
-<p>There are three flows running in parallel but not started at the same time in API development</p>
+<h1 id="light-oauth2-server">light-oauth2 server</h1>
 
-<p>API Specification starts the first and it will be done by data architect and business
-analyst.</p>
+<p>By default, the framework contains two pairs of public key certificates issued
+by our own oauth2 server which can be installed from docker. For more info,
+please refer to <a href="https://github.com/networknt/light-oauth2">https://github.com/networknt/light-oauth2</a></p>
 
-<p>API implementation starts when the first release of the specification is done by API
-developers.</p>
+<h1 id="kid">Kid</h1>
 
-<p>Client implementations start almost the same time as API implementation team for mock API can
-be generated from swagger specification immediately.</p>
+<p>Since there are two certificates available, the kid in the header of the JWT
+token will decide which certificate will be used to verify the JWT signature.</p>
 
-<p>During the process, specification might be changed and the changes will be propagated
-to API implementation team and Client implementation team(s).</p>
+<h1 id="jwtmockhandler">JwtMockHandler</h1>
 
-<p><img src="https://networknt.github.io/light-java/images/api_flow.png" alt="API Flow" /></p>
+<p>This is a testing OAuth2 endpoints provider and it can be injected into the handler
+chain for unit testing so that it won&rsquo;t depend on an instance of
+undertow-oauth2.</p>
+
+<h1 id="long-lived-token">Long lived token</h1>
+
+<p>To make integration test easier, a long lived token is provided by the oauth2
+server and it can be found at <a href="https://github.com/networknt/undertow-oauth2">https://github.com/networknt/undertow-oauth2</a></p>
 
 
 			<aside class="copyright" role="note">
@@ -482,7 +489,7 @@ to API implementation team and Client implementation team(s).</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/roadmap/" title="Road Map">
+      <a href="https://networknt.github.io/light-java/middleware/swagger-security/" title="Swagger Security">
         <span class="direction">
           Previous
         </span>
@@ -492,7 +499,7 @@ to API implementation team and Client implementation team(s).</p>
           </div>
           <div class="stretch">
             <div class="title">
-              Road Map
+              Swagger Security
             </div>
           </div>
         </div>
@@ -502,14 +509,14 @@ to API implementation team and Client implementation team(s).</p>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/swagger-validator/" title="Swagger Validator">
+      <a href="https://networknt.github.io/light-java/middleware/exception/" title="Exception Handler">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Validator
+              Exception Handler
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

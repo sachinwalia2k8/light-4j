@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Development Flow - Light Java - The fastest Java API Framework</title>
+    <title>Correlation Id - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/management/flow/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/correlation/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/management/flow/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/correlation/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Development Flow
+        Correlation Id
       </div>
     </div>
 
@@ -443,27 +443,55 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Development Flow </h1>
+			<h1>Correlation Id </h1>
 
 			
 
-<h2 id="development-flow">Development Flow</h2>
+<p>This is a handler that checks if X-Correlation-Id exists in request header. If it doesn&rsquo;t exist
+it will generate a UUID and put it into the request header. During API to API calls, this header
+will be passed to the next API by Client module.</p>
 
-<p>There are three flows running in parallel but not started at the same time in API development</p>
+<h1 id="generating">Generating</h1>
 
-<p>API Specification starts the first and it will be done by data architect and business
-analyst.</p>
+<p>The correlationId is very useful in microservices architecture as there are multiple services
+involved in a same client request. When logs are aggregated into a centralized tool, it is
+very important there is an unique identifier to associate logs from multiple services for the
+same request. The Id is an UUID and must be generated in the first service called from client.</p>
 
-<p>API implementation starts when the first release of the specification is done by API
-developers.</p>
+<h1 id="passing">Passing</h1>
 
-<p>Client implementations start almost the same time as API implementation team for mock API can
-be generated from swagger specification immediately.</p>
+<p>Since the first service generates the Id, it must be passed to other services somehow so that
+subsequent services can use it to log their messages. In our <a href="https://networknt.github.io/light-java/other/client/">client</a>
+module, it passes the correlationId from the current request header to the request to the next
+service.</p>
 
-<p>During the process, specification might be changed and the changes will be propagated
-to API implementation team and Client implementation team(s).</p>
+<h1 id="logging">Logging</h1>
 
-<p><img src="https://networknt.github.io/light-java/images/api_flow.png" alt="API Flow" /></p>
+<p>This handler gets the X-Correlation-Id from request header or generate one if it doesn&rsquo;t
+exist in the request header. After that, it puts it into the org.slf4j.MDC so that logback
+can put it into the log for every logging statement.</p>
+
+<h1 id="logback-xml">logback.xml</h1>
+
+<p>In the generated logback.xml, the cId is part of the appender config as pattern &ldquo;%X{cId}&rdquo;</p>
+
+<pre><code>    &lt;appender name=&quot;stdout&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;
+        &lt;!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default --&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %X{cId} %-5level %logger{36} - %msg%n&lt;/pattern&gt;
+        &lt;/encoder&gt;
+    &lt;/appender&gt;
+
+    &lt;appender name=&quot;log&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;
+        &lt;File&gt;target/test.log&lt;/File&gt;
+        &lt;Append&gt;false&lt;/Append&gt;
+        &lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&gt;
+            &lt;Pattern&gt;%d{HH:mm:ss.SSS} [%thread] %X{cId} %-5level %class{36}:%L %M - %msg%n&lt;/Pattern&gt;
+        &lt;/layout&gt;
+    &lt;/appender&gt;
+
+</code></pre>
 
 
 			<aside class="copyright" role="note">
@@ -482,7 +510,7 @@ to API implementation team and Client implementation team(s).</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/roadmap/" title="Road Map">
+      <a href="https://networknt.github.io/light-java/other/balance/" title="balance">
         <span class="direction">
           Previous
         </span>
@@ -492,7 +520,7 @@ to API implementation team and Client implementation team(s).</p>
           </div>
           <div class="stretch">
             <div class="title">
-              Road Map
+              balance
             </div>
           </div>
         </div>
@@ -502,14 +530,14 @@ to API implementation team and Client implementation team(s).</p>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/swagger-validator/" title="Swagger Validator">
+      <a href="https://networknt.github.io/light-java/tools/keytool/" title="keytool">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Validator
+              keytool
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

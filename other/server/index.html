@@ -520,6 +520,24 @@ deployment. In the future, these parameters might be exposed in the server.json.
 
 </code></pre>
 
+<h2 id="tls-hostname-verification">TLS Hostname Verification</h2>
+
+<p>For testing, we can disable the hostname verification on the client for the certificate;
+however, it is recommended that on production, hostname verification should be turned on
+to eliminate man-in-the-middle attacks.</p>
+
+<p>You have two options:</p>
+
+<ul>
+<li>Buy certificates from a CA like VeriSign.</li>
+<li>Setup a CA in your organization and use openssl to generate certificate.</li>
+</ul>
+
+<p>For more information</p>
+
+<p><a href="http://stackoverflow.com/questions/29546834/trust-not-trusted-certificates-and-skip-hostname-verification/29547114#29547114">http://stackoverflow.com/questions/29546834/trust-not-trusted-certificates-and-skip-hostname-verification/29547114#29547114</a>
+<a href="https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning">https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning</a></p>
+
 
 			<aside class="copyright" role="note">
 				

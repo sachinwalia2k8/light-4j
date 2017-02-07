@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>exception - Light Java - The fastest Java API Framework</title>
+    <title>Exception Handler - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        exception
+        Exception Handler
       </div>
     </div>
 
@@ -443,7 +443,7 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>exception </h1>
+			<h1>Exception Handler </h1>
 
 			
 
@@ -451,6 +451,11 @@
 will bubble up to the undertow server and eventually a 500 response will be
 sent to the consumer. In order to change the behaviour, an exception handler
 is provided to handle ApiException and other uncaught exceptions.</p>
+
+<p>Please note that developers should capture any checked exceptions including
+ApiException in their handlers and return a specific error code to help client
+to debug what is going on on the server. This exception handler is designed
+as last defense and only should be used to something unexpected.</p>
 
 <h1 id="runtime-exception">Runtime Exception</h1>
 
@@ -488,7 +493,7 @@ in the status object.</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/middleware/security/" title="security">
+      <a href="https://networknt.github.io/light-java/other/security/" title="security">
         <span class="direction">
           Previous
         </span>
@@ -508,14 +513,14 @@ in the status object.</p>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/body/" title="Body">
+      <a href="https://networknt.github.io/light-java/middleware/body/" title="Body Parser">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Body
+              Body Parser
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Development Flow - Light Java - The fastest Java API Framework</title>
+    <title>Swagger Validator - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/management/flow/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/swagger-validator/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/management/flow/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/swagger-validator/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Development Flow
+        Swagger Validator
       </div>
     </div>
 
@@ -443,27 +443,83 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Development Flow </h1>
+			<h1>Swagger Validator </h1>
 
 			
 
-<h2 id="development-flow">Development Flow</h2>
+<p>This handler is part of the <a href="https://github.com/networknt/light-java-rest">light-java-rest</a>
+which is built on top of light-java but focused on RESTful API only.</p>
 
-<p>There are three flows running in parallel but not started at the same time in API development</p>
+<p>It encourages design driven implementation so swagger specification should be
+done before the implementation starts. With the swagger-codegen light-java
+generator, the server stub can be generated and start running within minutes.
+However, we cannot rely on generator for validation as specification will be
+changed along the life cycle of the API. This is why we have provided a validator
+that works on top of the specification at runtime. In this way, the generator
+should only be used once and the validator will take the latest specification and
+validate according the specification at runtime.</p>
 
-<p>API Specification starts the first and it will be done by data architect and business
-analyst.</p>
+<h1 id="fail-fast">Fail fast</h1>
 
-<p>API implementation starts when the first release of the specification is done by API
-developers.</p>
+<p>As you may noticed that our Status object only supports one code and message.
+This is the indication the framework validation is designed as fail fast.
+Whenever there is an error, the server will stop processing the request and
+return the error to the consumer immediately. There are two reasons on this
+design:</p>
 
-<p>Client implementations start almost the same time as API implementation team for mock API can
-be generated from swagger specification immediately.</p>
+<ol>
+<li>Security - you don&rsquo;t want to return so many errors if someone is trying
+to hack your server.</li>
+<li>Performance - you don&rsquo;t want to spend resource to handle invalid request
+to the next step.</li>
+</ol>
 
-<p>During the process, specification might be changed and the changes will be propagated
-to API implementation team and Client implementation team(s).</p>
+<h1 id="validatorhandler">ValidatorHandler</h1>
 
-<p><img src="https://networknt.github.io/light-java/images/api_flow.png" alt="API Flow" /></p>
+<p>This is the entry point of the validator and it is injected during server
+start up if validator.json enableValidator is true. By default, only
+RequestValidator will be called. However, ResponseValidator can be enabled
+by setting enableResponseValidator to true in validator.json.</p>
+
+<h1 id="requestvalidator">RequestValidator</h1>
+
+<p>It will validate the following:</p>
+
+<ul>
+<li>uri</li>
+<li>method</li>
+<li>header</li>
+<li>query parameters</li>
+<li>path parameters</li>
+<li>body if available</li>
+</ul>
+
+<p>When necessary, <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a>
+will be called to do json schema validation.</p>
+
+<h1 id="responsevalidator">ResponseValidator</h1>
+
+<p>It will validate the following:</p>
+
+<ul>
+<li>header</li>
+<li>response code</li>
+<li>body if available</li>
+</ul>
+
+<p>when necessary, <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a>
+will be called.</p>
+
+<h1 id="schemavalidator">SchemaValidator</h1>
+
+<p>If schema is defined in swagger.json, then the <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a>
+will be called to validate the input against a json schema defined in draft v4.</p>
+
+<h1 id="test">Test</h1>
+
+<p>In order to test validator, the test suite starts a light-java server and serves
+petstore api for testing. It is a demo on how to unit test your API during
+development.</p>
 
 
 			<aside class="copyright" role="note">
@@ -482,7 +538,7 @@ to API implementation team and Client implementation team(s).</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/roadmap/" title="Road Map">
+      <a href="https://networknt.github.io/light-java/management/flow/" title="Development Flow">
         <span class="direction">
           Previous
         </span>
@@ -492,7 +548,7 @@ to API implementation team and Client implementation team(s).</p>
           </div>
           <div class="stretch">
             <div class="title">
-              Road Map
+              Development Flow
             </div>
           </div>
         </div>
@@ -502,14 +558,14 @@ to API implementation team and Client implementation team(s).</p>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/swagger-validator/" title="Swagger Validator">
+      <a href="https://networknt.github.io/light-java/middleware/swagger-meta/" title="Swagger Meta">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Validator
+              Swagger Meta
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

@@ -7,8 +7,45 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Wed, 25 Jan 2017 21:05:31 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 03 Feb 2017 14:12:47 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>keytool</title>
+      <link>https://networknt.github.io/light-java/tools/keytool/</link>
+      <pubDate>Fri, 03 Feb 2017 14:12:47 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tools/keytool/</guid>
+      <description>&lt;p&gt;This is a Java command line tool to generate and manipulate keys.&lt;/p&gt;
+
+&lt;p&gt;To create a server.keystore for TLS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.keystore -storepass secret  -keypass secret -validity 9999
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then copy this file to light-java/src/main/resources/config/tls folder. At
+the same time, update server.json for keystoreName, keystorePass, keyPass.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;server config&amp;quot;,
+  &amp;quot;ip&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,
+  &amp;quot;httpPort&amp;quot;: 8080,
+  &amp;quot;enableHttp&amp;quot;: true,
+  &amp;quot;httpsPort&amp;quot;: 8443,
+  &amp;quot;enableHttps&amp;quot;: true,
+  &amp;quot;keystoreName&amp;quot;: &amp;quot;tls/server.keystore&amp;quot;,
+  &amp;quot;keystorePass&amp;quot;: &amp;quot;secret&amp;quot;,
+  &amp;quot;keyPass&amp;quot;: &amp;quot;secret&amp;quot;,
+  &amp;quot;enableTwoWayTls&amp;quot;: false,
+  &amp;quot;truststoreName&amp;quot;: &amp;quot;tls/server.truststore&amp;quot;,
+  &amp;quot;truststorePass&amp;quot;: &amp;quot;password&amp;quot;,
+  &amp;quot;serviceId&amp;quot;: &amp;quot;com.networknt.petstore-1.0.0&amp;quot;,
+  &amp;quot;enableRegistry&amp;quot;: false
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Tools</title>

@@ -1901,6 +1901,10 @@ cp -r consul consulcdocker
 
 <p>Regsitrator</p>
 
+<p>We use -ip 127.0.0.1 in the command line to make sure that ServiceAddress in
+consul is populated with ip and port. The latest version of regsitrator won&rsquo;t
+set default ip anymore.</p>
+
 <pre><code>docker run -d --name=registrator --net=host --volume=/var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest -ip 127.0.0.1 consul://localhost:8500
 </code></pre>
 
@@ -1998,6 +2002,8 @@ docker run -it -p 7004:7004 --net=host --name=com.networknt.apid-1.0.0 networknt
 <pre><code>[&quot;API C: Message 1&quot;,&quot;API C: Message 2&quot;,&quot;API D: Message 1 from port 7004&quot;,&quot;API D: Message 2 from port 7004&quot;,&quot;API B: Message 1&quot;,&quot;API B: Message 2&quot;,&quot;API A: Message 1&quot;,&quot;API A: Message 2&quot;]
 </code></pre>
 
+<h1 id="kubernetes">Kubernetes</h1>
+
 
 			<aside class="copyright" role="note">
 				
@@ -2014,6 +2020,22 @@ docker run -it -p 7004:7004 --net=host --name=com.networknt.apid-1.0.0 networknt
 
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://networknt.github.io/light-java/tools/keytool/" title="keytool">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              keytool
+            </div>
+          </div>
+        </div>
+      </a>
   
   </div>
 
