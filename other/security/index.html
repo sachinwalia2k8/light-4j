@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>security - Light Java - The fastest Java API Framework</title>
+    <title>Security - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.17" />
 
     
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        security
+        Security
       </div>
     </div>
 
@@ -443,7 +443,7 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>security </h1>
+			<h1>Security </h1>
 
 			
 
@@ -458,19 +458,21 @@ please refer to <a href="https://github.com/networknt/light-oauth2">https://gith
 
 <h1 id="kid">Kid</h1>
 
-<p>Since there are two certificates available, the kid in the header of the JWT
-token will decide which certificate will be used to verify the JWT signature.</p>
+<p>Since services are deployed in the cloud without static IP, the traditional
+push certificates to each service is not working anymore. In this framework
+each service will pull certificate from OAuth2 server key service by a kid
+from JWT token if the key doesn&rsquo;t exist locally.</p>
 
 <h1 id="jwtmockhandler">JwtMockHandler</h1>
 
 <p>This is a testing OAuth2 endpoints provider and it can be injected into the handler
 chain for unit testing so that it won&rsquo;t depend on an instance of
-undertow-oauth2.</p>
+light-oauth2.</p>
 
 <h1 id="long-lived-token">Long lived token</h1>
 
 <p>To make integration test easier, a long lived token is provided by the oauth2
-server and it can be found at <a href="https://github.com/networknt/undertow-oauth2">https://github.com/networknt/undertow-oauth2</a></p>
+server and it can be found at <a href="https://github.com/networknt/light-oauth2">https://github.com/networknt/light-oauth2</a></p>
 
 
 			<aside class="copyright" role="note">
@@ -489,7 +491,7 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/middleware/swagger-security/" title="Swagger Security">
+      <a href="https://networknt.github.io/light-java/middleware/swagger-meta/" title="Swagger Meta">
         <span class="direction">
           Previous
         </span>
@@ -499,7 +501,7 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
           </div>
           <div class="stretch">
             <div class="title">
-              Swagger Security
+              Swagger Meta
             </div>
           </div>
         </div>
@@ -509,14 +511,14 @@ server and it can be found at <a href="https://github.com/networknt/undertow-oau
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/middleware/exception/" title="Exception Handler">
+      <a href="https://networknt.github.io/light-java/middleware/swagger-security/" title="Swagger Security">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Exception Handler
+              Swagger Security
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

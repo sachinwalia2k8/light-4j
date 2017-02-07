@@ -16,88 +16,139 @@
       <pubDate>Mon, 06 Feb 2017 21:40:01 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/middleware/dump/</guid>
-      <description></description>
+      <description>&lt;p&gt;This is a handler that dumps the entire request and response into a log file. It
+should only be used in development mode for debugging purpose as it is very slow.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>zookeeper</title>
+      <title>Zookeeper</title>
       <link>https://networknt.github.io/light-java/other/zookeeper/</link>
       <pubDate>Mon, 06 Feb 2017 21:34:10 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/zookeeper/</guid>
-      <description></description>
+      <description>&lt;p&gt;A Zookeeper registry implementation that use Zookeeper as registry and discovery
+server. It implements both registry and discovery in the same module for
+Zookeeper communication. If the API/server is delivered as docker image, another
+product called registrator will be used to register it with Zookeeper server.
+Otherwise, the server module will be responsible to register itself during
+startup.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>switcher</title>
+      <title>Switcher</title>
       <link>https://networknt.github.io/light-java/other/switcher/</link>
       <pubDate>Mon, 06 Feb 2017 21:34:02 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/switcher/</guid>
-      <description></description>
+      <description>&lt;p&gt;This module implement a switch and its notifier to support on/off
+state within the system.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>service</title>
+      <title>Service</title>
       <link>https://networknt.github.io/light-java/other/service/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:54 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/service/</guid>
-      <description></description>
+      <description>&lt;p&gt;A light-weight and fast dependency injection framework without any third
+party dependencies.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>registry</title>
+      <title>Registry</title>
       <link>https://networknt.github.io/light-java/other/registry/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:47 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/registry/</guid>
-      <description></description>
+      <description>&lt;p&gt;This module contains all the interfaces that are needed in registry and
+discovery. Also it implemented Direct registry which you can hard-code
+services into the service.json in order to simulate consul or zookeeper
+during development.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>health</title>
+      <title>Health Check</title>
       <link>https://networknt.github.io/light-java/other/health/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:38 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/health/</guid>
-      <description></description>
+      <description>&lt;p&gt;This is an handler that needs to be injected into the request/response chain
+in order to return something that indicate the server is still alive. Currently
+it returns &amp;ldquo;OK&amp;rdquo; only.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>handler</title>
+      <title>Handler</title>
       <link>https://networknt.github.io/light-java/other/handler/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:25 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/handler/</guid>
-      <description></description>
+      <description>&lt;p&gt;This module defines an interface that all middleware handlers must be implemented
+in order to be loaded during server startup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface MiddlewareHandler extends HttpHandler {
+
+    HttpHandler getNext();
+
+    MiddlewareHandler setNext(final HttpHandler next);
+
+    boolean isEnabled();
+
+    void register();
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
-      <title>consul</title>
+      <title>Consul</title>
       <link>https://networknt.github.io/light-java/other/consul/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:14 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/consul/</guid>
-      <description></description>
+      <description>&lt;p&gt;A consul registry implementation that use Consul as registry and discovery
+server. It implements both registry and discovery in the same module for
+consul communication. If the API/server is delivered as docker image, another
+product called registrator will be used to register it with Consul agent.
+Otherwise, the server module will be responsible to register itself during
+startup.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>cluster</title>
+      <title>Cluster</title>
       <link>https://networknt.github.io/light-java/other/cluster/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:04 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/cluster/</guid>
-      <description></description>
+      <description>&lt;p&gt;This module caches all the service instances that are needed by the current
+service and calling underline registry(Direct, Consul and ZooKeeper) to
+discover the service if necessary (first time a service is called and registry
+notifies something has been changed regarding to subscribe the services on
+Consul or ZooKeeper).&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>balance</title>
+      <title>Load Balance</title>
       <link>https://networknt.github.io/light-java/other/balance/</link>
       <pubDate>Mon, 06 Feb 2017 21:32:51 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/other/balance/</guid>
-      <description></description>
+      <description>&lt;p&gt;Client side discovery needs client side load balancer in order to pick
+up one and only one available service instance to a particular request.&lt;/p&gt;
+
+&lt;p&gt;Currently, only Round-Robin is supported and other implementations will
+follow.&lt;/p&gt;
+</description>
     </item>
     
     <item>

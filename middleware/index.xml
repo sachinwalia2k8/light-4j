@@ -16,7 +16,9 @@
       <pubDate>Mon, 06 Feb 2017 21:40:01 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-java/middleware/dump/</guid>
-      <description></description>
+      <description>&lt;p&gt;This is a handler that dumps the entire request and response into a log file. It
+should only be used in development mode for debugging purpose as it is very slow.&lt;/p&gt;
+</description>
     </item>
     
     <item>
