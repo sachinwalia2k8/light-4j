@@ -1854,6 +1854,8 @@ docker run -it -p 7004:7004 --net=host --name=com.networknt.apid-1.0.0 networknt
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;Swagger Editor&lt;/a&gt; is used to create and update swagger specifications.&lt;/p&gt;&lt;/li&gt;
 
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-codegen/&#34;&gt;Swagger Codegen&lt;/a&gt; is used to generate code from swagger specification.&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/wrk-perf/&#34;&gt;WRK&lt;/a&gt; is used as client for performance test.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
