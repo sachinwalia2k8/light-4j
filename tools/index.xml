@@ -111,7 +111,7 @@ on this platform. However, the generic JDK tools should work as other platforms.
     </item>
     
     <item>
-      <title>Swagger codegen to generate server stub skeleton</title>
+      <title>Swagger Codegen</title>
       <link>https://networknt.github.io/light-java/tools/swagger-codegen/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:59 -0400</pubDate>
       
@@ -121,16 +121,38 @@ on this platform. However, the generic JDK tools should work as other platforms.
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Many API projects were done without specifications and API specifications were
-produced after APIs were on production. When using Light-Java-Rest Framework, design driven
-is encouraged so swagger specification must be produced before the development is
-started. Please see [Development Flow]() for details.&lt;/p&gt;
+produced after APIs were on production. When using Light-Java-Rest Framework,
+design driven is encouraged so swagger specification must be produced before
+the development is started. Please see &lt;a href=&#34;https://networknt.github.io/light-java/management/flow/&#34;&gt;Development Flow&lt;/a&gt;
+for details.&lt;/p&gt;
 
-&lt;p&gt;When product owner starts the API, the first thing is find the swagger specification
-produced by data architect and generate a server skeleton with swagger-codegen.&lt;/p&gt;
+&lt;p&gt;When product owner starts an API/service, the first thing is to find the swagger
+specification produced by data architect and generate a server skeleton with
+swagger-codegen.&lt;/p&gt;
 
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;h2 id=&#34;specification&#34;&gt;Specification&lt;/h2&gt;
 
-&lt;h3 id=&#34;local&#34;&gt;Local&lt;/h3&gt;
+&lt;p&gt;All our specifications including OAuth2 and examples are in the following repo.
+&lt;a href=&#34;https://github.com/networknt/swagger&#34;&gt;https://github.com/networknt/swagger&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Each API/service will have a folder in this repo and it might have versions in
+each sub folders.&lt;/p&gt;
+
+&lt;p&gt;For each API/service, there are three files must be there:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;swagger.yaml - the readable source file for &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;swagger-editor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;swagger.json - the aggregated spec in json format processed by &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-cli/&#34;&gt;swagger-cli&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;config.json - the configuration file for swagger-codegen&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is one example of specification folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger/tree/master/oauth2_client&#34;&gt;https://github.com/networknt/swagger/tree/master/oauth2_client&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;local-generation&#34;&gt;Local Generation&lt;/h2&gt;
+
+&lt;h3 id=&#34;install&#34;&gt;Install&lt;/h3&gt;
 
 &lt;p&gt;To install the swagger-codegen locally, go to your working directory and run&lt;/p&gt;
 
@@ -141,9 +163,9 @@ mvn clean install -DskipTests
 
 &lt;p&gt;Now you have swagger-codegen built on your local and it is ready to be used. This
 version of swagger-codegen is a fork of official &lt;a href=&#34;https://github.com/swagger-api/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt;
-as the official version doesn&amp;rsquo;t support Java 8.&lt;/p&gt;
+as the official version doesn&amp;rsquo;t support Java 8 yet.&lt;/p&gt;
 
-&lt;h4 id=&#34;usage&#34;&gt;Usage&lt;/h4&gt;
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
 
 &lt;p&gt;Assume that you have just built your swagger-codegen and you are in the swagger-codegen
 folder now you can generate petstore API in your home directory with the following command.&lt;/p&gt;
@@ -152,13 +174,35 @@ folder now you can generate petstore API in your home directory with the followi
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Above command uses a swagger specification from the Internet. If you have swagger file in your local,
-you can use:&lt;/p&gt;
+&lt;p&gt;Above command uses a swagger specification from the Internet with default configuration.
+If you have swagger file in your local, you can use:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;-i ~/project/swagger/api_a/swagger.json
+&lt;pre&gt;&lt;code&gt;-i ~/networknt/swagger/oauth2_client/swagger.json
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;docker&#34;&gt;Docker&lt;/h3&gt;
+&lt;p&gt;If you want to customized the generated code, you can use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-c ~/networknt/swagger/oauth2_client/config.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the template of command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c &amp;lt;path_to_config.json&amp;gt; -i &amp;lt;path_to_specification_file&amp;gt; -l light-java -o &amp;lt;output_folder&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is an example I used to generate OAuth2 Server client service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/oauth2_client/swagger.json -l light-java -o ../light-oauth2/client
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;docker-generation&#34;&gt;Docker Generation&lt;/h2&gt;
+
+&lt;p&gt;Using above locally installed swagger-codegen is OK for developers but it is very hard
+to build the codegen into script to automate the process. The dockerized swagger-codegen
+is very convenient in shell script.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-1&#34;&gt;Install&lt;/h3&gt;
 
 &lt;p&gt;If you have docker installed, you can run the docker container of the swagger-codegen
 so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&gt;
@@ -168,7 +212,7 @@ so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&
 
 &lt;p&gt;Above command will list all the config options for light-java language generator.&lt;/p&gt;
 
-&lt;h4 id=&#34;usage-1&#34;&gt;Usage&lt;/h4&gt;
+&lt;h3 id=&#34;usage-1&#34;&gt;Usage&lt;/h3&gt;
 
 &lt;p&gt;Mount a volume to &lt;code&gt;/swagger-api/out&lt;/code&gt; for output.&lt;/p&gt;
 
@@ -183,10 +227,42 @@ so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&
 
 &lt;p&gt;Your generated code will now be accessible under &lt;code&gt;~/temp/swagger-generated/petstore&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;If you have swagger.json and config.json on your local, you need to have another -v to
+map your input directory into the container.&lt;/p&gt;
+
+&lt;p&gt;Here is an template of command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -it -v &amp;lt;path of swagger and config&amp;gt;:/swagger-api/swagger -v &amp;lt;path of generated project&amp;gt;:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is an example to have input and output volume mappings.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -it -v ~/networknt/swagger/api_a:/swagger-api/swagger -v ~/networknt/generated:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make it simple, we have provided a script which you can just define the input folder
+and output folder.&lt;/p&gt;
+
+&lt;p&gt;The script can be found at
+&lt;a href=&#34;https://github.com/networknt/swagger/blob/master/generate.sh&#34;&gt;https://github.com/networknt/swagger/blob/master/generate.sh&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is one example to use the script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./generate.sh ~/networknt/swagger/database ~/networknt/database
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: the generated code in Linux might be owned by root user, so you have to change the
+owner before compiling it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chown -R steve:steve generated
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;customization&#34;&gt;Customization&lt;/h2&gt;
 
-&lt;p&gt;The tool support customized invokerPackage, apiPackage, modelPackage, artifactId and groupId defined in a json config file.
-You will also specify the location of the swagger.json and the output folder of the generated code.&lt;/p&gt;
+&lt;p&gt;The tool support customized invokerPackage, apiPackage, modelPackage, artifactId and groupId
+defined in a json config file. You will also specify the location of the swagger.json and the
+output folder of the generated code.&lt;/p&gt;
 
 &lt;p&gt;Here is an example of config.json&lt;/p&gt;
 
@@ -199,52 +275,30 @@ You will also specify the location of the swagger.json and the output folder of 
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;General Command&lt;/p&gt;
+&lt;p&gt;We normally put this config.json into the same folder of swagger specification so that you
+only need to specify one input folder in the command line.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c &amp;lt;path_to_config.json&amp;gt; -i &amp;lt;path_to_specification_file&amp;gt; -l light-java -o &amp;lt;output_folder&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is an example of OAuth2 client service specification folder.&lt;/p&gt;
 
-&lt;p&gt;Example&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c ~/networknt/swagger/api_a/config.json -i ~/networknt/swagger/api_a/swagger.yaml -l light-java -o ~/networknt/generated
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Docker Command&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -it -v &amp;lt;path of swagger and config&amp;gt;:/swagger-api/swagger -v &amp;lt;path of generated project&amp;gt;:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Example&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -it -v ~/networknt/swagger/api_a:/swagger-api/swagger -v ~/networknt/generated:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note: the generated code in Linux might be owned by root user, so you have to change the owner before compiling it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo chown -R steve:steve generated
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger/tree/master/oauth2_client&#34;&gt;https://github.com/networknt/swagger/tree/master/oauth2_client&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shared-swagger-files&#34;&gt;Shared swagger files&lt;/h2&gt;
 
-&lt;p&gt;For organizations with multiple APIs, some of the common yaml files will be created that can be
-shared between APIs in specifications. In that case, you cannot use yaml file to generate the code as
-the tool doesn&amp;rsquo;t know how to locate the external reference files. Please find &lt;a href=&#34;https://networknt.github.io/light-java/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt;
-to convert several yaml files into one Json file to feed the generator.&lt;/p&gt;
+&lt;p&gt;For organizations with multiple APIs, some of the common yaml files will be created that
+can be shared between APIs in specifications. In that case, you cannot use yaml file to
+generate the code as the tool doesn&amp;rsquo;t know how to locate the external reference files.
+Please find &lt;a href=&#34;https://networknt.github.io/light-java/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt; to convert several yaml files into one Json
+file to feed the generator.&lt;/p&gt;
 
 &lt;h2 id=&#34;test&#34;&gt;Test&lt;/h2&gt;
 
-&lt;p&gt;The swagger-codegen tool generates an application running against the Undertow Server.&lt;/p&gt;
+&lt;p&gt;The swagger-codegen tool generates an application running against the Light-Java Server.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Navigate to the &lt;output_folder&gt; for the generated code&lt;/li&gt;
 &lt;li&gt;Build the code using the generated Maven POM file&lt;/li&gt;
-&lt;li&gt;Start the application
-
-&lt;ul&gt;
+&lt;li&gt;Start the application&lt;/li&gt;
 &lt;li&gt;By default, the application is available at port 8080&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd &amp;lt;output_folder&amp;gt;
