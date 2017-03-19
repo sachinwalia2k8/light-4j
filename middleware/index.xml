@@ -7,8 +7,77 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Mon, 06 Feb 2017 21:40:01 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 17 Feb 2017 14:10:28 -0500</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/middleware/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Rate Limiting</title>
+      <link>https://networknt.github.io/light-java/middleware/limit/</link>
+      <pubDate>Fri, 17 Feb 2017 14:10:28 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/middleware/limit/</guid>
+      <description>
+
+&lt;p&gt;Although our framework can handle potential millions requests per second, for
+some public facing APIs, it might be a good idea to enable this handler to
+limit the concurrent request to certain level in order to avoid DDOS attacks.&lt;/p&gt;
+
+&lt;p&gt;As this handler will impact the overall performance a little bit, it is not
+configured as default in the swagger-codegen. You must manually enable it
+in your API with the following steps.&lt;/p&gt;
+
+&lt;h2 id=&#34;dependency&#34;&gt;Dependency&lt;/h2&gt;
+
+&lt;p&gt;In order to use this handler, the following dependency need to be added to
+pom.xml in your project.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            &amp;lt;dependency&amp;gt;
+                &amp;lt;groupId&amp;gt;com.networknt&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;limit&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${version.light-java}&amp;lt;/version&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;service&#34;&gt;Service&lt;/h2&gt;
+
+&lt;p&gt;As this middleware is not plugged in by default, we need to add it into
+com.networknt.handler.MiddlewareHandler in src/main/resources/META-INF/services
+folder. As this rate limiting handler needs to be failed fast, it need to be
+put right after ExceptionHandler and MetricsHandler. The reason it is after
+MetricsHandler is to capture 513 error code in InfluxDB and Grafana for
+monitoring on production.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Traceability Put traceabilityId into response header from request header if it exists
+com.networknt.traceability.TraceabilityHandler
+#Rate Limiting
+com.networknt.limit.LimitHandler
+#Metrics In order to calculate response time accurately, this needs to be the second.
+com.networknt.metrics.MetricsHandler
+#Exception Global exception handler that needs to be called first.
+com.networknt.exception.ExceptionHandler
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;config&#34;&gt;Config&lt;/h2&gt;
+
+&lt;p&gt;Here is the configuration file for rate limiting.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;Rate Limit Handler&amp;quot;,
+  &amp;quot;enabled&amp;quot;: false,
+  &amp;quot;concurrentRequest&amp;quot;: 1000,
+  &amp;quot;queueSize&amp;quot;: -1
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;enabled true to enable it and false to disable it.&lt;/li&gt;
+&lt;li&gt;concurrentRequest number of concurrent request to be limited.&lt;/li&gt;
+&lt;li&gt;queueSize -1 unlimited queue size which might use a lot of memory. &amp;gt; 1 integer will limit the requests to be queued and once queue is full, 513 will be returned for new requests.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Request and Response Dump</title>
@@ -506,16 +575,31 @@ in the status object.&lt;/p&gt;
 request header and attach the parsed result into the exchange so that subsequent
 handlers will use it directly.&lt;/p&gt;
 
-&lt;p&gt;The current implementation only supports JSON and needs content type header to be
-started with &amp;ldquo;application/json&amp;rdquo;. If the content type is correct, it will parse it
-to List or Map and put it into REQUEST_BODY exchange attachment.&lt;/p&gt;
+&lt;p&gt;Only POST, PUT and PATCH methods can have body and currently only JSON is supported
+as only light-java-rest is built on top of light-java at the moment. In the future,
+other content type will be supported.&lt;/p&gt;
+
+&lt;p&gt;It needs content type header to be started with &amp;ldquo;application/json&amp;rdquo;. If the content
+type is correct, it will parse it to List or Map and put it into REQUEST_BODY
+exchange attachment.&lt;/p&gt;
 
 &lt;p&gt;If content type is missing or if it is not started as &amp;ldquo;application/json&amp;rdquo;, the body
-won&amp;rsquo;t be parsed.&lt;/p&gt;
+won&amp;rsquo;t be parsed and this handler will just call next handler in the chain.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/sanitizer/&#34;&gt;Sanitizer&lt;/a&gt;
 and &lt;a href=&#34;https://networknt.github.io/light-java/middleware/swagger-validator/&#34;&gt;Swagger Validator&lt;/a&gt;
 depend on this middleware.&lt;/p&gt;
+
+&lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
+
+&lt;p&gt;Here is an example of configuration which has a flag to enable or disable it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;description&amp;quot;: &amp;quot;Body parser handler&amp;quot;,
+  &amp;quot;enabled&amp;quot;: true
+}
+
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -614,6 +698,11 @@ APIs/services.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/dump/&#34;&gt;dump&lt;/a&gt; -
 A full request/response log handler to dump everything regarding to request and response
 into log file for developers.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/middleware/limit/&#34;&gt;limit&lt;/a&gt; -
+A rate limiting handler to limit number of concurrent requests on the server.
+Once the limit is reached, subsequent requests will be queued for later execution. The
+size of the queue is configurable.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

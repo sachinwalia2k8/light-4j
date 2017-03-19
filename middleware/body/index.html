@@ -471,16 +471,31 @@
 request header and attach the parsed result into the exchange so that subsequent
 handlers will use it directly.</p>
 
-<p>The current implementation only supports JSON and needs content type header to be
-started with &ldquo;application/json&rdquo;. If the content type is correct, it will parse it
-to List or Map and put it into REQUEST_BODY exchange attachment.</p>
+<p>Only POST, PUT and PATCH methods can have body and currently only JSON is supported
+as only light-java-rest is built on top of light-java at the moment. In the future,
+other content type will be supported.</p>
+
+<p>It needs content type header to be started with &ldquo;application/json&rdquo;. If the content
+type is correct, it will parse it to List or Map and put it into REQUEST_BODY
+exchange attachment.</p>
 
 <p>If content type is missing or if it is not started as &ldquo;application/json&rdquo;, the body
-won&rsquo;t be parsed.</p>
+won&rsquo;t be parsed and this handler will just call next handler in the chain.</p>
 
 <p><a href="https://networknt.github.io/light-java/middleware/sanitizer/">Sanitizer</a>
 and <a href="https://networknt.github.io/light-java/middleware/swagger-validator/">Swagger Validator</a>
 depend on this middleware.</p>
+
+<h1 id="configuration">Configuration</h1>
+
+<p>Here is an example of configuration which has a flag to enable or disable it.</p>
+
+<pre><code>{
+  &quot;description&quot;: &quot;Body parser handler&quot;,
+  &quot;enabled&quot;: true
+}
+
+</code></pre>
 
 
 			<aside class="copyright" role="note">

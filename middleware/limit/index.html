@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>monojee - Light Java - The fastest Java API Framework</title>
+    <title>Rate Limiting - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.18.1" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/design/monojee/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/middleware/limit/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/design/monojee/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/middleware/limit/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        monojee
+        Rate Limiting
       </div>
     </div>
 
@@ -461,9 +461,69 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>monojee </h1>
+			<h1>Rate Limiting </h1>
 
 			
+
+<p>Although our framework can handle potential millions requests per second, for
+some public facing APIs, it might be a good idea to enable this handler to
+limit the concurrent request to certain level in order to avoid DDOS attacks.</p>
+
+<p>As this handler will impact the overall performance a little bit, it is not
+configured as default in the swagger-codegen. You must manually enable it
+in your API with the following steps.</p>
+
+<h2 id="dependency">Dependency</h2>
+
+<p>In order to use this handler, the following dependency need to be added to
+pom.xml in your project.</p>
+
+<pre><code>            &lt;dependency&gt;
+                &lt;groupId&gt;com.networknt&lt;/groupId&gt;
+                &lt;artifactId&gt;limit&lt;/artifactId&gt;
+                &lt;version&gt;${version.light-java}&lt;/version&gt;
+            &lt;/dependency&gt;
+</code></pre>
+
+<h2 id="service">Service</h2>
+
+<p>As this middleware is not plugged in by default, we need to add it into
+com.networknt.handler.MiddlewareHandler in src/main/resources/META-INF/services
+folder. As this rate limiting handler needs to be failed fast, it need to be
+put right after ExceptionHandler and MetricsHandler. The reason it is after
+MetricsHandler is to capture 513 error code in InfluxDB and Grafana for
+monitoring on production.</p>
+
+<pre><code>#Traceability Put traceabilityId into response header from request header if it exists
+com.networknt.traceability.TraceabilityHandler
+#Rate Limiting
+com.networknt.limit.LimitHandler
+#Metrics In order to calculate response time accurately, this needs to be the second.
+com.networknt.metrics.MetricsHandler
+#Exception Global exception handler that needs to be called first.
+com.networknt.exception.ExceptionHandler
+
+</code></pre>
+
+<h2 id="config">Config</h2>
+
+<p>Here is the configuration file for rate limiting.</p>
+
+<pre><code>{
+  &quot;description&quot;: &quot;Rate Limit Handler&quot;,
+  &quot;enabled&quot;: false,
+  &quot;concurrentRequest&quot;: 1000,
+  &quot;queueSize&quot;: -1
+}
+
+</code></pre>
+
+<ul>
+<li>enabled true to enable it and false to disable it.</li>
+<li>concurrentRequest number of concurrent request to be limited.</li>
+<li>queueSize -1 unlimited queue size which might use a lot of memory. &gt; 1 integer will limit the requests to be queued and once queue is full, 513 will be returned for new requests.</li>
+</ul>
+
 
 			<aside class="copyright" role="note">
 				
@@ -481,7 +541,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/tutorials/cors/" title="Cross-Origin Resource Sharing">
+      <a href="https://networknt.github.io/light-java/tools/minikube/" title="Minikube Installation">
         <span class="direction">
           Previous
         </span>
@@ -491,7 +551,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Cross-Origin Resource Sharing
+              Minikube Installation
             </div>
           </div>
         </div>
@@ -501,14 +561,14 @@
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/design/newprod/" title="newprod">
+      <a href="https://networknt.github.io/light-java/tutorials/cors/" title="Cross-Origin Resource Sharing">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              newprod
+              Cross-Origin Resource Sharing
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

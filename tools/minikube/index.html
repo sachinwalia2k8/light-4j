@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>monojee - Light Java - The fastest Java API Framework</title>
+    <title>Minikube Installation - Light Java - The fastest Java API Framework</title>
     <meta name="generator" content="Hugo 0.18.1" />
 
     
     <meta name="description" content="Light Java Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-java/design/monojee/">
+    <link rel="canonical" href="https://networknt.github.io/light-java/tools/minikube/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-java/design/monojee/">
+    <meta property="og:url" content="https://networknt.github.io/light-java/tools/minikube/">
     <meta property="og:title" content="Light Java - The fastest Java API Framework">
     <meta property="og:image" content="https://networknt.github.io/light-java/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light Java - The fastest Java API Framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        monojee
+        Minikube Installation
       </div>
     </div>
 
@@ -461,9 +461,51 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>monojee </h1>
+			<h1>Minikube Installation </h1>
 
 			
+
+<p>As light-java API/service is aiming to deployed with Docker containers and
+Kubernetes is the most popular container orchestration tool. It is very hard
+to setup multiple nodes cluster on laptop development environment but there
+is a minikube can be used on laptop to create one node cluster on your laptop.</p>
+
+<h2 id="install-on-mac">Install on Mac.</h2>
+
+<h3 id="install-xhype">Install xhype</h3>
+
+<p>Before installing Minikube, you must install <a href="https://github.com/zchee/docker-machine-driver-xhyve#install">xhype</a>
+driver first. The detailed instructions are in the above link and here is the
+commands to be executed.</p>
+
+<pre><code>brew install docker-machine-driver-xhyve
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+</code></pre>
+
+<h3 id="install-minikube">Install minikube</h3>
+
+<p>The general installation guide is in the <a href="https://github.com/kubernetes/minikube">README</a>
+and the latest instruction is always specific for the latest release. The current
+release instruction can be found <a href="https://github.com/kubernetes/minikube/releases">here</a></p>
+
+<pre><code>curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.17.1/minikube-darwin-amd64 &amp;&amp; chmod +x minikube &amp;&amp; sudo mv minikube /usr/local/bin/
+</code></pre>
+
+<h3 id="install-kubectl">Install kubectl</h3>
+
+<pre><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+</code></pre>
+
+<h3 id="start-minikube">Start minikube</h3>
+
+<pre><code>minikube start
+</code></pre>
+
+<h2 id="install-on-linux">Install on Linux</h2>
+
 
 			<aside class="copyright" role="note">
 				
@@ -481,34 +523,18 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-java/tutorials/cors/" title="Cross-Origin Resource Sharing">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Cross-Origin Resource Sharing
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-java/design/newprod/" title="newprod">
+      <a href="https://networknt.github.io/light-java/middleware/limit/" title="Rate Limiting">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              newprod
+              Rate Limiting
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

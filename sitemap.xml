@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://networknt.github.io/light-java/tools/minikube/</loc>
+    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/middleware/limit/</loc>
+    <lastmod>2017-02-17T14:10:28-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-java/tutorials/cors/</loc>
+    <lastmod>2017-02-15T09:26:58-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://networknt.github.io/light-java/design/monojee/</loc>
     <lastmod>2017-02-09T12:45:22-05:00</lastmod>
   </url>
@@ -429,7 +444,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-java/</loc>
-    <lastmod>2017-02-09T12:45:22-05:00</lastmod>
+    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -441,7 +456,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-java/middleware/</loc>
-    <lastmod>2017-02-06T21:40:01-05:00</lastmod>
+    <lastmod>2017-02-17T14:10:28-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -459,13 +474,13 @@
   
   <url>
     <loc>https://networknt.github.io/light-java/tools/</loc>
-    <lastmod>2017-02-03T14:12:47-05:00</lastmod>
+    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://networknt.github.io/light-java/tutorials/</loc>
-    <lastmod>2017-01-27T20:57:14-05:00</lastmod>
+    <lastmod>2017-02-15T09:26:58-05:00</lastmod>
     <priority>0</priority>
   </url>
   

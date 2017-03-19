@@ -7,8 +7,59 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Fri, 03 Feb 2017 14:12:47 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 18 Mar 2017 20:37:48 -0400</lastBuildDate>
     <atom:link href="https://networknt.github.io/light-java/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Minikube Installation</title>
+      <link>https://networknt.github.io/light-java/tools/minikube/</link>
+      <pubDate>Sat, 18 Mar 2017 20:37:48 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-java/tools/minikube/</guid>
+      <description>
+
+&lt;p&gt;As light-java API/service is aiming to deployed with Docker containers and
+Kubernetes is the most popular container orchestration tool. It is very hard
+to setup multiple nodes cluster on laptop development environment but there
+is a minikube can be used on laptop to create one node cluster on your laptop.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-on-mac&#34;&gt;Install on Mac.&lt;/h2&gt;
+
+&lt;h3 id=&#34;install-xhype&#34;&gt;Install xhype&lt;/h3&gt;
+
+&lt;p&gt;Before installing Minikube, you must install &lt;a href=&#34;https://github.com/zchee/docker-machine-driver-xhyve#install&#34;&gt;xhype&lt;/a&gt;
+driver first. The detailed instructions are in the above link and here is the
+commands to be executed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install docker-machine-driver-xhyve
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-minikube&#34;&gt;Install minikube&lt;/h3&gt;
+
+&lt;p&gt;The general installation guide is in the &lt;a href=&#34;https://github.com/kubernetes/minikube&#34;&gt;README&lt;/a&gt;
+and the latest instruction is always specific for the latest release. The current
+release instruction can be found &lt;a href=&#34;https://github.com/kubernetes/minikube/releases&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.17.1/minikube-darwin-amd64 &amp;amp;&amp;amp; chmod +x minikube &amp;amp;&amp;amp; sudo mv minikube /usr/local/bin/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-kubectl&#34;&gt;Install kubectl&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;start-minikube&#34;&gt;Start minikube&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;minikube start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-on-linux&#34;&gt;Install on Linux&lt;/h2&gt;
+</description>
+    </item>
     
     <item>
       <title>keytool</title>

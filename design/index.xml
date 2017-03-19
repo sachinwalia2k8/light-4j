@@ -149,6 +149,8 @@ these services with OpenAPI specifications.&lt;/p&gt;
 &lt;p&gt;Here is a list of design decisions for microservices:&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.arungupta.me/microservice-design-patterns/&#34;&gt;Microservice Design Patterns&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/design/convtws/&#34;&gt;How to convert existing RESTful web services to microservices&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/design/newprod/&#34;&gt;How to design microservices for brand new project/product&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
