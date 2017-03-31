@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Middleware Handlers - Light Java - The fastest Java API Framework</title>
-    <meta name="generator" content="Hugo 0.18.1" />
+    <meta name="generator" content="Hugo 0.17" />
 
     
     <meta name="description" content="Light Java Docs">
@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Light Java - The fastest Java API Framework <span class="version">1.1.6</span></strong>
+        <strong>Light Java - The fastest Java API Framework <span class="version">1.2.6</span></strong>
         
           <br>
           networknt/light-java
@@ -476,59 +476,57 @@ swagger code generation and runtime request validation.</p>
 <p>It contains the following components:</p>
 
 <ul>
-<li><p><a href="https://networknt.github.io/light-java/middleware/swagger-security/">swagger-security</a> -
-Oauth2 jwt token verification distributed in every microservice. Also, there is an OAuth2
-server based on light-java released <a href="https://github.com/networknt/light-oauth2">here</a></p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/swagger-validator/">swagger-validator</a> -
-Validate request based on the swagger.json for uri parameters, query parameters and body
-which is based on <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a></p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/audit/">audit</a> - Log most important info
-about request and response into audit.log in JSON format with config file that controls which
-fieds to be logged.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/body/">body</a> - A body parser middleware
-that is responsible for parsing the content of the request based on Content-Type in the
-request header.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/exception/">exception</a> - A generic
-exception handler that handles runtime exception, ApiException and other checked exception
-if they are not handled properly in the handler chain.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/metrics/">metrics</a> - A module that collect
-API runtime info based on clientId and API name. The metrics info is sent to InfluxDB and
-accessible from Grafana Dashboard.</p></li>
-
-<li><p><a href="https://networknt.github.io/light-java/middleware/swagger-meta/">swagger-meta</a> - This is a
+<li><p><a href="https://networknt.github.io/light-java/middleware/swagger-meta/">swagger-meta</a> is a
 middleware that load swagger at runtime and parse it based on the request uri and method and
 attached the swagger data related to the current endpoint into the exchange for subsequent
 handlers to use.</p></li>
 
-<li><p><a href="https://networknt.github.io/light-java/middleware/sanitizer/">sanitizer</a> - This is a
+<li><p><a href="https://networknt.github.io/light-java/middleware/swagger-security/">swagger-security</a>
+Oauth2 JWT token verification distributed in every microservice. Also, there is an OAuth2
+server based on light-java released <a href="https://github.com/networknt/light-oauth2">here</a></p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/swagger-validator/">swagger-validator</a>
+validates request based on the swagger.json for uri parameters, query parameters and body
+which is based on <a href="https://github.com/networknt/json-schema-validator">json-schema-validator</a></p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/audit/">audit</a> logs most important info
+about request and response into audit.log in JSON format with config file that controls which
+fieds to be logged.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/body/">body</a> is a body parser middleware
+that is responsible for parsing the content of the request based on Content-Type in the
+request header.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/exception/">exception</a> is a generic
+exception handler that handles runtime exception, ApiException and other checked exception
+if they are not handled properly in the handler chain.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/metrics/">metrics</a> is a module that collects
+API runtime info based on clientId and API name. The metrics info is sent to InfluxDB and
+accessible from Grafana Dashboard.</p></li>
+
+<li><p><a href="https://networknt.github.io/light-java/middleware/sanitizer/">sanitizer</a> is a
 middleware that address cross site scripting concerns. It encodes header and body based on
 configuration.</p></li>
 
-<li><p><a href="https://networknt.github.io/light-java/middleware/correlation/">correlation</a> - Generate
+<li><p><a href="https://networknt.github.io/light-java/middleware/correlation/">correlation</a> generates
 a UUID in the first API/service and pass it to all other APIs/services in the call tree for
 tracking purpose.</p></li>
 
-<li><p><a href="https://networknt.github.io/light-java/middleware/traceability/">traceability</a> - It is an
-Id passed in from client and will be unique with an application context. The Id will be passed
+<li><p><a href="https://networknt.github.io/light-java/middleware/traceability/">traceability</a> is an
+id passed in from client and will be unique with an application context. The id will be passed
 into the backend and return to the consumer for transaction tracing.</p></li>
 
-<li><p><a href="https://networknt.github.io/light-java/middleware/cors/">cors</a> - The Cross-Origin Resource
-Sharing (CORS) handler supports single page applications from another domain to access
-APIs/services.</p></li>
+<li><p><a href="https://networknt.github.io/light-java/middleware/cors/">cors</a> is a module handles
+Cross-Origin Resource Sharing (CORS) pre-flight OPTIONS to support single page applications
+from another domain to access APIs/services.</p></li>
 
-<li><p><a href="https://networknt.github.io/light-java/middleware/dump/">dump</a> -
-A full request/response log handler to dump everything regarding to request and response
-into log file for developers.</p></li>
+<li><p><a href="https://networknt.github.io/light-java/middleware/dump/">dump</a> is a full request/response
+log handler to dump everything regarding to request and response into log file for developers.</p></li>
 
-<li><p><a href="https://networknt.github.io/light-java/middleware/limit/">limit</a> -
-A rate limiting handler to limit number of concurrent requests on the server.
-Once the limit is reached, subsequent requests will be queued for later execution. The
-size of the queue is configurable.</p></li>
+<li><p><a href="https://networknt.github.io/light-java/middleware/limit/">limit</a> is a rate limiting handler
+to limit number of concurrent requests on the server. Once the limit is reached, subsequent
+requests will be queued for later execution. The size of the queue is configurable.</p></li>
 </ul>
 
 

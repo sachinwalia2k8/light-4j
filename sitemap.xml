@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://networknt.github.io/light-java/</loc>
+    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://networknt.github.io/light-java/tools/minikube/</loc>
     <lastmod>2017-03-18T20:37:48-04:00</lastmod>
   </url>
@@ -367,6 +372,11 @@
   </url>
   
   <url>
+    <loc>https://networknt.github.io/light-java/tutorials/ms_chain/</loc>
+    <lastmod>2016-10-09T08:01:56-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://networknt.github.io/light-java/tutorials/microservices/</loc>
     <lastmod>2016-10-09T08:01:56-04:00</lastmod>
   </url>
@@ -404,84 +414,6 @@
   <url>
     <loc>https://networknt.github.io/light-java/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/architecture/</loc>
-    <lastmod>2017-01-25T20:18:44-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/benchmarks/</loc>
-    <lastmod>2017-01-25T20:48:38-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/design/</loc>
-    <lastmod>2017-02-09T12:45:22-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/devops/</loc>
-    <lastmod>2017-01-25T20:55:53-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/example/</loc>
-    <lastmod>2017-01-25T21:12:31-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/getting-started/</loc>
-    <lastmod>2016-10-18T07:00:45-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/</loc>
-    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/management/</loc>
-    <lastmod>2016-10-12T19:30:08-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/middleware/</loc>
-    <lastmod>2017-02-17T14:10:28-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/other/</loc>
-    <lastmod>2017-02-06T21:34:10-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/roadmap/</loc>
-    <lastmod>2016-10-15T19:19:57-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/tools/</loc>
-    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/tutorials/</loc>
-    <lastmod>2017-02-15T09:26:58-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>
