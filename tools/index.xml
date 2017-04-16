@@ -581,10 +581,10 @@ and &lt;a href=&#34;http://czerasz.com/2015/07/19/wrk-http-benchmarking-tool-exa
 
 &lt;p&gt;For most open source developers, they would ues github.com to manage their projects and
 then have a README.md for documentation. For some bigger projects they might have wiki
-for additional documents and linked them to README.md.&lt;/p&gt;
+for additional documents and linked them from README.md.&lt;/p&gt;
 
-&lt;p&gt;Here I will introduce another way to manage documents in gh-pages with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static site
-generator.&lt;/p&gt;
+&lt;p&gt;Here I will introduce another way to manage documents in gh-pages with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;
+static site generator.&lt;/p&gt;
 
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 
@@ -592,7 +592,7 @@ generator.&lt;/p&gt;
 
 &lt;p&gt;For Linux, download the binary from the &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;latest release&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;I am using hugo_0.27-64bit.deb on ubuntu and install it with the following command.&lt;/p&gt;
+&lt;p&gt;I am using hugo_0.17-64bit.deb on ubuntu and install it with the following command.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
 sudo dpkg -i hugo_0.17-64bit.deb
@@ -610,7 +610,8 @@ sudo dpkg -i hugo_0.17-64bit.deb
 
 &lt;h3 id=&#34;pygments&#34;&gt;Pygments&lt;/h3&gt;
 
-&lt;p&gt;The Hugo executable has one optional external dependency for source code highlighting (Pygments). To install it&lt;/p&gt;
+&lt;p&gt;The Hugo executable has one optional external dependency for source code highlighting (Pygments).
+To install it&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;pip install Pygments
 &lt;/code&gt;&lt;/pre&gt;
@@ -665,7 +666,8 @@ git push origin gh-pages
 
 &lt;p&gt;After push to gh-pages, your site will be available at the following url.&lt;/p&gt;
 
-&lt;p&gt;https://&lt;username&gt;.github.io/&lt;projectname&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://&amp;lt;orgname&amp;gt;.github.io/&amp;lt;reponame&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;scaffold-docs-site&#34;&gt;Scaffold docs site&lt;/h2&gt;
 
@@ -728,9 +730,11 @@ git clone git@github.com:digitalcraftsman/hugo-material-docs.git
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Now you about.md can be accessed at
-&lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;&lt;projectname&gt;&lt;/li&gt;
+&lt;li&gt;Now you about.md can be accessed at&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;http://localhost:1313/&amp;lt;reponame&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
 

@@ -471,10 +471,10 @@
 
 <p>For most open source developers, they would ues github.com to manage their projects and
 then have a README.md for documentation. For some bigger projects they might have wiki
-for additional documents and linked them to README.md.</p>
+for additional documents and linked them from README.md.</p>
 
-<p>Here I will introduce another way to manage documents in gh-pages with <a href="https://gohugo.io/">Hugo</a> static site
-generator.</p>
+<p>Here I will introduce another way to manage documents in gh-pages with <a href="https://gohugo.io/">Hugo</a>
+static site generator.</p>
 
 <h2 id="installation">Installation</h2>
 
@@ -482,7 +482,7 @@ generator.</p>
 
 <p>For Linux, download the binary from the <a href="https://github.com/spf13/hugo/releases">latest release</a></p>
 
-<p>I am using hugo_0.27-64bit.deb on ubuntu and install it with the following command.</p>
+<p>I am using hugo_0.17-64bit.deb on ubuntu and install it with the following command.</p>
 
 <pre><code>
 sudo dpkg -i hugo_0.17-64bit.deb
@@ -500,7 +500,8 @@ sudo dpkg -i hugo_0.17-64bit.deb
 
 <h3 id="pygments">Pygments</h3>
 
-<p>The Hugo executable has one optional external dependency for source code highlighting (Pygments). To install it</p>
+<p>The Hugo executable has one optional external dependency for source code highlighting (Pygments).
+To install it</p>
 
 <pre><code>pip install Pygments
 </code></pre>
@@ -555,7 +556,8 @@ git push origin gh-pages
 
 <p>After push to gh-pages, your site will be available at the following url.</p>
 
-<p>https://<username>.github.io/<projectname></p>
+<pre><code>https://&lt;orgname&gt;.github.io/&lt;reponame&gt;
+</code></pre>
 
 <h2 id="scaffold-docs-site">Scaffold docs site</h2>
 
@@ -618,9 +620,11 @@ git clone git@github.com:digitalcraftsman/hugo-material-docs.git
 </code></pre>
 
 <ol>
-<li>Now you about.md can be accessed at
-<a href="http://localhost:1313/">http://localhost:1313/</a><projectname></li>
+<li>Now you about.md can be accessed at</li>
 </ol>
+
+<pre><code>http://localhost:1313/&lt;reponame&gt;
+</code></pre>
 
 <h2 id="deploy">Deploy</h2>
 
