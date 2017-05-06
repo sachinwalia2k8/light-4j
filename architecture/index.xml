@@ -1,1158 +1,133 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Architecture-rsses on Light Java - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/light-java/architecture/index.xml</link>
-    <description>Recent content in Architecture-rsses on Light Java - The fastest Java API Framework</description>
+    <title>Architectures on Light 4J - A fast, lightweight Java microservices framework</title>
+    <link>https://networknt.github.io/light-4j/architecture/</link>
+    <description>Recent content in Architectures on Light 4J - A fast, lightweight Java microservices framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Wed, 25 Jan 2017 20:18:44 -0500</lastBuildDate>
-    <atom:link href="https://networknt.github.io/light-java/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://networknt.github.io/light-4j/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Architecture</title>
-      <link>https://networknt.github.io/light-java/architecture/</link>
+      <link>https://networknt.github.io/light-4j/architecture/</link>
       <pubDate>Wed, 25 Jan 2017 20:18:44 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/</guid>
-      <description>&lt;p&gt;light-java is aiming microservices and it has to be light weight and address a lot of cross-cutting
-concerns at the same time. It is based on Undertow Core Http server and depending on minimum third
-party libraries.&lt;/p&gt;
-
-&lt;p&gt;Here is a list of architecture decisions for the framework:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Designed for &lt;a href=&#34;https://networknt.github.io/light-java/architecture/microservices/&#34;&gt;microservices&lt;/a&gt; that can be dockerized and deployed within containers.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Base on pure HTTP without JavaEE as it has too many problems and is &lt;a href=&#34;https://networknt.github.io/light-java/architecture/jee-is-dead/&#34;&gt;declining&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/architecture/security/&#34;&gt;Security&lt;/a&gt; first design with OAuth2 integration and distributed verification with embedded distributed gateway.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;All components are designed as &lt;a href=&#34;https://networknt.github.io/light-java/architecture/security/&#34;&gt;plugins&lt;/a&gt; and the framework is easy to be extended and customized.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Can be &lt;a href=&#34;https://networknt.github.io/light-java/architecture/integration/&#34;&gt;integrated&lt;/a&gt; with existing application to protect investment over the year for your organization.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Support direct calls from microservice to microservice without any &lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;gateway&lt;/a&gt;, proxy as they add too much overhead.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Service logs will be aggragated with ElasticSearch, LogStash and Kibana with &lt;a href=&#34;https://networknt.github.io/light-java/architecture/monitoring/&#34;&gt;monitoring and alerting&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Built-in &lt;a href=&#34;https://networknt.github.io/light-java/architecture/traceability/&#34;&gt;CorrelationId and TraceabilityId&lt;/a&gt; to trace service to service calls in aggragated logs.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Designed for &lt;a href=&#34;https://networknt.github.io/light-java/architecture/scalability/&#34;&gt;scalability&lt;/a&gt; so that you can have thousands instances running at the same time.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Has its own dependency injection framework so that developers can avoid heavy Spring or Guice as they are &lt;a href=&#34;https://networknt.github.io/light-java/architecture/spring-is-bloated/&#34;&gt;bloated&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/</guid>
+      <description>light-4j is aiming microservices and it has to be light weight and address a lot of cross-cutting concerns at the same time. It is based on Undertow Core Http server and depending on minimum third party libraries.
+Here is a list of architecture decisions for the framework:
+ Designed for microservices that can be dockerized and deployed within containers.
+ Base on pure HTTP without JavaEE as it has too many problems and is declining</description>
     </item>
     
     <item>
       <title>Integration Patterns</title>
-      <link>https://networknt.github.io/light-java/architecture/integration/</link>
+      <link>https://networknt.github.io/light-4j/architecture/integration/</link>
       <pubDate>Sat, 12 Nov 2016 20:55:44 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/integration/</guid>
-      <description>
-
-&lt;p&gt;While working with my clients to transform monolithic Java EE applications to
-microservices architecture, one of the most frequently asked questions from
-my clients is how do you integrate your newly built microservices with existing
-Java EE applications. In other words, how to leverage existing application
-stacks when exposing REST APIs with microservices?&lt;/p&gt;
-
-&lt;p&gt;For most organizations especially financial institutions, they have big Java
-EE applications running on Weblogic/Websphere that they&amp;rsquo;ve invested efforts
-for a decade or longer. You cannot image that they can rewrite everything and
-switch to microservices overnight.&lt;/p&gt;
-
-&lt;p&gt;I have been working the following four different approaches over the last 5
-years and I will give my recommendations based on my experience. Please be
-aware that this is just a generic recommendation and it cannot be applied
-to all use cases.&lt;/p&gt;
-
-&lt;h1 id=&#34;api-gateway&#34;&gt;API Gateway&lt;/h1&gt;
-
-&lt;p&gt;Most commercial API gateways offer the XML to JSON and JSON to XML
-transformation feature and this was good selling point to in early days. They
-promised that you buy their product and the gateway will transform your
-XML based web services to JSON based REST APIs. The problem with this
-approach is performance, as all of them provide a generic transformer working
-with external defined mapping logic. The transformation is CPU intensive and
-with the overhead of gateway security and other layers, the throughput and
-latency are not acceptable. Also, there are other issues with commercial
-gateways as I documented at &lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;https://networknt.github.io/light-java/architecture/gateway/&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;customized-transformation-in-api&#34;&gt;Customized Transformation in API&lt;/h1&gt;
-
-&lt;p&gt;Some developers and architects realized that buying a gateway cannot resolve
-the problem magically so they tried to build the transform logic into the API
-itself. The transformation code is customized per API and it is much more
-efficient that generic transformer in gateways. This provide a little bit
-more flexibility and a little bit increased performance but it is not easy
-to write the transform code as most web services have very complicated request
-and response schemas. Performance wise, it is better than commercial gateway
-solutions but still very bad.&lt;/p&gt;
-
-&lt;h1 id=&#34;calling-service-layer-behind-soa-or-emb&#34;&gt;Calling service layer behind SOA or EMB&lt;/h1&gt;
-
-&lt;p&gt;Most web services are built with multiple layers and chances are you have
-a service layer behind your web service tier with Java native APIs. In this
-case, we can bypass web services and calling the native Java API (most likely
-session beans) from your REST APIs. This gives us a relative good performance
-and leverage the most complicated services in the application tier. It is also
-a low cost solution to bring REST API on top of your existing applications.&lt;/p&gt;
-
-&lt;p&gt;The only drawback is that these app layers are deployed on Java EE platform
-and they have limited throughput and very hard to be scaled.&lt;/p&gt;
-
-&lt;h1 id=&#34;calling-book-of-record-directly&#34;&gt;Calling Book of Record directly&lt;/h1&gt;
-
-&lt;p&gt;In order to fully realize the benefits of microservices architecture, the
-existing monolithic application must be rewritten so that microservices can
-talk to the book of record directly. And this can be done during a long period
-of time to break up existing system to function areas and convert them one by
-one.&lt;/p&gt;
-
-&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
-
-&lt;p&gt;As describe above, it is recommended to rewrite the existing monolithic app
-but if resources are constrained, then build microservices by calling
-existing services are acceptable. As microserivces can be individually deployed
-and replaced, it is easy to convert them all to the final stage one by one.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/integration/</guid>
+      <description>While working with my clients to transform monolithic Java EE applications to microservices architecture, one of the most frequently asked questions from my clients is how do you integrate your newly built microservices with existing Java EE applications. In other words, how to leverage existing application stacks when exposing REST APIs with microservices?
+For most organizations especially financial institutions, they have big Java EE applications running on Weblogic/Websphere that they&amp;rsquo;ve invested efforts for a decade or longer.</description>
     </item>
     
     <item>
       <title>Monitoring</title>
-      <link>https://networknt.github.io/light-java/architecture/monitoring/</link>
+      <link>https://networknt.github.io/light-4j/architecture/monitoring/</link>
       <pubDate>Wed, 09 Nov 2016 21:13:27 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/monitoring/</guid>
-      <description>
-
-&lt;p&gt;Monitoring used to be a somewhat passive thing. You used tools to monitor the
-application process/logs and perhaps send an alert if something seemed wrong,&lt;br /&gt;
-but mostly it was hands off. When we move to microservices architecture, things
-are changing.&lt;/p&gt;
-
-&lt;h2 id=&#34;user-experience-and-microservices-monitoring&#34;&gt;User Experience and Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;With Microservices which are released more often, you can try new features and
-see how they impact user usage patterns. With this feedback, you can improve
-your application. It is not uncommon to employ A/B testing and multi-variant
-testing to try out new combinations of features. Monitoring is more than just
-watching for failure. With big data, data science, and microservices,
-monitoring microservices runtime stats is required to know your application
-users. You want to know what your users like and dislike and react.&lt;/p&gt;
-
-&lt;h2 id=&#34;debugging-and-microservices-monitoring&#34;&gt;Debugging and Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;Runtime statistics and metrics are critical for distributed systems. Since
-microservices architecture use a lot of remote calls. Monitoring microservices
-metrics can include request per second, available memory, #threads, #connections,
-failed authentication, expired tokens, etc. These parameters are important for
-understanding and debugging your code. Working with distributed systems is hard.
-Working with distributed systems without reactive monitoring is crazy. Reactive
-monitoring allows you to react to failure conditions and ramp of services for
-higher loads.&lt;/p&gt;
-
-&lt;h2 id=&#34;circuit-breaker-and-microservices-monitoring&#34;&gt;Circuit Breaker and Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;You can employ the Circuit Breaker pattern to prevent a catastrophic cascade,
-and reactive microservices monitoring can be the trigger. Downstream services
-can be registered in a service discovery so that you can mark nodes as unhealthy
-as well react by reroute in the case of outages. The reaction can be serving up
-a deprecated version of the data or service, but the key is to avoid cascading
-failure. You don&amp;rsquo;t want your services falling over like dominoes.&lt;/p&gt;
-
-&lt;h2 id=&#34;cloud-orchestration-and-microservices-monitoring&#34;&gt;Cloud Orchestration and Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;Reactive microservices monitoring would enable you to detect heavy load, and
-spin up new instances with the cloud orchestration platform of your choice
-(EC2, CloudStack, OpenStack, Rackspace, boto, etc.).&lt;/p&gt;
-
-&lt;h2 id=&#34;public-microservices-and-microservices-monitoring&#34;&gt;Public Microservices and Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;Microservices monitoring of runtime statistics can be used to rate limiting
-a partners Application ID. You don&amp;rsquo;t want partners to consume all of your
-well-tuned, high-performant microservices resources. It is okay to trust your
-partners but use Microservices Monitoring to verify.&lt;/p&gt;
-
-&lt;p&gt;Monitoring public microservices is your way to verify. Once you make microservices
-publicly available or partner available, you have to monitor and rate limit.&lt;/p&gt;
-
-&lt;p&gt;This is not a new concept. If you have ever used a public REST API from Google for
-example, you are well aware of rate limiting. A rate limit will do things like limit
-the number of connections you’re allowed to make. It is common for rate limits to
-limit the number of certain requests that a client id or partner id is allowed to
-make in a given time period. This is protection.&lt;/p&gt;
-
-&lt;p&gt;Deploying public or partner accessible microservices without this protection is
-lunacy and a recipe for disaster, unless you like failing when someone decides to
-hit your endpoints 10x more than you did the capacity planning for. Avoid long
-nights and tears. Monitor microservices that you publish, and limit access to them.&lt;/p&gt;
-
-&lt;p&gt;The reactive manifesto is a good tutor for the types of monitoring you will want
-to do and states that your system should react to change instead of just fail.&lt;/p&gt;
-
-&lt;h2 id=&#34;microservices-framework-and-microservices-monitoring&#34;&gt;Microservices Framework and Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;Light-Java a mircoservices framework that comes with a runtime metrics which can
-be used for Microservices Monitoring.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You can query /server/health endpoint to detect if the service is available and healthy.&lt;/li&gt;
-&lt;li&gt;The framework collects metrics info and pushes it into influxdb and dashboard can be viewed from Grafana.&lt;/li&gt;
-&lt;li&gt;Rate limiting can be enabled at client_id level or ip address/user level.&lt;/li&gt;
-&lt;li&gt;Kubernetes monitors load of each pods and can start new instances on demand.&lt;/li&gt;
-&lt;li&gt;TraceabilityId and CorrelationId in logs that can be traced with tools like Logstash, GrayLog and Splunk.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;reactive-microservices-monitoring&#34;&gt;Reactive Microservices Monitoring&lt;/h2&gt;
-
-&lt;p&gt;Reactive Microservices Monitoring is an essential ingredient of microservices architecture.
-You need it for debugging, knowing your users, working with partners, building reactive
-systems that react to load and failures without cascading outages. Reactive Microservices
-Monitoring can not be a hindsight decision. Build your microservices with microservices
-monitoring in mind from the start. Make sure that the microservices lib that you use has
-monitoring of runtime statistics built in from the start. Make sure that is a core part of
-the microservices library. Code Hale Statistics allow you to gather metrics in
-a standard way. Tools like Influxdb and Grafana, Kibana help you understand the
-data, and build dashboards. Light Java, the Java Microservices Framework, includes a metrics
-middleware which feeds into CodeHale Metrics. Light Java also proivdes a rate limiting
-middleware to limit access per client_id or IP address/user. The container orchestration tool
-like Kubernetes can also spin up new nodes/pods. With big data, data science,
-and microservices, monitoring microservices runtime stats is required to know your application
-users, know your partners, know what your system will do under load, etc.&lt;/p&gt;
-
-&lt;h2 id=&#34;microservice-logging&#34;&gt;Microservice Logging&lt;/h2&gt;
-
-&lt;p&gt;Every instance of the service will have a unique identifier which most commonly will be
-the docker container name or the hostname if not deployed in docker container. The code
-to retrieve docker container name and hostname is the same.&lt;/p&gt;
-
-&lt;p&gt;Along with docker container name, traceabilityId and correlationId will be logged as
-context info for each logging statement. And once log files are aggregated together in
-ELK, users can trace a particular transaction based on the traceabilityId or correlationId.&lt;/p&gt;
-
-&lt;p&gt;As microservices might be deployed across multiple geo-regions, the timestamp logged must
-be UTC time so that logs can be easily ordered in the ELK.&lt;/p&gt;
-
-&lt;h2 id=&#34;microservice-alerting&#34;&gt;Microservice Alerting&lt;/h2&gt;
-
-&lt;p&gt;Logstash has features to send out alert when certain error code is spotted in the log files.&lt;/p&gt;
-
-&lt;p&gt;The framework has a component called status and it has all the errors defined in a JSON
-file which can be externalized. All the error code will be in a format ERRXXXXX and
-certain error code can be setup in the alert to send out email or communicate to support
-team with other channels.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/monitoring/</guid>
+      <description>Monitoring used to be a somewhat passive thing. You used tools to monitor the application process/logs and perhaps send an alert if something seemed wrong,
+but mostly it was hands off. When we move to microservices architecture, things are changing.
+User Experience and Microservices Monitoring With Microservices which are released more often, you can try new features and see how they impact user usage patterns. With this feedback, you can improve your application.</description>
     </item>
     
     <item>
       <title>traceability</title>
-      <link>https://networknt.github.io/light-java/architecture/traceability/</link>
+      <link>https://networknt.github.io/light-4j/architecture/traceability/</link>
       <pubDate>Sun, 06 Nov 2016 11:04:20 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/traceability/</guid>
-      <description>
-
-&lt;p&gt;For microservices architecture, it is very important to trace request from one service to
-another in the entire call tree in order to have big picture if something happens or have
-an audit log that is aggregated by database or Splunk.&lt;/p&gt;
-
-&lt;p&gt;In the framework, we have two Ids to serve this purpose.&lt;/p&gt;
-
-&lt;h2 id=&#34;x-traceability-id&#34;&gt;X-Traceability-Id&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Generated by client&lt;/li&gt;
-&lt;li&gt;Unique for this client only&lt;/li&gt;
-&lt;li&gt;Can be database sequence number or UUID&lt;/li&gt;
-&lt;li&gt;Must be passed to the next service&lt;/li&gt;
-&lt;li&gt;Must be returned to the caller&lt;/li&gt;
-&lt;li&gt;Will be logged in per request audit log&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;x-correlation-id&#34;&gt;X-Correlation-Id&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Generated in the immediate service from client&lt;/li&gt;
-&lt;li&gt;Must be UUID&lt;/li&gt;
-&lt;li&gt;Must be passed to the next service&lt;/li&gt;
-&lt;li&gt;Will be logged in per request audit log&lt;/li&gt;
-&lt;li&gt;Every service/API must check if this id available and generate one if doesn&amp;rsquo;t exist in request header.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;pass-ids-to-the-next-service-api&#34;&gt;Pass Ids to the next service/API&lt;/h1&gt;
-
-&lt;p&gt;In order to pass these ids to the next service, the call to the next service
-must use Client module provided by the framework. It will put these ids to
-the HttpRequest header with method calls.&lt;/p&gt;
-
-&lt;p&gt;Hers is an example to set JWT tokens, traceabilityId and correlationId&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;recommended-log-analysis-tool&#34;&gt;Recommended Log Analysis Tool&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.elastic.co/products/logstash&#34;&gt;ELK/Logstash (Open Source)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/Graylog2/graylog2-server&#34;&gt;Graylog (Open Source with commercial version)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.splunk.com/&#34;&gt;Splunk (Commercial)&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/traceability/</guid>
+      <description>For microservices architecture, it is very important to trace request from one service to another in the entire call tree in order to have big picture if something happens or have an audit log that is aggregated by database or Splunk.
+In the framework, we have two Ids to serve this purpose.
+X-Traceability-Id  Generated by client Unique for this client only Can be database sequence number or UUID Must be passed to the next service Must be returned to the caller Will be logged in per request audit log  X-Correlation-Id  Generated in the immediate service from client Must be UUID Must be passed to the next service Will be logged in per request audit log Every service/API must check if this id available and generate one if doesn&amp;rsquo;t exist in request header.</description>
     </item>
     
     <item>
       <title>Plugin Architecture</title>
-      <link>https://networknt.github.io/light-java/architecture/plugin/</link>
+      <link>https://networknt.github.io/light-4j/architecture/plugin/</link>
       <pubDate>Sat, 29 Oct 2016 17:22:16 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/plugin/</guid>
-      <description>
-
-&lt;p&gt;In the framework design, we have adopted the same principal of microservices architecture to break
-down the entire framework into smaller pieces so that each can be customized and replaced if
-necessary. The only difference is that all the modules in the framework are wired in request/response
-chain for best performance.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/light_java_component.png&#34; alt=&#34;component&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There are four type of components that can be wired in at different stage of the server start up. The
-following is the loading sequence.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Startup Hook Providers&lt;/li&gt;
-&lt;li&gt;Shutdown Hook Providers&lt;/li&gt;
-&lt;li&gt;Handler Provider&lt;/li&gt;
-&lt;li&gt;Middleware Handlers&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/startup_sequence.png&#34; alt=&#34;startup_sequence&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;plugin-implementation&#34;&gt;Plugin implementation&lt;/h1&gt;
-
-&lt;p&gt;There are so many way to implement plugins and wire in different implementations of the same
-interface. Spring is one of the popular ways. However, it will make our framework depending on
-a version of spring framework and that can cause a lot of problems if the API handlers are
-using different version of spring framework. Also, we don&amp;rsquo;t want to make the framework depending
-on spring and force everyone to include it. In the end, we are using Java SPI
-(Service Provider Interface). In your generated API project, you can find four files in
-/src/main/resources/META-INF/services. These files contains plugins to be loaded/executed during
-server startup and shutdown.&lt;/p&gt;
-
-&lt;h1 id=&#34;shutdown-hook-providers&#34;&gt;Shutdown Hook Providers&lt;/h1&gt;
-
-&lt;p&gt;Shutdown hook providers are plugins that would be called during server shutdown in order to release
-resources. For example, close database connections.&lt;/p&gt;
-
-&lt;p&gt;All shutdown hook providers will implement interface com.networknt.server.ShutdownHookProvider&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface ShutdownHookProvider {
-    void onShutdown();
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The onShutdown() in your implementation will be called before server shutdown.&lt;/p&gt;
-
-&lt;h1 id=&#34;startup-hook-providers&#34;&gt;Startup Hook Providers&lt;/h1&gt;
-
-&lt;p&gt;Startup hook providers are plugins that would be called during server startup in order to initialize
-resources. For example, create database connection pool, load spring application context etc.&lt;/p&gt;
-
-&lt;p&gt;All startup hook providers will implement interface com.networknt.server.StartupHookProvider&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface StartupHookProvider {
-    void onStartup();
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The onStartup() in your implementation will be called before server startup.&lt;/p&gt;
-
-&lt;h1 id=&#34;handler-provider&#34;&gt;Handler Provider&lt;/h1&gt;
-
-&lt;p&gt;There is only one handler provider that is needed to wire in API implementations. In most of the
-cases, it would be an instance of io.undertow.server.RoutingHandler just like the generated &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/petstore&#34;&gt;petstore
-project&lt;/a&gt;. However, it is not
-limited and it can be several handlers chained together. One example is the
-&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/webserver&#34;&gt;webserver example&lt;/a&gt; and it
-has several handlers chained together to provide API routing as well as static website. The handler
-provide code can be found &lt;a href=&#34;https://github.com/networknt/light-java-example/blob/master/webserver/src/main/java/com/networknt/webserver/handler/WebServerHandlerProvider.java&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;If you have OpenAPI specification defined, this handler provider will be generated from
-&lt;a href=&#34;https://github.com/networknt/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt;. &lt;a href=&#34;https://github.com/networknt/light-java-example/blob/master/petstore/src/main/java/io/swagger/handler/PathHandlerProvider.java&#34;&gt;Here&lt;/a&gt;
-is a generated petstore handler provider that has the mapping for all endpoints.&lt;/p&gt;
-
-&lt;p&gt;Handler provider implements interface com.networknt.server.HandlerProvider&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface HandlerProvider {
-    HttpHandler getHandler();
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The getHandler() will return an HttpHandler or a chain of HttpHandlers wrapped together. This handler
-will be called in the request/response chain right after all middleware handlers are called.&lt;/p&gt;
-
-&lt;h1 id=&#34;middleware-handlers&#34;&gt;Middleware Handlers&lt;/h1&gt;
-
-&lt;p&gt;There are some &lt;a href=&#34;https://networknt.github.io/light-java/middleware/&#34;&gt;builtin middleware components&lt;/a&gt;
-in the framework to address common cross cutting concerns. There are implemented in a way we think
-the best to meet most of business requirements. In other words, there are opinionated. For product
-that built top of the framework, you can add/customize/replace existing middleware handlers.&lt;/p&gt;
-
-&lt;p&gt;All middleware handlers need to implement interface com.networknt.handler.MiddlewareHandler.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface MiddlewareHandler extends HttpHandler {
-
-    HttpHandler getNext();
-
-    MiddlewareHandler setNext(final HttpHandler next);
-
-    boolean isEnabled();
-
-    void register();
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;boolean isEnabled()&lt;/p&gt;
-
-&lt;p&gt;Every middleware handler has a corresponding config file which is the same name lower case
-with .json extension. There must be flag to indicate if the handle will be wired in during
-server startup. This gives user a chance to temporary disable a particular middleware handler
-without changing the SPI configuration.&lt;/p&gt;
-
-&lt;p&gt;void register()&lt;/p&gt;
-
-&lt;p&gt;This function will be called when the middleware is wired in the request/response chain. It registers
-itself and configuration to server info component which can be accessed through a special endpoint
-to get runtime information on middleware handlers and their configuration along with other system
-info.&lt;/p&gt;
-
-&lt;p&gt;MiddlewareHandler setNext(final HttpHandler next)&lt;/p&gt;
-
-&lt;p&gt;As middleware handler are chained together, so the existing handler must be put in the current
-handler as next. When the current handler is completed, it will call the next handler if there is
-no error. And eventually, the user provided handler will be called if all middleware handler are
-completed without an error.&lt;/p&gt;
-
-&lt;h3 id=&#34;the-sequence-of-middleware-handlers&#34;&gt;The sequence of middleware handlers.&lt;/h3&gt;
-
-&lt;p&gt;There are dependencies between middleware handlers so the sequence to plug them in is very important.&lt;/p&gt;
-
-&lt;p&gt;For default plugins generated from &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-codegen/&#34;&gt;swagger-codegen&lt;/a&gt;,
-please refer to &lt;a href=&#34;https://networknt.github.io/light-java/other/server/&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;diagram&#34;&gt;Diagram&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/handler_chain.png&#34; alt=&#34;handler_chain&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that audit, metrics and exception need to hooked in the response in order to handle exceptions
-on both request and response phase, calculate response time and dump response info into the audit.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/plugin/</guid>
+      <description>In the framework design, we have adopted the same principal of microservices architecture to break down the entire framework into smaller pieces so that each can be customized and replaced if necessary. The only difference is that all the modules in the framework are wired in request/response chain for best performance.
+There are four type of components that can be wired in at different stage of the server start up.</description>
     </item>
     
     <item>
       <title>Security</title>
-      <link>https://networknt.github.io/light-java/architecture/security/</link>
+      <link>https://networknt.github.io/light-4j/architecture/security/</link>
       <pubDate>Thu, 20 Oct 2016 14:34:09 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/security/</guid>
-      <description>
-
-&lt;p&gt;Note: If this is the first time you hear about OAuth2 or you want to get familiar with
-the grant types we are using, please read this
-&lt;a href=&#34;https://github.com/networknt/undertow-oauth2/wiki/OAuth2-Introduction&#34;&gt;article&lt;/a&gt; first.&lt;/p&gt;
-
-&lt;p&gt;Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the
-reason is that people are unclear on how these services talk to one another; especially
-tricky is access management throughout a sea of independent services.&lt;/p&gt;
-
-&lt;p&gt;While designing microserivces, big monolithic application is breaking down to smaller
-services that can be independently deployed or replaced. The final application will have
-more http calls than a single application, how can we protect these calls between services?&lt;/p&gt;
-
-&lt;p&gt;To protect APIs/services, the answer is OAuth2 and most simple and popular solution will be
-simple web token as access token. The client authenticates itself on OAuth2 server and OAuth2
-server issues
-a simple web token (a UUID in most of the cases), then the client sends the request to API
-server with access token in the Authorization header. Once API server receives the request,
-it has to send the access token to OAuth2 server to verify if this is valid token and if
-this token is allowed to access this API. As you can see there must be a database lookup on
-OAuth2 server to do that. Distributed cache help a lot but there is still a network call and
-lookup for every single request. OAuth2 server eventually becomes a bottleneck and a single
-point of failure.&lt;/p&gt;
-
-&lt;p&gt;Years ago, when JWT draft specification was out, I came up with the idea to do the
-distributed security verification with JWT to replace Simple Web Token for one of the big
-banks in Canada. At that time, there was nobody using JWT this way and the bank sent the design to
-Paul Madson and John Bradley who are the Authors of OAuth2 and JWT specifications and got
-their endorsements to use JWT this way.&lt;/p&gt;
-
-&lt;h1 id=&#34;distributed-jwt-verification&#34;&gt;Distributed JWT Verification&lt;/h1&gt;
-
-&lt;p&gt;Here is the diagram of distributed JWT verification for microservices.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_distributed_jwt.png&#34; alt=&#34;ms_distributed_jwt&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s assume the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Client1 is a web server and it has client1 as client_id.&lt;/li&gt;
-&lt;li&gt;API A is a microservice and it has apia as client_id and it requires a.r scope to access.&lt;/li&gt;
-&lt;li&gt;API B is a microserivce and it has apib as client_id and it requires b.r scope to access.&lt;/li&gt;
-&lt;li&gt;API C is a microservice and it has apic as client_id and it requires c.r scope to access.&lt;/li&gt;
-&lt;li&gt;API D is a microservice and it has apid as client_id and it requires d.r scope to access.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;user-trigger-the-authentication&#34;&gt;User trigger the authentication&lt;/h3&gt;
-
-&lt;p&gt;When user clicks the login button or accesses resource that is protected, he will be
-redirect to OAuth2 server to authenticate himself. After input username and password, an
-authorization code is redirected back to the browser. The client1 will handle the redirect
-url and get the authorization code. By sending client1 client_id, client_secret and
-authorization code from user to OAuth2 server, Client1 gets a JWT token with&lt;/p&gt;
-
-&lt;p&gt;user_id = user1&lt;/p&gt;
-
-&lt;p&gt;client_id = client1&lt;/p&gt;
-
-&lt;p&gt;scope = [a.r]&lt;/p&gt;
-
-&lt;p&gt;This token will be put into the Authorization header of the request to API A. When API A
-receives the request, it verifies the JWT token with public key issued by OAuth2 server with
-the security middleware in the framework. If the signature verification is successful, it
-will verify the scope in the token against the swagger specification defined for the
-endpoint Client1 is accessing. As a.r is required and it is in the JWT scope, it allows
-the access.&lt;/p&gt;
-
-&lt;h3 id=&#34;api-a-calls-api-b-and-api-c&#34;&gt;API A calls API B and API C&lt;/h3&gt;
-
-&lt;p&gt;Now API A needs to call API B and API C to fulfill the request. As this is API to API call or
-service to service call, there is no user id involved and Client Credentials flow will be
-used here to get another JWT token to B and C. The original JWT token doesn&amp;rsquo;t have the scopes
-to access B and C as Client1 does not even care A is calling B and C. So here API A needs to
-get a token associate with client_id apia which has proper scope to access API B and API C.&lt;/p&gt;
-
-&lt;p&gt;This token will have the following claims.&lt;/p&gt;
-
-&lt;p&gt;client_id = apia&lt;/p&gt;
-
-&lt;p&gt;scope = [b.r c.r]&lt;/p&gt;
-
-&lt;p&gt;As the original token has the original user_id, it is carried in the entire service to service
-calls so that each service has a chance to do role based or user based authorization if it is
-necessary. The new client_credentials token will be passed in the request header &amp;ldquo;X-Scope-Token&amp;rdquo;.&lt;/p&gt;
-
-&lt;h3 id=&#34;api-b-and-api-c-tokens-verification&#34;&gt;API B and API C tokens verification&lt;/h3&gt;
-
-&lt;p&gt;The tokens verification on API B and API C are the same. So le&amp;rsquo;t use API B as an example to
-explain the verification process.&lt;/p&gt;
-
-&lt;p&gt;When API B receives the request, it first check the Authorization token to make sure it is valid. Then
-if scope verification is enabled, it will check if &amp;lsquo;X-Scope-Token&amp;rsquo; header exists. If yes, it will verify
-it and match the scope with endpoint defined scope. If scope matching is failed, it will fall back
-to Authorization token to see if it has the scope required. If none of the tokens has the scope required,
-an error will be sent back to the caller.&lt;/p&gt;
-
-&lt;h3 id=&#34;api-b-calls-api-d&#34;&gt;API B calls API D&lt;/h3&gt;
-
-&lt;p&gt;The process is very similar like API A calls API B and API C. A client credentials token will be
-retrieved by API B from OAuth2 server and it has the following claims.&lt;/p&gt;
-
-&lt;p&gt;client_id = apib&lt;/p&gt;
-
-&lt;p&gt;scope = [d.r]&lt;/p&gt;
-
-&lt;h3 id=&#34;api-d-token-verification&#34;&gt;API D token verification&lt;/h3&gt;
-
-&lt;p&gt;Similar like API B and API C tokens verification.&lt;/p&gt;
-
-&lt;h1 id=&#34;client-credentials-scope-token-cache&#34;&gt;Client Credentials / Scope Token Cache&lt;/h1&gt;
-
-&lt;p&gt;As described above, for every API to API call, the caller must pass in a scope token in addition to
-the original token. Unlike the original token which is associated with a user, the scope token is only
-associated with a client (API / service) and it won&amp;rsquo;t be expired after a period configured on OAuth2
-server. So it is not necessary to get the new scope token for every API to API call. The token is
-retrieved and cached in memory until it is about to be expired then a new token will be retrieved.&lt;/p&gt;
-
-&lt;p&gt;The entire token renew process is managed
-by &lt;a href=&#34;https://networknt.github.io/light-java/other/client/&#34;&gt;Client&lt;/a&gt; module provided in the light-java
-framework. This client module encapsulate a lot of features to help API to API calls.&lt;/p&gt;
-
-&lt;h1 id=&#34;authorization-token-cache&#34;&gt;Authorization Token Cache&lt;/h1&gt;
-
-&lt;p&gt;The original token normally will be cached in the web server session so that the subsequent calls
-from the same user can use the cached token.&lt;/p&gt;
-
-&lt;h1 id=&#34;single-sign-on&#34;&gt;Single Sign On&lt;/h1&gt;
-
-&lt;p&gt;As the end user login is managed by OAuth2 server, there is a session established between user&amp;rsquo;s
-browser and OAuth2 server. The the user switch to another tab on his browser to access another
-application, the login on OAuth2 is not necessary and a new authorization code will immediately
-redirected back.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/security/</guid>
+      <description>Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
+Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
+While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.</description>
     </item>
     
     <item>
       <title>API Gateway</title>
-      <link>https://networknt.github.io/light-java/architecture/gateway/</link>
+      <link>https://networknt.github.io/light-4j/architecture/gateway/</link>
       <pubDate>Thu, 20 Oct 2016 14:33:53 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/gateway/</guid>
-      <description>&lt;p&gt;When your organization is thinking about breaking up the big monolithic
-application to adopt microservices architecture, chances are there are
-some vendors coming to sell their gateway solutions. Why they want to
-sell you gateways and do you really need a gateway?&lt;/p&gt;
-
-&lt;p&gt;The reason they are eagerly selling you a gateway is because they have
-to monetize their product as soon as possible before it is obsolete.
-The solutions they provided are not truely microservices as there is
-no standalone gateway in the picture of the real microservices
-architecture. Their solution is coming from web services(SOA) design
-and all services behind the gateway are flattened.&lt;/p&gt;
-
-&lt;p&gt;Here is a picture of their typical solution in the beginning.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_oauth2_gateway.png&#34; alt=&#34;ms_oauth2_gateway&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After awhile, they realized that for every request from client, there
-are two calls from client and api to OAuth2 server and remote calls
-are too heavy.&lt;/p&gt;
-
-&lt;p&gt;Then the solution for gateway vendors is to move OAuth2 server inside
-the gateway so that there is no remote calls between gateway and OAuth2
-server for security verification. Here is an updated gateway.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_oauth2_in_gateway.png&#34; alt=&#34;ms_oauth2_in_gateway&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;With increasing volume, the monolithic gateway becomes bottleneck and
-the only solutions is horizontal scaling. That means you have a cluster
-of gateway instances and gateway becomes a single point of failure. If
-any component fails in gateway, all your APIs are not accessible. It is
-also very hard to scale as it is a big application with a lot of
-components built in and uses a lot of CPU and memory.&lt;/p&gt;
-
-&lt;p&gt;When you look inside the APIs protected by the gateway, you can see
-these APIs are implemented in JavaEE containers like
-WebLogic/WebSphere/JBoss/SpringBoot etc. and they don&amp;rsquo;t call each
-other. They are simply monolithic JavaEE application packaged in ear
-or war and exposed REST APIs. These APIs are normally deployed in Data
-Centers and lately moved to cloud. They are not real microservices at
-all.&lt;/p&gt;
-
-&lt;p&gt;Some smart developers attempted to break these big application into
-smaller pieces and move into the direction of microservices but gateway
-became a problem. Let&amp;rsquo;s take a look at how API to API call looks like
-with gateway in the following diagram.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_gateway_api_to_api.png&#34; alt=&#34;ms_gateway_api_to_api&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see, when API A calls API B, although both of them are behind
-the gateway, the request has to go in front of gateway to properly
-authenticate/authorize the request. Clearly, the centralized gateway
-design is against the decentralized principle of microservices
-architecture.&lt;/p&gt;
-
-&lt;p&gt;In our framework, the solution is to move all the cross cutting concerns
-to the API framework and APIs are built on top of the framework. In other
-words, a distributed gateway. Here is a diagram to show you client calls
-API A and API A calls API B/API C and API B calls API D.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/ms_distributed_gateway.png&#34; alt=&#34;ms_distributed_gateway&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In this architecture, every API instance contains functions from the
-framework and act like a mini gateway embedded. Along with container
-orchestration tools like Kubernetes or Docker Swarm, the traditional
-gateway is replaced. As there is no remote calls between API to gateway,
-all the cross cutting concerns are addressed in the same request/response
-chain. This gives you the best performance for your APIs. Here
-is an &lt;a href=&#34;https://networknt.github.io/light-java/tutorials/microservices/&#34;&gt;tutorial&lt;/a&gt;
-which implements the above diagram and source code for the four APIs can
-be found &lt;a href=&#34;https://github.com/networknt/light-java-example&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Our framework is built on top of Undertow http core server which is very
-light and serves 1.4 million &amp;ldquo;Hello World!&amp;rdquo; requests on my desktop with
-average response time 2ms. Is it 44 times faster then the most popular
-REST container Sprint Boot with embedded Tomcat.&lt;/p&gt;
-
-&lt;p&gt;The performance test code can be found in
-&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In the above diagram, OAuth2 server is an independent entity and you
-might ask if it is a bottleneck. I have written another &lt;a href=&#34;https://networknt.github.io/light-java/architecture/security&#34;&gt;document&lt;/a&gt;
-to address it with distributed JWT token verification and client credentials
-token caching and renewal. Basically, the Client module in the framework
-caches the client credentials token until it is about to expire then renew
-in the background.&lt;/p&gt;
-
-&lt;p&gt;Also, our own OAuth2 server built on top of Light-Java framework is very
-fast that it can handle 60K user login to get authorization code per second.
-For access token, it can serve about 700 access tokens in a second. It is
-also open sourced and can be found at &lt;a href=&#34;https://github.com/networknt/light-oauth2&#34;&gt;https://github.com/networknt/light-oauth2&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/gateway/</guid>
+      <description>When your organization is thinking about breaking up the big monolithic application to adopt microservices architecture, chances are there are some vendors coming to sell their gateway solutions. Why they want to sell you gateways and do you really need a gateway?
+The reason they are eagerly selling you a gateway is because they have to monetize their product as soon as possible before it is obsolete. The solutions they provided are not truely microservices as there is no standalone gateway in the picture of the real microservices architecture.</description>
     </item>
     
     <item>
       <title>Scalability</title>
-      <link>https://networknt.github.io/light-java/architecture/scalability/</link>
+      <link>https://networknt.github.io/light-4j/architecture/scalability/</link>
       <pubDate>Tue, 11 Oct 2016 12:32:21 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/scalability/</guid>
-      <description>
-
-&lt;p&gt;##&lt;/p&gt;
-
-&lt;p&gt;One of the benefits utilizing microservices architecture is to make sure
-your application is easily scaling. When we talk about scalability, one
-of the best books is &lt;a href=&#34;http://theartofscalability.com/&#34;&gt;The Art of Scalability&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;It introduced the scale cube as following.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/app_scale.png&#34; alt=&#34;scale_cube&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The Scale Cube consists of an X, Y and Z axes – each addressing a
-different approach to scale a service. The lowest left point of the
-cube (coordinates X=0, Y=0 and Z=0) represents the worst case
-monolithic service or product identified above: a product wherein
-all functions exist within a single code base on a single server making
-use of that server’s finite resources of memory, cpu speed, network
-ports, mass storage, etc.&lt;/p&gt;
-
-&lt;p&gt;In this model, scaling an application by running clones behind a load
-balancer is known as X-axis scaling. The other two kinds of scaling are
-Y-axis scaling and Z-axis scaling. The microservice architecture is an
-application of Y-axis scaling but let’s also look at X-axis and Z-axis
-scaling.&lt;/p&gt;
-
-&lt;h2 id=&#34;x-axis-scaling&#34;&gt;X-axis scaling&lt;/h2&gt;
-
-&lt;p&gt;X-axis scaling consists of running multiple copies of an application
-behind a load balancer. If there are N copies then each copy handles
-1/N of the load. This is a simple, commonly used approach of scaling
-an application.&lt;/p&gt;
-
-&lt;p&gt;One drawback of this approach is that because each copy potentially
-accesses all of the data, caches require more memory to be effective.
-Another problem with this approach is that it does not tackle the
-problems of increasing development and application complexity.&lt;/p&gt;
-
-&lt;h2 id=&#34;y-axis-scaling&#34;&gt;Y-axis scaling&lt;/h2&gt;
-
-&lt;p&gt;Unlike X-axis and Z-axis, which consist of running multiple, identical
-copies of the application, Y-axis axis scaling splits the application
-into multiple, different services. Each service is responsible for one
-or more closely related functions. There are a couple of different ways
-of decomposing the application into services. One approach is to use
-verb-based decomposition and define services that implement a single use
-case such as checkout. The other option is to decompose the application
-by noun and create services responsible for all operations related to a
-particular entity such as customer management. An application might use
-a combination of verb-based and noun-based decomposition.&lt;/p&gt;
-
-&lt;h2 id=&#34;z-axis-scaling&#34;&gt;Z-axis scaling&lt;/h2&gt;
-
-&lt;p&gt;When using Z-axis scaling each server runs an identical copy of the code.
-In this respect, it’s similar to X-axis scaling. The big difference is
-that each server is responsible for only a subset of the data. Some
-components of the system are responsible for routing each request to the
-appropriate server. One commonly used routing criteria is an attribute
-of the request such as the primary key of the entity being accessed.
-Another common routing criteria is the customer type. For example, an
-application might provide paying customers with a higher SLA than free
-customers by routing their requests to a different set of servers with
-more capacity.&lt;/p&gt;
-
-&lt;p&gt;Z-axis splits are commonly used to scale databases. Data is partitioned
-(a.k.a. sharded) across a set of servers based on an attribute of each
-record. In this example, the primary key of the RESTAURANT table is used
-to partition the rows between two different database servers. Note that
-X-axis cloning might be applied to each partition by deploying one or
-more servers as replicas/slaves. Z-axis scaling can also be applied to
-applications. In this example, the search service consists of a number
-of partitions. A router sends each content item to the appropriate
-partition, where it is indexed and stored. A query aggregator sends
-each query to all of the partitions, and combines the results from each
-of them.&lt;/p&gt;
-
-&lt;p&gt;Z-axis scaling has a number of benefits.&lt;/p&gt;
-
-&lt;p&gt;Each server only deals with a subset of the data. This improves cache
-utilization and reduces memory usage and I/O traffic. It also improves
-transaction scalability since requests are typically distributed across
-multiple servers. Also, Z-axis scaling improves fault isolation since a
-failure only makes part of the data in accessible.&lt;/p&gt;
-
-&lt;p&gt;Z-axis scaling has some drawbacks.&lt;/p&gt;
-
-&lt;p&gt;One drawback is increased application complexity. We need to implement a
-partitioning scheme, which can be tricky especially if we ever need to
-repartition the data. Another drawback of Z-axis scaling is that doesn’t
-solve the problems of increasing development and application complexity.
-To solve those problems we need to apply Y-axis scaling.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/scalability/</guid>
+      <description>##
+One of the benefits utilizing microservices architecture is to make sure your application is easily scaling. When we talk about scalability, one of the best books is The Art of Scalability
+It introduced the scale cube as following.
+The Scale Cube consists of an X, Y and Z axes – each addressing a different approach to scale a service. The lowest left point of the cube (coordinates X=0, Y=0 and Z=0) represents the worst case monolithic service or product identified above: a product wherein all functions exist within a single code base on a single server making use of that server’s finite resources of memory, cpu speed, network ports, mass storage, etc.</description>
     </item>
     
     <item>
       <title>Spring is bloated</title>
-      <link>https://networknt.github.io/light-java/architecture/spring-is-bloated/</link>
+      <link>https://networknt.github.io/light-4j/architecture/spring-is-bloated/</link>
       <pubDate>Sun, 09 Oct 2016 08:15:27 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/spring-is-bloated/</guid>
-      <description>
-
-&lt;p&gt;Over the years, Spring seemed to be the replacement of JEE servers with IoC
-container and light weight servlet container as its foundation. Especially
-recently, Spring Boot brings in an easy development model and increases
-developer productivity dramatically.&lt;/p&gt;
-
-&lt;p&gt;However, there are two issues or limitations in Spring applications.&lt;/p&gt;
-
-&lt;h3 id=&#34;spring-is-bloated-and-it-becomes-too-heavy&#34;&gt;Spring is bloated and it becomes too heavy&lt;/h3&gt;
-
-&lt;p&gt;When Spring was out, it was only a small core with IoC contain and it was
-fast and easy to use. Now, I cannot even count how many Spring Components
-available today. In order to complete with JEE, Spring basically implemented all
-replacements of JEE and these are heavy components.&lt;/p&gt;
-
-&lt;h3 id=&#34;most-spring-applications-are-based-on-old-servlet-api-and-it-is-slow&#34;&gt;Most Spring applications are based on old servlet API and it is slow.&lt;/h3&gt;
-
-&lt;p&gt;Another issue with Spring is due to the foundation of servlet container
-which was designed over ten years ago without multi-core, NIO etc in
-consideration. There is a little improvement in Servlet 3.1 but it wasn&amp;rsquo;t
-right due to backward compatible requirement.&lt;/p&gt;
-
-&lt;p&gt;I did a performance test between Spring Boot and My own Light Java Framework
-and Spring Boot is 44 times slower. The performance test code and result can be
-found &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The test result for Spring Boot was based on the embedded tomcat server and
-later on I have switched to Undertow servlet container for Spring Boot. The
-Undertow Servlet container is faster but still over 20-30 times slower then
-Light Java Framework which is built on top of Undertow core http server.&lt;/p&gt;
-
-&lt;p&gt;The 20-30 times difference between the two is due to Servlet overhead and Sprint
-Boot overhead and it is very significant.&lt;/p&gt;
-
-&lt;p&gt;After I published the peformance test results, one of the Spring developers pointed
-me to a new approach to build Spring Boot application with Netty. The performance
-is getting better but still very slow compare with Light Java.&lt;/p&gt;
-
-&lt;h3 id=&#34;memory-footprint&#34;&gt;Memory Footprint&lt;/h3&gt;
-
-&lt;p&gt;During these test, I observed that Spring Boot with embedded servlet container uses
-at least 5 times more memory. This is a big different in cloud computer as memory is
-very expensive.&lt;/p&gt;
-
-&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;Given above reasons, there is no way that Spring Boot can be used as a
-light weight platform for microservices. It is too heavy and two slow. And if you
-compare the codebase on both Spring Boot and Light Java, you can see Light Java
-code is small and easy to understand without any annotations.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/spring-is-bloated/</guid>
+      <description>Over the years, Spring seemed to be the replacement of JEE servers with IoC container and light weight servlet container as its foundation. Especially recently, Spring Boot brings in an easy development model and increases developer productivity dramatically.
+However, there are two issues or limitations in Spring applications.
+Spring is bloated and it becomes too heavy When Spring was out, it was only a small core with IoC contain and it was fast and easy to use.</description>
     </item>
     
     <item>
       <title>Microservices - The final nail in the coffin for Java EE</title>
-      <link>https://networknt.github.io/light-java/architecture/jee-is-dead/</link>
+      <link>https://networknt.github.io/light-4j/architecture/jee-is-dead/</link>
       <pubDate>Sun, 09 Oct 2016 08:14:57 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/jee-is-dead/</guid>
-      <description>
-
-&lt;p&gt;When Java was out, big players like IBM, BEA, Oracle etc. saw a great opportunity
-to make money as it is a great language for web programming. But how can you make
-big money around a programming language? The answer is to build servers on top
-of it and make it complicated so big corporations will pay big bucks for it. That
-is why we have Java EE specs, JSRs, Weblogic, Websphere and other servers.&lt;/p&gt;
-
-&lt;p&gt;Large packages are deployed on these servers that are run so slow and used too
-much memory. Development and Debugging within a container was a nightmare for
-developers and they usually paid well to compensating the pain.&lt;/p&gt;
-
-&lt;p&gt;Because of resource usage is too high, you could not find public hosting company
-to support Java with a reasonable price tag for a long time. You want to build a
-website in Java, you have to pay big bucks for hosting even you might just use a
-Servlet container.&lt;/p&gt;
-
-&lt;p&gt;For a long time, Java was used within enterprises and big corporations as only
-they can afford million-dollar application servers and well paid enterprise level
-developers. I myself have been riding the train since beginning as a Java EE
-consultant☺&lt;/p&gt;
-
-&lt;p&gt;In 2003, Rod Johnson released Spring Framework and it allows IoC and POJO for
-development without EJBs. The productivity increment is huge and a lot of
-developers jumped onto it and thrown J2EE EJBs out of the window. The application
-server vendors saw this and in Java EE 5, they provided some features to make
-developer&amp;rsquo;s life easier and less painfull, today’s &lt;a href=&#34;https://networknt.github.io/light-java/architecture/spring-is-bloated/&#34;&gt;Spring Framework is so
-bloated&lt;/a&gt;
-like Java EE containers and it still based on Java EE servlet container which was
-designed in 90&amp;rsquo;s without considering multiple cores and NIO.&lt;/p&gt;
-
-&lt;p&gt;During this period of time, PHP was flying. It used less memory and resource and
-was well supported by hosting companies. Some CMS platform built on PHP like
-WordPress, Drupal etc. drove a lot of open source developers into PHP. Although
-PHP is the most popular language these days, it has its shortcomings. It is slow
-and hard to make it scalable.&lt;/p&gt;
-
-&lt;p&gt;In 2009, Ryan Dahl introduced Node.js that supports asynchronous, non-blocking
-and event-driven I/O. This increase the response rate dramatically as the server
-threads are well utilized and the throughput of a single server can be comparable
-to a cluster of Java EE servers. Node.js is a very good design but it has its
-&lt;a href=&#34;https://networknt.github.io/light-java/architecture/nodejs/&#34;&gt;limitations&lt;/a&gt;.
-It is hard to scale and hard to integrate with existing legacy systems.&lt;/p&gt;
-
-&lt;p&gt;In 2014, a new player Undertow came in town and it is Java based non-blocking web
-server. From techempower.com &lt;a href=&#34;https://www.techempower.com/benchmarks/#section=data-r12&amp;amp;hw=peak&amp;amp;test=plaintext&#34;&gt;test&lt;/a&gt;,
-it serves millions requests per second
-on a single $8000 dell server using the same test case Google claimed to serve
-1 million requests with a cluster. It is lightweight with the core coming under
-1Mb and a simple embedded server uses less than 4Mb of heap space.&lt;/p&gt;
-
-&lt;p&gt;With the new Undertow Core, we&amp;rsquo;ve built &lt;a href=&#34;https://github.com/networknt/light-java&#34;&gt;Light Java Framework&lt;/a&gt;
-which is aiming containerized microserivces. It supports design driven approach
-from OpenAPI specification to generate code and drives security and validation
-during runtime.&lt;/p&gt;
-
-&lt;h2 id=&#34;java-ee-vendors&#34;&gt;Java EE vendors&lt;/h2&gt;
-
-&lt;p&gt;Years ago, Java EE vendors like Oracle and IBM spent billions dollars to develop their
-application servers and these servers (WebLogic and WebSphere) will be sold for millions
-dollars to big organizations. Now it is hard to sell these servers as JBoss is grabbing
-market share quickly and Oracle is &lt;a href=&#34;https://developers.slashdot.org/story/16/07/02/1639241/oracle-may-have-stopped-funding-and-developing-java-ee&#34;&gt;dropping Java EE support&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;With microservices gainning traction, the application servers are hard to sell as these
-servers are used to host monolithic applications. It doesn&amp;rsquo;t make sense to host a service
-with only 200 lines of code on WebSphere which has several millions lines of code.
-99 percent of CPU and memory will be wasted on the Java EE server and your service will be
-slow as a snail. This forces them to rebrand and make changes on their platform to allow
-user to build microservices but the result is not promising. I have tested JBoss WildFly
-Swarm in my &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;benchmarks&lt;/a&gt;
-and it is at the bottom. WebLogic Multitenant and WebSphere Liberty will be much worse as
-they are significant bigger than WildFly Swarm.&lt;/p&gt;
-
-&lt;h2 id=&#34;java-ee-customers&#34;&gt;Java EE customers&lt;/h2&gt;
-
-&lt;p&gt;From customer&amp;rsquo;s perspective, it is not worth buying these applications as all the promises
-of Java EE are not true. You build an application for WebSphere cannot be deployed on WebLogic
-and you have to spend money to upgrade your application to newer version of the application
-server as the old version is not supported anymore. And these upgrade cost millions of
-dollars plus the cost of the new application servers.&lt;/p&gt;
-
-&lt;p&gt;Some smart people start to ask questions. Why we need to deploy our application to these
-monster servers? Why we need to package our application as ear or war instead of just a
-jar? Why cannot we break the big application to smaller pieces and deploy and scale them
-independently.&lt;/p&gt;
-
-&lt;h2 id=&#34;microservices&#34;&gt;Microservices&lt;/h2&gt;
-
-&lt;p&gt;The answer for these questions are microservices. Wikipedia defines microservices as
-&amp;ldquo;&amp;hellip;a software architecture style in which complex applications are composed of small,
-independent processes communicating with each other using language-agnostic APIs.
-These services are small, highly decoupled and focus on doing a small task,
-facilitating a modular approach to system-building.&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;Microservice Architecture make applications easier to build by breaking down application
-into services. The services are composable. Each service can be deployed and developed
-separately. The services can be composed into an application. The services have the
-possibility of being used in other applications more readily. This can speed up
-development as services can define an interface and then the services can be developed
-concurrently.&lt;/p&gt;
-
-&lt;p&gt;Another reason services make sense is resilience and scalability. Instead of depending
-on a single server and a single deployment, services can be spread around multiple
-machines, data centers or availability zones. If a service fails, you can start up
-another. Since the application is decomposed into microservices (small services),
-you can more efficiently scale it by spinning up more instances of the heaviest used
-services.&lt;/p&gt;
-
-&lt;p&gt;If you have lived through COM, DCOM, CORBA, EJBs, OSGi, SOAP, SOA etc. then you
-know the idea of services and components is not a new thing. The issue with enterprise
-components is they assume the use of hardware servers which are large monoliths and
-you want to run a lot of things on the same server. We have EJBs, WAR files and EAR
-files, and all sorts of nifty components and archives because server acquisition was
-a lot more difficult. Well turns out in recent years, that makes no sense. Operating
-systems and servers are ephemeral, virtualized resources and can be shipped like a
-component. We have EC2, OpenStack, Vagrant and Docker. The world changed. Microservice
-Architecture just recognize this trend so you are not developing like you did when the
-hardware, cloud orchestration, multi-cores, and virtualization did not exist.&lt;/p&gt;
-
-&lt;p&gt;Don’t use an EAR file or a WAR file when you start a new project.  Now you can run a
-JVM in a Docker image which is just a process pretending to be an OS running in an OS
-that could be running in the cloud which is running inside of a virtual machine which
-is running in Linux server that you don’t own that you share with people who you don’t
-know. Got a busy season? Well then, spin up 100 more server instances for a few weeks
-or hours. This is why you run Java microservices as standalone processes and not running
-inside of a Java EE container, not even a servlet container.&lt;/p&gt;
-
-&lt;p&gt;Microservice generally provide an API endpoint over HTTP/JSON. This allows easy
-integration with not only services you build, but any software (open-source or from
-vendor) that provides an HTTP/JSON interface. This makes the services consumable and
-composable in ways that just make sense. A prime example of this is EC2, S3 and other
-services from Amazon (and others). The very infrastructure you deploy on can become
-part of the application and is programmable.&lt;/p&gt;
-
-&lt;p&gt;When you design your application to use microservices, you are designing it to be
-modular, programmable and composable. This allows you to replace microservices with
-other microservices. You can rewrite or improve parts of your larger application
-without disruption. When everything has a programmable API, communications between
-application microservices becomes easier. (Never trust a microservice that does not
-publish access to with curl).&lt;/p&gt;
-
-&lt;p&gt;While microservices are getting popular, a lot vendors are trying to re-brand their
-Java EE based web services to microservices in order to sell their obsolete product.
-&lt;a href=&#34;https://networknt.github.io/light-java/architecture/gateway/&#34;&gt;API Gateway&lt;/a&gt; is one of
-them. These gateways are designed for Web Services but not Microservices.&lt;/p&gt;
-
-&lt;p&gt;Jason Bloomberg, president of Intellyx, talks about the distinction between a typical
-web service and a microservice, arguing against the tendency to try to simply rebrand
-web services as microservices in this &lt;a href=&#34;http://techbeacon.com/dangers-microservices-washing-get-value-strip-away-hype&#34;&gt;article&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Microservices are not Web Services on enterprise service buses (ESBs). And it is not
-the traditional service-oriented architecture (SOA), while it inherits some of the
-basic principles of SOA, it&amp;rsquo;s fundamentally a different set of practices because the
-entire environment has completely transformed.&lt;/p&gt;
-
-&lt;p&gt;The environment for microservices architecture, in contrast, is the borderless
-enterprise: end-to-end, cloud-centric digital applications leveraging fully
-virtualized and containerized infrastructure. Containers take applications and
-services down to a self-contained, component level, and DevOps provides the framework
-for the IT infrastructure and automation to develop, deploy, and manage the
-environment.&lt;/p&gt;
-
-&lt;p&gt;Microservices don&amp;rsquo;t require containers (or vice versa), but they&amp;rsquo;re easily
-containerizable by design. Furthermore, if you&amp;rsquo;re implementing containers,
-it&amp;rsquo;s difficult and typically unwise to put any new executable code other than
-microservices in them.&lt;/p&gt;
-
-&lt;p&gt;Docker and other container technologies are viewed by some as a integral to microservice
-architecture and some confuse and conflate containers with microservices. Containers are
-minimalist OS pieces to run your microservice on. Docker provides ease of development and
-enables easier integration testing.&lt;/p&gt;
-
-&lt;p&gt;Containers are just an enabler to microservices and you can do microservice development
-without containers. And you can use Docker to deploy monolithic application. Microservices
-and containers like Docker go well together. However, Microservices are a lot more than
-containers!&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;As application development style has been changing over the recent years, microservices
-are getting more and more popular. Big corporations are breaking their big applications
-up to smaller pieces that can be individually deployed and replaced. These smaller
-services are deployed within docker containers on the cloud. I myself have been working
-on this area for my clients for the last couple of years and devoted my time to build
-an open source microservices framework &lt;a href=&#34;https://github.com/networknt/light-java&#34;&gt;Light Java&lt;/a&gt;
-which provides all cross cutting concerns for microservices running in containers. It
-supports design driven approach and developers will only focus on the domain business
-logic in generated handlers. All the rest will be handled by the Framework and DevOps flow.
-So far, it is the fastest microservices framework available.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/jee-is-dead/</guid>
+      <description>When Java was out, big players like IBM, BEA, Oracle etc. saw a great opportunity to make money as it is a great language for web programming. But how can you make big money around a programming language? The answer is to build servers on top of it and make it complicated so big corporations will pay big bucks for it. That is why we have Java EE specs, JSRs, Weblogic, Websphere and other servers.</description>
     </item>
     
     <item>
       <title>Microservices</title>
-      <link>https://networknt.github.io/light-java/architecture/microservices/</link>
+      <link>https://networknt.github.io/light-4j/architecture/microservices/</link>
       <pubDate>Sun, 09 Oct 2016 08:13:52 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/architecture/microservices/</guid>
-      <description>
-
-&lt;p&gt;#&lt;/p&gt;
-
-&lt;p&gt;Speed and Safety at Scale and in Harmony.&lt;/p&gt;
-
-&lt;p&gt;If you’re like most software developers, team leaders, and architects responsible for getting
-working code out the door of your company, this phrase describes your job in a nutshell. Most
-of you have probably struggled at this, too. Getting to market quickly seems to imply giving
-up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient
-means slowing down the pace of feature and bug-fix releases. And “at scale” is just a dream.&lt;/p&gt;
-
-&lt;p&gt;The three principals of the microservices architecture style.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Microservices are ideal for big systems&lt;/li&gt;
-&lt;li&gt;Microservice architecture is goal-oriented not solution-oriented&lt;/li&gt;
-&lt;li&gt;Microservices are focused on replaceability&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;microservice applications share some important characteristics:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Small in size&lt;/li&gt;
-&lt;li&gt;Messaging enabled&lt;/li&gt;
-&lt;li&gt;Bounded by contexts&lt;/li&gt;
-&lt;li&gt;Autonomously developed&lt;/li&gt;
-&lt;li&gt;Independently deployable&lt;/li&gt;
-&lt;li&gt;Decentralized&lt;/li&gt;
-&lt;li&gt;Built and released with automated processes&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When you build software in this way, the cost of controlling and managing output increases
-significantly. In a microservice architecture, the services tend to get simpler, but the
-architecture tends to get more complex. That complexity is often managed with tooling,
-automation, and process.&lt;/p&gt;
-
-&lt;p&gt;When you first begin learning about microservice architecture it’s easy to get caught up in
-the tangible parts of the solution. You don’t have to look hard to find people who are excited
-about Docker, continuous delivery, or service discovery. All of these things can help you to
-build a system that sounds like the microservice systems we’ve been discussing. But
-microservices can’t be achieved by focusing on a particular set of patterns, process, or tools.
-Instead, you’ll need to stay focused on the goal itself—a system that can make change easier.&lt;/p&gt;
-
-&lt;p&gt;More specifically, the real value of microservices is realized when we focus on two key
-aspects—speed and safety. Every single decision you make about your software development ends
-up as a trade-off that impacts these two ideals. Finding an effective balance between them at
-scale is what we call the microservices way.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The Speed of Change&lt;/li&gt;
-&lt;li&gt;The Safety of Change&lt;/li&gt;
-&lt;li&gt;At Scale&lt;/li&gt;
-&lt;li&gt;In Harmony&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The original intent of the microservice architecture concept—to replace complex monolithic
-applications with software systems made of replaceable components.&lt;/p&gt;
-
-&lt;p&gt;Over the years, there are so many stories that big companies built their system in a microservices way.
-There are common goals and benefits that emerge from these implementation stories. The goal
-of improving software delivery speed as functional scope grows is realized through greater
-agility, higher composability, improved comprehensibility, independent service deployability,
-organizational alignment, and polyglotism. The goal of maintaining software system safety as
-scale increases is achieved through higher availability and resiliency, better efficiency,
-independent manageability and replaceability of components, increased runtime scalability,
-and more simplified testability.&lt;/p&gt;
-
-&lt;h3 id=&#34;speed&#34;&gt;Speed&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Agility allows organizations to deliver new products, functions, and features more quickly and pivot more easily if needed.&lt;/li&gt;
-&lt;li&gt;Composability reduces development time and provides a compound benefit through reusability over time.&lt;/li&gt;
-&lt;li&gt;Comprehensibility of the software system simplifies development planning, increases accuracy, and allows new resources to come up to speed more quickly.&lt;/li&gt;
-&lt;li&gt;Independent deployability of components gets new features into production more quickly and provides more flexible options for piloting and prototyping.&lt;/li&gt;
-&lt;li&gt;Organizational alignment of services to teams reduces ramp-up time and encour‐ ages teams to build more complex products and features iteratively.&lt;/li&gt;
-&lt;li&gt;Polyglotism permits the use of the right tools for the right task, thus accelerating technology introduction and increasing solution options.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;safety&#34;&gt;Safety&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Greater e ciency in the software system reduces infrastructure costs and reduces the risk of capacity-related service outages.&lt;/li&gt;
-&lt;li&gt;Independent manageability contributes to improved efficiency, and also reduces the need for scheduled downtime.&lt;/li&gt;
-&lt;li&gt;Replaceability of components reduces the technical debt that can lead to aging, unreliable environments.&lt;/li&gt;
-&lt;li&gt;Stronger resilience and higher availability ensure a good customer experience.&lt;/li&gt;
-&lt;li&gt;Better runtime scalability allows the software system to grow or shrink with the business.&lt;/li&gt;
-&lt;li&gt;Improved testability allows the business to mitigate implementation risks.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;history&#34;&gt;History&lt;/h1&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/architecture/microservices/</guid>
+      <description>#
+Speed and Safety at Scale and in Harmony.
+If you’re like most software developers, team leaders, and architects responsible for getting working code out the door of your company, this phrase describes your job in a nutshell. Most of you have probably struggled at this, too. Getting to market quickly seems to imply giving up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient means slowing down the pace of feature and bug-fix releases.</description>
     </item>
     
   </channel>

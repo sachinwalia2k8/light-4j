@@ -2,418 +2,496 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://networknt.github.io/light-java/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/minikube/</loc>
     <lastmod>2017-03-18T20:37:48-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/minikube/</loc>
-    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/middleware/limit/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/limit/</loc>
     <lastmod>2017-02-17T14:10:28-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/cors/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/cors/</loc>
     <lastmod>2017-02-15T09:26:58-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/design/monojee/</loc>
+    <loc>https://networknt.github.io/light-4j/design/monojee/</loc>
     <lastmod>2017-02-09T12:45:22-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/design/newprod/</loc>
+    <loc>https://networknt.github.io/light-4j/design/newprod/</loc>
     <lastmod>2017-02-09T12:45:08-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/design/convtws/</loc>
+    <loc>https://networknt.github.io/light-4j/design/convtws/</loc>
     <lastmod>2017-02-09T10:59:44-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/design/</loc>
+    <loc>https://networknt.github.io/light-4j/design/</loc>
     <lastmod>2017-02-09T10:57:47-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/dump/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/dump/</loc>
     <lastmod>2017-02-06T21:40:01-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/zookeeper/</loc>
+    <loc>https://networknt.github.io/light-4j/other/zookeeper/</loc>
     <lastmod>2017-02-06T21:34:10-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/switcher/</loc>
+    <loc>https://networknt.github.io/light-4j/other/switcher/</loc>
     <lastmod>2017-02-06T21:34:02-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/service/</loc>
+    <loc>https://networknt.github.io/light-4j/other/service/</loc>
     <lastmod>2017-02-06T21:33:54-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/registry/</loc>
+    <loc>https://networknt.github.io/light-4j/other/registry/</loc>
     <lastmod>2017-02-06T21:33:47-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/health/</loc>
+    <loc>https://networknt.github.io/light-4j/other/health/</loc>
     <lastmod>2017-02-06T21:33:38-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/handler/</loc>
+    <loc>https://networknt.github.io/light-4j/other/handler/</loc>
     <lastmod>2017-02-06T21:33:25-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/consul/</loc>
+    <loc>https://networknt.github.io/light-4j/other/consul/</loc>
     <lastmod>2017-02-06T21:33:14-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/cluster/</loc>
+    <loc>https://networknt.github.io/light-4j/other/cluster/</loc>
     <lastmod>2017-02-06T21:33:04-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/balance/</loc>
+    <loc>https://networknt.github.io/light-4j/other/balance/</loc>
     <lastmod>2017-02-06T21:32:51-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/correlation/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/correlation/</loc>
     <lastmod>2017-02-06T09:59:28-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/keytool/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/keytool/</loc>
     <lastmod>2017-02-03T14:12:47-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/discovery/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/discovery/</loc>
     <lastmod>2017-01-27T20:57:14-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/</loc>
+    <loc>https://networknt.github.io/light-4j/example/</loc>
     <lastmod>2017-01-25T21:12:31-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/</loc>
     <lastmod>2017-01-25T21:05:31-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/</loc>
     <lastmod>2017-01-25T20:59:08-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/devops/</loc>
+    <loc>https://networknt.github.io/light-4j/devops/</loc>
     <lastmod>2017-01-25T20:55:53-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/benchmarks/</loc>
+    <loc>https://networknt.github.io/light-4j/benchmarks/</loc>
     <lastmod>2017-01-25T20:48:38-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/</loc>
     <lastmod>2017-01-25T20:18:44-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/database/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/database/</loc>
     <lastmod>2017-01-23T09:07:32-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/devops/linux_service/</loc>
+    <loc>https://networknt.github.io/light-4j/devops/linux_service/</loc>
     <lastmod>2017-01-07T08:03:47-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/devops/windows_service/</loc>
+    <loc>https://networknt.github.io/light-4j/devops/windows_service/</loc>
     <lastmod>2017-01-07T08:03:33-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/benchmarks/nodejs/</loc>
+    <loc>https://networknt.github.io/light-4j/benchmarks/nodejs/</loc>
     <lastmod>2016-11-18T14:41:29-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/webserver/</loc>
+    <loc>https://networknt.github.io/light-4j/example/webserver/</loc>
     <lastmod>2016-11-18T08:25:10-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/integration/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/integration/</loc>
     <lastmod>2016-11-12T20:55:44-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/monitoring/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/monitoring/</loc>
     <lastmod>2016-11-09T21:13:27-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/traceability/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/traceability/</loc>
     <lastmod>2016-11-06T11:04:20-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/traceability/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/traceability/</loc>
     <lastmod>2016-11-06T10:24:22-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/plugin/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/plugin/</loc>
     <lastmod>2016-10-29T17:22:16-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/memory_monitor/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/memory_monitor/</loc>
     <lastmod>2016-10-27T08:44:57-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/info/</loc>
+    <loc>https://networknt.github.io/light-4j/other/info/</loc>
     <lastmod>2016-10-23T13:23:59-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/</loc>
+    <loc>https://networknt.github.io/light-4j/other/</loc>
     <lastmod>2016-10-23T13:22:33-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/server/</loc>
+    <loc>https://networknt.github.io/light-4j/other/server/</loc>
     <lastmod>2016-10-23T13:21:19-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/status/</loc>
+    <loc>https://networknt.github.io/light-4j/other/status/</loc>
     <lastmod>2016-10-23T13:20:51-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/utility/</loc>
+    <loc>https://networknt.github.io/light-4j/other/utility/</loc>
     <lastmod>2016-10-23T13:20:22-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/mask/</loc>
+    <loc>https://networknt.github.io/light-4j/other/mask/</loc>
     <lastmod>2016-10-23T13:19:36-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/config/</loc>
+    <loc>https://networknt.github.io/light-4j/other/config/</loc>
     <lastmod>2016-10-23T13:18:22-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/client/</loc>
+    <loc>https://networknt.github.io/light-4j/other/client/</loc>
     <lastmod>2016-10-23T12:26:20-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/sanitizer/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/sanitizer/</loc>
     <lastmod>2016-10-23T10:35:04-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/swagger/</loc>
+    <loc>https://networknt.github.io/light-4j/example/swagger/</loc>
     <lastmod>2016-10-22T21:02:01-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/routing/</loc>
+    <loc>https://networknt.github.io/light-4j/example/routing/</loc>
     <lastmod>2016-10-22T21:00:30-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/performance/</loc>
+    <loc>https://networknt.github.io/light-4j/example/performance/</loc>
     <lastmod>2016-10-22T20:55:36-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/microservices/</loc>
+    <loc>https://networknt.github.io/light-4j/example/microservices/</loc>
     <lastmod>2016-10-22T20:48:04-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/petstore/</loc>
+    <loc>https://networknt.github.io/light-4j/example/petstore/</loc>
     <lastmod>2016-10-22T20:40:35-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/example/database/</loc>
+    <loc>https://networknt.github.io/light-4j/example/database/</loc>
     <lastmod>2016-10-22T20:22:34-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/security/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/security/</loc>
     <lastmod>2016-10-20T14:34:09-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/gateway/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/gateway/</loc>
     <lastmod>2016-10-20T14:33:53-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/getting-started/</loc>
+    <loc>https://networknt.github.io/light-4j/getting-started/</loc>
     <lastmod>2016-10-18T07:00:45-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/metrics/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/metrics/</loc>
     <lastmod>2016-10-15T20:42:32-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/roadmap/</loc>
+    <loc>https://networknt.github.io/light-4j/roadmap/</loc>
     <lastmod>2016-10-15T19:19:57-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/management/flow/</loc>
+    <loc>https://networknt.github.io/light-4j/management/flow/</loc>
     <lastmod>2016-10-12T19:30:08-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/swagger-validator/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/swagger-validator/</loc>
     <lastmod>2016-10-12T19:13:19-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/swagger-meta/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/swagger-meta/</loc>
     <lastmod>2016-10-12T19:10:34-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/other/security/</loc>
+    <loc>https://networknt.github.io/light-4j/other/security/</loc>
     <lastmod>2016-10-12T19:07:43-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/swagger-security/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/swagger-security/</loc>
     <lastmod>2016-10-12T19:07:43-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/exception/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/exception/</loc>
     <lastmod>2016-10-12T19:03:24-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/body/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/body/</loc>
     <lastmod>2016-10-12T18:57:17-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/audit/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/audit/</loc>
     <lastmod>2016-10-12T18:48:58-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/end-to-end-test/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/end-to-end-test/</loc>
     <lastmod>2016-10-12T17:21:40-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/integration-test/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/integration-test/</loc>
     <lastmod>2016-10-12T17:06:30-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/unit-test/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/unit-test/</loc>
     <lastmod>2016-10-12T17:05:47-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/debug/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/debug/</loc>
     <lastmod>2016-10-12T17:03:28-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/scalability/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/scalability/</loc>
     <lastmod>2016-10-11T12:32:21-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/spring-is-bloated/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/spring-is-bloated/</loc>
     <lastmod>2016-10-09T08:15:27-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/jee-is-dead/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/jee-is-dead/</loc>
     <lastmod>2016-10-09T08:14:57-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/architecture/microservices/</loc>
+    <loc>https://networknt.github.io/light-4j/architecture/microservices/</loc>
     <lastmod>2016-10-09T08:13:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/ms_chain/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/ms_chain/</loc>
     <lastmod>2016-10-09T08:01:56-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tutorials/microservices/</loc>
+    <loc>https://networknt.github.io/light-4j/tutorials/microservices/</loc>
     <lastmod>2016-10-09T08:01:56-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/swagger-codegen/</loc>
-    <lastmod>2016-10-08T22:14:59-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-java/tools/swagger-cli/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/swagger-cli/</loc>
     <lastmod>2016-10-08T22:14:47-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/swagger-editor/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/swagger-editor/</loc>
     <lastmod>2016-10-08T22:14:33-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/wrk-perf/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/wrk-perf/</loc>
     <lastmod>2016-10-08T21:47:07-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/tools/hugo-docs/</loc>
+    <loc>https://networknt.github.io/light-4j/tools/hugo-docs/</loc>
     <lastmod>2016-10-08T19:25:24-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/middleware/</loc>
+    <loc>https://networknt.github.io/light-4j/middleware/</loc>
     <lastmod>2016-10-07T22:02:13-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-java/</loc>
+    <loc>https://networknt.github.io/light-4j/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/architecture/</loc>
+    <lastmod>2017-01-25T20:18:44-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/benchmarks/</loc>
+    <lastmod>2017-01-25T20:48:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/design/</loc>
+    <lastmod>2017-02-09T12:45:22-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/devops/</loc>
+    <lastmod>2017-01-25T20:55:53-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/example/</loc>
+    <lastmod>2017-01-25T21:12:31-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/getting-started/</loc>
+    <lastmod>2016-10-18T07:00:45-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/</loc>
+    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/management/</loc>
+    <lastmod>2016-10-12T19:30:08-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/middleware/</loc>
+    <lastmod>2017-02-17T14:10:28-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/other/</loc>
+    <lastmod>2017-02-06T21:34:10-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/roadmap/</loc>
+    <lastmod>2016-10-15T19:19:57-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/tools/</loc>
+    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/tutorials/</loc>
+    <lastmod>2017-02-15T09:26:58-05:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

@@ -1,184 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devops-rsses on Light Java - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/light-java/devops/index.xml</link>
-    <description>Recent content in Devops-rsses on Light Java - The fastest Java API Framework</description>
+    <title>Devops on Light 4J - A fast, lightweight Java microservices framework</title>
+    <link>https://networknt.github.io/light-4j/devops/</link>
+    <description>Recent content in Devops on Light 4J - A fast, lightweight Java microservices framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Wed, 25 Jan 2017 20:55:53 -0500</lastBuildDate>
-    <atom:link href="https://networknt.github.io/light-java/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://networknt.github.io/light-4j/devops/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>DevOps</title>
-      <link>https://networknt.github.io/light-java/devops/</link>
+      <link>https://networknt.github.io/light-4j/devops/</link>
       <pubDate>Wed, 25 Jan 2017 20:55:53 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/devops/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/devops/linux_service/&#34;&gt;How to deploy standalone microservices as Linux service&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/devops/windows_service/&#34;&gt;How to deploy standalone microservices as Windows service&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/devops/</guid>
+      <description> How to deploy standalone microservices as Linux service
+ How to deploy standalone microservices as Windows service
+  </description>
     </item>
     
     <item>
-      <title>Running Light-Java Application as Linux Service</title>
-      <link>https://networknt.github.io/light-java/devops/linux_service/</link>
+      <title>Running Light-4J Application as Linux Service</title>
+      <link>https://networknt.github.io/light-4j/devops/linux_service/</link>
       <pubDate>Sat, 07 Jan 2017 08:03:47 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/devops/linux_service/</guid>
-      <description>
-
-&lt;p&gt;Light-Java application can be easily started as Unix/Linux services using either init.d or systemd given it
-is packaged as a fatjar.&lt;/p&gt;
-
-&lt;h2 id=&#34;installation-as-an-init-d-service-system-v&#34;&gt;Installation as an init.d service (System V)&lt;/h2&gt;
-
-&lt;p&gt;If your application is packaged as a fatjar, and you’re not using a custom script, then your application
-can be used as an init.d service. Simply symlink the jar to init.d to support the standard start, stop,
-restart and status commands.&lt;/p&gt;
-
-&lt;p&gt;The script supports the following features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Starts the services as the user that owns the jar file&lt;/li&gt;
-&lt;li&gt;Tracks application’s PID using /var/run/&lt;appname&gt;/&lt;appname&gt;.pid&lt;/li&gt;
-&lt;li&gt;Writes console logs to /var/log/&lt;appname&gt;.log&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assuming that you have a Light Java application installed in /var/myapp, to install the application as an
-init.d service simply create a symlink:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo ln -s /var/myapp/myapp.jar /etc/init.d/myapp
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once installed, you can start and stop the service in the usual way. For example, on a Debian based system:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;service myapp start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can also flag the application to start automatically using your standard operating system tools. For
-example, on Debian:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;update-rc.d myapp defaults &amp;lt;priority&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;securing-an-init-d-service&#34;&gt;Securing an init.d service&lt;/h3&gt;
-
-&lt;p&gt;When executed as root, as is the case when root is being used to start an init.d service, the default
-executable script will run the application as the user which owns the jar file. You should never run
-a Light Java application as root so your application’s jar file should never be owned by root. Instead,
-create a specific user to run your application and use chown to make it the owner of the jar file. For
-example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chown bootapp:bootapp your-app.jar
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this case, the default executable script will run the application as the bootapp user.&lt;/p&gt;
-
-&lt;p&gt;To reduce the chances of the application’s user account being compromised, you should consider preventing
-it from using a login shell. Set the account’s shell to /usr/sbin/nologin, for example.&lt;/p&gt;
-
-&lt;p&gt;You should also take steps to prevent the modification of your application’s jar file. Firstly, configure
-its permissions so that it cannot be written and can only be read or executed by its owner:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chmod 500 your-app.jar
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Secondly, you should also take steps to limit the damage if your application or the account that’s running
-it is compromised. If an attacker does gain access, they could make the jar file writable and change its
-contents. One way to protect against this is to make it immutable using chattr:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo chattr +i your-app.jar
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will prevent any user, including root, from modifying the jar.&lt;/p&gt;
-
-&lt;p&gt;f root is used to control the application’s service and you use a .conf file to customize its startup,
-the .conf file will be read and evaluated by the root user. It should be secured accordingly. Use chmod
-so that the file can only be read by the owner and use chown to make root the owner:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chmod 400 your-app.conf
-sudo chown root:root your-app.conf
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/devops/linux_service/</guid>
+      <description>Light-4J application can be easily started as Unix/Linux services using either init.d or systemd given it is packaged as a fatjar.
+Installation as an init.d service (System V) If your application is packaged as a fatjar, and you’re not using a custom script, then your application can be used as an init.d service. Simply symlink the jar to init.d to support the standard start, stop, restart and status commands.</description>
     </item>
     
     <item>
-      <title>Running Light-Java Application as Windows Service</title>
-      <link>https://networknt.github.io/light-java/devops/windows_service/</link>
+      <title>Running Light-4J Application as Windows Service</title>
+      <link>https://networknt.github.io/light-4j/devops/windows_service/</link>
       <pubDate>Sat, 07 Jan 2017 08:03:33 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/devops/windows_service/</guid>
-      <description>
-
-&lt;p&gt;Light-Java is packaged as a fatjar and normally will be running in docker container
-on production; however, it can be executed on Windows or Linux host machine or VM
-with the following command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;java -jar filename.jar
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For production deployment, you want to make sure that when you host server/VM
-is restarted, the application will be restarted automatically.&lt;/p&gt;
-
-&lt;p&gt;The following describes step-by-step how you can create a Windows service for your
-Light-Java application or any Java application that can be packaged in a fatjar.&lt;/p&gt;
-
-&lt;p&gt;There are two different options but the first option is more generic and popular.&lt;/p&gt;
-
-&lt;h2 id=&#34;windows-service-wrapper&#34;&gt;Windows Service Wrapper&lt;/h2&gt;
-
-&lt;p&gt;Due to difficulties with the GPL license of the Java Service Wrapper
-(the second option below) in combination with e.g. the MIT license of Jenkins,
-the Windows Service Wrapper project, also known as &lt;a href=&#34;https://github.com/kohsuke/winsw&#34;&gt;winsw&lt;/a&gt;,
-is the best choice.&lt;/p&gt;
-
-&lt;p&gt;Winsw provides programmatic means to install/uninstall/start/stop a service. In
-addition, it may be used to run any kind of executable as a service under Windows,
-whereas Java Service Wrapper, as implied by its name, only supports Java applications.&lt;/p&gt;
-
-&lt;p&gt;First, you download the binaries &lt;a href=&#34;http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Next, the configuration file that defines our Windows service, MyApp.xml, should
-look like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;service&amp;gt;
-    &amp;lt;id&amp;gt;MyApp&amp;lt;/id&amp;gt;
-    &amp;lt;name&amp;gt;MyApp&amp;lt;/name&amp;gt;
-    &amp;lt;description&amp;gt;This runs Spring Boot as a Service.&amp;lt;/description&amp;gt;
-    &amp;lt;env name=&amp;quot;MYAPP_HOME&amp;quot; value=&amp;quot;%BASE%&amp;quot;/&amp;gt;
-    &amp;lt;executable&amp;gt;java&amp;lt;/executable&amp;gt;
-    &amp;lt;arguments&amp;gt;-Xmx256m -jar &amp;quot;%BASE%\MyApp.jar&amp;quot;&amp;lt;/arguments&amp;gt;
-    &amp;lt;logmode&amp;gt;rotate&amp;lt;/logmode&amp;gt;
-&amp;lt;/service&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally, you have to rename the winsw.exe to MyApp.exe so that its name matches
-with the MyApp.xml configuration file. Thereafter you can install the service
-like so:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ MyApp.exe install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Similarly, you may use uninstall, start, stop, etc.&lt;/p&gt;
-
-&lt;h2 id=&#34;java-service-wrapper&#34;&gt;Java Service Wrapper&lt;/h2&gt;
-
-&lt;p&gt;In case you don’t mind the GPL licensing of the &lt;a href=&#34;http://wrapper.tanukisoftware.com/doc/english/index.html&#34;&gt;Java Service Wrapper&lt;/a&gt;
-project, this alternative may address your needs to configure your JAR file as
-a Windows service equally well. Basically, the Java Service Wrapper also requires
-you to specify in a configuration file which specifies how to run your process
-as a service under Windows.&lt;/p&gt;
-
-&lt;p&gt;This &lt;a href=&#34;http://edn.embarcadero.com/article/32068&#34;&gt;article&lt;/a&gt; explains in a very
-detailed way how to set up such an execution of a JAR file as a service under
-Windows.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/devops/windows_service/</guid>
+      <description>Light-4J is packaged as a fatjar and normally will be running in docker container on production; however, it can be executed on Windows or Linux host machine or VM with the following command.
+java -jar filename.jar  For production deployment, you want to make sure that when you host server/VM is restarted, the application will be restarted automatically.
+The following describes step-by-step how you can create a Windows service for your Light-4J application or any Java application that can be packaged in a fatjar.</description>
     </item>
     
   </channel>

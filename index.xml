@@ -1,509 +1,868 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Light Java - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/light-java/index.xml</link>
-    <description>Recent content on Light Java - The fastest Java API Framework</description>
+    <title>Light 4J - A fast, lightweight Java microservices framework</title>
+    <link>https://networknt.github.io/light-4j/</link>
+    <description>Recent content on Light 4J - A fast, lightweight Java microservices framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sat, 18 Mar 2017 20:37:48 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/light-java/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Minikube Installation</title>
-      <link>https://networknt.github.io/light-java/tools/minikube/</link>
+      <link>https://networknt.github.io/light-4j/tools/minikube/</link>
       <pubDate>Sat, 18 Mar 2017 20:37:48 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/minikube/</guid>
-      <description>
-
-&lt;p&gt;As light-java API/service is aiming to deployed with Docker containers and
-Kubernetes is the most popular container orchestration tool. It is very hard
-to setup multiple nodes cluster on laptop development environment but there
-is a minikube can be used on laptop to create one node cluster on your laptop.&lt;/p&gt;
-
-&lt;h2 id=&#34;install-on-mac&#34;&gt;Install on Mac.&lt;/h2&gt;
-
-&lt;h3 id=&#34;install-xhype&#34;&gt;Install xhype&lt;/h3&gt;
-
-&lt;p&gt;Before installing Minikube, you must install &lt;a href=&#34;https://github.com/zchee/docker-machine-driver-xhyve#install&#34;&gt;xhype&lt;/a&gt;
-driver first. The detailed instructions are in the above link and here is the
-commands to be executed.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install docker-machine-driver-xhyve
-sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;install-minikube&#34;&gt;Install minikube&lt;/h3&gt;
-
-&lt;p&gt;The general installation guide is in the &lt;a href=&#34;https://github.com/kubernetes/minikube&#34;&gt;README&lt;/a&gt;
-and the latest instruction is always specific for the latest release. The current
-release instruction can be found &lt;a href=&#34;https://github.com/kubernetes/minikube/releases&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.17.1/minikube-darwin-amd64 &amp;amp;&amp;amp; chmod +x minikube &amp;amp;&amp;amp; sudo mv minikube /usr/local/bin/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;install-kubectl&#34;&gt;Install kubectl&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;start-minikube&#34;&gt;Start minikube&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;minikube start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;install-on-linux&#34;&gt;Install on Linux&lt;/h2&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/minikube/</guid>
+      <description>As light-4j API/service is aiming to deployed with Docker containers and Kubernetes is the most popular container orchestration tool. It is very hard to setup multiple nodes cluster on laptop development environment but there is a minikube can be used on laptop to create one node cluster on your laptop.
+Install on Mac. Install xhype Before installing Minikube, you must install xhype driver first. The detailed instructions are in the above link and here is the commands to be executed.</description>
     </item>
     
     <item>
       <title>Rate Limiting</title>
-      <link>https://networknt.github.io/light-java/middleware/limit/</link>
+      <link>https://networknt.github.io/light-4j/middleware/limit/</link>
       <pubDate>Fri, 17 Feb 2017 14:10:28 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/middleware/limit/</guid>
-      <description>
-
-&lt;p&gt;Although our framework can handle potential millions requests per second, for
-some public facing APIs, it might be a good idea to enable this handler to
-limit the concurrent request to certain level in order to avoid DDOS attacks.&lt;/p&gt;
-
-&lt;p&gt;As this handler will impact the overall performance a little bit, it is not
-configured as default in the swagger-codegen. You must manually enable it
-in your API with the following steps.&lt;/p&gt;
-
-&lt;h2 id=&#34;dependency&#34;&gt;Dependency&lt;/h2&gt;
-
-&lt;p&gt;In order to use this handler, the following dependency need to be added to
-pom.xml in your project.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;            &amp;lt;dependency&amp;gt;
-                &amp;lt;groupId&amp;gt;com.networknt&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;limit&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;${version.light-java}&amp;lt;/version&amp;gt;
-            &amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;service&#34;&gt;Service&lt;/h2&gt;
-
-&lt;p&gt;As this middleware is not plugged in by default, we need to add it into
-com.networknt.handler.MiddlewareHandler in src/main/resources/META-INF/services
-folder. As this rate limiting handler needs to be failed fast, it need to be
-put right after ExceptionHandler and MetricsHandler. The reason it is after
-MetricsHandler is to capture 513 error code in InfluxDB and Grafana for
-monitoring on production.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Traceability Put traceabilityId into response header from request header if it exists
-com.networknt.traceability.TraceabilityHandler
-#Rate Limiting
-com.networknt.limit.LimitHandler
-#Metrics In order to calculate response time accurately, this needs to be the second.
-com.networknt.metrics.MetricsHandler
-#Exception Global exception handler that needs to be called first.
-com.networknt.exception.ExceptionHandler
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;config&#34;&gt;Config&lt;/h2&gt;
-
-&lt;p&gt;Here is the configuration file for rate limiting.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;description&amp;quot;: &amp;quot;Rate Limit Handler&amp;quot;,
-  &amp;quot;enabled&amp;quot;: false,
-  &amp;quot;concurrentRequest&amp;quot;: 1000,
-  &amp;quot;queueSize&amp;quot;: -1
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;enabled true to enable it and false to disable it.&lt;/li&gt;
-&lt;li&gt;concurrentRequest number of concurrent request to be limited.&lt;/li&gt;
-&lt;li&gt;queueSize -1 unlimited queue size which might use a lot of memory. &amp;gt; 1 integer will limit the requests to be queued and once queue is full, 513 will be returned for new requests.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/middleware/limit/</guid>
+      <description>Although our framework can handle potential millions requests per second, for some public facing APIs, it might be a good idea to enable this handler to limit the concurrent request to certain level in order to avoid DDOS attacks.
+As this handler will impact the overall performance a little bit, it is not configured as default in the swagger-codegen. You must manually enable it in your API with the following steps.</description>
     </item>
     
     <item>
       <title>Cross-Origin Resource Sharing</title>
-      <link>https://networknt.github.io/light-java/tutorials/cors/</link>
+      <link>https://networknt.github.io/light-4j/tutorials/cors/</link>
       <pubDate>Wed, 15 Feb 2017 09:26:58 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tutorials/cors/</guid>
-      <description>&lt;p&gt;For some of the APIs/services, the endpoints will be accessed from a Single Page
-Application(React/Vue/Angular) served from another domain. In this case, the API
-server needs to handle the pre-flight OPTIONS request to enable CORS.&lt;/p&gt;
-
-&lt;p&gt;As CORS only used in above scenario, the handler is not wired in by default in
-swagger-codegen.&lt;/p&gt;
-
-&lt;p&gt;If you want to limit only several domains for CORS, you also need to create cors.json
-in config folder.&lt;/p&gt;
-
-&lt;p&gt;And here is an example of cors.json&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;description&amp;quot;: &amp;quot;Cors Http Handler&amp;quot;,
-  &amp;quot;enabled&amp;quot;: true,
-  &amp;quot;allowedOrigins&amp;quot;: [
-    &amp;quot;http://localhost&amp;quot;
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To enable CORS support, you need to add cors module in pom.xml, you need to update
-pom.xml to add a dependency.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;com.networknt&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;cors&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;${version.light-java}&amp;lt;/version&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Update com.networknt.handler.MiddlewareHandler in src/main/resources/META-INF/services
-folder to plug cors handler into the middleware chain. Note that cors handler is in front
-of swagger so that pre-flight OPTIONS request will be returned before swagger validation
-is done as OPTIONS methods are not defined in swagger specifitions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# This file is generated and should not be changed unless you want to plug in more handlers into the handler chain
-# for cross cutting concerns. In most cases, you should replace some of the default handlers with your own implementation
-# Please note: the sequence of these handlers are very important.
-
-#Validator Validate request based on swagger specification (depending on Swagger and Body)
-com.networknt.validator.ValidatorHandler
-#Sanitizer Encode cross site scripting
-com.networknt.sanitizer.SanitizerHandler
-#SimpleAudit Log important info about the request into audit log
-com.networknt.audit.AuditHandler
-#Body Parse body based on content type in the header.
-com.networknt.body.BodyHandler
-#Security JWT token verification and scope verification (depending on SwaggerHandler)
-com.networknt.security.JwtVerifyHandler
-#Swagger Parsing swagger specification based on request uri and method.
-com.networknt.swagger.SwaggerHandler
-#Cors handler to handler post/put pre-flight
-com.networknt.cors.CorsHttpHandler
-#Correlation Create correlationId if it doesn&#39;t exist in the request header and put it into the request header
-com.networknt.correlation.CorrelationHandler
-#Traceability Put traceabilityId into response header from request header if it exists
-com.networknt.traceability.TraceabilityHandler
-#Metrics In order to calculate response time accurately, this needs to be the second.
-com.networknt.metrics.MetricsHandler
-#Exception Global exception handler that needs to be called first.
-com.networknt.exception.ExceptionHandler
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s start the server&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/networknt/light-java-example/cors
-mvn clean install exec:exec
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Test the pre-flight OPTIONS.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Origin: http://example.com&amp;quot; -H &amp;quot;Access-Control-Request-Method: POST&amp;quot;  -H &amp;quot;Access-Control-Request-Headers: X-Requested-With&amp;quot;  -X OPTIONS --verbose http://localhost:8080/v1/postData
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And the result&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;*   Trying 127.0.0.1...
-* Connected to localhost (127.0.0.1) port 8080 (#0)
-&amp;gt; OPTIONS /v1/postData HTTP/1.1
-&amp;gt; Host: localhost:8080
-&amp;gt; User-Agent: curl/7.43.0
-&amp;gt; Accept: */*
-&amp;gt; Origin: http://example.com
-&amp;gt; Access-Control-Request-Method: POST
-&amp;gt; Access-Control-Request-Headers: X-Requested-With
-&amp;gt; 
-&amp;lt; HTTP/1.1 200 OK
-&amp;lt; Access-Control-Allow-Headers: X-Requested-With
-&amp;lt; Server: Light
-&amp;lt; Access-Control-Allow-Credentials: true
-&amp;lt; Content-Length: 0
-&amp;lt; Access-Control-Allow-Methods: POST
-&amp;lt; Access-Control-Max-Age: 3600
-&amp;lt; Date: Wed, 15 Feb 2017 13:37:29 GMT
-&amp;lt; 
-* Connection #0 to host localhost left intact
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The source code for the cors example can be found at&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/cors&#34;&gt;https://github.com/networknt/light-java-example/tree/master/cors&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tutorials/cors/</guid>
+      <description>For some of the APIs/services, the endpoints will be accessed from a Single Page Application(React/Vue/Angular) served from another domain. In this case, the API server needs to handle the pre-flight OPTIONS request to enable CORS.
+As CORS only used in above scenario, the handler is not wired in by default in swagger-codegen.
+If you want to limit only several domains for CORS, you also need to create cors.yml in config folder.</description>
     </item>
     
     <item>
       <title>monojee</title>
-      <link>https://networknt.github.io/light-java/design/monojee/</link>
+      <link>https://networknt.github.io/light-4j/design/monojee/</link>
       <pubDate>Thu, 09 Feb 2017 12:45:22 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/design/monojee/</guid>
+      <guid>https://networknt.github.io/light-4j/design/monojee/</guid>
       <description></description>
     </item>
     
     <item>
       <title>newprod</title>
-      <link>https://networknt.github.io/light-java/design/newprod/</link>
+      <link>https://networknt.github.io/light-4j/design/newprod/</link>
       <pubDate>Thu, 09 Feb 2017 12:45:08 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/design/newprod/</guid>
+      <guid>https://networknt.github.io/light-4j/design/newprod/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Convert WebServices to Microservices</title>
-      <link>https://networknt.github.io/light-java/design/convtws/</link>
+      <link>https://networknt.github.io/light-4j/design/convtws/</link>
       <pubDate>Thu, 09 Feb 2017 10:59:44 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/design/convtws/</guid>
-      <description>&lt;p&gt;While you are talking about microservices, chances are you existing application
-is built as web services. These days a lot of people and vendors are calling
-these web services as microservices and it is not right.&lt;/p&gt;
-
-&lt;p&gt;The following diagram shows what is the difference between web service
-and microservices.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://networknt.github.io/light-java/images/web_micro_service.jpeg&#34; alt=&#34;web_micro_service&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see the traditional web servers are flattened behind an API gateway
-and they are normally build on top of Java EE platform with JAXRS 1.1 or 2.0&lt;/p&gt;
-
-&lt;p&gt;In essence, each web service is still a big monolithic Java EE application and
-does everything in a war or ear file. Although they expose RESTful API but they
-are not microservices.&lt;/p&gt;
-
-&lt;p&gt;On the right side, the same payment API is broken up to microservices and the
-payment API in the picture acts as a facade API which has static ip address and
-can be accessed from F5 (or other reverse proxy and load balancer) directly.
-Unlike the webservice does everything in the same application, the microservice
-payment API will call customer service to get customer info, get account service
-to check the balance, call risk service to make sure there is no money laundry
-risk, verify if the customer has the right to do the transaction with auth
-service. And then call the transfer service to move fund from one account to
-another. If the two accounts are in different currency, then the currency
-exchange service will be called to convert currency from on to another.&lt;/p&gt;
-
-&lt;p&gt;As you can see, the network communication in microservice diagram is significant
-more then web service and this is why that traditional commercial API gateway
-is not suitable in this architecture as it will become bottleneck and single
-point of failure. Most gateway products on the market today are Java EE based
-monolithic application and it is against distributed principal of microservices
-architecture.&lt;/p&gt;
-
-&lt;p&gt;Microservice architecture evolves from monolithic application architecture
-naturally as a monolith grows to certain stage that become not maintainable
-and not scalable. Imaging that you have a big application and only one
-developer knows it inside out and every time one line of code is changed ten
-other places are broken. The make every release risky and there are several
-months testing cycles to ensure that nothing is broken. In order to meet the
-demand from business growth, the application can only be scaled horizontally
-and it is all or nothing. You cannot scale an individual service which is
-facing volume spike during month end and year end.&lt;/p&gt;
-
-&lt;p&gt;From anohter perspective, it is natual for human beings to break up complex
-things into simpler and smaller pieces to tackle it. This is not just limited
-to computer software but in every field. According to brain science, most
-people can only remember 7 to 9 things in short term and focus on them
-at a particular moment. Can you imagine a big application with thousands
-moving pieces? A good developer/prgrammer must have very good short term
-memory so that their brain can wire many things together.&lt;/p&gt;
-
-&lt;p&gt;IIn the entire history of software programming, developers were break things
-up all the time. If you ever worked on assembly in early years, you know it
-is a big monolithic app with one entry point and so many goto statements.
-some smart developers tried to extract common and repeatable code into function
-so that it can be called from different places.&lt;/p&gt;
-
-&lt;p&gt;A monolithic application just like a Java class with only one main method with
-thousands line of code. In order to make it easy to read and maintain, some of
-the duplicated lines of code should be extracted into other method in the same
-class or some other classes. This make developers&amp;rsquo; life easier becuase when
-you work, you are dealing with only one class or one method at a time. The only
-problem with this kind of break up is classes and methods are tightly coupled
-and there are a lot of assumptions in these class and method calls. This is
-why you change one method to fix an issue for one caller and other callers are
-broken as they have different assumptions although the signaure of the method
-has never been changed. Another issue with this kind of break up is you have to
-package your changed method/class with others as one deployment unit to deploy
-them together to production and the entire deployment process is very risky.&lt;/p&gt;
-
-&lt;p&gt;Microservices just go to the next step, instead of separate methods or classes
-calling in-process. We make these reusable pieces as inter-process services
-revoked through HTTP. The benefit is you can update/replace individual service
-independently without impacting the entire application. As these service are
-very small, they are easier to be implemented and maintained by developers.&lt;/p&gt;
-
-&lt;p&gt;Unlike class or method calls, calling microservices over the network is very
-slow. So it is unwise to break an application to thousands pieces and every
-request will have to go through 50 to 100 network hops to get it done. The
-network latency will kill the performance no mater how you scale your services.&lt;/p&gt;
-
-&lt;p&gt;whenever possible, the calls to other services should be done in parallel so
-that the slowest service will decide the response time. If you call multiple
-services in serial, then the sum of these services will be your response time.&lt;/p&gt;
-
-&lt;p&gt;Given above nature of microservices, a low latency HTTP server is very important
-so that it won&amp;rsquo;t add to much over head to each service to service call. Also,
-as service calls are over the network, there are a lot of things need to be
-handled like security, logging, metrics, auditing, service registry/discovery
-etc. This is why you need a framework to build microservices so that developers
-can only focus on the business logic of the service without worrying about
-cross-cutting concerns. The light-java/light-java-rest framework is designed
-just for that.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/design/convtws/</guid>
+      <description>While you are talking about microservices, chances are you existing application is built as web services. These days a lot of people and vendors are calling these web services as microservices and it is not right.
+The following diagram shows what is the difference between web service and microservices.
+As you can see the traditional web servers are flattened behind an API gateway and they are normally build on top of Java EE platform with JAXRS 1.</description>
     </item>
     
     <item>
       <title>Design</title>
-      <link>https://networknt.github.io/light-java/design/</link>
+      <link>https://networknt.github.io/light-4j/design/</link>
       <pubDate>Thu, 09 Feb 2017 10:57:47 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/design/</guid>
-      <description>&lt;p&gt;light-java is aiming microservices and design of microservices is more art other
-than technique. When you break a business application to smaller pieces, there
-is a threshold. If it too fine-grained, then the performance will suffer, but
-if it is too coarse-grained, then the benefit of microservices will be diminishing.&lt;/p&gt;
-
-&lt;p&gt;The big portion of design work for microservices is to functionally divide an
-application to multiple services and define the communication contract between
-these services with OpenAPI specifications.&lt;/p&gt;
-
-&lt;p&gt;Here is a list of design decisions for microservices:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.arungupta.me/microservice-design-patterns/&#34;&gt;Microservice Design Patterns&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/design/convtws/&#34;&gt;How to convert existing RESTful web services to microservices&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/design/newprod/&#34;&gt;How to design microservices for brand new project/product&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/design/monojee/&#34;&gt;How to replace monolithic Java EE application to microservices&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/design/</guid>
+      <description>light-4j is aiming microservices and design of microservices is more art other than technique. When you break a business application to smaller pieces, there is a threshold. If it too fine-grained, then the performance will suffer, but if it is too coarse-grained, then the benefit of microservices will be diminishing.
+The big portion of design work for microservices is to functionally divide an application to multiple services and define the communication contract between these services with OpenAPI specifications.</description>
     </item>
     
     <item>
       <title>Request and Response Dump</title>
-      <link>https://networknt.github.io/light-java/middleware/dump/</link>
+      <link>https://networknt.github.io/light-4j/middleware/dump/</link>
       <pubDate>Mon, 06 Feb 2017 21:40:01 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/middleware/dump/</guid>
-      <description>&lt;p&gt;This is a handler that dumps the entire request and response into a log file. It
-should only be used in development mode for debugging purpose as it is very slow.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/middleware/dump/</guid>
+      <description>This is a handler that dumps the entire request and response into a log file. It should only be used in development mode for debugging purpose as it is very slow.</description>
     </item>
     
     <item>
       <title>Zookeeper</title>
-      <link>https://networknt.github.io/light-java/other/zookeeper/</link>
+      <link>https://networknt.github.io/light-4j/other/zookeeper/</link>
       <pubDate>Mon, 06 Feb 2017 21:34:10 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/zookeeper/</guid>
-      <description>&lt;p&gt;A Zookeeper registry implementation that use Zookeeper as registry and discovery
-server. It implements both registry and discovery in the same module for
-Zookeeper communication. If the API/server is delivered as docker image, another
-product called registrator will be used to register it with Zookeeper server.
-Otherwise, the server module will be responsible to register itself during
-startup.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/zookeeper/</guid>
+      <description>A Zookeeper registry implementation that use Zookeeper as registry and discovery server. It implements both registry and discovery in the same module for Zookeeper communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Zookeeper server. Otherwise, the server module will be responsible to register itself during startup.</description>
     </item>
     
     <item>
       <title>Switcher</title>
-      <link>https://networknt.github.io/light-java/other/switcher/</link>
+      <link>https://networknt.github.io/light-4j/other/switcher/</link>
       <pubDate>Mon, 06 Feb 2017 21:34:02 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/switcher/</guid>
-      <description>&lt;p&gt;This module implement a switch and its notifier to support on/off
-state within the system.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/switcher/</guid>
+      <description>This module implement a switch and its notifier to support on/off state within the system.</description>
     </item>
     
     <item>
       <title>Service</title>
-      <link>https://networknt.github.io/light-java/other/service/</link>
+      <link>https://networknt.github.io/light-4j/other/service/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:54 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/service/</guid>
-      <description>&lt;p&gt;A light-weight and fast dependency injection framework without any third
-party dependencies.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/service/</guid>
+      <description>A light-weight and fast dependency injection framework without any third party dependencies.
+Light Java framework encourage developers to build microservices with Functional Programming Style. One of the key principle is immutability so that the code can be optimized to take advantage of multi-core CPUs.
+Unlike other IoC container, our service module only deals with singleton during server startup with constructor injection. It give developer an opportunity to choose from several implementations of an interface in service.</description>
     </item>
     
     <item>
       <title>Registry</title>
-      <link>https://networknt.github.io/light-java/other/registry/</link>
+      <link>https://networknt.github.io/light-4j/other/registry/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:47 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/registry/</guid>
-      <description>&lt;p&gt;This module contains all the interfaces that are needed in registry and
-discovery. Also it implemented Direct registry which you can hard-code
-services into the service.json in order to simulate consul or zookeeper
-during development.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/registry/</guid>
+      <description>This module contains all the interfaces that are needed in registry and discovery. Also it implemented Direct registry which you can hard-code services into the service.json in order to simulate consul or zookeeper during development.</description>
     </item>
     
     <item>
       <title>Health Check</title>
-      <link>https://networknt.github.io/light-java/other/health/</link>
+      <link>https://networknt.github.io/light-4j/other/health/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:38 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/health/</guid>
-      <description>&lt;p&gt;This is an handler that needs to be injected into the request/response chain
-in order to return something that indicate the server is still alive. Currently
-it returns &amp;ldquo;OK&amp;rdquo; only.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/health/</guid>
+      <description>This is an handler that needs to be injected into the request/response chain in order to return something that indicate the server is still alive. Currently it returns &amp;ldquo;OK&amp;rdquo; only.</description>
     </item>
     
     <item>
       <title>Handler</title>
-      <link>https://networknt.github.io/light-java/other/handler/</link>
+      <link>https://networknt.github.io/light-4j/other/handler/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:25 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/handler/</guid>
-      <description>&lt;p&gt;This module defines an interface that all middleware handlers must be implemented
-in order to be loaded during server startup.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface MiddlewareHandler extends HttpHandler {
-
-    HttpHandler getNext();
-
-    MiddlewareHandler setNext(final HttpHandler next);
-
-    boolean isEnabled();
-
-    void register();
-
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/handler/</guid>
+      <description>This module defines an interface that all middleware handlers must be implemented in order to be loaded during server startup.
+public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); MiddlewareHandler setNext(final HttpHandler next); boolean isEnabled(); void register(); }  </description>
     </item>
     
     <item>
       <title>Consul</title>
-      <link>https://networknt.github.io/light-java/other/consul/</link>
+      <link>https://networknt.github.io/light-4j/other/consul/</link>
       <pubDate>Mon, 06 Feb 2017 21:33:14 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/other/consul/</guid>
-      <description>&lt;p&gt;A consul registry implementation that use Consul as registry and discovery
-server. It implements both registry and discovery in the same module for
-consul communication. If the API/server is delivered as docker image, another
-product called registrator will be used to register it with Consul agent.
-Otherwise, the server module will be responsible to register itself during
-startup.&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/other/consul/</guid>
+      <description>A consul registry implementation that use Consul as registry and discovery server. It implements both registry and discovery in the same module for consul communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Consul agent. Otherwise, the server module will be responsible to register itself during startup.</description>
+    </item>
+    
+    <item>
+      <title>Cluster</title>
+      <link>https://networknt.github.io/light-4j/other/cluster/</link>
+      <pubDate>Mon, 06 Feb 2017 21:33:04 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/cluster/</guid>
+      <description>This module caches all the service instances that are needed by the current service and calling underline registry(Direct, Consul and ZooKeeper) to discover the service if necessary (first time a service is called and registry notifies something has been changed regarding to subscribe the services on Consul or ZooKeeper).</description>
+    </item>
+    
+    <item>
+      <title>Load Balance</title>
+      <link>https://networknt.github.io/light-4j/other/balance/</link>
+      <pubDate>Mon, 06 Feb 2017 21:32:51 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/balance/</guid>
+      <description>Client side discovery needs client side load balancer in order to pick up one and only one available service instance to a particular request.
+Currently, only Round-Robin is supported and other implementations will follow.</description>
+    </item>
+    
+    <item>
+      <title>Correlation Id</title>
+      <link>https://networknt.github.io/light-4j/middleware/correlation/</link>
+      <pubDate>Mon, 06 Feb 2017 09:59:28 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/correlation/</guid>
+      <description>This is a handler that checks if X-Correlation-Id exists in request header. If it doesn&amp;rsquo;t exist it will generate a UUID and put it into the request header. During API to API calls, this header will be passed to the next API by Client module.
+Generating The correlationId is very useful in microservices architecture as there are multiple services involved in a same client request. When logs are aggregated into a centralized tool, it is very important there is an unique identifier to associate logs from multiple services for the same request.</description>
+    </item>
+    
+    <item>
+      <title>keytool</title>
+      <link>https://networknt.github.io/light-4j/tools/keytool/</link>
+      <pubDate>Fri, 03 Feb 2017 14:12:47 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/keytool/</guid>
+      <description>This is a Java command line tool to generate and manipulate keys.
+To create a server.keystore for TLS.
+keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.keystore -storepass secret -keypass secret -validity 9999  And then copy this file to light-4j/src/main/resources/config/tls folder. At the same time, update server.yml for keystoreName, keystorePass, keyPass.
+# Server configuration --- # This is the default binding address if the service is dockerized. ip: 0.</description>
+    </item>
+    
+    <item>
+      <title>Registry and Discovery</title>
+      <link>https://networknt.github.io/light-4j/tutorials/discovery/</link>
+      <pubDate>Fri, 27 Jan 2017 20:57:14 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/discovery/</guid>
+      <description>Introduction This is a tutorial to show you how to use service registry and discovery for microservices. We are going to use api_a, api_b, api_c and api_d as our examples. To simply the tutorial, I am going to disable the security all the time.
+The specifications for above APIs can be found at https://github.com/networknt/swagger
+Preparation In order to follow the steps below, please make sure you have the same working environment.</description>
+    </item>
+    
+    <item>
+      <title>Examples</title>
+      <link>https://networknt.github.io/light-4j/example/</link>
+      <pubDate>Wed, 25 Jan 2017 21:12:31 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/</guid>
+      <description>The following examples can be found in light-example-4j repository.
+ Database - How to access database
+ Microservices - How to build microservices
+ Performance - Perforamnce comprison with other frameworks
+ Petstore - Generated Petstore example service
+ Routing - Demo how routing works
+ Swagger - All swagger/OpenAPI specifications
+ Web Server - How to integrate API server and Web server together
+  </description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://networknt.github.io/light-4j/tools/</link>
+      <pubDate>Wed, 25 Jan 2017 21:05:31 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/</guid>
+      <description>There are so many tools that help us to build microservices and here is a small list.
+ Hugo is used to create the document site for all our repositories.
+ Memory Monitoring on MacOS while doing performance test
+ Swagger CLI to validate, merge and convert swagger specification files.
+ Swagger Editor is used to create and update swagger specifications.
+ WRK is used as client for performance test.</description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>https://networknt.github.io/light-4j/tutorials/</link>
+      <pubDate>Wed, 25 Jan 2017 20:59:08 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/</guid>
+      <description>The following tutorials will help users to get started and more will be added later.
+ How to build, test and deploy microserivces
+ How to access database in microservices
+ How to do unit test
+ How to do end-to-end test
+ How to do integration test
+ How to debug the service
+ How to register and discover services
+  </description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://networknt.github.io/light-4j/devops/</link>
+      <pubDate>Wed, 25 Jan 2017 20:55:53 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/devops/</guid>
+      <description> How to deploy standalone microservices as Linux service
+ How to deploy standalone microservices as Windows service
+  </description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>https://networknt.github.io/light-4j/benchmarks/</link>
+      <pubDate>Wed, 25 Jan 2017 20:48:38 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/benchmarks/</guid>
+      <description>Light-4J framework is the fastest so far on the market and there are a lot of effort to make that happen. There are a lot of frameworks, languages to build microservices but most popular ones are Java, Go and Nodejs.
+Nodejs used to be really fast compare with JavaEE platforms but it has a lot of issues in enterprise world. Go has potentials but still not in enterprise applications. We are starting with Java due to the fact that it is highly optimized and there are so many existing investment in all sorts of organizations.</description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://networknt.github.io/light-4j/architecture/</link>
+      <pubDate>Wed, 25 Jan 2017 20:18:44 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/</guid>
+      <description>light-4j is aiming microservices and it has to be light weight and address a lot of cross-cutting concerns at the same time. It is based on Undertow Core Http server and depending on minimum third party libraries.
+Here is a list of architecture decisions for the framework:
+ Designed for microservices that can be dockerized and deployed within containers.
+ Base on pure HTTP without JavaEE as it has too many problems and is declining</description>
+    </item>
+    
+    <item>
+      <title>Database Access Tutorial</title>
+      <link>https://networknt.github.io/light-4j/tutorials/database/</link>
+      <pubDate>Mon, 23 Jan 2017 09:07:32 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/database/</guid>
+      <description>Introduction Most microservices will have to access database in order to fulfill consumer requests. In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql:
+ How to setup database connection pool How to connect to the database instance How to do query database tables How to update database tables  Preparation In order to follow the steps below, please make sure you have the same working environment.</description>
+    </item>
+    
+    <item>
+      <title>Running Light-4J Application as Linux Service</title>
+      <link>https://networknt.github.io/light-4j/devops/linux_service/</link>
+      <pubDate>Sat, 07 Jan 2017 08:03:47 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/devops/linux_service/</guid>
+      <description>Light-4J application can be easily started as Unix/Linux services using either init.d or systemd given it is packaged as a fatjar.
+Installation as an init.d service (System V) If your application is packaged as a fatjar, and you’re not using a custom script, then your application can be used as an init.d service. Simply symlink the jar to init.d to support the standard start, stop, restart and status commands.</description>
+    </item>
+    
+    <item>
+      <title>Running Light-4J Application as Windows Service</title>
+      <link>https://networknt.github.io/light-4j/devops/windows_service/</link>
+      <pubDate>Sat, 07 Jan 2017 08:03:33 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/devops/windows_service/</guid>
+      <description>Light-4J is packaged as a fatjar and normally will be running in docker container on production; however, it can be executed on Windows or Linux host machine or VM with the following command.
+java -jar filename.jar  For production deployment, you want to make sure that when you host server/VM is restarted, the application will be restarted automatically.
+The following describes step-by-step how you can create a Windows service for your Light-4J application or any Java application that can be packaged in a fatjar.</description>
+    </item>
+    
+    <item>
+      <title>Nodejs Pitfalls</title>
+      <link>https://networknt.github.io/light-4j/benchmarks/nodejs/</link>
+      <pubDate>Fri, 18 Nov 2016 14:41:29 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/benchmarks/nodejs/</guid>
+      <description>When talking about microservices, a lot of Nodejs developers will say that Node is a better platform than Java and other languages to build microservices. The arguments are:
+ Nodejs is faster than Java at runtime. Nodejs development is more productive than Java.  These claims are proved to be false already as I&amp;rsquo;ve been working on both platforms in banking industry for the last couple of years. I have been building REST API frameworks on both Java and Nodejs and the following are my observations on Nodejs in enterprise computing.</description>
+    </item>
+    
+    <item>
+      <title>Web Server</title>
+      <link>https://networknt.github.io/light-4j/example/webserver/</link>
+      <pubDate>Fri, 18 Nov 2016 08:25:10 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/webserver/</guid>
+      <description>Most documents and articles regarding to Light-4J are about RESTful or GraphQL or Hybrid services; however, there are a lot user cases that combine the API and static site rendering together, especially, single page applications built on top of React or Angular.
+Handler Provider As we know, the Light-4J needs a plugin to inject application logic and for API project that is based on OpenAPI specification, this is generated by the light-codegen.</description>
+    </item>
+    
+    <item>
+      <title>Integration Patterns</title>
+      <link>https://networknt.github.io/light-4j/architecture/integration/</link>
+      <pubDate>Sat, 12 Nov 2016 20:55:44 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/integration/</guid>
+      <description>While working with my clients to transform monolithic Java EE applications to microservices architecture, one of the most frequently asked questions from my clients is how do you integrate your newly built microservices with existing Java EE applications. In other words, how to leverage existing application stacks when exposing REST APIs with microservices?
+For most organizations especially financial institutions, they have big Java EE applications running on Weblogic/Websphere that they&amp;rsquo;ve invested efforts for a decade or longer.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://networknt.github.io/light-4j/architecture/monitoring/</link>
+      <pubDate>Wed, 09 Nov 2016 21:13:27 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/monitoring/</guid>
+      <description>Monitoring used to be a somewhat passive thing. You used tools to monitor the application process/logs and perhaps send an alert if something seemed wrong,
+but mostly it was hands off. When we move to microservices architecture, things are changing.
+User Experience and Microservices Monitoring With Microservices which are released more often, you can try new features and see how they impact user usage patterns. With this feedback, you can improve your application.</description>
+    </item>
+    
+    <item>
+      <title>traceability</title>
+      <link>https://networknt.github.io/light-4j/architecture/traceability/</link>
+      <pubDate>Sun, 06 Nov 2016 11:04:20 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/traceability/</guid>
+      <description>For microservices architecture, it is very important to trace request from one service to another in the entire call tree in order to have big picture if something happens or have an audit log that is aggregated by database or Splunk.
+In the framework, we have two Ids to serve this purpose.
+X-Traceability-Id  Generated by client Unique for this client only Can be database sequence number or UUID Must be passed to the next service Must be returned to the caller Will be logged in per request audit log  X-Correlation-Id  Generated in the immediate service from client Must be UUID Must be passed to the next service Will be logged in per request audit log Every service/API must check if this id available and generate one if doesn&amp;rsquo;t exist in request header.</description>
+    </item>
+    
+    <item>
+      <title>Traceability</title>
+      <link>https://networknt.github.io/light-4j/middleware/traceability/</link>
+      <pubDate>Sun, 06 Nov 2016 10:24:22 -0500</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/traceability/</guid>
+      <description>#
+For microservices architecture, a request sent from client may pass through several services to the backend respository/Book of Record and then response is returned in the reverse path. If there is an error in the call tree, we need to identify where is the problem during runtime. Also, for some mission critical applications, the entire call tree must be in the audit log to meet regulatory compliance requirement. For example, banking applications.</description>
+    </item>
+    
+    <item>
+      <title>Plugin Architecture</title>
+      <link>https://networknt.github.io/light-4j/architecture/plugin/</link>
+      <pubDate>Sat, 29 Oct 2016 17:22:16 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/plugin/</guid>
+      <description>In the framework design, we have adopted the same principal of microservices architecture to break down the entire framework into smaller pieces so that each can be customized and replaced if necessary. The only difference is that all the modules in the framework are wired in request/response chain for best performance.
+There are four type of components that can be wired in at different stage of the server start up.</description>
+    </item>
+    
+    <item>
+      <title>Memory Monitoring on Mac</title>
+      <link>https://networknt.github.io/light-4j/tools/memory_monitor/</link>
+      <pubDate>Thu, 27 Oct 2016 08:44:57 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/memory_monitor/</guid>
+      <description>Introduction While you are testing performance of your microservices, you might be interested in monitoring your server memory usage. The memory footprint is very important as we are talking about microservices - we might need to deploy hundreds or even thousands of microservices to compose a big application. In today&amp;rsquo;s cloud environment, you can create vms or containers based on cpu, memory and hard drive usage and usually memory is the big constraint and more costly than cpu and hard drive.</description>
+    </item>
+    
+    <item>
+      <title>Server Info</title>
+      <link>https://networknt.github.io/light-4j/other/info/</link>
+      <pubDate>Sun, 23 Oct 2016 13:23:59 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/info/</guid>
+      <description>Introduction Almost every module in light-4j has a configuration file that can be externalized with default can be in the module itself or the API implementation config folder. In order to give an overview of the server runtime, system properties, specification as well as configurations for each enabled modules, there is a special handler that is injected in your swagger specification. Once this handler endpoint is called, it will output all the server info in a JSON format.</description>
+    </item>
+    
+    <item>
+      <title>Other Component</title>
+      <link>https://networknt.github.io/light-4j/other/</link>
+      <pubDate>Sun, 23 Oct 2016 13:22:33 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/</guid>
+      <description>light-4j is a Java API framework based on undertow http core that supports swagger/graphql/hybrid code generation and runtime request validation and security verification.
+It contains the following components:
+ server is a framework on top of Undertow http core that support plugins to perform different middleware handlers. It is light-weight, fast and supports HTTP/2.
+ config is a module that supports externalized yml/yaml/json configuration for standalone applications and docker containers managed by Kubernetes.</description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>https://networknt.github.io/light-4j/other/server/</link>
+      <pubDate>Sun, 23 Oct 2016 13:21:19 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/server/</guid>
+      <description>This module is responsible for managing life cycle of the embedded Undertow core http server. It starts the server and initializes all middleware plugins along with route handler providers. It stops the server and allow the resources to be released even someone click CTRL+C.
+Startup Hooks During server startup, a list of startup hooks will be called to initialize the context and environment for the server instance. For example, creating database connection pool etc.</description>
+    </item>
+    
+    <item>
+      <title>Status</title>
+      <link>https://networknt.github.io/light-4j/other/status/</link>
+      <pubDate>Sun, 23 Oct 2016 13:20:51 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/status/</guid>
+      <description>In the scenario that error happens on the server, a Status object is designed to encapsulate standard http response 4xx and 5xx as well as application specific error code ERRXXXXX (prefixed with ERR with another 5 digits) and error message. Additionally, an description of the error will be available for more info about the error.
+Data Elements Here are the four fields in the Status object.
+ int statusCode; String code; String message; String description;  Construct the object from status.</description>
+    </item>
+    
+    <item>
+      <title>Utility</title>
+      <link>https://networknt.github.io/light-4j/other/utility/</link>
+      <pubDate>Sun, 23 Oct 2016 13:20:22 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/utility/</guid>
+      <description>This module contains some useful classes that shared by multiple modules within the framework.
+Constants Contains all the constants shared by all modules.
+ModuleRegistry When the plugin modules are loaded, it will register itself to this module along with configuration. When /server/info is called, the endpoint will return all plugged in modules and their configurations.
+Util Some useful utility method like uuid generator etc.</description>
+    </item>
+    
+    <item>
+      <title>Mask</title>
+      <link>https://networknt.github.io/light-4j/other/mask/</link>
+      <pubDate>Sun, 23 Oct 2016 13:19:36 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/mask/</guid>
+      <description>In the entire life cycle of the exchange, there might a lot of logging statements written to log files or other persistence storage. These logs will be used to assist production issue identifying and resolving and a wide group of people might have access to these logs. In order to reduce the risk of leak customer info, sensitive info needs to masked before logging. For example, credit card number, sin number etc.</description>
+    </item>
+    
+    <item>
+      <title>Config</title>
+      <link>https://networknt.github.io/light-4j/other/config/</link>
+      <pubDate>Sun, 23 Oct 2016 13:18:22 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/config/</guid>
+      <description>A configuration module that supports externalized config in official standalone deployment or docker container. It is encouraged that every module should have its own configuration file and these files can be served by light-config-server which aggregates/merges config files from different level of organizations in github or other git servers.
+Introduction Externalized configuration from the application package is very important. It allows us to deploy the same package to DEV/SIT/UAT/PROD environment with different configuration packages without reopening the delivery package.</description>
+    </item>
+    
+    <item>
+      <title>Client</title>
+      <link>https://networknt.github.io/light-4j/other/client/</link>
+      <pubDate>Sun, 23 Oct 2016 12:26:20 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/client/</guid>
+      <description>#
+Client is used to call APIs from the following sources:
+ Web Server Standalone Application/Mobile Application API/Service  It provides method to get authorization token and automatically gets client credentials token for scopes in API to API calls. It also helps to pass correlationId and traceabilityId to the next service.
+Type of client Sync Client This is a wrapper of Apache HttpClient with built-in connection pools and TLS support.</description>
+    </item>
+    
+    <item>
+      <title>sanitizer</title>
+      <link>https://networknt.github.io/light-4j/middleware/sanitizer/</link>
+      <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/sanitizer/</guid>
+      <description>Introduction This is a middleware that addresses cross site scripting concerns. It encodes the header and body according to the configuration. As body encoding depends on Body middleware, it has to be plugged into the request/response chain after Body.
+Configuration Here is the default configuration sanitizer.yml
+description: Sanitize request for cross site scripting during runtime enabled: true sanitizeBody: true sanitizeHeader: true  If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.</description>
+    </item>
+    
+    <item>
+      <title>swagger</title>
+      <link>https://networknt.github.io/light-4j/example/swagger/</link>
+      <pubDate>Sat, 22 Oct 2016 21:02:01 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/swagger/</guid>
+      <description>Introduction This is a project that contains all the swagger specifications for examples. Currently, only petstore.yaml and petstore.json are there.</description>
+    </item>
+    
+    <item>
+      <title>routing</title>
+      <link>https://networknt.github.io/light-4j/example/routing/</link>
+      <pubDate>Sat, 22 Oct 2016 21:00:30 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/routing/</guid>
+      <description>Introduction This is an example to show you how to use undertow routing handler.</description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>https://networknt.github.io/light-4j/example/performance/</link>
+      <pubDate>Sat, 22 Oct 2016 20:55:36 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>microservices</title>
+      <link>https://networknt.github.io/light-4j/example/microservices/</link>
+      <pubDate>Sat, 22 Oct 2016 20:48:04 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/microservices/</guid>
+      <description>Introduction This example contains four projects:
+API A is calling API B and API C
+API B is calling API D
+This example shows:
+ How to build microservices How to do API to API call with light-4j client component How to protect API with JWT token with scopes How to performance test APIs with wrk  There is a tutorial for these projects.
+Note: these projects are not 100% completed yet.</description>
+    </item>
+    
+    <item>
+      <title>petstore</title>
+      <link>https://networknt.github.io/light-4j/example/petstore/</link>
+      <pubDate>Sat, 22 Oct 2016 20:40:35 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/petstore/</guid>
+      <description>Introduction Petstore is a generated RESTful API project based on OpenAPI specification found here.
+Prepare Environment You need to have Java JDK 8 (I prefer OpenJDK but Oracle JDK will do), Maven, Git and Docker installed before starting this tutorial.
+Assuming above software packages are installed, let&amp;rsquo;s create a workspace and clone the projects we need for the tutorial.
+cd ~ mkdir workspace cd workspace git clone git@github.com:networknt/light-codegen.git git clone git@github.</description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://networknt.github.io/light-4j/example/database/</link>
+      <pubDate>Sat, 22 Oct 2016 20:22:34 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/example/database/</guid>
+      <description>Introduction This example can be found at https://github.com/networknt/light-example-4j/tree/master/database
+There are three parts in this projects:
+ An API implemented on top of light-4j framework. Mysql database as part of the docker compose with init script. Postgres database as part of the docker compose with init script.  The project shows:
+ How to use HikariCP for JDBC connection pool. How to initialize database connection pool and plug it into light-4j startup hooks.</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://networknt.github.io/light-4j/architecture/security/</link>
+      <pubDate>Thu, 20 Oct 2016 14:34:09 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/security/</guid>
+      <description>Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
+Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
+While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.</description>
+    </item>
+    
+    <item>
+      <title>API Gateway</title>
+      <link>https://networknt.github.io/light-4j/architecture/gateway/</link>
+      <pubDate>Thu, 20 Oct 2016 14:33:53 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/gateway/</guid>
+      <description>When your organization is thinking about breaking up the big monolithic application to adopt microservices architecture, chances are there are some vendors coming to sell their gateway solutions. Why they want to sell you gateways and do you really need a gateway?
+The reason they are eagerly selling you a gateway is because they have to monetize their product as soon as possible before it is obsolete. The solutions they provided are not truely microservices as there is no standalone gateway in the picture of the real microservices architecture.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://networknt.github.io/light-4j/getting-started/</link>
+      <pubDate>Tue, 18 Oct 2016 07:00:45 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/getting-started/</guid>
+      <description>Code Generation The easiest way to start your RESTful API project is from OpenAPI specification and here is a video to show you how to generate a project from swagger spec.
+light-4j-getting-started
+And here is the step to step tutorial for example-petstore
+Start from one of the example project This is not recommended but if you don&amp;rsquo;t have OpenAPI specification or your service has very special requirement that cannot be generated, you can find many example projects at a separate repo light-example-4j and start by copying one of them.</description>
+    </item>
+    
+    <item>
+      <title>Metrics</title>
+      <link>https://networknt.github.io/light-4j/middleware/metrics/</link>
+      <pubDate>Sat, 15 Oct 2016 20:42:32 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/metrics/</guid>
+      <description>Introduction Metrics handler collects the API runtime information and report to Influxdb periodically (5 minutes to 15 minutes based on the volume of the API). A Grafana instance is hooked to Influxdb to output the metrics on dashboard from two different perspectives:
+ Client oriented - client centric info to show how many APIs to call and each API runtime info.
+ API oriented - API centric info to show how many clients is calling this API.</description>
+    </item>
+    
+    <item>
+      <title>Road Map</title>
+      <link>https://networknt.github.io/light-4j/roadmap/</link>
+      <pubDate>Sat, 15 Oct 2016 19:19:57 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/roadmap/</guid>
+      <description> The short term goal is to make sure the API framework production ready.
+1.3.0 Remove java from project names as it is a trademark of Oracle 1.4.0 Switch to HTTP/2 for client and server 1.5.0 Support API or Service Hosting </description>
+    </item>
+    
+    <item>
+      <title>Development Flow</title>
+      <link>https://networknt.github.io/light-4j/management/flow/</link>
+      <pubDate>Wed, 12 Oct 2016 19:30:08 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/management/flow/</guid>
+      <description>Development Flow There are three flows running in parallel but not started at the same time in API development
+API Specification starts the first and it will be done by data architect and business analyst.
+API implementation starts when the first release of the specification is done by API developers.
+Client implementations start almost the same time as API implementation team for mock API can be generated from swagger specification immediately.</description>
+    </item>
+    
+    <item>
+      <title>Swagger Validator</title>
+      <link>https://networknt.github.io/light-4j/middleware/swagger-validator/</link>
+      <pubDate>Wed, 12 Oct 2016 19:13:19 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/swagger-validator/</guid>
+      <description>This handler is part of the light-rest-4j which is built on top of light-4j but focused on RESTful API only.
+It encourages design driven implementation so swagger specification should be done before the implementation starts. With the light-codegen light-4j generator, the server stub can be generated and start running within minutes. However, we cannot rely on generator for validation as specification will be changed along the life cycle of the API.</description>
+    </item>
+    
+    <item>
+      <title>Swagger Meta</title>
+      <link>https://networknt.github.io/light-4j/middleware/swagger-meta/</link>
+      <pubDate>Wed, 12 Oct 2016 19:10:34 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/swagger-meta/</guid>
+      <description>Introduction This handler is part of the light-rest-4j which is built on top of light-4j but focused on RESTful API only.
+It is designed based on swagger specification so it is our best interest to utilize the swagger.json to its full potential. Currently there are two components are using the swagger specification during runtime.
+ swagger-security - Verify scope in the JWT token against scope defined in swagger specification if scope verification is true.</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://networknt.github.io/light-4j/other/security/</link>
+      <pubDate>Wed, 12 Oct 2016 19:07:43 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/other/security/</guid>
+      <description>The current framework supports OAuth2 with JWT token but can be extended to other authentication and authorization approaches.
+light-oauth2 server By default, the framework contains two pairs of public key certificates issued by our own oauth2 server which can be installed from docker. For more info, please refer to https://github.com/networknt/light-oauth2
+Kid Since services are deployed in the cloud without static IP, the traditional push certificates to each service is not working anymore.</description>
+    </item>
+    
+    <item>
+      <title>Swagger Security</title>
+      <link>https://networknt.github.io/light-4j/middleware/swagger-security/</link>
+      <pubDate>Wed, 12 Oct 2016 19:07:43 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/swagger-security/</guid>
+      <description>This handler is part of the light-rest-4j which is built on top of light-4j but focused on RESTful API only.
+It supports OAuth2 with JWT token distributed verification and can be extended to other authentication and authorization approaches.
+JwtVerifyHandler This is the handler that is injected during server start up if security.json enableVerifyJwt is true. It does further scope verification if enableVerifyScope is true against swagger specification.
+Distributed JWT verification Unlike simple web token, the resource server has to contact Authorization server to validate the bearer token.</description>
+    </item>
+    
+    <item>
+      <title>Exception Handler</title>
+      <link>https://networknt.github.io/light-4j/middleware/exception/</link>
+      <pubDate>Wed, 12 Oct 2016 19:03:24 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/exception/</guid>
+      <description>If any handler throws an exception within the handler chain, that exception will bubble up to the undertow server and eventually a 500 response will be sent to the consumer. In order to change the behaviour, an exception handler is provided to handle ApiException and other uncaught exceptions.
+Please note that developers should capture any checked exceptions including ApiException in their handlers and return a specific error code to help client to debug what is going on on the server.</description>
+    </item>
+    
+    <item>
+      <title>Body Parser</title>
+      <link>https://networknt.github.io/light-4j/middleware/body/</link>
+      <pubDate>Wed, 12 Oct 2016 18:57:17 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/body/</guid>
+      <description>Introduction Body is an HttpHandler to parse the body according to the content type in the request header and attach the parsed result into the exchange so that subsequent handlers will use it directly.
+Only POST, PUT and PATCH methods can have body and currently only JSON is supported as only light-rest-4j is using this middleware handler at the moment. In the future, other content type will be supported.</description>
+    </item>
+    
+    <item>
+      <title>Audit</title>
+      <link>https://networknt.github.io/light-4j/middleware/audit/</link>
+      <pubDate>Wed, 12 Oct 2016 18:48:58 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/audit/</guid>
+      <description>There are two built-in audit handlers that write logs into audit.log that setup in the logback appender.
+SimpleAuditHandler Only logs several fields from request header and the fields are configurable. Optional, it can log response status and response time.
+FullAuditHandler Dump every thing from request and response. This is mainly a development tool and may be used on production for some of the APIs without performance concerns.
+Customized Handler For some users that need special audit logic or other channel to redirect the audit to, they can create their own audit handler and replace the default audit handler in /src/main/resources/META-INF/services/com.</description>
+    </item>
+    
+    <item>
+      <title>End to End Test</title>
+      <link>https://networknt.github.io/light-4j/tutorials/end-to-end-test/</link>
+      <pubDate>Wed, 12 Oct 2016 17:21:40 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/end-to-end-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Integration Test</title>
+      <link>https://networknt.github.io/light-4j/tutorials/integration-test/</link>
+      <pubDate>Wed, 12 Oct 2016 17:06:30 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/integration-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unit Test</title>
+      <link>https://networknt.github.io/light-4j/tutorials/unit-test/</link>
+      <pubDate>Wed, 12 Oct 2016 17:05:47 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/unit-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Debug</title>
+      <link>https://networknt.github.io/light-4j/tutorials/debug/</link>
+      <pubDate>Wed, 12 Oct 2016 17:03:28 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/debug/</guid>
+      <description>As there is no container in Undertow Server and everything is built on top of POJO, it is very easy to debug your API application within your IDE.
+I am using Intellij Idea but Eclipse should be very similar as the generated project is standard Maven project. To debug your code, you need to start the server.
+Here is the steps to create a standalone application in Idea.
+ Click Run and select Edit Configurations&amp;hellip; Click + on the top left corner to add a new Configuration.</description>
+    </item>
+    
+    <item>
+      <title>Scalability</title>
+      <link>https://networknt.github.io/light-4j/architecture/scalability/</link>
+      <pubDate>Tue, 11 Oct 2016 12:32:21 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/scalability/</guid>
+      <description>##
+One of the benefits utilizing microservices architecture is to make sure your application is easily scaling. When we talk about scalability, one of the best books is The Art of Scalability
+It introduced the scale cube as following.
+The Scale Cube consists of an X, Y and Z axes – each addressing a different approach to scale a service. The lowest left point of the cube (coordinates X=0, Y=0 and Z=0) represents the worst case monolithic service or product identified above: a product wherein all functions exist within a single code base on a single server making use of that server’s finite resources of memory, cpu speed, network ports, mass storage, etc.</description>
+    </item>
+    
+    <item>
+      <title>Spring is bloated</title>
+      <link>https://networknt.github.io/light-4j/architecture/spring-is-bloated/</link>
+      <pubDate>Sun, 09 Oct 2016 08:15:27 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/spring-is-bloated/</guid>
+      <description>Over the years, Spring seemed to be the replacement of JEE servers with IoC container and light weight servlet container as its foundation. Especially recently, Spring Boot brings in an easy development model and increases developer productivity dramatically.
+However, there are two issues or limitations in Spring applications.
+Spring is bloated and it becomes too heavy When Spring was out, it was only a small core with IoC contain and it was fast and easy to use.</description>
+    </item>
+    
+    <item>
+      <title>Microservices - The final nail in the coffin for Java EE</title>
+      <link>https://networknt.github.io/light-4j/architecture/jee-is-dead/</link>
+      <pubDate>Sun, 09 Oct 2016 08:14:57 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/jee-is-dead/</guid>
+      <description>When Java was out, big players like IBM, BEA, Oracle etc. saw a great opportunity to make money as it is a great language for web programming. But how can you make big money around a programming language? The answer is to build servers on top of it and make it complicated so big corporations will pay big bucks for it. That is why we have Java EE specs, JSRs, Weblogic, Websphere and other servers.</description>
+    </item>
+    
+    <item>
+      <title>Microservices</title>
+      <link>https://networknt.github.io/light-4j/architecture/microservices/</link>
+      <pubDate>Sun, 09 Oct 2016 08:13:52 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/microservices/</guid>
+      <description>#
+Speed and Safety at Scale and in Harmony.
+If you’re like most software developers, team leaders, and architects responsible for getting working code out the door of your company, this phrase describes your job in a nutshell. Most of you have probably struggled at this, too. Getting to market quickly seems to imply giving up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient means slowing down the pace of feature and bug-fix releases.</description>
+    </item>
+    
+    <item>
+      <title>Chain Pattern Microservices</title>
+      <link>https://networknt.github.io/light-4j/tutorials/ms_chain/</link>
+      <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/ms_chain/</guid>
+      <description>Introduction These days light weight container like Docker is getting traction, more and more API services are developed for docker container and deployed to the cloud. In this environment, traditional heavy weight containers like Java EE and Spring are losing ground as it doesn&amp;rsquo;t make sense to have a heavy weight container wrapped with a light weight docker container. Docker and container orchestration tools like Kubernetes and Docker Swarm are replacing all the functionalities Java EE provides without hogging resources.</description>
+    </item>
+    
+    <item>
+      <title>Microservices</title>
+      <link>https://networknt.github.io/light-4j/tutorials/microservices/</link>
+      <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tutorials/microservices/</guid>
+      <description>Introduction These days light weight container like Docker is getting traction, more and more API services are developed for docker container and deployed to the cloud. In this environment, traditional heavy weight containers like Java EE and Spring are losing ground as it doesn&amp;rsquo;t make sense to have a heavy weight container wrapped with a light weight docker container. Docker and container orchestration tools like Kubernetes and Docker Swarm are replacing all the functionalities Java EE provides without hogging resources.</description>
+    </item>
+    
+    <item>
+      <title>Swagger cli to bundle and validate specification files</title>
+      <link>https://networknt.github.io/light-4j/tools/swagger-cli/</link>
+      <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/swagger-cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swagger Editor for OpenAPI Specification</title>
+      <link>https://networknt.github.io/light-4j/tools/swagger-editor/</link>
+      <pubDate>Sat, 08 Oct 2016 22:14:33 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/swagger-editor/</guid>
+      <description>Introduction Swagger is a simple yet powerful representation of your RESTful API. With the largest ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern programming language and deployment environment. With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability.
+Swagger was created to help fulfill the promise of APIs and is 100% open source software.
+The Swagger specification defines a set of files required to describe an API.</description>
+    </item>
+    
+    <item>
+      <title>wrk performance test</title>
+      <link>https://networknt.github.io/light-4j/tools/wrk-perf/</link>
+      <pubDate>Sat, 08 Oct 2016 21:47:07 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/wrk-perf/</guid>
+      <description>Introduction For most API frameworks in Java, the server can only handle up to ten thousands request per second and Apache JMeter or Apache Bench will do the job. However, when we are talking about millions requests per second light-4j handles, they won&amp;rsquo;t work as these tools will use up all the cpu resources. For high performance testing, wrk is the best as it can send tens of millions requests per seconds on a commodity hardware.</description>
+    </item>
+    
+    <item>
+      <title>Hugo for project documentation on github</title>
+      <link>https://networknt.github.io/light-4j/tools/hugo-docs/</link>
+      <pubDate>Sat, 08 Oct 2016 19:25:24 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/tools/hugo-docs/</guid>
+      <description>Introduction This tutorial is written for Linux and Mac; however, it should not be hard to follow by Windows users.
+For most open source developers, they would ues github.com to manage their projects and then have a README.md for documentation. For some bigger projects they might have wiki for additional documents and linked them from README.md.
+Here I will introduce another way to manage documents in gh-pages with Hugo static site generator.</description>
+    </item>
+    
+    <item>
+      <title>Middleware Handlers</title>
+      <link>https://networknt.github.io/light-4j/middleware/</link>
+      <pubDate>Fri, 07 Oct 2016 22:02:13 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/</guid>
+      <description>Introduction Light-4J is a Java API framework based on undertow http core which supports request and response manipulations in HttpServerExchange. Unlike servlet filter, it is very easy to add middleware handlers in the request and response chain to address all the cross-cutting concerns.
+There are two types of middleware handlers: technical and contextual. All the middleware handlers provided by light-4j are technical as we don&amp;rsquo;t care about each individual service but apply the handlers blindly.</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://networknt.github.io/light-4j/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/</guid>
+      <description>Why this framework Fast and small memory footprint to lower production cost. It is 44 times faster than the most popular microservices platform Spring Boot embedded Tomcat and use only 1&amp;frasl;5 of memory. Here is the benchmark results compare with Spring Boot and other microservices frameworks.
+Provide an embedded gateway to address cross cutting concerns.  Plugin architecture for startup/shutdown hooks and middleware components Distributed OAuth2 JWT security verification as part of the framework Request and response validation against OpenAPI specification at runtime Metrics collected in influxdb and viewed from Grafana Dashboard for both services and clients Global exception handling for runtime exception, api exception and other checked exceptions Mask sensitive data like credit card, sin number etc.</description>
     </item>
     
   </channel>

@@ -1,773 +1,100 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tools-rsses on Light Java - The fastest Java API Framework</title>
-    <link>https://networknt.github.io/light-java/tools/index.xml</link>
-    <description>Recent content in Tools-rsses on Light Java - The fastest Java API Framework</description>
+    <title>Tools on Light 4J - A fast, lightweight Java microservices framework</title>
+    <link>https://networknt.github.io/light-4j/tools/</link>
+    <description>Recent content in Tools on Light 4J - A fast, lightweight Java microservices framework</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sat, 18 Mar 2017 20:37:48 -0400</lastBuildDate>
-    <atom:link href="https://networknt.github.io/light-java/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://networknt.github.io/light-4j/tools/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Minikube Installation</title>
-      <link>https://networknt.github.io/light-java/tools/minikube/</link>
+      <link>https://networknt.github.io/light-4j/tools/minikube/</link>
       <pubDate>Sat, 18 Mar 2017 20:37:48 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/minikube/</guid>
-      <description>
-
-&lt;p&gt;As light-java API/service is aiming to deployed with Docker containers and
-Kubernetes is the most popular container orchestration tool. It is very hard
-to setup multiple nodes cluster on laptop development environment but there
-is a minikube can be used on laptop to create one node cluster on your laptop.&lt;/p&gt;
-
-&lt;h2 id=&#34;install-on-mac&#34;&gt;Install on Mac.&lt;/h2&gt;
-
-&lt;h3 id=&#34;install-xhype&#34;&gt;Install xhype&lt;/h3&gt;
-
-&lt;p&gt;Before installing Minikube, you must install &lt;a href=&#34;https://github.com/zchee/docker-machine-driver-xhyve#install&#34;&gt;xhype&lt;/a&gt;
-driver first. The detailed instructions are in the above link and here is the
-commands to be executed.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install docker-machine-driver-xhyve
-sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;install-minikube&#34;&gt;Install minikube&lt;/h3&gt;
-
-&lt;p&gt;The general installation guide is in the &lt;a href=&#34;https://github.com/kubernetes/minikube&#34;&gt;README&lt;/a&gt;
-and the latest instruction is always specific for the latest release. The current
-release instruction can be found &lt;a href=&#34;https://github.com/kubernetes/minikube/releases&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.17.1/minikube-darwin-amd64 &amp;amp;&amp;amp; chmod +x minikube &amp;amp;&amp;amp; sudo mv minikube /usr/local/bin/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;install-kubectl&#34;&gt;Install kubectl&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;start-minikube&#34;&gt;Start minikube&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;minikube start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;install-on-linux&#34;&gt;Install on Linux&lt;/h2&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/minikube/</guid>
+      <description>As light-4j API/service is aiming to deployed with Docker containers and Kubernetes is the most popular container orchestration tool. It is very hard to setup multiple nodes cluster on laptop development environment but there is a minikube can be used on laptop to create one node cluster on your laptop.
+Install on Mac. Install xhype Before installing Minikube, you must install xhype driver first. The detailed instructions are in the above link and here is the commands to be executed.</description>
     </item>
     
     <item>
       <title>keytool</title>
-      <link>https://networknt.github.io/light-java/tools/keytool/</link>
+      <link>https://networknt.github.io/light-4j/tools/keytool/</link>
       <pubDate>Fri, 03 Feb 2017 14:12:47 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/keytool/</guid>
-      <description>&lt;p&gt;This is a Java command line tool to generate and manipulate keys.&lt;/p&gt;
-
-&lt;p&gt;To create a server.keystore for TLS.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.keystore -storepass secret  -keypass secret -validity 9999
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And then copy this file to light-java/src/main/resources/config/tls folder. At
-the same time, update server.json for keystoreName, keystorePass, keyPass.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;description&amp;quot;: &amp;quot;server config&amp;quot;,
-  &amp;quot;ip&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,
-  &amp;quot;httpPort&amp;quot;: 8080,
-  &amp;quot;enableHttp&amp;quot;: true,
-  &amp;quot;httpsPort&amp;quot;: 8443,
-  &amp;quot;enableHttps&amp;quot;: true,
-  &amp;quot;keystoreName&amp;quot;: &amp;quot;tls/server.keystore&amp;quot;,
-  &amp;quot;keystorePass&amp;quot;: &amp;quot;secret&amp;quot;,
-  &amp;quot;keyPass&amp;quot;: &amp;quot;secret&amp;quot;,
-  &amp;quot;enableTwoWayTls&amp;quot;: false,
-  &amp;quot;truststoreName&amp;quot;: &amp;quot;tls/server.truststore&amp;quot;,
-  &amp;quot;truststorePass&amp;quot;: &amp;quot;password&amp;quot;,
-  &amp;quot;serviceId&amp;quot;: &amp;quot;com.networknt.petstore-1.0.0&amp;quot;,
-  &amp;quot;enableRegistry&amp;quot;: false
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/keytool/</guid>
+      <description>This is a Java command line tool to generate and manipulate keys.
+To create a server.keystore for TLS.
+keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.keystore -storepass secret -keypass secret -validity 9999  And then copy this file to light-4j/src/main/resources/config/tls folder. At the same time, update server.yml for keystoreName, keystorePass, keyPass.
+# Server configuration --- # This is the default binding address if the service is dockerized. ip: 0.</description>
     </item>
     
     <item>
       <title>Tools</title>
-      <link>https://networknt.github.io/light-java/tools/</link>
+      <link>https://networknt.github.io/light-4j/tools/</link>
       <pubDate>Wed, 25 Jan 2017 21:05:31 -0500</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/</guid>
-      <description>&lt;p&gt;There are so many tools that help us to build microservices and here is a small list.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/hugo-docs/&#34;&gt;Hugo&lt;/a&gt; is used to create the document site for all our repositories.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/memory_monitor/&#34;&gt;Memory Monitoring&lt;/a&gt; on MacOS while doing performance test&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-cli/&#34;&gt;Swagger CLI&lt;/a&gt; to validate, merge and convert swagger specification files.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;Swagger Editor&lt;/a&gt; is used to create and update swagger specifications.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-codegen/&#34;&gt;Swagger Codegen&lt;/a&gt; is used to generate code from swagger specification.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/wrk-perf/&#34;&gt;WRK&lt;/a&gt; is used as client for performance test.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://networknt.github.io/light-java/tools/minikube/&#34;&gt;Minikube&lt;/a&gt; is a single node Kubernetes cluster for developers to work on laptop.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/</guid>
+      <description>There are so many tools that help us to build microservices and here is a small list.
+ Hugo is used to create the document site for all our repositories.
+ Memory Monitoring on MacOS while doing performance test
+ Swagger CLI to validate, merge and convert swagger specification files.
+ Swagger Editor is used to create and update swagger specifications.
+ WRK is used as client for performance test.</description>
     </item>
     
     <item>
       <title>Memory Monitoring on Mac</title>
-      <link>https://networknt.github.io/light-java/tools/memory_monitor/</link>
+      <link>https://networknt.github.io/light-4j/tools/memory_monitor/</link>
       <pubDate>Thu, 27 Oct 2016 08:44:57 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/memory_monitor/</guid>
-      <description>
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;While you are testing performance of your microservices, you might be interested in
-monitoring your server memory usage. The memory footprint is very important as we
-are talking about microservices - we might need to deploy hundreds or even thousands
-of microservices to compose a big application. In today&amp;rsquo;s cloud environment, you can
-create vms or containers based on cpu, memory and hard drive usage and usually memory
-is the big constraint and more costly than cpu and hard drive.&lt;/p&gt;
-
-&lt;h1 id=&#34;monitoring-memory-usage-for-java&#34;&gt;Monitoring Memory Usage for Java&lt;/h1&gt;
-
-&lt;p&gt;It is very hard to get the accurate memory usage for Java process.&lt;/p&gt;
-
-&lt;h1 id=&#34;on-mac&#34;&gt;On Mac&lt;/h1&gt;
-
-&lt;p&gt;On Mac, I usually start my performance test with [wrk]() and run it for 1 minute and
-monitor the memory with Activity Monitor. The memory tab will give you a snapshot of
-memory usage on each process. The number is not the real memory usage but the max
-memory usage and you can see it only increases to certain point and stays there.&lt;/p&gt;
-
-&lt;h1 id=&#34;on-linux&#34;&gt;On Linux&lt;/h1&gt;
-
-&lt;h1 id=&#34;on-windows&#34;&gt;On Windows&lt;/h1&gt;
-
-&lt;p&gt;I am not using Windows so I have limited experience on how to monitor Java memory usage
-on this platform. However, the generic JDK tools should work as other platforms.&lt;/p&gt;
-
-&lt;p&gt;If anyone has better ideas, please let me know or send me a pull request.&lt;/p&gt;
-
-&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Swagger Codegen</title>
-      <link>https://networknt.github.io/light-java/tools/swagger-codegen/</link>
-      <pubDate>Sat, 08 Oct 2016 22:14:59 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-java/tools/swagger-codegen/</guid>
-      <description>
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;Many API projects were done without specifications and API specifications were
-produced after APIs were on production. When using Light-Java-Rest Framework,
-design driven is encouraged so swagger specification must be produced before
-the development is started. Please see &lt;a href=&#34;https://networknt.github.io/light-java/management/flow/&#34;&gt;Development Flow&lt;/a&gt;
-for details.&lt;/p&gt;
-
-&lt;p&gt;When product owner starts an API/service, the first thing is to find the swagger
-specification produced by data architect and generate a server skeleton with
-swagger-codegen.&lt;/p&gt;
-
-&lt;h2 id=&#34;specification&#34;&gt;Specification&lt;/h2&gt;
-
-&lt;p&gt;All our specifications including OAuth2 and examples are in the following repo.
-&lt;a href=&#34;https://github.com/networknt/swagger&#34;&gt;https://github.com/networknt/swagger&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Each API/service will have a folder in this repo and it might have versions in
-each sub folders.&lt;/p&gt;
-
-&lt;p&gt;For each API/service, there are three files must be there:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;swagger.yaml - the readable source file for &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-editor/&#34;&gt;swagger-editor&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;swagger.json - the aggregated spec in json format processed by &lt;a href=&#34;https://networknt.github.io/light-java/tools/swagger-cli/&#34;&gt;swagger-cli&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;config.json - the configuration file for swagger-codegen&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here is one example of specification folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger/tree/master/oauth2_client&#34;&gt;https://github.com/networknt/swagger/tree/master/oauth2_client&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;local-generation&#34;&gt;Local Generation&lt;/h2&gt;
-
-&lt;h3 id=&#34;install&#34;&gt;Install&lt;/h3&gt;
-
-&lt;p&gt;To install the swagger-codegen locally, go to your working directory and run&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone git@github.com:networknt/swagger-codegen.git
-cd swagger-codegen
-mvn clean install -DskipTests
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you have swagger-codegen built on your local and it is ready to be used. This
-version of swagger-codegen is a fork of official &lt;a href=&#34;https://github.com/swagger-api/swagger-codegen&#34;&gt;swagger-codegen&lt;/a&gt;
-as the official version doesn&amp;rsquo;t support Java 8 yet.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Assume that you have just built your swagger-codegen and you are in the swagger-codegen
-folder now you can generate petstore API in your home directory with the following command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://petstore.swagger.io/v2/swagger.json -l light-java -o ~/petstore
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Above command uses a swagger specification from the Internet with default configuration.
-If you have swagger file in your local, you can use:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;-i ~/networknt/swagger/oauth2_client/swagger.json
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you want to customized the generated code, you can use:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;-c ~/networknt/swagger/oauth2_client/config.json
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here is the template of command&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -c &amp;lt;path_to_config.json&amp;gt; -i &amp;lt;path_to_specification_file&amp;gt; -l light-java -o &amp;lt;output_folder&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here is an example I used to generate OAuth2 Server client service.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../swagger/oauth2_client/swagger.json -l light-java -o ../light-oauth2/client
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;docker-generation&#34;&gt;Docker Generation&lt;/h2&gt;
-
-&lt;p&gt;Using above locally installed swagger-codegen is OK for developers but it is very hard
-to build the codegen into script to automate the process. The dockerized swagger-codegen
-is very convenient in shell script.&lt;/p&gt;
-
-&lt;h3 id=&#34;install-1&#34;&gt;Install&lt;/h3&gt;
-
-&lt;p&gt;If you have docker installed, you can run the docker container of the swagger-codegen
-so that you don&amp;rsquo;t need to install JDK8 and Maven on your local.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -it networknt/swagger-codegen config-help -l light-java
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Above command will list all the config options for light-java language generator.&lt;/p&gt;
-
-&lt;h3 id=&#34;usage-1&#34;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Mount a volume to &lt;code&gt;/swagger-api/out&lt;/code&gt; for output.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -it -v ~/temp/swagger-generated:/swagger-api/out \
-    networknt/swagger-codegen generate \
-    -i /swagger-api/yaml/petstore-with-fake-endpoints-models-for-testing.yaml \
-    -l light-java \
-    -o /swagger-api/out/petstore
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Your generated code will now be accessible under &lt;code&gt;~/temp/swagger-generated/petstore&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you have swagger.json and config.json on your local, you need to have another -v to
-map your input directory into the container.&lt;/p&gt;
-
-&lt;p&gt;Here is an template of command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -it -v &amp;lt;path of swagger and config&amp;gt;:/swagger-api/swagger -v &amp;lt;path of generated project&amp;gt;:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here is an example to have input and output volume mappings.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -it -v ~/networknt/swagger/api_a:/swagger-api/swagger -v ~/networknt/generated:/swagger-api/out networknt/swagger-codegen generate -c /swagger-api/swagger/config.json -i /swagger-api/swagger/swagger.yaml -l light-java -o /swagger-api/out/api_a
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To make it simple, we have provided a script which you can just define the input folder
-and output folder.&lt;/p&gt;
-
-&lt;p&gt;The script can be found at
-&lt;a href=&#34;https://github.com/networknt/swagger/blob/master/generate.sh&#34;&gt;https://github.com/networknt/swagger/blob/master/generate.sh&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is one example to use the script.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./generate.sh ~/networknt/swagger/database ~/networknt/database
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note: the generated code in Linux might be owned by root user, so you have to change the
-owner before compiling it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo chown -R steve:steve generated
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;customization&#34;&gt;Customization&lt;/h2&gt;
-
-&lt;p&gt;The tool support customized invokerPackage, apiPackage, modelPackage, artifactId and groupId
-defined in a json config file. You will also specify the location of the swagger.json and the
-output folder of the generated code.&lt;/p&gt;
-
-&lt;p&gt;Here is an example of config.json&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;invokerPackage&amp;quot;: &amp;quot;com.networknt.petstore&amp;quot;,
-  &amp;quot;apiPackage&amp;quot;:&amp;quot;com.networknt.petstore.handler&amp;quot;,
-  &amp;quot;modelPackage&amp;quot;:&amp;quot;com.networknt.petstore.model&amp;quot;,
-  &amp;quot;artifactId&amp;quot;: &amp;quot;petstore&amp;quot;,
-  &amp;quot;groupId&amp;quot;: &amp;quot;com.networknt&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We normally put this config.json into the same folder of swagger specification so that you
-only need to specify one input folder in the command line.&lt;/p&gt;
-
-&lt;p&gt;Here is an example of OAuth2 client service specification folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/networknt/swagger/tree/master/oauth2_client&#34;&gt;https://github.com/networknt/swagger/tree/master/oauth2_client&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;shared-swagger-files&#34;&gt;Shared swagger files&lt;/h2&gt;
-
-&lt;p&gt;For organizations with multiple APIs, some of the common yaml files will be created that
-can be shared between APIs in specifications. In that case, you cannot use yaml file to
-generate the code as the tool doesn&amp;rsquo;t know how to locate the external reference files.
-Please find &lt;a href=&#34;https://networknt.github.io/light-java/tools/swager-cli&#34;&gt;swagger-cli&lt;/a&gt; to convert several yaml files into one Json
-file to feed the generator.&lt;/p&gt;
-
-&lt;h2 id=&#34;test&#34;&gt;Test&lt;/h2&gt;
-
-&lt;p&gt;The swagger-codegen tool generates an application running against the Light-Java Server.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Navigate to the &lt;output_folder&gt; for the generated code&lt;/li&gt;
-&lt;li&gt;Build the code using the generated Maven POM file&lt;/li&gt;
-&lt;li&gt;Start the application&lt;/li&gt;
-&lt;li&gt;By default, the application is available at port 8080&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd &amp;lt;output_folder&amp;gt;
-mvn clean install exec:exec
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/memory_monitor/</guid>
+      <description>Introduction While you are testing performance of your microservices, you might be interested in monitoring your server memory usage. The memory footprint is very important as we are talking about microservices - we might need to deploy hundreds or even thousands of microservices to compose a big application. In today&amp;rsquo;s cloud environment, you can create vms or containers based on cpu, memory and hard drive usage and usually memory is the big constraint and more costly than cpu and hard drive.</description>
     </item>
     
     <item>
       <title>Swagger cli to bundle and validate specification files</title>
-      <link>https://networknt.github.io/light-java/tools/swagger-cli/</link>
+      <link>https://networknt.github.io/light-4j/tools/swagger-cli/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/swagger-cli/</guid>
+      <guid>https://networknt.github.io/light-4j/tools/swagger-cli/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Swagger Editor for OpenAPI Specification</title>
-      <link>https://networknt.github.io/light-java/tools/swagger-editor/</link>
+      <link>https://networknt.github.io/light-4j/tools/swagger-editor/</link>
       <pubDate>Sat, 08 Oct 2016 22:14:33 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/swagger-editor/</guid>
-      <description>
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://swagger.io/&#34;&gt;Swagger&lt;/a&gt; is a simple yet powerful representation of your RESTful API. With the largest
-ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern
-programming language and deployment environment. With a Swagger-enabled API, you get interactive documentation,
-client SDK generation and discoverability.&lt;/p&gt;
-
-&lt;p&gt;Swagger was created to help fulfill the promise of APIs and is 100% open source software.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://swagger.io/specification/&#34;&gt;The Swagger specification&lt;/a&gt; defines a set of files required to describe an API.
-These files can then be used by the Swagger-UI project to display the API and Swagger-codegen to generate clients
-or servers in various languages. Additional utilities can also take advantage of the resulting files, such as
-testing tools.&lt;/p&gt;
-
-&lt;h2 id=&#34;swagger-editor&#34;&gt;Swagger Editor&lt;/h2&gt;
-
-&lt;h3 id=&#34;specification-management&#34;&gt;Specification Management&lt;/h3&gt;
-
-&lt;p&gt;If you only have one API to be built, you can save your specification anywhere and you don&amp;rsquo;t need any external
-references; however, you might work for an organization which is building hundreds or thousands APIs and there
-are so many shared references between APIs like common headers, error status etc. In this case, it is recommended
-to create a separate repo for specification only. Normally, it will be called swagger.&lt;/p&gt;
-
-&lt;p&gt;Within this folder, each api will have its own sub folder and common shared references will be in the root folder.&lt;/p&gt;
-
-&lt;p&gt;Swagger spec. can be edited in yaml or json format but most people will be using yaml format and we are stick to it.&lt;/p&gt;
-
-&lt;h3 id=&#34;using-the-online-editor&#34;&gt;Using the online editor&lt;/h3&gt;
-
-&lt;p&gt;To access the Swagger online editor, click the following link.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://editor.swagger.io/#/&#34;&gt;Online Swagger Editor&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;To create a new specification - File &amp;ndash;&amp;gt; New&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;To import an existing specification from the File &amp;ndash;&amp;gt; Import File &amp;hellip;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;To save/export the specification in YAML format - File &amp;ndash;&amp;gt; Download YAML.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Online editor work if you are working on only one API without any externalized references. If you want to work with
-multiple APIs, you have to run the editor locally.&lt;/p&gt;
-
-&lt;h3 id=&#34;running-editor-locally&#34;&gt;Running editor locally&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;  git clone https://github.com/swagger-api/swagger-editor.git
-  cd swagger-editor
-  npm install
-  npm start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now your default browser will be started and point to 127.0.0.1:8080/# with a sample specification loaded.&lt;/p&gt;
-
-&lt;h3 id=&#34;create-a-new-specification&#34;&gt;Create a new specification&lt;/h3&gt;
-
-&lt;p&gt;The swagger-editor serves the static files via an HTTP server. To work on API specifications, the simplest way
-is to clone the swagger repository directly in the Swagger editor folder.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd swagger-editor
-git clone https://github.com/networknt/swagger.git
-cd swagger
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When saving/exporting your specification, please use swagger.yaml filename in your API sub folder under swagger.
-Common object specifications are located in the root folder of the /swagger repository. Ex. header.yaml,
-error.yaml, etc. To refer these common specification files in API specification&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ref: &#39;swagger/error.yaml#/error&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;useful-links&#34;&gt;Useful links&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://swagger.io/specification/&#34;&gt;OpenAPI Specification&lt;/a&gt;
-&lt;a href=&#34;https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0&#34;&gt;Official Examples&lt;/a&gt;
-&lt;a href=&#34;https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/&#34;&gt;Tutorial&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/swagger-editor/</guid>
+      <description>Introduction Swagger is a simple yet powerful representation of your RESTful API. With the largest ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern programming language and deployment environment. With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability.
+Swagger was created to help fulfill the promise of APIs and is 100% open source software.
+The Swagger specification defines a set of files required to describe an API.</description>
     </item>
     
     <item>
       <title>wrk performance test</title>
-      <link>https://networknt.github.io/light-java/tools/wrk-perf/</link>
+      <link>https://networknt.github.io/light-4j/tools/wrk-perf/</link>
       <pubDate>Sat, 08 Oct 2016 21:47:07 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/wrk-perf/</guid>
-      <description>
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;For most API frameworks in Java, the server can only handle up to ten thousands request per second and Apache JMeter
-or Apache Bench will do the job. However, when we are talking about millions requests per second light-java
-handles, they won&amp;rsquo;t work as these tools will use up all the cpu resources. For high performance testing,
-&lt;a href=&#34;https://github.com/wg/wrk&#34;&gt;wrk&lt;/a&gt; is the best as it can send tens of millions requests per seconds on a
-commodity hardware.&lt;/p&gt;
-
-&lt;p&gt;Another limitation on high performance throughput test is network limitation. Unless you client and server a connected
-with 10G network, chances are the network will be the bottle net and you cannot reach the full handling potential of
-you http server. To work around it, most of my tests are running on the same computer in order to gauge the raw server
-throughput and latency.&lt;/p&gt;
-
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux&#34;&gt;Install on Linux&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/wg/wrk/wiki/Installing-wrk-on-OSX&#34;&gt;Install on Mac&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
-
-&lt;h3 id=&#34;basic&#34;&gt;Basic&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;wrk -t12 -c400 -d30s http://localhost:8080/
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;12 threads&lt;/p&gt;
-
-&lt;p&gt;400 concurrent connections&lt;/p&gt;
-
-&lt;p&gt;30 seconds duration&lt;/p&gt;
-
-&lt;h3 id=&#34;pipeline&#34;&gt;Pipeline&lt;/h3&gt;
-
-&lt;p&gt;If you want to bump up number of requests, use pipeline&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;wrk -t4 -c128 -d30s http://localhost:8080 -s pipeline.lua --latency -- / 16
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here is the pipeline.lua script&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;init = function(args)
-   request_uri = args[1]
-   depth = tonumber(args[2]) or 1
-
-   local r = {}
-   for i=1,depth do
-     r[i] = wrk.format(nil, request_uri)
-   end
-   req = table.concat(r)
-end
-
-request = function()
-   return req
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;debug&#34;&gt;Debug&lt;/h3&gt;
-
-&lt;p&gt;If your wrk with pipeline.lua is not working or returning non 2XX or 3XX code, chances are you are using the wrong request
-path after &amp;ndash;. The default in the previous command is / and it should be changed to something like /v1/data for APIs.&lt;/p&gt;
-
-&lt;p&gt;In order to debug the pipeline.lua, use the following copy pipeline_debug.lua&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;init = function(args)
-   request_uri = args[1]
-   depth = tonumber(args[2]) or 1
-
-   local r = {}
-   for i=1,depth do
-     r[i] = wrk.format(nil, request_uri)
-   end
-   req = table.concat(r)
-end
-
-request = function()
-   return req
-end
-
-response = function (status, headers, body)
-  io.write(&amp;quot;------------------------------\n&amp;quot;)
-  io.write(&amp;quot;Response with status: &amp;quot;.. status ..&amp;quot;\n&amp;quot;)
-  io.write(&amp;quot;------------------------------\n&amp;quot;)
-
-  io.write(&amp;quot;[response] Body:\n&amp;quot;)
-  io.write(body .. &amp;quot;\n&amp;quot;)
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-
-&lt;p&gt;For some output examples, you can find at &lt;a href=&#34;https://github.com/networknt/light-java-example/tree/master/performance&#34;&gt;light-java-example/performance&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;additional-info&#34;&gt;Additional Info&lt;/h2&gt;
-
-&lt;p&gt;There are two other &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-benchmark-http-latency-with-wrk-on-ubuntu-14-04&#34;&gt;tutorial 1&lt;/a&gt;
-and &lt;a href=&#34;http://czerasz.com/2015/07/19/wrk-http-benchmarking-tool-example/&#34;&gt;tutorial 2&lt;/a&gt; for wrk written by Michal Czeraszkiewicz&lt;/p&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/wrk-perf/</guid>
+      <description>Introduction For most API frameworks in Java, the server can only handle up to ten thousands request per second and Apache JMeter or Apache Bench will do the job. However, when we are talking about millions requests per second light-4j handles, they won&amp;rsquo;t work as these tools will use up all the cpu resources. For high performance testing, wrk is the best as it can send tens of millions requests per seconds on a commodity hardware.</description>
     </item>
     
     <item>
       <title>Hugo for project documentation on github</title>
-      <link>https://networknt.github.io/light-java/tools/hugo-docs/</link>
+      <link>https://networknt.github.io/light-4j/tools/hugo-docs/</link>
       <pubDate>Sat, 08 Oct 2016 19:25:24 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-java/tools/hugo-docs/</guid>
-      <description>
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;This tutorial is written for Linux and Mac; however, it should not be hard to follow by Windows users.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;For most open source developers, they would ues github.com to manage their projects and
-then have a README.md for documentation. For some bigger projects they might have wiki
-for additional documents and linked them from README.md.&lt;/p&gt;
-
-&lt;p&gt;Here I will introduce another way to manage documents in gh-pages with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;
-static site generator.&lt;/p&gt;
-
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;h3 id=&#34;hugo&#34;&gt;Hugo&lt;/h3&gt;
-
-&lt;p&gt;For Linux, download the binary from the &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;latest release&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I am using hugo_0.17-64bit.deb on ubuntu and install it with the following command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-sudo dpkg -i hugo_0.17-64bit.deb
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To verify that Hugo is installed successful.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo version
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For Mac, the easiest way is to use Homebrew.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew update &amp;amp;&amp;amp; brew install hugo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;pygments&#34;&gt;Pygments&lt;/h3&gt;
-
-&lt;p&gt;The Hugo executable has one optional external dependency for source code highlighting (Pygments).
-To install it&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pip install Pygments
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;enable-hugo-bash-auto-completion&#34;&gt;Enable Hugo Bash Auto-Completion&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo hugo gen autocomplete
-. /etc/bash_completion
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now if you type hugo followed by a few TABs, you will see the commands that Hugo recommended.&lt;/p&gt;
-
-&lt;h2 id=&#34;create-gh-pages-branch&#34;&gt;Create gh-pages branch&lt;/h2&gt;
-
-&lt;p&gt;GitHub Pages will serve up a website for any repository that has a branch called gh-pages
-with a valid index.html file at that branch’s root.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create an orphaned gh-pages branch&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;To set up a Project Pages site, you need to create a new &amp;ldquo;orphan&amp;rdquo; branch (a branch that
-has no common history with an existing branch) in your repository. The safest way to do
-this is to start with a fresh clone:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone github.com/user/repository.git
-cd repository
-git checkout --orphan gh-pages
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Remove all files to create an empty working directory&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code&gt;git rm -rf .
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Add test index.html and push&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;My Page&amp;quot; &amp;gt; index.html
-git add index.html
-git commit -a -m &amp;quot;initial checkin&amp;quot;
-git push origin gh-pages
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Test your site&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;After push to gh-pages, your site will be available at the following url.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://&amp;lt;orgname&amp;gt;.github.io/&amp;lt;reponame&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;scaffold-docs-site&#34;&gt;Scaffold docs site&lt;/h2&gt;
-
-&lt;p&gt;First switch to master branch&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git checkout master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Create a new docs site&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new site docs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you have a docs directory in your project root folder and some empty sub
-directories under docs. By default, git will not commit empty directories to the
-repository. To work around it, we can include .gitkeep file in each of these
-directories.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;for DIR in `ls -p | grep /`; do touch ${DIR}.gitkeep; done
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To verify that these files are created.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;find . -name .gitkeep
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;config&#34;&gt;Config&lt;/h2&gt;
-
-&lt;p&gt;Copy the content of &lt;a href=&#34;https://raw.githubusercontent.com/networknt/light-java/master/docs/config.toml&#34;&gt;my config&lt;/a&gt;
-into config.toml under docs and update it accordingly&lt;/p&gt;
-
-&lt;h2 id=&#34;theme&#34;&gt;Theme&lt;/h2&gt;
-
-&lt;p&gt;I am using hugo-material-docs theme and here is the steps to install it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd docs/themes
-git clone git@github.com:digitalcraftsman/hugo-material-docs.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;content&#34;&gt;Content&lt;/h2&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s create the first page and test it.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;From docs folder, run&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new index.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Find the file docs/content/index.md and update it with some testing content&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Start the server and test it.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;From docs folder&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Now you about.md can be accessed at&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code&gt;http://localhost:1313/&amp;lt;reponame&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
-
-&lt;p&gt;Get the deploy.sh&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Fetch the deployment script into the root of your source tree, make it executable.
-wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh &amp;amp;&amp;amp; chmod +x deploy.sh
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;From docs folder run the following command to publish your site to gh-pages. This
-can be repeated every time you want to publish your site.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# For setting it up to build to a folder other than &amp;quot;dist&amp;quot;, see the options in deploy.sh.
-# Build the site to /dist.
-hugo -d dist
-
-# Run the deploy.sh script installed above.
-./deploy.sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you document site can be accessed from https://&lt;username&gt;.github.io/&lt;projectname&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;check-in&#34;&gt;Check in&lt;/h2&gt;
-
-&lt;p&gt;You site is up and running now, let&amp;rsquo;s check it in before adding more documents&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ..
-git add .
-git commit -m &amp;quot;add docs for documentation&amp;quot;
-git push origin master
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://networknt.github.io/light-4j/tools/hugo-docs/</guid>
+      <description>Introduction This tutorial is written for Linux and Mac; however, it should not be hard to follow by Windows users.
+For most open source developers, they would ues github.com to manage their projects and then have a README.md for documentation. For some bigger projects they might have wiki for additional documents and linked them from README.md.
+Here I will introduce another way to manage documents in gh-pages with Hugo static site generator.</description>
     </item>
     
   </channel>
