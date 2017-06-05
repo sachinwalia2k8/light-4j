@@ -52,12 +52,12 @@ Preparation In order to follow the steps below, please make sure you have the sa
     </item>
     
     <item>
-      <title>Database Access Tutorial</title>
+      <title>Restful Database Access Tutorial</title>
       <link>https://networknt.github.io/light-4j/tutorials/database/</link>
       <pubDate>Mon, 23 Jan 2017 09:07:32 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/tutorials/database/</guid>
-      <description>Introduction Most microservices will have to access database in order to fulfill consumer requests. In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql:
+      <description>Introduction Most microservices will have to access database in order to fulfill consumer requests. In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql for light-rest-4j framework. If you use light-graphql-4j or light-hybrid-4j the steps will be somewhat different but the concept is the same.
  How to setup database connection pool How to connect to the database instance How to do query database tables How to update database tables  Preparation In order to follow the steps below, please make sure you have the same working environment.</description>
     </item>
     

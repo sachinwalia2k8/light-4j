@@ -63,7 +63,8 @@ keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.ke
       <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/tools/swagger-cli/</guid>
-      <description></description>
+      <description>Note: that you don&amp;rsquo;t need this tool if your specification file is self contained yaml file in swagger-editor. You can export into json format and it is validated already during the export process.
+Introduction When editing swagger specification file, naturally we will be using yaml format as it is very easy to read and manipulate. Also, we might extract common definitions into separate files so that there is no duplications for multiple APIs.</description>
     </item>
     
     <item>

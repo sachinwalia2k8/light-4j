@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Database Access Tutorial - Light 4J - A fast, lightweight Java microservices framework</title>
+    <title>Restful Database Access Tutorial - Light 4J - A fast, lightweight Java microservices framework</title>
     <meta name="generator" content="Hugo 0.20.6" />
 
     
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Database Access Tutorial
+        Restful Database Access Tutorial
       </div>
     </div>
 
@@ -461,14 +461,16 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Database Access Tutorial </h1>
+			<h1>Restful Database Access Tutorial </h1>
 
 			
 
 <h1 id="introduction">Introduction</h1>
 
 <p>Most microservices will have to access database in order to fulfill consumer requests.
-In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql:</p>
+In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql
+for light-rest-4j framework. If you use light-graphql-4j or light-hybrid-4j the steps
+will be somewhat different but the concept is the same.</p>
 
 <ul>
 <li>How to setup database connection pool</li>
@@ -479,7 +481,8 @@ In this tutorial, we will walk through the following steps with Oracle/Postgres/
 
 <h1 id="preparation">Preparation</h1>
 
-<p>In order to follow the steps below, please make sure you have the same working environment.</p>
+<p>In order to follow the steps below, please make sure you have the same working
+environment.</p>
 
 <ul>
 <li>A computer with MacOS or Linux (Windows should work but I never tried)</li>
@@ -501,13 +504,13 @@ access. You will need <a href="https://networknt.github.io/light-4j/tools/swagge
 to create a specification.</p>
 
 <p>Here is the OpenAPI specification created and it can be found in
-<a href="https://github.com/networknt/swagger">swagger repo</a> database sub folder.</p>
+<a href="https://github.com/networknt/model-config/tree/master/rest/database">model-config repo</a></p>
 
 <pre><code>swagger: '2.0'
 
 info:
   version: &quot;1.0.0&quot;
-  title: Light-Rest-4J Database Tutorial
+  title: light-rest-4j Database Tutorial
   description: A demo on how to connect, query and update Oracle/Mysql/Postgres. 
   contact:
     email: stevehu@gmail.com
@@ -605,53 +608,51 @@ definitions:
         description: &quot;a random number&quot;
 </code></pre>
 
-<p>Now let&rsquo;s clone the swagger repo to your working directory.</p>
+<p>Now let&rsquo;s clone the model-config repo to your working directory.</p>
 
 <pre><code>cd ~/networknt
-git clone https://github.com/networknt/swagger
+git clone git@github.com:networknt/model-config.git
 </code></pre>
 
 <h1 id="generate-demo-project">Generate Demo Project</h1>
 
-<p>With the specification in place, we can generate the code with <a href="https://github.com/networknt/swagger-codegen">swagger-codegen</a></p>
+<p>With the specification in place, we can generate the code with <a href="https://github.com/networknt/light-codegen">light-codegen</a></p>
 
-<p>There are two different ways to generate the code:</p>
+<p>There are three different ways to generate the code:</p>
 
 <ul>
 <li>Local build</li>
 <li>Docker container</li>
+<li>Script with docker container</li>
 </ul>
 
-<p>To learn how to use the tool, please refer to this <a href="tools/swagger-codegen/">document</a></p>
+<p>To learn how to use the tool, please refer to this the <a href="https://github.com/networknt/light-codegen">README.md</a></p>
 
 <h3 id="generate-code-with-local-build">Generate code with local build</h3>
 
-<p>Clone and build swagger-codegen</p>
+<p>Clone and build light-codegen</p>
 
 <pre><code>cd ~/networknt
-git clone git@github.com:networknt/swagger-codegen.git
-cd swagger-codegen
+git clone git@github.com:networknt/light-codegen.git
+cd light-codegen
 mvn clean install -DskipTests
 </code></pre>
 
-<p>For this demo, I am going to generate the code into light-example-4j/database/generated
+<p>For this demo, I am going to generate the code into light-example-4j/rest/database/generated
 folder so that users can check the code later on from this repo.</p>
 
 <p>Let&rsquo;s checkout the light-example-4j repo and backup the existing database project.</p>
 
 <pre><code>cd ~/networknt
 git clone git@github.com:networknt/light-example-4j.git
-cd light-java-example
+cd light-example-4j/rest
 mv database database.bak
-mkdir database
-cd database
-mkdir generated
 </code></pre>
 
 <p>Before generating the project, we need to create a config.json to define packages,
-artifactId and groupId for the project.</p>
+artifactId, groupId and other options for the project.</p>
 
-<p>Here is the content of the file and it can be found in ~/networknt/swagger/database</p>
+<p>Here is the content of the file and it can be found in ~/networknt/model-config/rest/database</p>
 
 <pre><code>{
   &quot;invokerPackage&quot;: &quot;com.networknt.database&quot;,

@@ -470,8 +470,8 @@ some public facing APIs, it might be a good idea to enable this handler to
 limit the concurrent request to certain level in order to avoid DDOS attacks.</p>
 
 <p>As this handler will impact the overall performance a little bit, it is not
-configured as default in the swagger-codegen. You must manually enable it
-in your API with the following steps.</p>
+configured as default in the <a href="https://github.com/networknt/light-codegen">light-codegen</a>.
+You must select the feature to true in your light-codegen config.</p>
 
 <h2 id="dependency">Dependency</h2>
 
@@ -484,6 +484,9 @@ pom.xml in your project.</p>
                 &lt;version&gt;${version.light-4j}&lt;/version&gt;
             &lt;/dependency&gt;
 </code></pre>
+
+<p>Once it is enabled in the light-codegen config.json, this dependency will be added
+automatically by the generator.</p>
 
 <h2 id="service">Service</h2>
 
@@ -509,12 +512,16 @@ com.networknt.exception.ExceptionHandler
 
 <p>Here is the configuration file for rate limiting.</p>
 
-<pre><code>{
-  &quot;description&quot;: &quot;Rate Limit Handler&quot;,
-  &quot;enabled&quot;: false,
-  &quot;concurrentRequest&quot;: 1000,
-  &quot;queueSize&quot;: -1
-}
+<pre><code># Rate Limit Handler Configuration
+
+# If this handler is enabled or not
+enabled: false
+
+# Maximum concurrent requests allowed, if this number is exceeded, request will be queued.
+concurrentRequest: 1000
+
+# Overflow request queue size. -1 means there is no limit on the queue size
+queueSize: -1
 
 </code></pre>
 

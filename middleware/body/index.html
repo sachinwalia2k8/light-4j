@@ -465,19 +465,18 @@
 
 			
 
+<p>Body parser is a middleware handler designed for <a href="https://github.com/networknt/light-rest-4j">light-rest-4j</a>
+only. It will parse the body to a list or map depending on the first character of the
+body content if application/json is the content-type in the HTTP header for POST, PUT
+and PATCH HTTP methods. After the body is parsed, it will be attached to the exchange
+so that subsequent handlers can use it directly. In the future, other content-type
+might be supported if needed.</p>
+
 <h1 id="introduction">Introduction</h1>
 
-<p>Body is an HttpHandler to parse the body according to the content type in the
-request header and attach the parsed result into the exchange so that subsequent
-handlers will use it directly.</p>
-
-<p>Only POST, PUT and PATCH methods can have body and currently only JSON is supported
-as only light-rest-4j is using this middleware handler at the moment. In the future,
-other content type will be supported.</p>
-
-<p>It needs content type header to be started with &ldquo;application/json&rdquo;. If the content
-type is correct, it will parse it to List or Map and put it into REQUEST_BODY
-exchange attachment.</p>
+<p>In order for this handler to work, the content-type in header must be started with
+&ldquo;application/json&rdquo;. If the content type is correct, it will parse it to List or Map
+and put it into REQUEST_BODY exchange attachment.</p>
 
 <p>If content type is missing or if it is not started as &ldquo;application/json&rdquo;, the body
 won&rsquo;t be parsed and this handler will just call next handler in the chain.</p>
@@ -492,6 +491,23 @@ depend on this middleware.</p>
 
 <pre><code># Enable body parse flag
 enabled: true
+</code></pre>
+
+<h1 id="example">Example</h1>
+
+<p>Here is the code example that get the boby object(Map or List) from exchange.</p>
+
+<pre><code>                    Object body = exchange.getAttachment(BodyHandler.REQUEST_BODY);
+                    if(body == null) {
+                        exchange.getResponseSender().send(&quot;nobody&quot;);
+                    } else {
+                        if(body instanceof List) {
+                            exchange.getResponseSender().send(&quot;list&quot;);
+                        } else {
+                            exchange.getResponseSender().send(&quot;map&quot;);
+                        }
+                    }
+
 </code></pre>
 
 

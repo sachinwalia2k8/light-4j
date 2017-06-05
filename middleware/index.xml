@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Fri, 17 Feb 2017 14:10:28 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 09 May 2017 14:36:31 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/middleware/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CORS</title>
+      <link>https://networknt.github.io/light-4j/middleware/cors/</link>
+      <pubDate>Tue, 09 May 2017 14:36:31 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/cors/</guid>
+      <description>If you API server serves SPA(single page application) built on top of Angular or React, there is no issue for the SPA to access APIs on the same server. However, some of the single page applications are served by another server on another domain. In this case, the API server has to handle the pre-flight options request in order to allow client to access the APIs.
+CorsHttpHandler This handler handles the HTTP pre-flight option request and returns the correct header to the client.</description>
+    </item>
     
     <item>
       <title>Rate Limiting</title>
@@ -19,7 +29,7 @@
       
       <guid>https://networknt.github.io/light-4j/middleware/limit/</guid>
       <description>Although our framework can handle potential millions requests per second, for some public facing APIs, it might be a good idea to enable this handler to limit the concurrent request to certain level in order to avoid DDOS attacks.
-As this handler will impact the overall performance a little bit, it is not configured as default in the swagger-codegen. You must manually enable it in your API with the following steps.</description>
+As this handler will impact the overall performance a little bit, it is not configured as default in the light-codegen. You must select the feature to true in your light-codegen config.</description>
     </item>
     
     <item>
@@ -52,14 +62,14 @@ For microservices architecture, a request sent from client may pass through seve
     </item>
     
     <item>
-      <title>sanitizer</title>
+      <title>Sanitizer</title>
       <link>https://networknt.github.io/light-4j/middleware/sanitizer/</link>
       <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/sanitizer/</guid>
       <description>Introduction This is a middleware that addresses cross site scripting concerns. It encodes the header and body according to the configuration. As body encoding depends on Body middleware, it has to be plugged into the request/response chain after Body.
 Configuration Here is the default configuration sanitizer.yml
-description: Sanitize request for cross site scripting during runtime enabled: true sanitizeBody: true sanitizeHeader: true  If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.</description>
+# Sanitize request for cross site scripting during runtime # indicate if sanitizer is enabled or not enabled: true # if it is enabled, does body need to be sanitized sanitizeBody: true # if it is enabled, does header need to be sanitized sanitizeHeader: false  If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.</description>
     </item>
     
     <item>
@@ -112,8 +122,8 @@ Distributed JWT verification Unlike simple web token, the resource server has to
       <pubDate>Wed, 12 Oct 2016 19:03:24 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/exception/</guid>
-      <description>If any handler throws an exception within the handler chain, that exception will bubble up to the undertow server and eventually a 500 response will be sent to the consumer. In order to change the behaviour, an exception handler is provided to handle ApiException and other uncaught exceptions.
-Please note that developers should capture any checked exceptions including ApiException in their handlers and return a specific error code to help client to debug what is going on on the server.</description>
+      <description>This is a middleware handler that should be put in the beginning of request/response chain. It wraps the entire chain so that any un-handled exceptions will finally reach here and to be handled gracefully. It is encouraged to handle exceptions in business handler because the context is clear and the exchange will be terminated at the right place.
+This handler is plugged in by default from light-codegen and it should be enabled on production as the last defence line.</description>
     </item>
     
     <item>
@@ -122,8 +132,7 @@ Please note that developers should capture any checked exceptions including ApiE
       <pubDate>Wed, 12 Oct 2016 18:57:17 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/body/</guid>
-      <description>Introduction Body is an HttpHandler to parse the body according to the content type in the request header and attach the parsed result into the exchange so that subsequent handlers will use it directly.
-Only POST, PUT and PATCH methods can have body and currently only JSON is supported as only light-rest-4j is using this middleware handler at the moment. In the future, other content type will be supported.</description>
+      <description>Body parser is a middleware handler designed for light-rest-4j only. It will parse the body to a list or map depending on the first character of the body content if application/json is the content-type in the HTTP header for POST, PUT and PATCH HTTP methods. After the body is parsed, it will be attached to the exchange so that subsequent handlers can use it directly. In the future, other content-type might be supported if needed.</description>
     </item>
     
     <item>
@@ -132,10 +141,10 @@ Only POST, PUT and PATCH methods can have body and currently only JSON is suppor
       <pubDate>Wed, 12 Oct 2016 18:48:58 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/audit/</guid>
-      <description>There are two built-in audit handlers that write logs into audit.log that setup in the logback appender.
-SimpleAuditHandler Only logs several fields from request header and the fields are configurable. Optional, it can log response status and response time.
-FullAuditHandler Dump every thing from request and response. This is mainly a development tool and may be used on production for some of the APIs without performance concerns.
-Customized Handler For some users that need special audit logic or other channel to redirect the audit to, they can create their own audit handler and replace the default audit handler in /src/main/resources/META-INF/services/com.</description>
+      <description>There are two built-in audit handlers that write logs into audit.log that setup in the logback appender. End user can add more customized audit handlers if need.
+In the audit module, there is AuditHandler which is a generic and configurable with audit.yml config file.
+There is another audit provided by the light-4j framework called DumpHandler in dump module.
+Introduction Only logs several fields from request header and the fields are configurable.</description>
     </item>
     
     <item>

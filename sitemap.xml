@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://networknt.github.io/light-4j/devops/front_back/</loc>
+    <lastmod>2017-05-11T15:12:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/middleware/cors/</loc>
+    <lastmod>2017-05-09T14:36:31-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://networknt.github.io/light-4j/tools/minikube/</loc>
     <lastmod>2017-03-18T20:37:48-04:00</lastmod>
   </url>
@@ -431,7 +441,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/devops/</loc>
-    <lastmod>2017-01-25T20:55:53-05:00</lastmod>
+    <lastmod>2017-05-11T15:12:48-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -449,7 +459,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/</loc>
-    <lastmod>2017-03-18T20:37:48-04:00</lastmod>
+    <lastmod>2017-05-11T15:12:48-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -461,7 +471,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/middleware/</loc>
-    <lastmod>2017-02-17T14:10:28-05:00</lastmod>
+    <lastmod>2017-05-09T14:36:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   

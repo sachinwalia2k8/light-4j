@@ -18,7 +18,9 @@
       <pubDate>Mon, 06 Feb 2017 21:34:10 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/zookeeper/</guid>
-      <description>A Zookeeper registry implementation that use Zookeeper as registry and discovery server. It implements both registry and discovery in the same module for Zookeeper communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Zookeeper server. Otherwise, the server module will be responsible to register itself during startup.</description>
+      <description>A Zookeeper registry implementation that use Zookeeper as registry and discovery server. It implements both registry and discovery in the same module for Zookeeper communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Zookeeper server. Otherwise, the server module will be responsible to register itself during startup.
+Interface Here is the interface of ZooKeeper client.
+public interface ZooKeeperClient { void subscribeStateChanges(IZkStateListener listener); java.</description>
     </item>
     
     <item>
@@ -27,7 +29,7 @@
       <pubDate>Mon, 06 Feb 2017 21:34:02 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/switcher/</guid>
-      <description>This module implement a switch and its notifier to support on/off state within the system.</description>
+      <description>This module implement a switcher service interface and a local implementation. Switch is useful at system runtime to turn on or off some logic or service given certain conditions. For example, the light-4j server won&amp;rsquo;t stop handling requests but just switching off during server shutdown process. The service registry will be notified but in coming requests are still processed until all clients receives notification from service registry.</description>
     </item>
     
     <item>
@@ -36,9 +38,8 @@
       <pubDate>Mon, 06 Feb 2017 21:33:54 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/service/</guid>
-      <description>A light-weight and fast dependency injection framework without any third party dependencies.
-Light Java framework encourage developers to build microservices with Functional Programming Style. One of the key principle is immutability so that the code can be optimized to take advantage of multi-core CPUs.
-Unlike other IoC container, our service module only deals with singleton during server startup with constructor injection. It give developer an opportunity to choose from several implementations of an interface in service.</description>
+      <description>A light-weight and fast dependency injection framework without any third party dependencies. It only support constructor inject and the injection is done during server startup. All the object is saved into a map and the key is the interface class. That can guarantee that only one instance of implementation is available during runtime.
+Light 4J framework encourage developers to build microservices with Functional Programming Style. One of the key principle is immutability so that the code can be optimized to take advantage of multi-core CPUs.</description>
     </item>
     
     <item>
@@ -47,7 +48,8 @@ Unlike other IoC container, our service module only deals with singleton during 
       <pubDate>Mon, 06 Feb 2017 21:33:47 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/registry/</guid>
-      <description>This module contains all the interfaces that are needed in registry and discovery. Also it implemented Direct registry which you can hard-code services into the service.json in order to simulate consul or zookeeper during development.</description>
+      <description>This module contains all the interfaces that are needed in registry and discovery. Also it implemented Direct registry which you can hard-code services into the service.yml in order to simulate consul or zookeeper during development.
+Currently, Consul and ZooKeeper are supported for external service registry and discovery.</description>
     </item>
     
     <item>
@@ -56,7 +58,7 @@ Unlike other IoC container, our service module only deals with singleton during 
       <pubDate>Mon, 06 Feb 2017 21:33:38 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/health/</guid>
-      <description>This is an handler that needs to be injected into the request/response chain in order to return something that indicate the server is still alive. Currently it returns &amp;ldquo;OK&amp;rdquo; only.</description>
+      <description>This is a server health handler that output OK to indicate the server is alive. Normally, it will be use by F5 to check if the server is health before route request to it. Another way to check server health is to ping the ip and port and it is the standard way to check server status for F5. However, the service instance is up and running doesn&amp;rsquo;t mean it is functioning.</description>
     </item>
     
     <item>
@@ -65,8 +67,9 @@ Unlike other IoC container, our service module only deals with singleton during 
       <pubDate>Mon, 06 Feb 2017 21:33:25 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/handler/</guid>
-      <description>This module defines an interface that all middleware handlers must be implemented in order to be loaded during server startup.
-public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); MiddlewareHandler setNext(final HttpHandler next); boolean isEnabled(); void register(); }  </description>
+      <description>A interface for middleware handlers. All middleware handlers must implement this interface so that the handler can be plugged in to the request/response chain during server startup with SPI (Service Provider Interface). The entire light-4j framework is a core server that provides a plugin structure to hookup all sorts of plugins to handler different cross-cutting concerns.
+The middleware handlers are designed based on chain of responsibility pattern.
+Interface public interface MiddlewareHandler extends HttpHandler { /** * Get the next handler in the chain * * @return HttpHandler */ HttpHandler getNext(); /** * Set the next handler in the chain * * @param next HttpHandler * @return MiddlewareHandler */ MiddlewareHandler setNext(final HttpHandler next); /** * Indicate if this handler is enabled or not.</description>
     </item>
     
     <item>
@@ -75,7 +78,8 @@ public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); 
       <pubDate>Mon, 06 Feb 2017 21:33:14 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/consul/</guid>
-      <description>A consul registry implementation that use Consul as registry and discovery server. It implements both registry and discovery in the same module for consul communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Consul agent. Otherwise, the server module will be responsible to register itself during startup.</description>
+      <description>A consul registry implementation that uses Consul as registry and discovery server. It implements both registry and discovery in the same module for consul communication. If the API/service is delivered as docker image, another product called registrator will be used to register it with Consul agent. Otherwise, the server module will be responsible to register itself during startup.
+The reason that service itself in Docker cannot register to Consul is due to the containerized service cannot find the exposed port from Docker and this issue has been opened for a long time and it has never been resolved.</description>
     </item>
     
     <item>
@@ -84,7 +88,9 @@ public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); 
       <pubDate>Mon, 06 Feb 2017 21:33:04 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/cluster/</guid>
-      <description>This module caches all the service instances that are needed by the current service and calling underline registry(Direct, Consul and ZooKeeper) to discover the service if necessary (first time a service is called and registry notifies something has been changed regarding to subscribe the services on Consul or ZooKeeper).</description>
+      <description>This module caches all the service instances that are needed by the current service and calling underline registry(Direct, Consul and ZooKeeper) to discover the service if necessary (first time a service is called and registry notifies something has been changed regarding to subscribe the services on Consul or ZooKeeper).
+Interface In this module, we have an interface called Cluster.java
+public interface Cluster { /** * give a service name and return a url with http or https url * the result is has been gone through the load balance with request key * * requestKey is used to control the behavior of load balance except * round robin and local first which this value is null.</description>
     </item>
     
     <item>
@@ -93,8 +99,9 @@ public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); 
       <pubDate>Mon, 06 Feb 2017 21:32:51 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/balance/</guid>
-      <description>Client side discovery needs client side load balancer in order to pick up one and only one available service instance to a particular request.
-Currently, only Round-Robin is supported and other implementations will follow.</description>
+      <description>Light-4j framework encourages client side discovery in order to avoid any proxy in front of multiple instances of services. This can reduce the network hop and subsequently reduce the latency of service call.
+Client side discovery needs client side load balancer in order to pick up one and only one available service instance from a list of available services for a particular downstream request during runtime.
+Currently, Round-Robin and LocalFirst are implemented and ConsistentHashing is in progress.</description>
     </item>
     
     <item>
@@ -145,10 +152,11 @@ Data Elements Here are the four fields in the Status object.
       <pubDate>Sun, 23 Oct 2016 13:20:22 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/utility/</guid>
-      <description>This module contains some useful classes that shared by multiple modules within the framework.
+      <description>This module contains some useful classes that shared by multiple modules within the light-* frameworks.
 Constants Contains all the constants shared by all modules.
 ModuleRegistry When the plugin modules are loaded, it will register itself to this module along with configuration. When /server/info is called, the endpoint will return all plugged in modules and their configurations.
-Util Some useful utility method like uuid generator etc.</description>
+Util Some useful utility method like uuid generator etc.
+CollectionUtil Utility for collection</description>
     </item>
     
     <item>

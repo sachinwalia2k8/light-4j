@@ -7,10 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 18 Mar 2017 20:37:48 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 11 May 2017 15:12:48 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Manage project with both front and back end</title>
+      <link>https://networknt.github.io/light-4j/devops/front_back/</link>
+      <pubDate>Thu, 11 May 2017 15:12:48 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/devops/front_back/</guid>
+      <description>The light-* frameworks are designed to do microservices but most services will be consumed by either mobile native application or single page application on browser.
+Here is the best practice to manage the project with both font and back end.
+Put both front end code and back end code into the same repo on git.  Reduced the number of repos on git Easy to link front and backend together.</description>
+    </item>
+    
+    <item>
+      <title>CORS</title>
+      <link>https://networknt.github.io/light-4j/middleware/cors/</link>
+      <pubDate>Tue, 09 May 2017 14:36:31 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/middleware/cors/</guid>
+      <description>If you API server serves SPA(single page application) built on top of Angular or React, there is no issue for the SPA to access APIs on the same server. However, some of the single page applications are served by another server on another domain. In this case, the API server has to handle the pre-flight options request in order to allow client to access the APIs.
+CorsHttpHandler This handler handles the HTTP pre-flight option request and returns the correct header to the client.</description>
+    </item>
     
     <item>
       <title>Minikube Installation</title>
@@ -29,7 +50,7 @@ Install on Mac. Install xhype Before installing Minikube, you must install xhype
       
       <guid>https://networknt.github.io/light-4j/middleware/limit/</guid>
       <description>Although our framework can handle potential millions requests per second, for some public facing APIs, it might be a good idea to enable this handler to limit the concurrent request to certain level in order to avoid DDOS attacks.
-As this handler will impact the overall performance a little bit, it is not configured as default in the swagger-codegen. You must manually enable it in your API with the following steps.</description>
+As this handler will impact the overall performance a little bit, it is not configured as default in the light-codegen. You must select the feature to true in your light-codegen config.</description>
     </item>
     
     <item>
@@ -97,7 +118,9 @@ The big portion of design work for microservices is to functionally divide an ap
       <pubDate>Mon, 06 Feb 2017 21:34:10 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/zookeeper/</guid>
-      <description>A Zookeeper registry implementation that use Zookeeper as registry and discovery server. It implements both registry and discovery in the same module for Zookeeper communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Zookeeper server. Otherwise, the server module will be responsible to register itself during startup.</description>
+      <description>A Zookeeper registry implementation that use Zookeeper as registry and discovery server. It implements both registry and discovery in the same module for Zookeeper communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Zookeeper server. Otherwise, the server module will be responsible to register itself during startup.
+Interface Here is the interface of ZooKeeper client.
+public interface ZooKeeperClient { void subscribeStateChanges(IZkStateListener listener); java.</description>
     </item>
     
     <item>
@@ -106,7 +129,7 @@ The big portion of design work for microservices is to functionally divide an ap
       <pubDate>Mon, 06 Feb 2017 21:34:02 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/switcher/</guid>
-      <description>This module implement a switch and its notifier to support on/off state within the system.</description>
+      <description>This module implement a switcher service interface and a local implementation. Switch is useful at system runtime to turn on or off some logic or service given certain conditions. For example, the light-4j server won&amp;rsquo;t stop handling requests but just switching off during server shutdown process. The service registry will be notified but in coming requests are still processed until all clients receives notification from service registry.</description>
     </item>
     
     <item>
@@ -115,9 +138,8 @@ The big portion of design work for microservices is to functionally divide an ap
       <pubDate>Mon, 06 Feb 2017 21:33:54 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/service/</guid>
-      <description>A light-weight and fast dependency injection framework without any third party dependencies.
-Light Java framework encourage developers to build microservices with Functional Programming Style. One of the key principle is immutability so that the code can be optimized to take advantage of multi-core CPUs.
-Unlike other IoC container, our service module only deals with singleton during server startup with constructor injection. It give developer an opportunity to choose from several implementations of an interface in service.</description>
+      <description>A light-weight and fast dependency injection framework without any third party dependencies. It only support constructor inject and the injection is done during server startup. All the object is saved into a map and the key is the interface class. That can guarantee that only one instance of implementation is available during runtime.
+Light 4J framework encourage developers to build microservices with Functional Programming Style. One of the key principle is immutability so that the code can be optimized to take advantage of multi-core CPUs.</description>
     </item>
     
     <item>
@@ -126,7 +148,8 @@ Unlike other IoC container, our service module only deals with singleton during 
       <pubDate>Mon, 06 Feb 2017 21:33:47 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/registry/</guid>
-      <description>This module contains all the interfaces that are needed in registry and discovery. Also it implemented Direct registry which you can hard-code services into the service.json in order to simulate consul or zookeeper during development.</description>
+      <description>This module contains all the interfaces that are needed in registry and discovery. Also it implemented Direct registry which you can hard-code services into the service.yml in order to simulate consul or zookeeper during development.
+Currently, Consul and ZooKeeper are supported for external service registry and discovery.</description>
     </item>
     
     <item>
@@ -135,7 +158,7 @@ Unlike other IoC container, our service module only deals with singleton during 
       <pubDate>Mon, 06 Feb 2017 21:33:38 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/health/</guid>
-      <description>This is an handler that needs to be injected into the request/response chain in order to return something that indicate the server is still alive. Currently it returns &amp;ldquo;OK&amp;rdquo; only.</description>
+      <description>This is a server health handler that output OK to indicate the server is alive. Normally, it will be use by F5 to check if the server is health before route request to it. Another way to check server health is to ping the ip and port and it is the standard way to check server status for F5. However, the service instance is up and running doesn&amp;rsquo;t mean it is functioning.</description>
     </item>
     
     <item>
@@ -144,8 +167,9 @@ Unlike other IoC container, our service module only deals with singleton during 
       <pubDate>Mon, 06 Feb 2017 21:33:25 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/handler/</guid>
-      <description>This module defines an interface that all middleware handlers must be implemented in order to be loaded during server startup.
-public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); MiddlewareHandler setNext(final HttpHandler next); boolean isEnabled(); void register(); }  </description>
+      <description>A interface for middleware handlers. All middleware handlers must implement this interface so that the handler can be plugged in to the request/response chain during server startup with SPI (Service Provider Interface). The entire light-4j framework is a core server that provides a plugin structure to hookup all sorts of plugins to handler different cross-cutting concerns.
+The middleware handlers are designed based on chain of responsibility pattern.
+Interface public interface MiddlewareHandler extends HttpHandler { /** * Get the next handler in the chain * * @return HttpHandler */ HttpHandler getNext(); /** * Set the next handler in the chain * * @param next HttpHandler * @return MiddlewareHandler */ MiddlewareHandler setNext(final HttpHandler next); /** * Indicate if this handler is enabled or not.</description>
     </item>
     
     <item>
@@ -154,7 +178,8 @@ public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); 
       <pubDate>Mon, 06 Feb 2017 21:33:14 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/consul/</guid>
-      <description>A consul registry implementation that use Consul as registry and discovery server. It implements both registry and discovery in the same module for consul communication. If the API/server is delivered as docker image, another product called registrator will be used to register it with Consul agent. Otherwise, the server module will be responsible to register itself during startup.</description>
+      <description>A consul registry implementation that uses Consul as registry and discovery server. It implements both registry and discovery in the same module for consul communication. If the API/service is delivered as docker image, another product called registrator will be used to register it with Consul agent. Otherwise, the server module will be responsible to register itself during startup.
+The reason that service itself in Docker cannot register to Consul is due to the containerized service cannot find the exposed port from Docker and this issue has been opened for a long time and it has never been resolved.</description>
     </item>
     
     <item>
@@ -163,7 +188,9 @@ public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); 
       <pubDate>Mon, 06 Feb 2017 21:33:04 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/cluster/</guid>
-      <description>This module caches all the service instances that are needed by the current service and calling underline registry(Direct, Consul and ZooKeeper) to discover the service if necessary (first time a service is called and registry notifies something has been changed regarding to subscribe the services on Consul or ZooKeeper).</description>
+      <description>This module caches all the service instances that are needed by the current service and calling underline registry(Direct, Consul and ZooKeeper) to discover the service if necessary (first time a service is called and registry notifies something has been changed regarding to subscribe the services on Consul or ZooKeeper).
+Interface In this module, we have an interface called Cluster.java
+public interface Cluster { /** * give a service name and return a url with http or https url * the result is has been gone through the load balance with request key * * requestKey is used to control the behavior of load balance except * round robin and local first which this value is null.</description>
     </item>
     
     <item>
@@ -172,8 +199,9 @@ public interface MiddlewareHandler extends HttpHandler { HttpHandler getNext(); 
       <pubDate>Mon, 06 Feb 2017 21:32:51 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/balance/</guid>
-      <description>Client side discovery needs client side load balancer in order to pick up one and only one available service instance to a particular request.
-Currently, only Round-Robin is supported and other implementations will follow.</description>
+      <description>Light-4j framework encourages client side discovery in order to avoid any proxy in front of multiple instances of services. This can reduce the network hop and subsequently reduce the latency of service call.
+Client side discovery needs client side load balancer in order to pick up one and only one available service instance from a list of available services for a particular downstream request during runtime.
+Currently, Round-Robin and LocalFirst are implemented and ConsistentHashing is in progress.</description>
     </item>
     
     <item>
@@ -265,6 +293,7 @@ Preparation In order to follow the steps below, please make sure you have the sa
       <guid>https://networknt.github.io/light-4j/devops/</guid>
       <description> How to deploy standalone microservices as Linux service
  How to deploy standalone microservices as Windows service
+ How to manage project with both front and back end
   </description>
     </item>
     
@@ -291,12 +320,12 @@ Here is a list of architecture decisions for the framework:
     </item>
     
     <item>
-      <title>Database Access Tutorial</title>
+      <title>Restful Database Access Tutorial</title>
       <link>https://networknt.github.io/light-4j/tutorials/database/</link>
       <pubDate>Mon, 23 Jan 2017 09:07:32 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/tutorials/database/</guid>
-      <description>Introduction Most microservices will have to access database in order to fulfill consumer requests. In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql:
+      <description>Introduction Most microservices will have to access database in order to fulfill consumer requests. In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql for light-rest-4j framework. If you use light-graphql-4j or light-hybrid-4j the steps will be somewhat different but the concept is the same.
  How to setup database connection pool How to connect to the database instance How to do query database tables How to update database tables  Preparation In order to follow the steps below, please make sure you have the same working environment.</description>
     </item>
     
@@ -450,10 +479,11 @@ Data Elements Here are the four fields in the Status object.
       <pubDate>Sun, 23 Oct 2016 13:20:22 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/other/utility/</guid>
-      <description>This module contains some useful classes that shared by multiple modules within the framework.
+      <description>This module contains some useful classes that shared by multiple modules within the light-* frameworks.
 Constants Contains all the constants shared by all modules.
 ModuleRegistry When the plugin modules are loaded, it will register itself to this module along with configuration. When /server/info is called, the endpoint will return all plugged in modules and their configurations.
-Util Some useful utility method like uuid generator etc.</description>
+Util Some useful utility method like uuid generator etc.
+CollectionUtil Utility for collection</description>
     </item>
     
     <item>
@@ -488,14 +518,14 @@ Type of client Sync Client This is a wrapper of Apache HttpClient with built-in 
     </item>
     
     <item>
-      <title>sanitizer</title>
+      <title>Sanitizer</title>
       <link>https://networknt.github.io/light-4j/middleware/sanitizer/</link>
       <pubDate>Sun, 23 Oct 2016 10:35:04 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/sanitizer/</guid>
       <description>Introduction This is a middleware that addresses cross site scripting concerns. It encodes the header and body according to the configuration. As body encoding depends on Body middleware, it has to be plugged into the request/response chain after Body.
 Configuration Here is the default configuration sanitizer.yml
-description: Sanitize request for cross site scripting during runtime enabled: true sanitizeBody: true sanitizeHeader: true  If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.</description>
+# Sanitize request for cross site scripting during runtime # indicate if sanitizer is enabled or not enabled: true # if it is enabled, does body need to be sanitized sanitizeBody: true # if it is enabled, does header need to be sanitized sanitizeHeader: false  If enabled is false, this middleware won&amp;rsquo;t be loaded during server startup.</description>
     </item>
     
     <item>
@@ -679,8 +709,8 @@ Distributed JWT verification Unlike simple web token, the resource server has to
       <pubDate>Wed, 12 Oct 2016 19:03:24 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/exception/</guid>
-      <description>If any handler throws an exception within the handler chain, that exception will bubble up to the undertow server and eventually a 500 response will be sent to the consumer. In order to change the behaviour, an exception handler is provided to handle ApiException and other uncaught exceptions.
-Please note that developers should capture any checked exceptions including ApiException in their handlers and return a specific error code to help client to debug what is going on on the server.</description>
+      <description>This is a middleware handler that should be put in the beginning of request/response chain. It wraps the entire chain so that any un-handled exceptions will finally reach here and to be handled gracefully. It is encouraged to handle exceptions in business handler because the context is clear and the exchange will be terminated at the right place.
+This handler is plugged in by default from light-codegen and it should be enabled on production as the last defence line.</description>
     </item>
     
     <item>
@@ -689,8 +719,7 @@ Please note that developers should capture any checked exceptions including ApiE
       <pubDate>Wed, 12 Oct 2016 18:57:17 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/body/</guid>
-      <description>Introduction Body is an HttpHandler to parse the body according to the content type in the request header and attach the parsed result into the exchange so that subsequent handlers will use it directly.
-Only POST, PUT and PATCH methods can have body and currently only JSON is supported as only light-rest-4j is using this middleware handler at the moment. In the future, other content type will be supported.</description>
+      <description>Body parser is a middleware handler designed for light-rest-4j only. It will parse the body to a list or map depending on the first character of the body content if application/json is the content-type in the HTTP header for POST, PUT and PATCH HTTP methods. After the body is parsed, it will be attached to the exchange so that subsequent handlers can use it directly. In the future, other content-type might be supported if needed.</description>
     </item>
     
     <item>
@@ -699,10 +728,10 @@ Only POST, PUT and PATCH methods can have body and currently only JSON is suppor
       <pubDate>Wed, 12 Oct 2016 18:48:58 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/middleware/audit/</guid>
-      <description>There are two built-in audit handlers that write logs into audit.log that setup in the logback appender.
-SimpleAuditHandler Only logs several fields from request header and the fields are configurable. Optional, it can log response status and response time.
-FullAuditHandler Dump every thing from request and response. This is mainly a development tool and may be used on production for some of the APIs without performance concerns.
-Customized Handler For some users that need special audit logic or other channel to redirect the audit to, they can create their own audit handler and replace the default audit handler in /src/main/resources/META-INF/services/com.</description>
+      <description>There are two built-in audit handlers that write logs into audit.log that setup in the logback appender. End user can add more customized audit handlers if need.
+In the audit module, there is AuditHandler which is a generic and configurable with audit.yml config file.
+There is another audit provided by the light-4j framework called DumpHandler in dump module.
+Introduction Only logs several fields from request header and the fields are configurable.</description>
     </item>
     
     <item>
@@ -811,7 +840,8 @@ If you’re like most software developers, team leaders, and architects responsi
       <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/tools/swagger-cli/</guid>
-      <description></description>
+      <description>Note: that you don&amp;rsquo;t need this tool if your specification file is self contained yaml file in swagger-editor. You can export into json format and it is validated already during the export process.
+Introduction When editing swagger specification file, naturally we will be using yaml format as it is very easy to read and manipulate. Also, we might extract common definitions into separate files so that there is no duplications for multiple APIs.</description>
     </item>
     
     <item>

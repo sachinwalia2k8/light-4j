@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Wed, 25 Jan 2017 20:55:53 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 11 May 2017 15:12:48 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Manage project with both front and back end</title>
+      <link>https://networknt.github.io/light-4j/devops/front_back/</link>
+      <pubDate>Thu, 11 May 2017 15:12:48 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/devops/front_back/</guid>
+      <description>The light-* frameworks are designed to do microservices but most services will be consumed by either mobile native application or single page application on browser.
+Here is the best practice to manage the project with both font and back end.
+Put both front end code and back end code into the same repo on git.  Reduced the number of repos on git Easy to link front and backend together.</description>
+    </item>
     
     <item>
       <title>DevOps</title>
@@ -20,6 +31,7 @@
       <guid>https://networknt.github.io/light-4j/devops/</guid>
       <description> How to deploy standalone microservices as Linux service
  How to deploy standalone microservices as Windows service
+ How to manage project with both front and back end
   </description>
     </item>
     

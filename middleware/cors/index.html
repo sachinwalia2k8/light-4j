@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Mask - Light 4J - A fast, lightweight Java microservices framework</title>
+    <title>CORS - Light 4J - A fast, lightweight Java microservices framework</title>
     <meta name="generator" content="Hugo 0.20.6" />
 
     
     <meta name="description" content="Light 4J Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-4j/other/mask/">
+    <link rel="canonical" href="https://networknt.github.io/light-4j/middleware/cors/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-4j/other/mask/">
+    <meta property="og:url" content="https://networknt.github.io/light-4j/middleware/cors/">
     <meta property="og:title" content="Light 4J - A fast, lightweight Java microservices framework">
     <meta property="og:image" content="https://networknt.github.io/light-4j/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light 4J - A fast, lightweight Java microservices framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Mask
+        CORS
       </div>
     </div>
 
@@ -461,29 +461,38 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Mask </h1>
+			<h1>CORS </h1>
 
 			
 
-<p>In the entire life cycle of the exchange, there might a lot of logging statements
-written to log files or other persistence storage. These logs will be used to
-assist production issue identifying and resolving and a wide group of people might
-have access to these logs. In order to reduce the risk of leak customer info,
-sensitive info needs to masked before logging. For example, credit card number,
-sin number etc.</p>
+<p>If you API server serves SPA(single page application) built on top of Angular
+or React, there is no issue for the SPA to access APIs on the same server.
+However, some of the single page applications are served by another server
+on another domain. In this case, the API server has to handle the pre-flight
+options request in order to allow client to access the APIs.</p>
 
-<h1 id="configuration">Configuration</h1>
+<h2 id="corshttphandler">CorsHttpHandler</h2>
 
-<p>Given different API will have different sensitive data, the mask is configurable
-and can be applied at header, cookie, query parameters and body.</p>
+<p>This handler handles the HTTP pre-flight option request and returns the correct
+header to the client. The information returns to the client is controlled by
+cors.yml configuration file.</p>
 
-<h1 id="mask-with-string">Mask with String</h1>
+<h2 id="configuration">Configuration</h2>
 
-<h1 id="mask-with-regex">Mask with Regex</h1>
+<p>Here is the default configuration cors.yml</p>
 
-<h1 id="mask-with-jsonpath">Mask with JsonPath</h1>
+<pre><code>description: Cors Http Handler
+# If cors is enabled or not
+enabled: true
+# Allowed origins, you can have multiple and with port
+allowedOrigins:
+- http://localhost
+# Allowed methods list. 
+allowedMethods:
+- GET
+- POST
 
-<h1 id="mask-with-map-and-list">Mask with Map and List</h1>
+</code></pre>
 
 
 			<aside class="copyright" role="note">
@@ -502,7 +511,7 @@ and can be applied at header, cookie, query parameters and body.</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-4j/other/utility/" title="Utility">
+      <a href="https://networknt.github.io/light-4j/devops/front_back/" title="Manage project with both front and back end">
         <span class="direction">
           Previous
         </span>
@@ -512,7 +521,7 @@ and can be applied at header, cookie, query parameters and body.</p>
           </div>
           <div class="stretch">
             <div class="title">
-              Utility
+              Manage project with both front and back end
             </div>
           </div>
         </div>
@@ -522,14 +531,14 @@ and can be applied at header, cookie, query parameters and body.</p>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-4j/other/config/" title="Config">
+      <a href="https://networknt.github.io/light-4j/tools/minikube/" title="Minikube Installation">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Config
+              Minikube Installation
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

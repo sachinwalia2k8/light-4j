@@ -465,6 +465,105 @@
 
 			
 
+<p>Note: that you don&rsquo;t need this tool if your specification file is self contained yaml file in
+swagger-editor. You can export into json format and it is validated already during the export
+process.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>When editing swagger specification file, naturally we will be using yaml format as it is very
+easy to read and manipulate. Also, we might extract common definitions into separate files
+so that there is no duplications for multiple APIs. For the light-codegen, however, it requires
+one single swagger.json as model input. To generate a single json formatted specification file,
+we can use the Swagger 2.0 command-line tool.</p>
+
+<ul>
+<li>Supports multi-file APIs via $ref pointers</li>
+<li>Validate Swagger 2.0 APIs in JSON or YAML format</li>
+<li>Bundle multiple Swagger files into one combined Swagger file</li>
+<li>Built-in HTTP server to serve your REST API</li>
+</ul>
+
+<h3 id="installation">Installation</h3>
+
+<p>The tool can be found at the following location: <a href="https://www.npmjs.com/package/swagger-cli">swagger-cli</a></p>
+
+<p>Install using npm:</p>
+
+<pre><code class="language-shell">npm install -g swagger-cli
+</code></pre>
+
+<h3 id="general-usage">General Usage</h3>
+
+<p>swagger <command> [options] <filename></p>
+
+<p>Commands:
+* validate: Validates a Swagger API against the Swagger 2.0 schema and spec
+* bundle: Bundles a multi-file Swagger API into a single file
+* serve: Serves a Swagger API via the built-in HTTP REST server</p>
+
+<p>Options:
+* -h, &ndash;help: Show help for any command
+* -V, &ndash;version: Output the CLI version number
+* -d, &ndash;debug [filter]: Show debug output, optionally filtered (ex.: &ldquo;<em>&rdquo;, &ldquo;swagger:</em>&rdquo;, etc.)</p>
+
+<p>As we have a <a href="https://github.com/networknt/model-config">repo</a> of model and config for
+<a href="https://github.com/networknt/light-codegen">light-codegen</a>. It would be easier to provide
+an example based on our folder structure.</p>
+
+<h4 id="command-line">Command line</h4>
+
+<p>If you prefer to run the commands individually, please see the sequence listed below:</p>
+
+<pre><code class="language-shell"># clone the model-config GIT repository
+git clone git@github.com:networknt/model-config.git
+
+# switch to the rest folder
+cd model-config/rest
+
+# switch to one of the API folders
+# ex.: cd petstore
+cd &lt;api name&gt;
+
+#copy common definitions to the api folder
+cp -r ../common .
+
+# execute the bundling functionlity
+swagger bundle -o swagger.json -r swagger.yaml
+
+# validate the definition against the Open API spec
+swagger validate swagger.json
+
+# clean-up
+rm -r common
+
+# use the generated swagger.json file with the swagger-codegen project to generate server stubs
+</code></pre>
+
+<h4 id="script">Script</h4>
+
+<p>The above command line steps are very easy to understand but it is not the most convenient
+way to bundle and validate yaml files. Here is another way that leverage a script in
+model-config/rest folder.</p>
+
+<p>Note: the script assume that the common definition is defined in common folder and all API
+specification are defined in a folder name as the API name.</p>
+
+<h5 id="run-the-bundle-sh-script-to-bundle-and-validate">Run the bundle.sh script to bundle and validate</h5>
+
+<pre><code class="language-shell"># clone the model-config repository
+git clone git@github.com:networknt/model-config.git
+
+# switch to the model-config/rest folder
+cd model-config/rest
+
+# run the bundle script
+# ./bundle.sh &lt;api name&gt;
+# ex.: ./bundle.sh petstore
+./bundle.sh &lt;api name&gt;
+</code></pre>
+
+
 			<aside class="copyright" role="note">
 				
 				&copy; 2017 Released under the MIT license &ndash;
