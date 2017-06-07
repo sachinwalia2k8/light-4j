@@ -357,16 +357,6 @@
   </url>
   
   <url>
-    <loc>https://networknt.github.io/light-4j/tools/swagger-cli/</loc>
-    <lastmod>2016-10-08T22:14:47-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://networknt.github.io/light-4j/tools/swagger-editor/</loc>
-    <lastmod>2016-10-08T22:14:33-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://networknt.github.io/light-4j/tools/wrk-perf/</loc>
     <lastmod>2016-10-08T21:47:07-04:00</lastmod>
   </url>

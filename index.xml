@@ -261,9 +261,9 @@ keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.ke
       <description>There are so many tools that help us to build microservices and here is a small list.
  Hugo is used to create the document site for all our repositories.
  Memory Monitoring on MacOS while doing performance test
- Swagger CLI to validate, merge and convert swagger specification files.
- Swagger Editor is used to create and update swagger specifications.
- WRK is used as client for performance test.</description>
+ WRK is used as client for performance test.
+ Minikube is a single node Kubernetes cluster for developers to work on laptop.
+  </description>
     </item>
     
     <item>
@@ -423,7 +423,7 @@ There are four type of components that can be wired in at different stage of the
     </item>
     
     <item>
-      <title>Other Component</title>
+      <title>Other Components</title>
       <link>https://networknt.github.io/light-4j/other/</link>
       <pubDate>Sun, 23 Oct 2016 13:22:33 -0400</pubDate>
       
@@ -763,27 +763,6 @@ Spring is bloated and it becomes too heavy When Spring was out, it was only a sm
       <description>#
 Speed and Safety at Scale and in Harmony.
 If you’re like most software developers, team leaders, and architects responsible for getting working code out the door of your company, this phrase describes your job in a nutshell. Most of you have probably struggled at this, too. Getting to market quickly seems to imply giving up a bit of safety. Or, conversely, making sure the system is safe, reliable, and resilient means slowing down the pace of feature and bug-fix releases.</description>
-    </item>
-    
-    <item>
-      <title>Swagger cli to bundle and validate specification files</title>
-      <link>https://networknt.github.io/light-4j/tools/swagger-cli/</link>
-      <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tools/swagger-cli/</guid>
-      <description>Note: that you don&amp;rsquo;t need this tool if your specification file is self contained yaml file in swagger-editor. You can export into json format and it is validated already during the export process.
-Introduction When editing swagger specification file, naturally we will be using yaml format as it is very easy to read and manipulate. Also, we might extract common definitions into separate files so that there is no duplications for multiple APIs.</description>
-    </item>
-    
-    <item>
-      <title>Swagger Editor for OpenAPI Specification</title>
-      <link>https://networknt.github.io/light-4j/tools/swagger-editor/</link>
-      <pubDate>Sat, 08 Oct 2016 22:14:33 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tools/swagger-editor/</guid>
-      <description>Introduction Swagger is a simple yet powerful representation of your RESTful API. With the largest ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern programming language and deployment environment. With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability.
-Swagger was created to help fulfill the promise of APIs and is 100% open source software.
-The Swagger specification defines a set of files required to describe an API.</description>
     </item>
     
     <item>

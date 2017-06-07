@@ -43,9 +43,9 @@ keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.ke
       <description>There are so many tools that help us to build microservices and here is a small list.
  Hugo is used to create the document site for all our repositories.
  Memory Monitoring on MacOS while doing performance test
- Swagger CLI to validate, merge and convert swagger specification files.
- Swagger Editor is used to create and update swagger specifications.
- WRK is used as client for performance test.</description>
+ WRK is used as client for performance test.
+ Minikube is a single node Kubernetes cluster for developers to work on laptop.
+  </description>
     </item>
     
     <item>
@@ -55,27 +55,6 @@ keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore server.ke
       
       <guid>https://networknt.github.io/light-4j/tools/memory_monitor/</guid>
       <description>Introduction While you are testing performance of your microservices, you might be interested in monitoring your server memory usage. The memory footprint is very important as we are talking about microservices - we might need to deploy hundreds or even thousands of microservices to compose a big application. In today&amp;rsquo;s cloud environment, you can create vms or containers based on cpu, memory and hard drive usage and usually memory is the big constraint and more costly than cpu and hard drive.</description>
-    </item>
-    
-    <item>
-      <title>Swagger cli to bundle and validate specification files</title>
-      <link>https://networknt.github.io/light-4j/tools/swagger-cli/</link>
-      <pubDate>Sat, 08 Oct 2016 22:14:47 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tools/swagger-cli/</guid>
-      <description>Note: that you don&amp;rsquo;t need this tool if your specification file is self contained yaml file in swagger-editor. You can export into json format and it is validated already during the export process.
-Introduction When editing swagger specification file, naturally we will be using yaml format as it is very easy to read and manipulate. Also, we might extract common definitions into separate files so that there is no duplications for multiple APIs.</description>
-    </item>
-    
-    <item>
-      <title>Swagger Editor for OpenAPI Specification</title>
-      <link>https://networknt.github.io/light-4j/tools/swagger-editor/</link>
-      <pubDate>Sat, 08 Oct 2016 22:14:33 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tools/swagger-editor/</guid>
-      <description>Introduction Swagger is a simple yet powerful representation of your RESTful API. With the largest ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern programming language and deployment environment. With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability.
-Swagger was created to help fulfill the promise of APIs and is 100% open source software.
-The Swagger specification defines a set of files required to describe an API.</description>
     </item>
     
     <item>
