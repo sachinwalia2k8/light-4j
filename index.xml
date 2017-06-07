@@ -282,6 +282,7 @@ Preparation In order to follow the steps below, please make sure you have the sa
  How to do integration test
  How to debug the service
  How to register and discover services
+ How to implement Chain Pattern of microservices
   </description>
     </item>
     
@@ -818,10 +819,10 @@ If you’re like most software developers, team leaders, and architects responsi
     
     <item>
       <title>Chain Pattern Microservices</title>
-      <link>https://networknt.github.io/light-4j/tutorials/ms_chain/</link>
+      <link>https://networknt.github.io/light-4j/tutorials/ms-chain/</link>
       <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
       
-      <guid>https://networknt.github.io/light-4j/tutorials/ms_chain/</guid>
+      <guid>https://networknt.github.io/light-4j/tutorials/ms-chain/</guid>
       <description>Introduction These days light weight container like Docker is getting traction, more and more API services are developed for docker container and deployed to the cloud. In this environment, traditional heavy weight containers like Java EE and Spring are losing ground as it doesn&amp;rsquo;t make sense to have a heavy weight container wrapped with a light weight docker container. Docker and container orchestration tools like Kubernetes and Docker Swarm are replacing all the functionalities Java EE provides without hogging resources.</description>
     </item>
     
