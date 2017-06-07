@@ -24,42 +24,14 @@ If you want to limit only several domains for CORS, you also need to create cors
     </item>
     
     <item>
-      <title>Registry and Discovery</title>
-      <link>https://networknt.github.io/light-4j/tutorials/discovery/</link>
-      <pubDate>Fri, 27 Jan 2017 20:57:14 -0500</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tutorials/discovery/</guid>
-      <description>Introduction This is a tutorial to show you how to use service registry and discovery for microservices. We are going to use api_a, api_b, api_c and api_d as our examples. To simply the tutorial, I am going to disable the security all the time.
-The specifications for above APIs can be found at https://github.com/networknt/swagger
-Preparation In order to follow the steps below, please make sure you have the same working environment.</description>
-    </item>
-    
-    <item>
       <title>Tutorials</title>
       <link>https://networknt.github.io/light-4j/tutorials/</link>
       <pubDate>Wed, 25 Jan 2017 20:59:08 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/tutorials/</guid>
-      <description>The following tutorials will help users to get started and more will be added later.
- How to build, test and deploy microserivces
- How to access database in microservices
- How to do unit test
- How to do end-to-end test
- How to do integration test
- How to debug the service
- How to register and discover services
- How to implement Chain Pattern of microservices
-  </description>
-    </item>
-    
-    <item>
-      <title>Restful Database Access Tutorial</title>
-      <link>https://networknt.github.io/light-4j/tutorials/database/</link>
-      <pubDate>Mon, 23 Jan 2017 09:07:32 -0500</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tutorials/database/</guid>
-      <description>Introduction Most microservices will have to access database in order to fulfill consumer requests. In this tutorial, we will walk through the following steps with Oracle/Postgres/Mysql for light-rest-4j framework. If you use light-graphql-4j or light-hybrid-4j the steps will be somewhat different but the concept is the same.
- How to setup database connection pool How to connect to the database instance How to do query database tables How to update database tables  Preparation In order to follow the steps below, please make sure you have the same working environment.</description>
+      <description>In the beginning, we only have one framework that supports restful API for building microservices and now we have several frameworks to build microservices based on the type of services customers want to build. Majority of our customers are using all types of the frameworks to build their services
+If you are unsure which framework to use for your service, please refer to this article
+The following tutorials will help users to get started and more will be added later.</description>
     </item>
     
     <item>
@@ -99,24 +71,6 @@ Preparation In order to follow the steps below, please make sure you have the sa
 I am using Intellij Idea but Eclipse should be very similar as the generated project is standard Maven project. To debug your code, you need to start the server.
 Here is the steps to create a standalone application in Idea.
  Click Run and select Edit Configurations&amp;hellip; Click + on the top left corner to add a new Configuration.</description>
-    </item>
-    
-    <item>
-      <title>Chain Pattern Microservices</title>
-      <link>https://networknt.github.io/light-4j/tutorials/ms-chain/</link>
-      <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tutorials/ms-chain/</guid>
-      <description>Introduction These days light weight container like Docker is getting traction, more and more API services are developed for docker container and deployed to the cloud. In this environment, traditional heavy weight containers like Java EE and Spring are losing ground as it doesn&amp;rsquo;t make sense to have a heavy weight container wrapped with a light weight docker container. Docker and container orchestration tools like Kubernetes and Docker Swarm are replacing all the functionalities Java EE provides without hogging resources.</description>
-    </item>
-    
-    <item>
-      <title>Microservices</title>
-      <link>https://networknt.github.io/light-4j/tutorials/microservices/</link>
-      <pubDate>Sun, 09 Oct 2016 08:01:56 -0400</pubDate>
-      
-      <guid>https://networknt.github.io/light-4j/tutorials/microservices/</guid>
-      <description>Introduction These days light weight container like Docker is getting traction, more and more API services are developed for docker container and deployed to the cloud. In this environment, traditional heavy weight containers like Java EE and Spring are losing ground as it doesn&amp;rsquo;t make sense to have a heavy weight container wrapped with a light weight docker container. Docker and container orchestration tools like Kubernetes and Docker Swarm are replacing all the functionalities Java EE provides without hogging resources.</description>
     </item>
     
   </channel>
