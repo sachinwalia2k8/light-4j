@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Thu, 08 Jun 2017 09:37:00 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 09 Jun 2017 16:05:06 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Handling Partial Failure</title>
+      <link>https://networknt.github.io/light-4j/design/partial-failure/</link>
+      <pubDate>Fri, 09 Jun 2017 16:05:06 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/design/partial-failure/</guid>
+      <description>Introduction In a distributed system there is the ever-present risk of partial failure. Since clients and services are separate processes, a service might not be able to respond in a timely way to a client’s request. A service might be down because of a failure or for maintenance. Or the service might be overloaded and responding extremely slowly to requests. Also, as services are distributed across networks or even data centers, it increases the risk of partial failures especially you have too many small services interact each other to form a big application.</description>
+    </item>
     
     <item>
       <title>Platform</title>
