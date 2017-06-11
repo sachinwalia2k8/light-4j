@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Fri, 09 Jun 2017 16:05:06 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 10 Jun 2017 18:45:31 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Aggregate</title>
+      <link>https://networknt.github.io/light-4j/design/aggregate/</link>
+      <pubDate>Sat, 10 Jun 2017 18:45:31 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/design/aggregate/</guid>
+      <description> Reference  Effective Aggregate Design  </description>
+    </item>
     
     <item>
       <title>Handling Partial Failure</title>
