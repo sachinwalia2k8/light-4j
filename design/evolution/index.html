@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Service Evolution - Light 4J - A fast, lightweight Java microservices framework</title>
+    <meta name="generator" content="Hugo 0.20.6" />
+
+    
+    <meta name="description" content="Light 4J Docs">
+    
+    <link rel="canonical" href="https://networknt.github.io/light-4j/design/evolution/">
+    
+    <meta name="author" content="Steve Hu">
+    
+
+    <meta property="og:url" content="https://networknt.github.io/light-4j/design/evolution/">
+    <meta property="og:title" content="Light 4J - A fast, lightweight Java microservices framework">
+    <meta property="og:image" content="https://networknt.github.io/light-4j/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Light 4J - A fast, lightweight Java microservices framework">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://networknt.github.io/light-4j/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://networknt.github.io/light-4j/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://networknt.github.io/light-4j/fonts/icon.eot');
+        src: url('https://networknt.github.io/light-4j/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://networknt.github.io/light-4j/fonts/icon.woff')
+               format('woff'),
+             url('https://networknt.github.io/light-4j/fonts/icon.ttf')
+               format('truetype'),
+             url('https://networknt.github.io/light-4j/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/application.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://networknt.github.io/light-4j/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Service Evolution
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/stevehu" title="@stevehu on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/networknt/light-4j" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://networknt.github.io/light-4j/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Light 4J - A fast, lightweight Java microservices framework <span class="version">1.3.1</span></strong>
+        
+          <br>
+          networknt/light-4j
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/networknt/light-4j/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/networknt/light-4j/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting started" href="https://networknt.github.io/light-4j/getting-started/">
+	
+	Getting started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Architecture" href="https://networknt.github.io/light-4j/architecture/">
+	
+	Architecture
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Design" href="https://networknt.github.io/light-4j/design/">
+	
+	Design
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Middleware" href="https://networknt.github.io/light-4j/middleware/">
+	
+	Middleware
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Other Components" href="https://networknt.github.io/light-4j/other/">
+	
+	Other Components
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="DevOps" href="https://networknt.github.io/light-4j/devops/">
+	
+	DevOps
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Benchmarks" href="https://networknt.github.io/light-4j/benchmarks/">
+	
+	Benchmarks
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://networknt.github.io/light-4j/tutorials/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Examples" href="https://networknt.github.io/light-4j/example/">
+	
+	Examples
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tools" href="https://networknt.github.io/light-4j/tools/">
+	
+	Tools
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Issues &amp; Help" href="https://github.com/networknt/light-4j/issues">
+	
+	Issues &amp; Help
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Roadmap" href="https://networknt.github.io/light-4j/roadmap/">
+	
+	Roadmap
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+	
+	License
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="https://networknt.github.io/light-4j/index.html">
+	
+	Introduction
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/stevehu" target="_blank" title="@stevehu on GitHub">
+              @stevehu on GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="mailto:stevehu@gmail.com" title="Email of stevehu@gmail.com">
+              Contact via email
+            </a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Service Evolution </h1>
+
+			
+
+<p>Change is happening all around us, new technologies, new methodologies, but how
+are these changes affecting the ways in which systems are architected and how do
+recent developments like patterns and refactoring cause us to think differently
+about architecture?</p>
+
+<p>When microservices were introduced, one of the benefit is you can make changes to
+the services easily. Is this the case if there are so many consumers are depending
+on the it although the consumers and services are loosely coupled? In reality, it
+is not easy to make service changes once it is on production and the root cause is
+due to designers/developers still follow the pattern of Java EE RMI approach to
+build microservices and their consumers with POJO.</p>
+
+<h1 id="example-of-evolving-a-service">Example of Evolving a Service</h1>
+
+<p>Let&rsquo;s say we have a restful service called party which can output all the profile
+information about customers. Here is the output in JSON.</p>
+
+<pre><code>{
+  &quot;id&quot;: 12345,
+  &quot;operatorId&quot;: &quot;67890&quot;,
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Doe&quot;,
+  &quot;email&quot;: &quot;john.doe@nobody.com&quot;,
+  &quot;age&quot;: 27 
+}
+</code></pre>
+
+<p>The party service is currently consumed by two applications: a web application and
+a mobile native application. Both consumers validate the received response prior
+to processing them. The web application uses id, firstName, lastName and email fields;
+the mobile application only uses id and email fields. Neither uses the age field.</p>
+
+<p>One of the most common ways in which we might evolve a service is to add an additional
+field to a contract on behalf of one or more consumers. Depending on how the provider
+and consumers have been implemented, even a simple change like this can have costly
+implications for the business and its partners.</p>
+
+<p>In our example, after the party service has been in production for some time, a second
+mobile application considers using it, but asks that a type field be added to each party.
+Because of the way the consumers have been built, the change has significant and costly
+implications both for the provider and the existing consumers, the cost to each varying
+based on how we implement the change. There are at least two ways in which we can
+distribute the cost of change between the members of the service community. First, we
+could modify our original schema and require each consumer to update its copy of the
+schema in order correctly to validate search results; the cost of changing the system
+is here distributed between the provider - who, faced with a change request like this,
+will always have to make some kind of change - and the consumers, who have no interest
+in the updated functionality. Alternatively, we could choose to add a second operation
+and schema to the service provider on behalf of the new consumer, and maintain the
+original operation and schema on behalf of the existing consumers. The cost of change
+is now constrained to the provider, but at the expense of making the service more complex
+and more costly to maintain.</p>
+
+<h1 id="extension-points">Extension Points</h1>
+
+<p>Making schemas both backwards- and forwards-compatible is a well-understood design task,
+best expressed by the Must Ignore pattern of extensibility. The Must Ignore pattern
+recommends that schemas incorporate extensibility points, which allow extension elements
+to be added to types and additional attributes to each element. The pattern also
+recommends that schema languages define a processing model that specifies how consumers
+process extensions. The simplest model requires consumers to ignore elements that they do
+not recognize - hence the name of the pattern. The model may also require consumers to
+process elements that have a &ldquo;Must Understand&rdquo; flag, or abort if they cannot understand
+them.</p>
+
+<p>The schema includes an optional extension object. The extension itself can contain one
+or more attributes. Now when we receive a change request to add a type to each party,
+we can publish a new schema with an additional type attribute that the provider inserts
+into the extension container. This allows the party service to return results that include
+party type, and consumers using the new schema to validate the entire document. Consumers
+using the old schema will not break, though they will not process the type. The new results
+documents look like this:</p>
+
+<p>This is the updated example on party service:</p>
+
+<pre><code>{
+  &quot;id&quot;: 12345,
+  &quot;operatorId&quot;: &quot;67890&quot;
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Doe&quot;,
+  &quot;email&quot;: &quot;john.doe@nobody.com&quot;,
+  &quot;age&quot;: 27,
+  &quot;extension&quot;: {
+    &quot;type&quot;: &quot;retail&quot;
+  }
+}
+</code></pre>
+
+<p>Note that the first version of the extensible schema is forwards-compatible with the
+second, and that the second is backwards-compatible with the first. This flexibility,
+however, comes at the expense of increased complexity. Extensible schemas allow us to
+make unforeseen changes to an schema language, but at the same time, they provide for
+requirements that may very well never arise and they obscure the expressive power that
+comes from a simple design, and frustrate the meaningful representation of business
+information by introducing meta-informational container attribute into the domain
+language.</p>
+
+<p>We&rsquo;ll not discuss schema extensibility further here. Suffice to say, extension points
+allow us to make backwards- and forwards-compatible changes to schemas and documents
+without breaking service providers and consumers. Schema extensions do not help us
+manage the evolution of a system when we need to make what is a breaking change to a
+contract.</p>
+
+<h1 id="breaking-change">Breaking Change</h1>
+
+<p>The party service depends on a security subsystem to populate operatorId for
+consumers to access other system which uses this field to verify if access is allowed.
+It was designed this way but never used and the security subsystem is too old to be
+maintained. The service provider discuss with all consumers to evaluate if this field
+can be removed. Given this field is not part of the extension points, this is a breaking
+change although it is not been used by any of the consumers and all consumers confirm
+that they have to release a new version which is costly. The party service in this
+respect cannot evolve independently of its consumers. Provider and consumers must all
+jump at the same time.</p>
+
+<p>Our service community is frustrated in its evolution because each consumer implements a
+form of &ldquo;hidden&rdquo; coupling that naively reflects the entirety of the provider contract
+in the consumer&rsquo;s internal logic. The consumers, through their use of JSON schema
+validation and JSON to POJO static language bindings derived from a schema, implicitly
+accept the whole of the provider contract, irrespective of their appetite for processing
+the component parts.</p>
+
+<p>David Orchard provides some clues as to how we might have avoided this issue when he
+wrote to the Internet Protocol&rsquo;s Robustness Principle: &ldquo;In general, an implementation
+must be conservative in its sending behaviour and liberal in its receiving behaviour&rdquo;.
+We can augment this principle in the context of service evolution by saying that message
+receivers should implement &ldquo;just enough&rdquo; validation: that is, they should only process
+data that contributes to the business functions they implement, and should only perform
+explicitly bounded or targeted validation of the data they receive - as opposed to the
+implicitly unbounded, &ldquo;all-or-nothing&rdquo; validation inherent in schema processing.</p>
+
+<h1 id="jsoniter-any">Jsoniter Any</h1>
+
+<p>One way we can target or bound consumer-side validation and processing is to extract
+pattern expressions along the received message&rsquo;s document tree structure, perhaps using
+a zero copy JSON parser like <a href="https://github.com/json-iterator/java">Jsoniter</a> instead of
+Jackson POJO binding. Using Jsoniter, each consumer of the party service can
+programmatically assert/process what it expects to find in the response.</p>
+
+<p>Notice that this approach makes no assertions about attributes in the underlying document
+for which the consuming application has no appetite. In this way, the validation language
+explicitly targets a bounded set of required attributes. Changes to the underlying
+document&rsquo;s schema will not be picked up by the validation process unless they disturb
+the explicit expectations described in consumer side contract, even if those changes
+extend to deprecating or removing formerly mandatory attributes.</p>
+
+<p>Here is a relatively lightweight solution to our contract and coupling problems, and one
+that doesn&rsquo;t require us to add obscure meta-informational elements to a document. So
+let&rsquo;s roll back time once again, and reinstate the simple schema described at the beginning
+of the article. But this time, we&rsquo;ll also insist that consumers are liberal in their
+receiving behaviour, and only validate and process information that supports the business
+functions they implement. Now when the provider is asked to add a type to each party, the
+service can publish a revised schema without disturbing existing consumers. Similarly,
+on discovering that the operatorId field is not validated or processed by any of the
+consumers, the service can revise the service results schema - again without disturbing
+the rate of evolution of each of the consumers.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Unlike monolithic applications, communications between client and service should be loosely
+coupled with individual attributes in JSON instead of POJO which is popular in RMI. By
+doing so, we can ensure that the service can be evolved easily without multiple versions
+running in parallel. Given this, when we write <a href="https://github.com/networknt/light-codegen">light-codegen</a>,
+we deliberately removed POJO generator to encourage developer to not bind service response
+to a POJO which is time consuming and tightly coupled your consumer to the service.</p>
+
+<p>Also, to give confidence for service provider to evolve, it is wise to ask all consumers
+to provide test cases which described consumers expectations in their processing as part
+of the regression test for the service. Once service changes happen, it only need to run
+the entire regression test cases to ensure nothing is broken on the consumer side. This
+consumer expectation is called <a href="consumer-contract/">consume contract</a> which is another
+topic that is out of scope of this article.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Released under the MIT license &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://networknt.github.io/light-4j/design/consumer-contract/" title="Consumer Contract and Consumer Driven Contract">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Consumer Contract and Consumer Driven Contract
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-4j/design/idempotency/" title="Idempotency">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Idempotency
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/networknt.github.io\/light-4j\/';
+      var repo_id  = 'networknt\/light-4j';
+    
+    </script>
+
+    <script src="https://networknt.github.io/light-4j/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

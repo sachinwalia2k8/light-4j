@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Consumer Contract and Consumer Driven Contract - Light 4J - A fast, lightweight Java microservices framework</title>
+    <meta name="generator" content="Hugo 0.20.6" />
+
+    
+    <meta name="description" content="Light 4J Docs">
+    
+    <link rel="canonical" href="https://networknt.github.io/light-4j/design/consumer-contract/">
+    
+    <meta name="author" content="Steve Hu">
+    
+
+    <meta property="og:url" content="https://networknt.github.io/light-4j/design/consumer-contract/">
+    <meta property="og:title" content="Light 4J - A fast, lightweight Java microservices framework">
+    <meta property="og:image" content="https://networknt.github.io/light-4j/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Light 4J - A fast, lightweight Java microservices framework">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://networknt.github.io/light-4j/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://networknt.github.io/light-4j/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://networknt.github.io/light-4j/fonts/icon.eot');
+        src: url('https://networknt.github.io/light-4j/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://networknt.github.io/light-4j/fonts/icon.woff')
+               format('woff'),
+             url('https://networknt.github.io/light-4j/fonts/icon.ttf')
+               format('truetype'),
+             url('https://networknt.github.io/light-4j/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/application.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://networknt.github.io/light-4j/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://networknt.github.io/light-4j/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Consumer Contract and Consumer Driven Contract
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/stevehu" title="@stevehu on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/networknt/light-4j" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://networknt.github.io/light-4j/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Light 4J - A fast, lightweight Java microservices framework <span class="version">1.3.1</span></strong>
+        
+          <br>
+          networknt/light-4j
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/networknt/light-4j/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/networknt/light-4j/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting started" href="https://networknt.github.io/light-4j/getting-started/">
+	
+	Getting started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Architecture" href="https://networknt.github.io/light-4j/architecture/">
+	
+	Architecture
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Design" href="https://networknt.github.io/light-4j/design/">
+	
+	Design
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Middleware" href="https://networknt.github.io/light-4j/middleware/">
+	
+	Middleware
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Other Components" href="https://networknt.github.io/light-4j/other/">
+	
+	Other Components
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="DevOps" href="https://networknt.github.io/light-4j/devops/">
+	
+	DevOps
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Benchmarks" href="https://networknt.github.io/light-4j/benchmarks/">
+	
+	Benchmarks
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://networknt.github.io/light-4j/tutorials/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Examples" href="https://networknt.github.io/light-4j/example/">
+	
+	Examples
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tools" href="https://networknt.github.io/light-4j/tools/">
+	
+	Tools
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Issues &amp; Help" href="https://github.com/networknt/light-4j/issues">
+	
+	Issues &amp; Help
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Roadmap" href="https://networknt.github.io/light-4j/roadmap/">
+	
+	Roadmap
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
+	
+	License
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Introduction" href="https://networknt.github.io/light-4j/index.html">
+	
+	Introduction
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/stevehu" target="_blank" title="@stevehu on GitHub">
+              @stevehu on GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="mailto:stevehu@gmail.com" title="Email of stevehu@gmail.com">
+              Contact via email
+            </a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Consumer Contract and Consumer Driven Contract </h1>
+
+			
+
+<p>When discussing <a href="evolution/">service evolution</a>, we have mentioned consumer contract
+and recommended building consumer side regression test cases to ensure that service
+updates won&rsquo;t break any consumer. Consumer contract is not a new concept and it was
+introduced in SOA architecture to address service evolution in XML schema. The same
+concept is still suitable for the microserivces architecture which normally based on
+JSON and some sort of RPC schema.</p>
+
+<h1 id="provider-contract">Provider Contract</h1>
+
+<p>A provider contract expresses a service provider&rsquo;s business function capabilities in
+terms of the set of exportable elements necessary to support that functionality. From
+a service evolution point of view, a contract is a container for a set of exportable
+business function elements. A non-normative list of these elements includes:</p>
+
+<h2 id="schemas">Schemas</h2>
+
+<p>Schemas are the parts of a provider contract most likely to change as the service
+evolves. In restful OpenAPI specification, they map to the definitions for the request
+and response.</p>
+
+<h2 id="interfaces">Interfaces</h2>
+
+<p>In their simplest form, service provider interfaces comprise the set of exportable
+operation signatures a consumer can exploit to drive the behaviour of a provider.
+Message-oriented systems typically export relatively simple operation signatures and
+push the business intelligence into the messages they exchange. In a message-oriented
+system, received messages drive endpoint behaviour according to semantics encoded in
+the message header or payload. RPC-like services, on the other hand, encode more of
+their business semantics in their operation signatures. Either way, consumers depend
+on some portion of a provider&rsquo;s interface to realise business value, and in consequence
+we must account for interface consumption when evolving our service. In OpenAPI spec,
+interfaces map to operations/endpoints.</p>
+
+<h2 id="conversations">Conversations</h2>
+
+<p>Service providers and consumers exchange messages in conversations that compose one or
+more message exchange patterns such as request-response and fire-and-forget. Over the
+course of a conversation a consumer may expect the provider to externalize some state
+particular to the interaction in the messages that it sends and receives. Most restful
+APIs are stateless; however, there are relationships between different endpoints which
+form conversational conventions.</p>
+
+<h2 id="policy">Policy</h2>
+
+<p>Besides exporting schemas, interfaces and conversations, service providers may declare
+and enforce specific usage requirements that govern how the other elements of the
+contract can be realised. Most commonly, these requirements relate to the security in
+which a consumer can exploit a provider&rsquo;s functionality. This maps to OpenAPI security
+definitions.</p>
+
+<h2 id="quality-of-service">Quality of service</h2>
+
+<p>The business value potential that service providers and consumers exploit is often
+evaluated in the context of specific quality of service characteristics such as
+availability, latency and throughput. We should consider these characteristics as
+likely constituents of a provider contract and account for them in our service
+evolution strategies. There is no specific mapping in OpenAPI spec for QoS, but it
+can be defined in the same document as part of the extension.</p>
+
+<p>Above list of elements defines logical view of the service for its business function.
+Also from a service evolution perspective, it defines a list of elements
+that we have to be very careful in changing them as they are inter-related to each
+other and one or more consumers might be impacted. Different type of services might
+have their provider contracts defined only as sub-set of the elements. For example,
+internal API contract might not have explicit QoS definition.</p>
+
+<h1 id="consumer-contracts">Consumer Contracts</h1>
+
+<p>If we decide to account for consumer expectations regarding the schemas we expose
+when evolving our service - and consider it worth our provider knowing about them -
+then we need to import those consumer expectations into the provider. The consumer
+contract can be reflected as a set of regression test cases that, if implemented
+by the provider, might help ensure the provider continues to meet its commitments to
+its clients. By implementing these tests, the provider gains a better understanding
+of how it can evolve the structure of the messages it produces without breaking
+existing functionality in the service community. And where a proposed change would
+in fact break one or more consumers, the provider will have immediate insight into
+the issue and be better able to address it with the parties concerned, accommodating
+their requirements or providing incentives for them to change as business factors
+dictate.</p>
+
+<p>In our example, we can say that the set of assertions generated by all consumers
+expresses the mandatory structure of the messages to be exchanged during the period
+in which the assertions remain valid for their parent applications. If the provider
+were possessed of this set of assertions, it would be able to ensure that every
+message it sends is valid for every consumer as the set of assertions is valid and
+complete.</p>
+
+<p>Generalizing this structure, we can distinguish what we have already called the
+provider contract from the individual contractual obligations that obtain in instances
+of provider-consumer relationships, which we will now call consumer contracts. When
+a provider accepts and adopts the reasonable expectations expressed by a consumer,
+it enters into a consumer contract.</p>
+
+<h1 id="consumer-driven-contracts">Consumer-Driven Contracts</h1>
+
+<p>Consumer contracts allow us to reflect on the business value being exploited at any
+point in a provider&rsquo;s lifetime. By expressing and asserting expectations of a provider
+contract, consumer contracts effectively define which parts of that provider contract
+currently support the business value realized by the system, and which do not. This
+leads us to suggest that service communities might benefit from being specified in the
+first instance in terms of consumer contracts. In this view, provider contracts emerge
+to meet consumer expectations and demands. To reflect the derived nature of this new
+contractual arrangement, we call such provider contracts consumer-driven contracts or
+derived contracts.</p>
+
+<p>The derivative nature of consumer-driven provider contracts adds a heterogamous aspect
+to the relationship between service provider and consumer. That is, providers are
+subject to an obligation that originates from outside their boundaries. This in no
+way impacts on the fundamentally autonomous nature of their implementations; it simply
+makes explicit the fact that services depend for success on their being consumed.</p>
+
+<h1 id="implementation">Implementation</h1>
+
+<p>This is paradigm shift in term of service contract design and the team must be careful
+not drift to consume request too much and miss the opportunity to explore the system
+capability from service perspective. The designer need to balance both client side
+and service side requirements and restrictions in design.</p>
+
+<p>Contracts may be expressed and structured in several ways. In their simplest form,
+consumer expectations can be captured in a spreadsheet or similar document and
+implemented during the design, development and testing phases of a provider application.
+By going a little further and introducing unit tests that assert each expectation, we
+can ensure that contracts are described and enforced in a repeatable, automated fashion
+with each build.</p>
+
+<p>As with the structure of contracts, we have several options when it comes to
+communicating expectations between providers and consumers. Since the Consumer-Driven
+Contract pattern is implementation agnostic we could, given the appropriate
+organizational setup, transmit expectations simply by talking to other teams, or
+using email. Where the number of expectations and/or consumers grows too large to
+manage in this manner, we may consider introducing a contract service interface and
+implementation into the connected systems&rsquo; infrastructure. Whatever the mechanism,
+it is likely communications will be conducted out-of-band and prior to any
+conversations that exercise the business functionality of the system.</p>
+
+<h1 id="benefits">Benefits</h1>
+
+<p>Consumer-driven contracts offer two significant benefits when it comes to evolving
+services. First, they focus the specification and delivery of service functionality
+around key business value drivers. A service is of value to the business only to the
+extent it is consumed. Consumer-driven contracts tie service evolution to business
+value by asserting the value of exportable service community elements - the things
+that consumers require of providers to do their job. As a result, providers expose a
+lean contract that is clearly aligned with the business goals that underpin their
+consumers. Change - service evolution - only emerges where consumers express a clear
+need.</p>
+
+<p>Of course, our ability to start with a minimal set of lean requirements and evolve
+our service when consumers demand that we are in a position to
+evolve, deploy and operate the service in a controlled and efficient manner. This is
+where the Consumer-Driven Contract pattern provides a second key benefit.
+Consumer-driven provider contracts give us the fine-grained insight and rapid feedback
+we require to plan changes and assess their impact on applications currently in
+production. In practice, this allows us to target individual consumers and provide
+incentives for them to relinquish an expectation that is stopping us from making a
+change that is not currently backwards- and/or forwards-compatible. By deriving our
+service providers from consumer contracts, we can have a repository of knowledge and
+a feedback mechanism that we can draw on during the operations part of the system
+lifecycle.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>In this article we&rsquo;ve identified the motivation for introducing consumer-driven
+contracts into the service landscape, and thereafter described how the Consumer-Driven
+Contract pattern addresses the forces that determine service evolution.</p>
+
+<p>The Consumer-Driven Contract pattern is applicable in the context of either a single
+enterprise or a closed community of well-know services: more specifically, an
+environment in which providers can exert some influence over how consumers establish
+contracts with them. No matter how lightweight the mechanisms for communicating and
+representing expectations and obligations, providers and consumers must know about,
+accept and adopt an agreed upon set of channels and conventions. This inevitably adds
+a layer of complexity and protocol dependence to an already complex service
+infrastructure.</p>
+
+<p>We&rsquo;ve suggested that systems built around consumer-driven contracts are better able
+to manage breaking changes to contracts. But we don&rsquo;t mean to suggest that the pattern
+is a cure-all for the problem of breaking changes: when all&rsquo;s said and done, a
+breaking change is still a breaking change. We do believe, however, that the pattern
+provides many insights into what actually constitutes a breaking change, and as such
+may serve as the foundation for a service versioning strategy.</p>
+
+<p>Consumer-driven contracts do not necessarily reduce the coupling between services.
+Loosely-coupled services are relatively independent of one another, but remain coupled
+nonetheless. What the pattern does do, however, is excavate and put on display some of
+those residual, &ldquo;hidden&rdquo; couplings, so that providers and consumers can better
+negotiate and manage them.</p>
+
+<p>The underlying assumption here is that services, by themselves, are of no value to
+the business; their value is in being consumed. By specifying services closer to
+where they are being used - by consumers - we aim to exploit business value in a lean,
+just-in-time fashion.</p>
+
+<p>Finally, we should point out that there is a risk that allowing consumer contracts
+to drive the specification of a service provider may undermine the conceptual
+integrity of that provider. Services encapsulate discrete, identifiable, reusable
+business functions whose integrity should not be compromised by unreasonable demands
+falling outside their mandate.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Released under the MIT license &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://networknt.github.io/light-4j/design/evolution/" title="Service Evolution">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Service Evolution
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/networknt.github.io\/light-4j\/';
+      var repo_id  = 'networknt\/light-4j';
+    
+    </script>
+
+    <script src="https://networknt.github.io/light-4j/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

@@ -7,10 +7,40 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 10 Jun 2017 18:45:31 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jul 2017 08:30:37 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Consumer Contract and Consumer Driven Contract</title>
+      <link>https://networknt.github.io/light-4j/design/consumer-contract/</link>
+      <pubDate>Mon, 03 Jul 2017 08:30:37 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/design/consumer-contract/</guid>
+      <description>When discussing service evolution, we have mentioned consumer contract and recommended building consumer side regression test cases to ensure that service updates won&amp;rsquo;t break any consumer. Consumer contract is not a new concept and it was introduced in SOA architecture to address service evolution in XML schema. The same concept is still suitable for the microserivces architecture which normally based on JSON and some sort of RPC schema.
+Provider Contract A provider contract expresses a service provider&amp;rsquo;s business function capabilities in terms of the set of exportable elements necessary to support that functionality.</description>
+    </item>
+    
+    <item>
+      <title>Service Evolution</title>
+      <link>https://networknt.github.io/light-4j/design/evolution/</link>
+      <pubDate>Fri, 30 Jun 2017 13:53:11 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/design/evolution/</guid>
+      <description>Change is happening all around us, new technologies, new methodologies, but how are these changes affecting the ways in which systems are architected and how do recent developments like patterns and refactoring cause us to think differently about architecture?
+When microservices were introduced, one of the benefit is you can make changes to the services easily. Is this the case if there are so many consumers are depending on the it although the consumers and services are loosely coupled?</description>
+    </item>
+    
+    <item>
+      <title>Idempotency</title>
+      <link>https://networknt.github.io/light-4j/design/idempotency/</link>
+      <pubDate>Mon, 19 Jun 2017 21:49:05 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/design/idempotency/</guid>
+      <description>Networks are unreliable. The networks connecting our clients and servers are, on average, more reliable than consumer-level last miles like cellular or home ISPs, but given enough information moving across the wire, they’re still going to fail given enough time. Outages, routing problems, and other intermittent failures may be statistically unusual on the whole, but still bound to be happening all the time at some ambient background rate.
+While in microservices architecture, the number of network connections grow exponentially and the risk of network issues will be much higher than monolithic applications.</description>
+    </item>
     
     <item>
       <title>Aggregate</title>
@@ -27,7 +57,7 @@
       <pubDate>Fri, 09 Jun 2017 16:05:06 -0400</pubDate>
       
       <guid>https://networknt.github.io/light-4j/design/partial-failure/</guid>
-      <description>Introduction In a distributed system there is the ever-present risk of partial failure. Since clients and services are separate processes, a service might not be able to respond in a timely way to a client’s request. A service might be down because of a failure or for maintenance. Or the service might be overloaded and responding extremely slowly to requests. Also, as services are distributed across networks or even data centers, it increases the risk of partial failures especially you have too many small services interact each other to form a big application.</description>
+      <description>Introduction In a distributed system there is the ever-present risk of partial failure. Since clients and services are separate processes or even reside on different physical servers, a service might not be able to respond in a timely way to a client’s request. A service might be down because of a failure or for maintenance. Or the service might be overloaded and responding extremely slowly to requests. Also, as services are distributed across networks or even data centers, it increases the risk of partial failures especially you have too many small services interact each other to form a big application.</description>
     </item>
     
     <item>
@@ -113,7 +143,7 @@ If you want to limit only several domains for CORS, you also need to create cors
     </item>
     
     <item>
-      <title>newprod</title>
+      <title>Design new product from scratch</title>
       <link>https://networknt.github.io/light-4j/design/newprod/</link>
       <pubDate>Thu, 09 Feb 2017 12:45:08 -0500</pubDate>
       
