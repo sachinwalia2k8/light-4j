@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Thu, 08 Jun 2017 09:37:00 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 10 Aug 2017 15:04:40 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/architecture/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Transaction management in microservices architecture</title>
+      <link>https://networknt.github.io/light-4j/architecture/transaction/</link>
+      <pubDate>Thu, 10 Aug 2017 15:04:40 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/transaction/</guid>
+      <description>In traditional monolithic applications, we normally use distributed transactions(XA) and two-phase commit(2PC) to maintain data consistency and integrity.
+After moving to microservices architecture, we don&amp;rsquo;t have the option to use XA correctly technically; however, a lot of developer will use it implicitly without knowing the risk. In fact, they don&amp;rsquo;t even realize that they are using distributed transactions between microservices.
+What is a distributed transaction When we are talking about distributed transaction in monolithic world, we are talking about explicit distributed transactions.</description>
+    </item>
     
     <item>
       <title>Platform</title>

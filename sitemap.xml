@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://networknt.github.io/light-4j/architecture/transaction/</loc>
+    <lastmod>2017-08-10T15:04:40-04:00</lastmod>
+  </url>
   
   <url>
     <loc>https://networknt.github.io/light-4j/design/consumer-contract/</loc>
@@ -409,7 +413,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/architecture/</loc>
-    <lastmod>2017-06-08T09:37:00-04:00</lastmod>
+    <lastmod>2017-08-10T15:04:40-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -450,7 +454,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/</loc>
-    <lastmod>2017-07-03T08:30:37-04:00</lastmod>
+    <lastmod>2017-08-10T15:04:40-04:00</lastmod>
     <priority>0</priority>
   </url>
   
