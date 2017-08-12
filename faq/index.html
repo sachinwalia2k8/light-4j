@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Swagger cli to bundle and validate specification files - Light 4J - A fast, lightweight Java microservices framework</title>
-    <meta name="generator" content="Hugo 0.20.6" />
+    <title>FAQ - Light 4J - A fast, lightweight Java microservices framework</title>
+    <meta name="generator" content="Hugo 0.21-DEV" />
 
     
     <meta name="description" content="Light 4J Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-4j/tools/swagger-cli/">
+    <link rel="canonical" href="https://networknt.github.io/light-4j/faq/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-4j/tools/swagger-cli/">
+    <meta property="og:url" content="https://networknt.github.io/light-4j/faq/">
     <meta property="og:title" content="Light 4J - A fast, lightweight Java microservices framework">
     <meta property="og:image" content="https://networknt.github.io/light-4j/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light 4J - A fast, lightweight Java microservices framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Swagger cli to bundle and validate specification files
+        FAQ
       </div>
     </div>
 
@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Light 4J - A fast, lightweight Java microservices framework <span class="version">1.2.8</span></strong>
+        <strong>Light 4J - A fast, lightweight Java microservices framework <span class="version">1.3.5</span></strong>
         
           <br>
           networknt/light-4j
@@ -396,6 +396,27 @@
 
 
 
+<a class="current" title="FAQ" href="https://networknt.github.io/light-4j/faq/">
+	
+	FAQ
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
 	
 	License
@@ -461,107 +482,79 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Swagger cli to bundle and validate specification files </h1>
+			<h1>FAQ </h1>
 
 			
 
-<p>Note: that you don&rsquo;t need this tool if your specification file is self contained yaml file in
-swagger-editor. You can export into json format and it is validated already during the export
-process.</p>
+<h2 id="how-to-compress-the-response-with-gzip">How to compress the response with gzip</h2>
 
-<h3 id="introduction">Introduction</h3>
+<p>For some of the API endpoints, the response body are big and it might be necessary
+to compress it before return it to the client. Undertow has a built-in EncodingHandler
+that can be utilize for this.</p>
 
-<p>When editing swagger specification file, naturally we will be using yaml format as it is very
-easy to read and manipulate. Also, we might extract common definitions into separate files
-so that there is no duplications for multiple APIs. For the light-codegen, however, it requires
-one single swagger.json as model input. To generate a single json formatted specification file,
-we can use the Swagger 2.0 command-line tool.</p>
+<p>Here is an example with customized path provider.</p>
 
-<ul>
-<li>Supports multi-file APIs via $ref pointers</li>
-<li>Validate Swagger 2.0 APIs in JSON or YAML format</li>
-<li>Bundle multiple Swagger files into one combined Swagger file</li>
-<li>Built-in HTTP server to serve your REST API</li>
-</ul>
+<pre><code>public` HttpHandler getHandler() {
 
-<h3 id="installation">Installation</h3>
+    return new EncodingHandler(new ContentEncodingRepository()
+            .addEncodingHandler(&quot;gzip&quot;,
+                    new GzipEncodingProvider(), 50,
+                    Predicates.parse(&quot;max-content-size[5]&quot;)))
+            .setNext(
+                    Handlers.routing()
 
-<p>The tool can be found at the following location: <a href="https://www.npmjs.com/package/swagger-cli">swagger-cli</a></p>
+                            .add(Methods.GET, &quot;/v2/fronts/{front_id}&quot;, new FrontGetHandler(Config.getInstance().getMapper()))
 
-<p>Install using npm:</p>
+                            .add(Methods.GET, &quot;/v2/articles/{article_id}&quot;, new ArticleGetHandler(Config.getInstance().getMapper()))
 
-<pre><code class="language-shell">npm install -g swagger-cli
+                            .add(Methods.GET,&quot;/v2/medias/{media_id}&quot;, new MediaGetHandler(Config.getInstance().getMapper()))
+
+                            .add(Methods.GET,&quot;/v2/menus/{site_id}&quot;, new MenuGetHandler(Config.getInstance().getMapper()))
+
+                            .add(Methods.GET,&quot;/v2/sections/{section_id}&quot;, new SectionGetHandler(Config.getInstance().getMapper()))
+
+            );
+}
 </code></pre>
 
-<h3 id="general-usage">General Usage</h3>
+<p>For more information about the implementation, please refer to <a href="https://github.com/networknt/light-4j/issues/88">https://github.com/networknt/light-4j/issues/88</a></p>
 
-<p>swagger <command> [options] <filename></p>
+<p>Thanks @samek to confirm it works and provide the example.</p>
 
-<p>Commands:
-* validate: Validates a Swagger API against the Swagger 2.0 schema and spec
-* bundle: Bundles a multi-file Swagger API into a single file
-* serve: Serves a Swagger API via the built-in HTTP REST server</p>
+<h2 id="how-to-serve-single-page-application-react-angular-etc-from-your-api-server-instance">How to serve Single Page Application(React/Angular etc.) from your API server instance</h2>
 
-<p>Options:
-* -h, &ndash;help: Show help for any command
-* -V, &ndash;version: Output the CLI version number
-* -d, &ndash;debug [filter]: Show debug output, optionally filtered (ex.: &ldquo;<em>&rdquo;, &ldquo;swagger:</em>&rdquo;, etc.)</p>
+<p>During development, we normally use Nodejs to serve the single page application as it is easy
+to package and test/debug. However, on production, it makes sense that the API server serves
+the single page application by itself. In this way, we don&rsquo;t need to enable <a href="https://networknt.github.io/light-4j/middleware/cors/">CORS handler</a>
+and same another instance of the server.</p>
 
-<p>As we have a <a href="https://github.com/networknt/model-config">repo</a> of model and config for
-<a href="https://github.com/networknt/light-codegen">light-codegen</a>. It would be easier to provide
-an example based on our folder structure.</p>
+<p>To learn how to use Nodejs for Single Page Application development, please take a look at
+<a href="https://github.com/networknt/light-codegen/tree/master/codegen-web">https://github.com/networknt/light-codegen/tree/master/codegen-web</a></p>
 
-<h4 id="command-line">Command line</h4>
+<p>Here I will give you an example to show you how to package your application and deploy it
+with the API built on top of light-*-4j frameworks.</p>
 
-<p>If you prefer to run the commands individually, please see the sequence listed below:</p>
+<p>There are two options depending on if you are using Docker or not.</p>
 
-<pre><code class="language-shell"># clone the model-config GIT repository
-git clone git@github.com:networknt/model-config.git
+<h3 id="without-docker">Without Docker</h3>
 
-# switch to the rest folder
-cd model-config/rest
+<p>You can serve the SPA with command line to start the server. The only thing that you need
+to make sure is to have the webserver.json config file point to the exact local filesystem
+directory. The default config point to the relative folder which is not going to work.</p>
 
-# switch to one of the API folders
-# ex.: cd petstore
-cd &lt;api name&gt;
+<p>For more info, please take a look at the <a href="https://github.com/networknt/light-example-4j/tree/master/webserver">webserver example</a>
+and its readme.</p>
 
-#copy common definitions to the api folder
-cp -r ../common .
+<h3 id="with-docker">With Docker</h3>
 
-# execute the bundling functionlity
-swagger bundle -o swagger.json -r swagger.yaml
+<p>It is much easier to deploy SPA with containerized API as you can just put your SPA into
+a folder in your host machine and then map into the Docker with a volume. The API server
+can find the static files and serve them. Also, it allow you to change the UI easier without
+touching the API.</p>
 
-# validate the definition against the Open API spec
-swagger validate swagger.json
-
-# clean-up
-rm -r common
-
-# use the generated swagger.json file with the swagger-codegen project to generate server stubs
-</code></pre>
-
-<h4 id="script">Script</h4>
-
-<p>The above command line steps are very easy to understand but it is not the most convenient
-way to bundle and validate yaml files. Here is another way that leverage a script in
-model-config/rest folder.</p>
-
-<p>Note: the script assume that the common definition is defined in common folder and all API
-specification are defined in a folder name as the API name.</p>
-
-<h5 id="run-the-bundle-sh-script-to-bundle-and-validate">Run the bundle.sh script to bundle and validate</h5>
-
-<pre><code class="language-shell"># clone the model-config repository
-git clone git@github.com:networknt/model-config.git
-
-# switch to the model-config/rest folder
-cd model-config/rest
-
-# run the bundle script
-# ./bundle.sh &lt;api name&gt;
-# ex.: ./bundle.sh petstore
-./bundle.sh &lt;api name&gt;
-</code></pre>
+<p>Take a look at the <a href="https://github.com/networknt/light-example-4j/blob/master/webserver/Dockerfile">Dockerfile</a>
+in webserver example and pay attention on the volume that maps a host folder to /public in
+the container.</p>
 
 
 			<aside class="copyright" role="note">
@@ -580,34 +573,18 @@ cd model-config/rest
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-4j/architecture/microservices/" title="Microservices">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Microservices
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-4j/tools/swagger-editor/" title="Swagger Editor for OpenAPI Specification">
+      <a href="https://networknt.github.io/light-4j/architecture/transaction/" title="Transaction management in microservices architecture">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Swagger Editor for OpenAPI Specification
+              Transaction management in microservices architecture
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

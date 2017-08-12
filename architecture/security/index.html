@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Security - Light 4J - A fast, lightweight Java microservices framework</title>
-    <meta name="generator" content="Hugo 0.20.6" />
+    <meta name="generator" content="Hugo 0.21-DEV" />
 
     
     <meta name="description" content="Light 4J Docs">
@@ -396,6 +396,24 @@
 
 
 
+<a  title="FAQ" href="https://networknt.github.io/light-4j/faq/">
+	
+	FAQ
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="License" href="https://www.apache.org/licenses/LICENSE-2.0">
 	
 	License
@@ -471,7 +489,7 @@ the grant types we are using, please read this
 
 <p>Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the
 reason is that people are unclear on how these services talk to one another; especially
-tricky is access management throughout a sea of independent services.</p>
+tricky thing is access management throughout a sea of independent services.</p>
 
 <p>While designing microserivces, big monolithic application is breaking down to smaller
 services that can be independently deployed or replaced. The final application will have
@@ -484,7 +502,7 @@ a simple web token (a UUID in most of the cases), then the client sends the requ
 server with access token in the Authorization header. Once API server receives the request,
 it has to send the access token to OAuth2 server to verify if this is valid token and if
 this token is allowed to access this API. As you can see there must be a database lookup on
-OAuth2 server to do that. Distributed cache help a lot but there is still a network call and
+OAuth2 server to do that. Distributed cache helps a lot but there is still a network call and
 lookup for every single request. OAuth2 server eventually becomes a bottleneck and a single
 point of failure.</p>
 

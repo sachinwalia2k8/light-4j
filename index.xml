@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Thu, 10 Aug 2017 15:04:40 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 12 Aug 2017 10:14:30 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>FAQ</title>
+      <link>https://networknt.github.io/light-4j/faq/</link>
+      <pubDate>Sat, 12 Aug 2017 10:14:30 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/faq/</guid>
+      <description>How to compress the response with gzip For some of the API endpoints, the response body are big and it might be necessary to compress it before return it to the client. Undertow has a built-in EncodingHandler that can be utilize for this.
+Here is an example with customized path provider.
+public` HttpHandler getHandler() { return new EncodingHandler(new ContentEncodingRepository() .addEncodingHandler(&amp;quot;gzip&amp;quot;, new GzipEncodingProvider(), 50, Predicates.parse(&amp;quot;max-content-size[5]&amp;quot;))) .setNext( Handlers.routing() .add(Methods.GET, &amp;quot;/v2/fronts/{front_id}&amp;quot;, new FrontGetHandler(Config.</description>
+    </item>
     
     <item>
       <title>Transaction management in microservices architecture</title>
@@ -653,7 +664,7 @@ There are three parts in this projects:
       
       <guid>https://networknt.github.io/light-4j/architecture/security/</guid>
       <description>Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
-Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
+Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky thing is access management throughout a sea of independent services.
 While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.</description>
     </item>
     

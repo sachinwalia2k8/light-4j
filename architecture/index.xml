@@ -105,7 +105,7 @@ There are four type of components that can be wired in at different stage of the
       
       <guid>https://networknt.github.io/light-4j/architecture/security/</guid>
       <description>Note: If this is the first time you hear about OAuth2 or you want to get familiar with the grant types we are using, please read this article first.
-Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky is access management throughout a sea of independent services.
+Everyone’s excited about microservices, but actual implementation is sparse. Perhaps the reason is that people are unclear on how these services talk to one another; especially tricky thing is access management throughout a sea of independent services.
 While designing microserivces, big monolithic application is breaking down to smaller services that can be independently deployed or replaced.</description>
     </item>
     
