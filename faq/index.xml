@@ -20,7 +20,7 @@
       <guid>https://networknt.github.io/light-4j/faq/</guid>
       <description>How to compress the response with gzip For some of the API endpoints, the response body are big and it might be necessary to compress it before return it to the client. Undertow has a built-in EncodingHandler that can be utilize for this.
 Here is an example with customized path provider.
-public` HttpHandler getHandler() { return new EncodingHandler(new ContentEncodingRepository() .addEncodingHandler(&amp;quot;gzip&amp;quot;, new GzipEncodingProvider(), 50, Predicates.parse(&amp;quot;max-content-size[5]&amp;quot;))) .setNext( Handlers.routing() .add(Methods.GET, &amp;quot;/v2/fronts/{front_id}&amp;quot;, new FrontGetHandler(Config.</description>
+public` HttpHandler getHandler() { return new EncodingHandler(new ContentEncodingRepository() .addEncodingHandler(&amp;quot;gzip&amp;quot;, new GzipEncodingProvider(), 50, Predicates.parse(&amp;quot;max-content-size[150]&amp;quot;))) .setNext( Handlers.routing() .add(Methods.GET, &amp;quot;/v2/fronts/{front_id}&amp;quot;, new FrontGetHandler(Config.</description>
     </item>
     
   </channel>

@@ -20,7 +20,7 @@
       <guid>https://networknt.github.io/light-4j/faq/</guid>
       <description>How to compress the response with gzip For some of the API endpoints, the response body are big and it might be necessary to compress it before return it to the client. Undertow has a built-in EncodingHandler that can be utilize for this.
 Here is an example with customized path provider.
-public` HttpHandler getHandler() { return new EncodingHandler(new ContentEncodingRepository() .addEncodingHandler(&amp;quot;gzip&amp;quot;, new GzipEncodingProvider(), 50, Predicates.parse(&amp;quot;max-content-size[5]&amp;quot;))) .setNext( Handlers.routing() .add(Methods.GET, &amp;quot;/v2/fronts/{front_id}&amp;quot;, new FrontGetHandler(Config.</description>
+public` HttpHandler getHandler() { return new EncodingHandler(new ContentEncodingRepository() .addEncodingHandler(&amp;quot;gzip&amp;quot;, new GzipEncodingProvider(), 50, Predicates.parse(&amp;quot;max-content-size[150]&amp;quot;))) .setNext( Handlers.routing() .add(Methods.GET, &amp;quot;/v2/fronts/{front_id}&amp;quot;, new FrontGetHandler(Config.</description>
     </item>
     
     <item>
@@ -377,8 +377,8 @@ The following tutorials will help users to get started and more will be added la
       <pubDate>Wed, 25 Jan 2017 20:48:38 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/benchmarks/</guid>
-      <description>Light-4J framework is the fastest so far on the market and there are a lot of effort to make that happen. There are a lot of frameworks, languages to build microservices but most popular ones are Java, Go and Nodejs.
-Nodejs used to be really fast compare with JavaEE platforms but it has a lot of issues in enterprise world. Go has potentials but still not in enterprise applications. We are starting with Java due to the fact that it is highly optimized and there are so many existing investment in all sorts of organizations.</description>
+      <description>Light-4J framework is one of the fastest API frameworks on the market and there are a lot of effort to make that happen. There are a lot of frameworks, languages to build microservices but most popular ones are Java, Go and Nodejs.
+Nodejs used to be really fast compare with Java EE platforms but it has a lot of issues in enterprise world. Go has potentials but is still not mature in enterprise applications.</description>
     </item>
     
     <item>
