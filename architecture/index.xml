@@ -50,10 +50,8 @@ Rest When doing so, it seems RESTful API is a natural choose as it is well known
       <pubDate>Wed, 25 Jan 2017 20:18:44 -0500</pubDate>
       
       <guid>https://networknt.github.io/light-4j/architecture/</guid>
-      <description>light-4j is aiming microservices and it has to be light weight and address a lot of cross-cutting concerns at the same time. It is based on Undertow Core Http server and depending on minimum third party libraries.
-Here is a list of architecture decisions for the framework:
- Designed for microservices that can be dockerized and deployed within containers.
- Base on pure HTTP without JavaEE as it has too many problems and is declining</description>
+      <description>light-4j is aiming microservices and it has to be high throughput, low latency, light-weight and address a lot of cross-cutting concerns at the same time. It is based on Undertow Core Http server and depending on minimum third party libraries.
+The topics here are architectural considerations. In a nutshell, architecture is a type of design where the focus is quality attributes and wide(er) scope whereas design focuses on functional requirements and more localized concerns.</description>
     </item>
     
     <item>
