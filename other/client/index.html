@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Client - Light 4J - A fast, lightweight Java microservices framework</title>
-    <meta name="generator" content="Hugo 0.20.6" />
+    <meta name="generator" content="Hugo 0.21-DEV" />
 
     
     <meta name="description" content="Light 4J Docs">
@@ -138,7 +138,7 @@
         </div>
       
       <div class="name">
-        <strong>Light 4J - A fast, lightweight Java microservices framework <span class="version">1.4.1</span></strong>
+        <strong>Light 4J - A fast, lightweight Java microservices framework <span class="version">1.4.2?</span></strong>
         
           <br>
           networknt/light-4j
@@ -487,9 +487,9 @@
 
 <p>In microservices architecture, service to service communication can be done by
 request/response style or messaging/event style. An efficient http client is
-crucial in request/response style as the number of interaction between services
-are high and extra latency can kill the entire application peformance to cause
-the failuer of microservices application.</p>
+crucial in request/response style as the number of interactions between services
+are high and extra latency can kill the entire application performance to cause
+the failure of microservices application.</p>
 
 <p>In the early day of light-4j we have a client module based on Apache HttpClient
 and Apache HttpAsyncClient which supports HTTP 1.1 and is very popular in the
@@ -516,7 +516,7 @@ issue for other people to use it outside of light-*-4j.</p>
 <p>I am starting an <a href="https://github.com/networknt/http2client-benchmark">http client benchmark</a>
 and if there are more interests on this client, I will make it an independent
 module without depending on Undertow so that other people working on other platforms
-can use it without extra Undertow core.</p>
+can use it without the extra Undertow core.</p>
 
 <h2 id="usage">Usage</h2>
 
@@ -533,6 +533,11 @@ server HTTP 2.0 support and is used to call APIs from the following sources:</p>
 credentials token for scopes in API to API calls. It also helps to pass correlationId
 and traceabilityId and other configurable headers to the next service.</p>
 
+<p>Although it support HTTP 1.1, it requires the user to create a connection pool as
+HTTP 1.1 connection doesn&rsquo;t support multiplex and one connection can only handle one
+request concurrently. I am planning to add a internal connection pool if there is a
+need but currently it is not necessary as all the communication is on HTTP 2.0</p>
+
 <h3 id="generic-response-callback-functions">Generic response callback functions</h3>
 
 <p>Like Undertow core server, it is event driven with callbacks so non-blocking
@@ -540,6 +545,18 @@ all the time to free your CPU for other important computation. Http2Client
 has two generic callback functions implemented to handle request with body(POST,
 PUT, PATCH) and request without body(GET, DELETE). Users can create their own
 customized callback functions to handle the response from the server.</p>
+
+<p>Signature for GET/DELETE</p>
+
+<pre><code>public ClientCallback&lt;ClientExchange&gt; createClientCallback(final AtomicReference&lt;ClientResponse&gt; reference, final CountDownLatch latch)
+</code></pre>
+
+<p>Signature for POST, PUT, PATCH</p>
+
+<pre><code>public ClientCallback&lt;ClientExchange&gt; createClientCallback(final AtomicReference&lt;ClientResponse&gt; reference, final CountDownLatch latch, final String requestBody)
+</code></pre>
+
+<p>Note that you need to pass in a requestBody for POST, PUT or PATCH.</p>
 
 <h3 id="client-credentials-token-renew-and-cache">Client Credentials token renew and cache</h3>
 
@@ -597,6 +614,50 @@ renew process is start again.</p>
 <pre><code>    public void populateHeader(HttpRequest request, String authToken, String correlationId, String traceabilityId) throws ClientException, ApiException 
 
 </code></pre>
+
+<h3 id="test-cases-that-use-http2client">Test cases that use Http2Client</h3>
+
+<p>All tests in light-*-4j frameworks are real test against the real server and the test cases are using
+Http2Client to communicate with the server. We have several hundreds test cases in all different frameworks
+and light-oauth2 concentrate some of them. Take a look at <a href="https://github.com/networknt/light-oauth2/tree/master/client/src/test/java/com/networknt/oauth/client/handler">https://github.com/networknt/light-oauth2/tree/master/client/src/test/java/com/networknt/oauth/client/handler</a>
+for examples on how to write test cases with Http2Client. In fact, you can check other modules in light-oauth2
+for test cases examples as well.</p>
+
+<h3 id="http2client-communicate-with-third-party-server">Http2Client communicate with third party server.</h3>
+
+<p>Within light-4j, there are several places that Http2Client is used to communicate with third party servers</p>
+
+<ul>
+<li>OAuth2 server</li>
+</ul>
+
+<p><a href="https://github.com/networknt/light-4j/blob/master/client/src/main/java/com/networknt/client/oauth/OauthHelper.java">https://github.com/networknt/light-4j/blob/master/client/src/main/java/com/networknt/client/oauth/OauthHelper.java</a></p>
+
+<ul>
+<li>Consul</li>
+</ul>
+
+<p><a href="https://github.com/networknt/light-4j/blob/master/consul/src/main/java/com/networknt/consul/client/ConsulEcwidClient.java">https://github.com/networknt/light-4j/blob/master/consul/src/main/java/com/networknt/consul/client/ConsulEcwidClient.java</a></p>
+
+<ul>
+<li>InfluxDB</li>
+</ul>
+
+<p><a href="https://github.com/networknt/light-4j/blob/master/metrics/src/main/java/io/dropwizard/metrics/influxdb/InfluxDbHttpSender.java">https://github.com/networknt/light-4j/blob/master/metrics/src/main/java/io/dropwizard/metrics/influxdb/InfluxDbHttpSender.java</a></p>
+
+<h3 id="tutorials-that-use-http2client">Tutorials that use Http2Client</h3>
+
+<ul>
+<li>Microservices Chain pattern tutorial</li>
+</ul>
+
+<p><a href="https://networknt.github.io/light-rest-4j/tutorial/ms-chain/">https://networknt.github.io/light-rest-4j/tutorial/ms-chain/</a></p>
+
+<ul>
+<li>Service discovery tutorial</li>
+</ul>
+
+<p><a href="https://networknt.github.io/light-rest-4j/tutorial/discovery/">https://networknt.github.io/light-rest-4j/tutorial/discovery/</a></p>
 
 
 			<aside class="copyright" role="note">
