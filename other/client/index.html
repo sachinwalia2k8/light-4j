@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Client - Light 4J - A fast, lightweight Java microservices framework</title>
-    <meta name="generator" content="Hugo 0.21-DEV" />
+    <meta name="generator" content="Hugo 0.20.6" />
 
     
     <meta name="description" content="Light 4J Docs">
@@ -658,6 +658,25 @@ for test cases examples as well.</p>
 </ul>
 
 <p><a href="https://networknt.github.io/light-rest-4j/tutorial/discovery/">https://networknt.github.io/light-rest-4j/tutorial/discovery/</a></p>
+
+<h3 id="close-connection">Close connection</h3>
+
+<p>In most of the cases, we don&rsquo;t close the connection and all the requests will go through the same
+HTTP/2 connection with multiplex support. However, there are times you need to create a new connection
+on demand and close it once it is used. For example, in <a href="https://github.com/networknt/light-4j/blob/master/server/src/main/java/com/networknt/server/Server.java">Server.java</a>
+we create a new connection to load config from light-config-server during startup. In this case,
+although our config server supports HTTP/2, we create and close the connection as this is one time
+request and we don&rsquo;t want to hold the resource. Here is the lines to close the connection in finally
+block.</p>
+
+<pre><code class="language-java">    } finally {
+        IoUtils.safeClose(connection);
+    }
+</code></pre>
+
+<p>Another place that we create connection for each request is <a href="https://github.com/networknt/light-4j/blob/develop/consul/src/main/java/com/networknt/consul/client/ConsulEcwidClient.java">ConsulEcwidClient.java</a>
+in the consul module. The reason is due to consul doesn&rsquo;t support HTTP/2 and all the requests are
+on/off basis.</p>
 
 
 			<aside class="copyright" role="note">
