@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://networknt.github.io/light-4j/architecture/key-distribution/</loc>
+    <lastmod>2017-09-19T21:22:47-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://networknt.github.io/light-4j/faq/</loc>
     <lastmod>2017-08-12T10:14:30-04:00</lastmod>
   </url>
@@ -408,7 +413,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/architecture/</loc>
-    <lastmod>2017-08-10T15:04:40-04:00</lastmod>
+    <lastmod>2017-09-19T21:22:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -455,7 +460,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/</loc>
-    <lastmod>2017-08-12T10:14:30-04:00</lastmod>
+    <lastmod>2017-09-19T21:22:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   

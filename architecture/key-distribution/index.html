@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>FAQ - Light 4J - A fast, lightweight Java microservices framework</title>
+    <title>JWT Public Key Certification Distribution - Light 4J - A fast, lightweight Java microservices framework</title>
     <meta name="generator" content="Hugo 0.20.6" />
 
     
     <meta name="description" content="Light 4J Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-4j/faq/">
+    <link rel="canonical" href="https://networknt.github.io/light-4j/architecture/key-distribution/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-4j/faq/">
+    <meta property="og:url" content="https://networknt.github.io/light-4j/architecture/key-distribution/">
     <meta property="og:title" content="Light 4J - A fast, lightweight Java microservices framework">
     <meta property="og:image" content="https://networknt.github.io/light-4j/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light 4J - A fast, lightweight Java microservices framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        FAQ
+        JWT Public Key Certification Distribution
       </div>
     </div>
 
@@ -396,14 +396,11 @@
 
 
 
-<a class="current" title="FAQ" href="https://networknt.github.io/light-4j/faq/">
+<a  title="FAQ" href="https://networknt.github.io/light-4j/faq/">
 	
 	FAQ
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -482,79 +479,95 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>FAQ </h1>
+			<h1>JWT Public Key Certification Distribution </h1>
 
 			
 
-<h2 id="how-to-compress-the-response-with-gzip">How to compress the response with gzip</h2>
+<p>light-4j and related frameworks integrate with light-oauth2 very closely so that tokens
+issued by light-oauth2 can be verified on services built on top of light-*-4j frameworks
+independently. We call this centralized security policy management on light-oauth2 and
+distributed policy enforcement on service. This eliminate the needs to call oauth2 server
+to verify token for each request to a service. If we do that, then the oauth2 server will
+become a bottleneck as the number of calls between services are significantly higher then
+traditional web services architecture.</p>
 
-<p>For some of the API endpoints, the response body are big and it might be necessary
-to compress it before return it to the client. Undertow has a built-in EncodingHandler
-that can be utilize for this.</p>
+<p>In order to do token verification distributedly, we have to use PKI to sign the JWT token
+and distribute the public key certificate to each running service. Each service will use
+the public key certificate to verify token signature to ensure that the token is issued
+by the right OAuth 2.0 provider and the claims are not tempered.</p>
 
-<p>Here is an example with customized path provider.</p>
+<p>In traditional web service architecture, the public key certificate normally will be copied
+to the target host which the services are deployed during first deployment and then copied
+the new public key certificate once it is rotated. This is doable because we know the IP
+address of the service and we can locate the exact host to deploy the certificate. However,
+in pure microservices architecture, all services are in Docker container and orchestrated
+by Kubernetes. You don&rsquo;t have the exact address of each service and one service can be down
+on one VM and be started on another VM the next seconds. The traditional way to push the
+certificate to service is not an option anymore.</p>
 
-<pre><code>public` HttpHandler getHandler() {
+<p>The solution we use is to pull the certificate from light-oauth2 by services whenever
+necessary.</p>
 
-    return new EncodingHandler(new ContentEncodingRepository()
-            .addEncodingHandler(&quot;gzip&quot;,
-                    new GzipEncodingProvider(), 50,
-                    Predicates.parse(&quot;max-content-size[150]&quot;)))
-            .setNext(
-                    Handlers.routing()
+<h2 id="bootstrap-certificates">Bootstrap certificates</h2>
 
-                            .add(Methods.GET, &quot;/v2/fronts/{front_id}&quot;, new FrontGetHandler(Config.getInstance().getMapper()))
+<p>When a service is generated from light-codegen, it will include two public key certificates
+for testing. These will be replaced once you move to an official testing environment within
+your organization as you services will be using an official testing oauth2 server with a
+purchased key pair. When the service goes to production, the production certificate will be
+packaged to the server in order to bootstrap the service on production. Basically, this will
+ensure that all services will be ready to verify JWT tokens immediately.</p>
 
-                            .add(Methods.GET, &quot;/v2/articles/{article_id}&quot;, new ArticleGetHandler(Config.getInstance().getMapper()))
+<h2 id="which-key-to-use">Which key to use</h2>
 
-                            .add(Methods.GET,&quot;/v2/medias/{media_id}&quot;, new MediaGetHandler(Config.getInstance().getMapper()))
+<p>As mentioned above, light-4j supports multiple public key certificates at anytime because
+once key is rotated, service still need to use the old key to verify tokens sign by the old
+private key as these tokens were issued before the new key is deployed and they are not
+expired yet.</p>
 
-                            .add(Methods.GET,&quot;/v2/menus/{site_id}&quot;, new MenuGetHandler(Config.getInstance().getMapper()))
+<p>Here is the security.yml config file for security handler.</p>
 
-                            .add(Methods.GET,&quot;/v2/sections/{section_id}&quot;, new SectionGetHandler(Config.getInstance().getMapper()))
+<pre><code class="language-yaml"># Security configuration in light framework.
+---
+# Enable JWT verification flag.
+enableVerifyJwt: true
 
-            );
-}
+# Enable JWT scope verification. Only valid when enableVerifyJwt is true.
+enableVerifyScope: true
+
+# User for test only. should be always be false on official environment.
+enableMockJwt: false
+
+# JWT signature public certificates. kid and certificate path mappings.
+jwt:
+  certificate:
+    '100': oauth/primary.crt
+    '101': oauth/secondary.crt
+  clockSkewInSeconds: 60
+
+# Enable or disable JWT token logging
+logJwtToken: true
+
+# Enable or disable client_id, user_id and scope logging.
+logClientUserScope: false
+
 </code></pre>
 
-<p>For more information about the implementation, please refer to <a href="https://github.com/networknt/light-4j/issues/88">https://github.com/networknt/light-4j/issues/88</a></p>
+<p>As you can see the certificate configuration is a map between kid and the key filename. When
+light-oauth2 server issues a token, it will put the kid into the header of the token. When
+service receives a token, it will check the kid first and then lookup the certificate map
+to figure out which certificate is needed to verify the token. The certificates are loaded
+during server startup so the lookup and verification should be really fast.</p>
 
-<p>Thanks @samek to confirm it works and provide the example.</p>
+<h2 id="rotate-certificate">Rotate certificate</h2>
 
-<h2 id="how-to-serve-single-page-application-react-angular-etc-from-your-api-server-instance">How to serve Single Page Application(React/Angular etc.) from your API server instance</h2>
+<p>Once the key changed on the light-oauth2 server, it will be using the new key to sign the
+token and the new token will have a new kid for example &ldquo;102&rdquo;. Once the service receives
+the token it checked the local key map and cannot find the key with kid = 102, then it will
+call light-oauth2 key service with kid=102 in the path. Once the key is downloaded to the
+local, it will be cached for subsequent token verifications.</p>
 
-<p>During development, we normally use Nodejs to serve the single page application as it is easy
-to package and test/debug. However, on production, it makes sense that the API server serves
-the single page application by itself. In this way, we don&rsquo;t need to enable <a href="https://networknt.github.io/light-4j/middleware/cors/">CORS handler</a>
-and same another instance of the server.</p>
-
-<p>To learn how to use Nodejs for Single Page Application development, please take a look at
-<a href="https://github.com/networknt/light-codegen/tree/master/codegen-web">https://github.com/networknt/light-codegen/tree/master/codegen-web</a></p>
-
-<p>Here I will give you an example to show you how to package your application and deploy it
-with the API built on top of light-*-4j frameworks.</p>
-
-<p>There are two options depending on if you are using Docker or not.</p>
-
-<h3 id="without-docker">Without Docker</h3>
-
-<p>You can serve the SPA with command line to start the server. The only thing that you need
-to make sure is to have the webserver.json config file point to the exact local filesystem
-directory. The default config point to the relative folder which is not going to work.</p>
-
-<p>For more info, please take a look at the <a href="https://github.com/networknt/light-example-4j/tree/master/webserver">webserver example</a>
-and its readme.</p>
-
-<h3 id="with-docker">With Docker</h3>
-
-<p>It is much easier to deploy SPA with containerized API as you can just put your SPA into
-a folder in your host machine and then map into the Docker with a volume. The API server
-can find the static files and serve them. Also, it allow you to change the UI easier without
-touching the API.</p>
-
-<p>Take a look at the <a href="https://github.com/networknt/light-example-4j/blob/master/webserver/Dockerfile">Dockerfile</a>
-in webserver example and pay attention on the volume that maps a host folder to /public in
-the container.</p>
+<p>Here is the document for <a href="https://networknt.github.io/light-oauth2/services/key/">key distribution</a>
+service in light-oauth2.</p>
 
 
 			<aside class="copyright" role="note">
@@ -573,34 +586,18 @@ the container.</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-4j/architecture/key-distribution/" title="JWT Public Key Certification Distribution">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              JWT Public Key Certification Distribution
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-4j/architecture/transaction/" title="Transaction management in microservices architecture">
+      <a href="https://networknt.github.io/light-4j/faq/" title="FAQ">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Transaction management in microservices architecture
+              FAQ
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

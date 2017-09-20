@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Sat, 12 Aug 2017 10:14:30 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 19 Sep 2017 21:22:47 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JWT Public Key Certification Distribution</title>
+      <link>https://networknt.github.io/light-4j/architecture/key-distribution/</link>
+      <pubDate>Tue, 19 Sep 2017 21:22:47 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/architecture/key-distribution/</guid>
+      <description>light-4j and related frameworks integrate with light-oauth2 very closely so that tokens issued by light-oauth2 can be verified on services built on top of light-*-4j frameworks independently. We call this centralized security policy management on light-oauth2 and distributed policy enforcement on service. This eliminate the needs to call oauth2 server to verify token for each request to a service. If we do that, then the oauth2 server will become a bottleneck as the number of calls between services are significantly higher then traditional web services architecture.</description>
+    </item>
     
     <item>
       <title>FAQ</title>

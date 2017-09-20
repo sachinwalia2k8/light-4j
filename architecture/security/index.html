@@ -643,6 +643,14 @@ access customer based on the same Geo location.</p>
 the rule business handler can be done in a consistent way. Also, for certain client or user, the
 response might need to filter out some information before returning to the consume.</p>
 
+<h1 id="jwt-public-key-certificate-distribution">JWT public key certificate distribution</h1>
+
+<p>As we are using JWT token for distributed token verification on each service instance, we need to make
+sure that the public key certificate from OAuth 2.0 provider can be distributed to each individual
+service instance so that they can verify the token issued by the same OAuth 2.0 token service independently.</p>
+
+<p>Here is the <a href="https://networknt.github.io/light-4j/architecture/key-distribution/">document</a> that describes how key is distributed to the services during runtime.</p>
+
 
 			<aside class="copyright" role="note">
 				
