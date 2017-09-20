@@ -678,6 +678,46 @@ block.</p>
 in the consul module. The reason is due to consul doesn&rsquo;t support HTTP/2 and all the requests are
 on/off basis.</p>
 
+<p>Although it is recommended to keep the connection cached for high volume services, the connection must
+be closed from time to time so that the load balancer can redirect the same client instance to different
+server instances unless you want to pin a particular client instance to a server instance for a long time.
+This will eventually cause im-balance load on the service instances if there are not too many different
+clients.</p>
+
+<p>The easist way to close collection periodically is to close it after number of request or close it after
+number of minutes. The same finally block can be written as.</p>
+
+<pre><code class="language-java">    } finally {
+        if(number of minutes passed or number of requests handled) {
+            IoUtils.safeClose(connection);
+        }
+    }
+
+</code></pre>
+
+<h3 id="check-connection">Check connection</h3>
+
+<p>When you cache the connection for a while, you need to ensure that the connection is still open as it might
+be closed from the server or closed periodically to re-balance the load on server instances.</p>
+
+<p>Here is the example to check the connection before using it.</p>
+
+<pre><code class="language-java">        if(connectionC == null || !connectionC.isOpen()) {
+            try {
+                apicHost = cluster.serviceToUrl(&quot;https&quot;, &quot;com.networknt.apic-1.0.0&quot;, null);
+                connectionC = client.connect(new URI(apicHost), Http2Client.WORKER, Http2Client.SSL, Http2Client.POOL, OptionMap.create(UndertowOptions.ENABLE_HTTP2, true)).get();
+            } catch (Exception e) {
+                logger.error(&quot;Exeption:&quot;, e);
+                throw new ClientException(e);
+            }
+        }
+</code></pre>
+
+<p>The above code checks the cached connectionC and if it is closed already, then create a new connection and
+cache it.</p>
+
+<p>For full example, please refer to  <a href="https://github.com/networknt/light-example-4j/blob/master/discovery/api_a/consul/src/main/java/com/networknt/apia/handler/DataGetHandler.java">https://github.com/networknt/light-example-4j/blob/master/discovery/api_a/consul/src/main/java/com/networknt/apia/handler/DataGetHandler.java</a></p>
+
 <h3 id="configuration">Configuration</h3>
 
 <p>When using client module of light-4j, you need to have a configuration file client.yml in
