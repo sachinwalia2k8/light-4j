@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://networknt.github.io/light-4j/design/check-token/</loc>
+    <lastmod>2017-09-21T21:20:27-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://networknt.github.io/light-4j/architecture/key-distribution/</loc>
     <lastmod>2017-09-19T21:22:47-04:00</lastmod>
   </url>
@@ -430,7 +435,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/design/</loc>
-    <lastmod>2017-07-03T08:30:37-04:00</lastmod>
+    <lastmod>2017-09-21T21:20:27-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -460,7 +465,7 @@
   
   <url>
     <loc>https://networknt.github.io/light-4j/</loc>
-    <lastmod>2017-09-19T21:22:47-04:00</lastmod>
+    <lastmod>2017-09-21T21:20:27-04:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
-    <lastBuildDate>Tue, 19 Sep 2017 21:22:47 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 21 Sep 2017 21:20:27 -0400</lastBuildDate>
     
 	<atom:link href="https://networknt.github.io/light-4j/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why check token expiration in client</title>
+      <link>https://networknt.github.io/light-4j/design/check-token/</link>
+      <pubDate>Thu, 21 Sep 2017 21:20:27 -0400</pubDate>
+      
+      <guid>https://networknt.github.io/light-4j/design/check-token/</guid>
+      <description>In web service architecture, normally people handle JWT token expiration reactively. Here is the flow.
+ Client sent request with a JWT token in header. Service receives the request and verify if the JWT token expires If expired, then return 401 - token expired When client receives this error and body, it will go to the OAuth 2.0 provider to renew a new token Resend the request with the new token.</description>
+    </item>
     
     <item>
       <title>JWT Public Key Certification Distribution</title>
@@ -165,7 +175,7 @@ If you want to limit only several domains for CORS, you also need to create cors
     </item>
     
     <item>
-      <title>monojee</title>
+      <title>How to replace monolithic Java EE application to microservices</title>
       <link>https://networknt.github.io/light-4j/design/monojee/</link>
       <pubDate>Thu, 09 Feb 2017 12:45:22 -0500</pubDate>
       

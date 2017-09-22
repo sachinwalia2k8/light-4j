@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Body Parser - Light 4J - A fast, lightweight Java microservices framework</title>
+    <title>Why check token expiration in client - Light 4J - A fast, lightweight Java microservices framework</title>
     <meta name="generator" content="Hugo 0.20.6" />
 
     
     <meta name="description" content="Light 4J Docs">
     
-    <link rel="canonical" href="https://networknt.github.io/light-4j/middleware/body/">
+    <link rel="canonical" href="https://networknt.github.io/light-4j/design/check-token/">
     
     <meta name="author" content="Steve Hu">
     
 
-    <meta property="og:url" content="https://networknt.github.io/light-4j/middleware/body/">
+    <meta property="og:url" content="https://networknt.github.io/light-4j/design/check-token/">
     <meta property="og:title" content="Light 4J - A fast, lightweight Java microservices framework">
     <meta property="og:image" content="https://networknt.github.io/light-4j/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Light 4J - A fast, lightweight Java microservices framework">
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Body Parser
+        Why check token expiration in client
       </div>
     </div>
 
@@ -479,54 +479,39 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Body Parser </h1>
+			<h1>Why check token expiration in client </h1>
 
-			
+			<p>In web service architecture, normally people handle JWT token expiration reactively. Here
+is the flow.</p>
 
-<p>Body parser is a middleware handler designed for <a href="https://github.com/networknt/light-rest-4j">light-rest-4j</a>
-only. It will parse the body to a list or map depending on the first character of the
-body content if application/json is the content-type in the HTTP header for POST, PUT
-and PATCH HTTP methods. After the body is parsed, it will be attached to the exchange
-so that subsequent handlers can use it directly. In the future, other content-type
-might be supported if needed.</p>
+<ul>
+<li>Client sent request with a JWT token in header.</li>
+<li>Service receives the request and verify if the JWT token expires</li>
+<li>If expired, then return 401 - token expired</li>
+<li>When client receives this error and body, it will go to the OAuth 2.0 provider to renew a new token</li>
+<li>Resend the request with the new token.</li>
+</ul>
 
-<h1 id="introduction">Introduction</h1>
+<p>Note that if token is not expired then go to the next step.</p>
 
-<p>In order for this handler to work, the content-type in header must be started with
-&ldquo;application/json&rdquo;. If the content type is correct, it will parse it to List or Map
-and put it into REQUEST_BODY exchange attachment.</p>
+<p>The above flow doesn&rsquo;t work with microservices architecture as it will cause data consistency
+issue if the token being used is about to expire.</p>
 
-<p>If content type is missing or if it is not started as &ldquo;application/json&rdquo;, the body
-won&rsquo;t be parsed and this handler will just call next handler in the chain.</p>
+<p>For example, the client is calling two services in sequence. The first service verify the token
+and it is not expired and the transaction went though. However, when the second service receives
+the token, it is already expired and return an error message to the client. In this scenario, the
+client can still renew the token and resend the second request with the new token.</p>
 
-<p><a href="https://networknt.github.io/light-4j/middleware/sanitizer/">Sanitizer</a>
-and <a href="https://networknt.github.io/light-4j/middleware/swagger-validator/">Swagger Validator</a>
-depend on this middleware.</p>
+<p>Let&rsquo;s take a look at the next scenario. The client is calling first service and the first service
+calls the second service. what if the first service passed but the second service got a token
+expired error? If we still follow the above flow, then we need the client to renew the token
+and retry first service again then first service calls to second service. This requires the first
+service must be idempotent with is much more complicated to handle.</p>
 
-<h1 id="configuration">Configuration</h1>
-
-<p>Here is an example of configuration body.yml which has a flag to enable or disable it.</p>
-
-<pre><code># Enable body parse flag
-enabled: true
-</code></pre>
-
-<h1 id="example">Example</h1>
-
-<p>Here is the code example that get the boby object(Map or List) from exchange.</p>
-
-<pre><code>                    Object body = exchange.getAttachment(BodyHandler.REQUEST_BODY);
-                    if(body == null) {
-                        exchange.getResponseSender().send(&quot;nobody&quot;);
-                    } else {
-                        if(body instanceof List) {
-                            exchange.getResponseSender().send(&quot;list&quot;);
-                        } else {
-                            exchange.getResponseSender().send(&quot;map&quot;);
-                        }
-                    }
-
-</code></pre>
+<p>To avoid these complicated scenario, in light-4j framework, we check the token expiration pro-actively
+in the <a href="https://networknt.github.io/light-4j/other/client/">client</a> module and renew a new token before
+it is about to expire. The default configuration is 1 minutes before token expiration a separate thread
+will contact <a href="https://networknt.github.io/light-oauth2/">light-oauth2</a> token service to renew the token.</p>
 
 
 			<aside class="copyright" role="note">
@@ -545,34 +530,18 @@ enabled: true
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://networknt.github.io/light-4j/middleware/exception/" title="Exception Handler">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Exception Handler
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://networknt.github.io/light-4j/middleware/audit/" title="Audit">
+      <a href="https://networknt.github.io/light-4j/architecture/key-distribution/" title="JWT Public Key Certification Distribution">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Audit
+              JWT Public Key Certification Distribution
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
